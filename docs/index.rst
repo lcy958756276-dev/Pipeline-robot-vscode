@@ -6,9 +6,10 @@
 Pipeline_robot_vscode documentation
 ===================================
 .. warning::
-   这是一个警告
+   这是一个警告哈
 .. note::
-   这是一个哈哈哈哈哦哦
+   这是一个
+
 Add your content using ``reStructuredText`` syntax. See the
 `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
 documentation for details.
@@ -19,5 +20,13 @@ documentation for details.
    :caption: Contents:
 
    intro
+   scripts/report_generate_doc
+   scripts/cameralcapture_yolomodel
+   scripts/vscode_cpp
+   scripts/navigation
+   scripts/Motherboard_data_process
+   scripts/3D_mapping
+   scripts/cable_read
+
 
 
