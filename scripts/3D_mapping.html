@@ -44,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Vscode 代码</a></li>
 <li class="toctree-l1"><a class="reference internal" href="report_generate_doc.html">Report Generate python Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cameralcapture_yolomodel.html">Cameral Yolo Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vscode_cpp.html">Camera Capture C++ Module</a></li>
@@ -68,7 +68,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#full-source-code">Full Source Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sanweijiantu-cpp">sanweijiantu_cpp</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv414DA_Octree_Node"><code class="docutils literal notranslate"><span class="pre">DA_Octree_Node</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node14DA_Octree_NodeEv"><code class="docutils literal notranslate"><span class="pre">DA_Octree_Node()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node12odomCallbackERKN8nav_msgs8Odometry8ConstPtrE"><code class="docutils literal notranslate"><span class="pre">odomCallback()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node10daCallbackERKN14pipeline_robot13DistanceAngle8ConstPtrE"><code class="docutils literal notranslate"><span class="pre">daCallback()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node7da_sub_E"><code class="docutils literal notranslate"><span class="pre">da_sub_</span></code></a></li>
@@ -86,6 +85,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cable_read.html">cable_read Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro2.html">QT 代码</a></li>
+<li class="toctree-l1"><a class="reference internal" href="function_key.html">function_key Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QT_function_other.html">QT_function_other Module</a></li>
 </ul>
 
         </div>
@@ -372,12 +374,11 @@
 <span id="_CPPv314DA_Octree_Node"></span><span id="_CPPv214DA_Octree_Node"></span><span id="DA_Octree_Node"></span><span class="target" id="classDA__Octree__Node"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DA_Octree_Node</span></span></span><a class="headerlink" href="#_CPPv414DA_Octree_Node" title="Link to this definition"></a><br /></dt>
 <dd><p>通过 Distance-Angle 数据生成点云并构建八叉树的节点类 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-private-functions">Private Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node14DA_Octree_NodeEv">
-<span id="_CPPv3N14DA_Octree_Node14DA_Octree_NodeEv"></span><span id="_CPPv2N14DA_Octree_Node14DA_Octree_NodeEv"></span><span id="DA_Octree_Node::DA_Octree_Node"></span><span class="target" id="classDA__Octree__Node_1affd4d94f5e93e83256aa82725fd79509"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DA_Octree_Node</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node14DA_Octree_NodeEv" title="Link to this definition"></a><br /></dt>
-<dd><p>构造函数，初始化订阅者、发布者和八叉树 </p>
-</dd></dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="classDA__Octree__Node_1a396facad7b9857957299b0eeb6f86b3d"></span><span class="sig-name descname"><span class="pre">inline</span>&#160; <span class="pre">odom_received_</span> <span class="pre">(false)</span></span></dt>
+<dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node12odomCallbackERKN8nav_msgs8Odometry8ConstPtrE">
@@ -404,6 +405,11 @@
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-private-members">Private Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="classDA__Octree__Node_1ae1f18f5aaa8e7c4467d1421411751649"></span><span class="sig-name descname"><span class="pre">__pad0__</span></span></dt>
+<dd></dd></dl>
+
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node7da_sub_E">
 <span id="_CPPv3N14DA_Octree_Node7da_sub_E"></span><span id="_CPPv2N14DA_Octree_Node7da_sub_E"></span><span id="DA_Octree_Node::da_sub___ros::Subscriber"></span><span class="target" id="classDA__Octree__Node_1ac9e99724363e8816834a603e56250462"></span><span class="n"><span class="pre">ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscriber</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">da_sub_</span></span></span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node7da_sub_E" title="Link to this definition"></a><br /></dt>
