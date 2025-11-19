@@ -1,0 +1,505 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="odom__pub_8cpp" kind="file" language="C++">
+    <compoundname>odom_pub.cpp</compoundname>
+    <includes local="no">ros/ros.h</includes>
+    <includes local="no">std_msgs/Int32.h</includes>
+    <includes local="no">nav_msgs/Odometry.h</includes>
+    <includes local="no">tf/transform_broadcaster.h</includes>
+    <includes local="yes">std_msgs/String.h</includes>
+    <includes local="no">regex</includes>
+    <includes local="no">std_msgs/Bool.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>cable_read/odom_pub.cpp</label>
+        <link refid="odom__pub_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>nav_msgs/Odometry.h</label>
+      </node>
+      <node id="7">
+        <label>regex</label>
+      </node>
+      <node id="2">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="8">
+        <label>std_msgs/Bool.h</label>
+      </node>
+      <node id="3">
+        <label>std_msgs/Int32.h</label>
+      </node>
+      <node id="6">
+        <label>std_msgs/String.h</label>
+      </node>
+      <node id="5">
+        <label>tf/transform_broadcaster.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="odom__pub_8cpp_1a30b9d036a79a00e325dd2bbb9e991755" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool reset_odom</definition>
+        <argsstring></argsstring>
+        <name>reset_odom</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>全局变量 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="24" column="6" bodyfile="cable_read/odom_pub.cpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="odom__pub_8cpp_1ac5e0ffa856f94297db93de525454d254" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double wheel_radius</definition>
+        <argsstring></argsstring>
+        <name>wheel_radius</name>
+        <initializer>= 0.0318</initializer>
+        <briefdescription>
+<para>轮子半径(m) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="27" column="8" bodyfile="cable_read/odom_pub.cpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="odom__pub_8cpp_1a7528b439f0436b7327b1acaa71f0fc88" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double wheel_base</definition>
+        <argsstring></argsstring>
+        <name>wheel_base</name>
+        <initializer>= 0.343</initializer>
+        <briefdescription>
+<para>轮距(m) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="28" column="8" bodyfile="cable_read/odom_pub.cpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double distance</definition>
+        <argsstring></argsstring>
+        <name>distance</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="31" column="8" bodyfile="cable_read/odom_pub.cpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="35" column="8" bodyfile="cable_read/odom_pub.cpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="odom__pub_8cpp_1ab927965981178aa1fba979a37168db2a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="36" column="8" bodyfile="cable_read/odom_pub.cpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="odom__pub_8cpp_1aca81c35c21e3a5f7f3a8d24504e76664" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double theta</definition>
+        <argsstring></argsstring>
+        <name>theta</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="37" column="8" bodyfile="cable_read/odom_pub.cpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="odom__pub_8cpp_1ac7cf637ac08386a7e08f7a9cb1975056" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double pluse</definition>
+        <argsstring></argsstring>
+        <name>pluse</name>
+        <initializer>= 2.295048561 * 360.0 / (400*4)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="40" column="8" bodyfile="cable_read/odom_pub.cpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="odom__pub_8cpp_1a55886e34bc6a03b24f6ce7455fe67289" prot="public" static="no" mutable="no">
+        <type>ros::Time</type>
+        <definition>ros::Time last_time</definition>
+        <argsstring></argsstring>
+        <name>last_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="43" column="11" bodyfile="cable_read/odom_pub.cpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="odom__pub_8cpp_1aed25fed1ceb628954de9adc35a411398" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string extra</definition>
+        <argsstring>(const std::string &amp;input)</argsstring>
+        <name>extra</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>从编码器字符串消息中提取左轮增量数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>编码器字符串消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string 左轮增量字符串 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="50" column="13" bodyfile="cable_read/odom_pub.cpp" bodystart="50" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="odom__pub_8cpp_1a6e9f67764013c92ecd2200c1e90d714a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void resetOdometryCallback</definition>
+        <argsstring>(const std_msgs::Bool::ConstPtr &amp;msg)</argsstring>
+        <name>resetOdometryCallback</name>
+        <param>
+          <type>const std_msgs::Bool::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>接收 /reset_odom 消息，设置重置标志 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>std_msgs::Bool 消息，true 表示重置 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="67" column="6" bodyfile="cable_read/odom_pub.cpp" bodystart="67" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="odom__pub_8cpp_1afca0ce71eb34f139dd215289e37db241" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EncoderCallback</definition>
+        <argsstring>(const std_msgs::String::ConstPtr &amp;msg)</argsstring>
+        <name>EncoderCallback</name>
+        <param>
+          <type>const std_msgs::String::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>接收编码器字符串消息，计算左轮行进距离 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>std_msgs::String 消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="79" column="6" bodyfile="cable_read/odom_pub.cpp" bodystart="79" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="odom__pub_8cpp_1a8f5e3f6c52f55538bf51ba8c929b3017" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publishOdometry</definition>
+        <argsstring>(ros::Publisher &amp;odom_pub, tf::TransformBroadcaster &amp;tf_broadcaster)</argsstring>
+        <name>publishOdometry</name>
+        <param>
+          <type>ros::Publisher &amp;</type>
+          <declname>odom_pub</declname>
+        </param>
+        <param>
+          <type>tf::TransformBroadcaster &amp;</type>
+          <declname>tf_broadcaster</declname>
+        </param>
+        <briefdescription>
+<para>发布里程计消息并广播 tf 变换 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>odom_pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ROS 发布器，发布 nav_msgs::Odometry </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tf_broadcaster</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>tf 广播器 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="101" column="6" bodyfile="cable_read/odom_pub.cpp" bodystart="101" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="odom__pub_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+<para>主函数，初始化 ROS 节点，订阅编码器和重置指令，发布里程计 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数数量 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数数组 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int 程序退出状态 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cable_read/odom_pub.cpp" line="152" column="5" bodyfile="cable_read/odom_pub.cpp" bodystart="152" bodyend="181"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros/ros.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_msgs/Int32.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nav_msgs/Odometry.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf/transform_broadcaster.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;std_msgs/String.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;regex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_msgs/Bool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>重置里程计标志</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="odom__pub_8cpp_1a30b9d036a79a00e325dd2bbb9e991755" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1a30b9d036a79a00e325dd2bbb9e991755" kindref="member">reset_odom</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>轮子参数</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="odom__pub_8cpp_1ac5e0ffa856f94297db93de525454d254" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1ac5e0ffa856f94297db93de525454d254" kindref="member">wheel_radius</ref><sp/>=<sp/>0.0318;<sp/><sp/></highlight></codeline>
+<codeline lineno="28" refid="odom__pub_8cpp_1a7528b439f0436b7327b1acaa71f0fc88" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1a7528b439f0436b7327b1acaa71f0fc88" kindref="member">wheel_base</ref><sp/>=<sp/>0.343;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>行进距离</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" kindref="member">distance</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>double<sp/>right_distance<sp/>=<sp/>0.0;<sp/>//<sp/>右轮距离（未使用）</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>当前位姿</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" kindref="member">x</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="36" refid="odom__pub_8cpp_1ab927965981178aa1fba979a37168db2a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1ab927965981178aa1fba979a37168db2a" kindref="member">y</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="37" refid="odom__pub_8cpp_1aca81c35c21e3a5f7f3a8d24504e76664" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1aca81c35c21e3a5f7f3a8d24504e76664" kindref="member">theta</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>每脉冲对应的角度</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="odom__pub_8cpp_1ac7cf637ac08386a7e08f7a9cb1975056" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1ac7cf637ac08386a7e08f7a9cb1975056" kindref="member">pluse</ref><sp/>=<sp/>2.295048561<sp/>*<sp/>360.0<sp/>/<sp/>(400*4);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>上一次更新时间</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="odom__pub_8cpp_1a55886e34bc6a03b24f6ce7455fe67289" refkind="member"><highlight class="normal">ros::Time<sp/><ref refid="odom__pub_8cpp_1a55886e34bc6a03b24f6ce7455fe67289" kindref="member">last_time</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="odom__pub_8cpp_1aed25fed1ceb628954de9adc35a411398" refkind="member"><highlight class="normal">std::string<sp/><ref refid="odom__pub_8cpp_1aed25fed1ceb628954de9adc35a411398" kindref="member">extra</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>input)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>prefix=</highlight><highlight class="stringliteral">&quot;e1:&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>num;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/>prefix_pos<sp/>=<sp/>input.find(prefix);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>prefix_pos+3;<sp/>i<sp/>&lt;<sp/>input.size();<sp/>i++)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(input[i]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;p&apos;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>num<sp/>+=<sp/>input[i];</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>num;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="odom__pub_8cpp_1a6e9f67764013c92ecd2200c1e90d714a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1a6e9f67764013c92ecd2200c1e90d714a" kindref="member">resetOdometryCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Bool::ConstPtr&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg-&gt;data<sp/>==<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="odom__pub_8cpp_1a30b9d036a79a00e325dd2bbb9e991755" kindref="member">reset_odom</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>设置重置标志为真</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="odom__pub_8cpp_1afca0ce71eb34f139dd215289e37db241" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1afca0ce71eb34f139dd215289e37db241" kindref="member">EncoderCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::String::ConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>str<sp/>=<sp/>msg-&gt;data;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(str.find(</highlight><highlight class="stringliteral">&quot;e1&quot;</highlight><highlight class="normal">)<sp/>==<sp/>std::string::npos)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>num_str<sp/>=<sp/><ref refid="odom__pub_8cpp_1aed25fed1ceb628954de9adc35a411398" kindref="member">extra</ref>(str);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(num_str.size()<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>left_increment<sp/>=<sp/>std::stoi(num_str);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>根据脉冲数计算左轮行进距离</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" kindref="member">distance</ref><sp/>+=<sp/>(left_increment<sp/>*<sp/>(<ref refid="odom__pub_8cpp_1ac7cf637ac08386a7e08f7a9cb1975056" kindref="member">pluse</ref><sp/>/<sp/>360.0)<sp/>*<sp/>2<sp/>*<sp/>M_PI<sp/>*<sp/><ref refid="odom__pub_8cpp_1ac5e0ffa856f94297db93de525454d254" kindref="member">wheel_radius</ref>);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="odom__pub_8cpp_1a8f5e3f6c52f55538bf51ba8c929b3017" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1a8f5e3f6c52f55538bf51ba8c929b3017" kindref="member">publishOdometry</ref>(ros::Publisher&amp;<sp/>odom_pub,<sp/>tf::TransformBroadcaster&amp;<sp/>tf_broadcaster)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Time<sp/>current_time<sp/>=<sp/>ros::Time::now();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt<sp/>=<sp/>(current_time<sp/>-<sp/><ref refid="odom__pub_8cpp_1a55886e34bc6a03b24f6ce7455fe67289" kindref="member">last_time</ref>).toSec();</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>处理里程计重置</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="odom__pub_8cpp_1a30b9d036a79a00e325dd2bbb9e991755" kindref="member">reset_odom</ref>)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" kindref="member">x</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="odom__pub_8cpp_1ab927965981178aa1fba979a37168db2a" kindref="member">y</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="odom__pub_8cpp_1aca81c35c21e3a5f7f3a8d24504e76664" kindref="member">theta</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="odom__pub_8cpp_1a30b9d036a79a00e325dd2bbb9e991755" kindref="member">reset_odom</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>重置完成</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>d_distance<sp/>=<sp/><ref refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" kindref="member">distance</ref>;<sp/></highlight><highlight class="comment">//<sp/>计算行进距离</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" kindref="member">x</ref><sp/>+=<sp/>d_distance;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>更新<sp/>x<sp/>坐标</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>y<sp/>+=<sp/>d_distance<sp/>*<sp/>sin(theta);<sp/>//<sp/>更新<sp/>y<sp/>坐标（未使用）</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="odom__pub_8cpp_1aca81c35c21e3a5f7f3a8d24504e76664" kindref="member">theta</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>更新角度</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>创建里程计消息</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>nav_msgs::Odometry<sp/>odom;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>odom.header.frame_id<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;odom&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>odom.pose.pose.position.x<sp/>=<sp/><ref refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" kindref="member">x</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>odom.pose.pose.position.y<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>odom.pose.pose.position.z<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>odom.pose.pose.orientation<sp/>=<sp/>tf::createQuaternionMsgFromYaw(<ref refid="odom__pub_8cpp_1aca81c35c21e3a5f7f3a8d24504e76664" kindref="member">theta</ref>);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>odom.child_frame_id<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;base_link&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>odom.twist.twist.linear.x<sp/>=<sp/>d_distance<sp/>/<sp/>dt;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>发布里程计</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>odom_pub.publish(odom);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>广播<sp/>tf<sp/>变换</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Transform<sp/>transform;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>transform.setOrigin(tf::Vector3(<ref refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" kindref="member">x</ref>,<sp/><ref refid="odom__pub_8cpp_1ab927965981178aa1fba979a37168db2a" kindref="member">y</ref>,<sp/>0.0));</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Quaternion<sp/>q;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>q.setRPY(0,<sp/>0,<sp/><ref refid="odom__pub_8cpp_1aca81c35c21e3a5f7f3a8d24504e76664" kindref="member">theta</ref>);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>transform.setRotation(q);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>tf_broadcaster.sendTransform(tf::StampedTransform(transform,<sp/>ros::Time::now(),<sp/></highlight><highlight class="stringliteral">&quot;odom&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;base_link&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>重置行进距离</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" kindref="member">distance</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="odom__pub_8cpp_1a55886e34bc6a03b24f6ce7455fe67289" kindref="member">last_time</ref><sp/>=<sp/>current_time;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152" refid="odom__pub_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>argv)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::init(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;odometry_publisher&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::NodeHandle<sp/>nh;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>订阅编码器数据</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Subscriber<sp/>ticks_sub<sp/>=<sp/>nh.subscribe(</highlight><highlight class="stringliteral">&quot;/minipc_echo&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/><ref refid="odom__pub_8cpp_1afca0ce71eb34f139dd215289e37db241" kindref="member">EncoderCallback</ref>);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>订阅重置指令</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Subscriber<sp/>reset_sub<sp/>=<sp/>nh.subscribe(</highlight><highlight class="stringliteral">&quot;/reset_odom&quot;</highlight><highlight class="normal">,<sp/>10,<sp/><ref refid="odom__pub_8cpp_1a6e9f67764013c92ecd2200c1e90d714a" kindref="member">resetOdometryCallback</ref>);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>发布里程计</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Publisher<sp/>odom_pub<sp/>=<sp/>nh.advertise&lt;nav_msgs::Odometry&gt;(</highlight><highlight class="stringliteral">&quot;/cable/odom&quot;</highlight><highlight class="normal">,<sp/>1);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tf<sp/>广播器</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::TransformBroadcaster<sp/>tf_broadcaster;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>初始化循环频率</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Rate<sp/>loop_rate(10);<sp/></highlight><highlight class="comment">//<sp/>10Hz</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(ros::ok())</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>发布里程计消息和<sp/>tf</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="odom__pub_8cpp_1a8f5e3f6c52f55538bf51ba8c929b3017" kindref="member">publishOdometry</ref>(odom_pub,<sp/>tf_broadcaster);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loop_rate.sleep();</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="cable_read/odom_pub.cpp"/>
+  </compounddef>
+</doxygen>

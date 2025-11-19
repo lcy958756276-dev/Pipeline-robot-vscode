@@ -1,0 +1,15 @@
+<map id="auto_navigation/detectionPointPub.cpp" name="auto_navigation/detectionPointPub.cpp">
+<area shape="rect" id="Node000001" title="检测点分析与 midgoal 生成模块" alt="" coords="437,5,629,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,84,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="437,42,282,65,98,96,97,90,281,59,436,37"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="108,93,275,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="452,48,255,93,254,88,450,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="299,93,531,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="506,48,445,88,442,84,503,43"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="555,93,747,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="563,43,624,84,621,88,560,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="772,93,835,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="598,43,760,89,758,94,597,48"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="859,93,945,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="622,43,846,90,845,95,621,48"/>
+</map>

@@ -1,0 +1,117 @@
+\doxysection{overall\+\_\+map.\+cpp}
+\hypertarget{overall__map_8cpp_source}{}\label{overall__map_8cpp_source}\index{3D\_mapping/overall\_map.cpp@{3D\_mapping/overall\_map.cpp}}
+\mbox{\hyperlink{overall__map_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <sensor\_msgs/PointCloud2.h>}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <nav\_msgs/Odometry.h>}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <pcl\_conversions/pcl\_conversions.h>}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <pcl/point\_cloud.h>}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <pcl/point\_types.h>}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <pcl\_ros/transforms.h>}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <tf/transform\_listener.h>}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <pcl/octree/octree\_pointcloud\_voxelcentroid.h>}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00025}\mbox{\hyperlink{overall__map_8cpp_a4333d786c60465d20826583358b2798d}{00025}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{overall__map_8cpp_a4333d786c60465d20826583358b2798d}{resolution}}\ =\ 0.01f;}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00028}\mbox{\hyperlink{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}{00028}}\ pcl::octree::OctreePointCloudVoxelCentroid<pcl::PointXYZ>\ \mbox{\hyperlink{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}{octree}}(\mbox{\hyperlink{overall__map_8cpp_a4333d786c60465d20826583358b2798d}{resolution}});}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00031}\mbox{\hyperlink{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}{00031}}\ tf::TransformListener*\ \mbox{\hyperlink{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}{tfListener}};}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00033}00033\ \textcolor{comment}{//\ 统计相关变量}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00034}\mbox{\hyperlink{overall__map_8cpp_a14ca948851469d68a76e0b26d879a1aa}{00034}}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{overall__map_8cpp_a14ca948851469d68a76e0b26d879a1aa}{cumulativePoints}}\ =\ 0;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00035}\mbox{\hyperlink{overall__map_8cpp_a1bcf55de3abb110c38e335e9fb8f5eb1}{00035}}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{overall__map_8cpp_a1bcf55de3abb110c38e335e9fb8f5eb1}{currentVoxels}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00036}\mbox{\hyperlink{overall__map_8cpp_a3e57fc0dd660c31635246086b6428a83}{00036}}\ Eigen::Vector3d\ \mbox{\hyperlink{overall__map_8cpp_a3e57fc0dd660c31635246086b6428a83}{lastPosition}}\ =\ Eigen::Vector3d::Zero();\ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00037}\mbox{\hyperlink{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}{00037}}\ Eigen::Vector3d\ \mbox{\hyperlink{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}{currentPosition}}\ =\ Eigen::Vector3d::Zero();\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00038}\mbox{\hyperlink{overall__map_8cpp_a699159ca5d125cf65d82bbeaefc750dd}{00038}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{overall__map_8cpp_a699159ca5d125cf65d82bbeaefc750dd}{positionInitialized}}\ =\ \textcolor{keyword}{false};\ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00046}\mbox{\hyperlink{overall__map_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}{00046}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{overall__map_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}{odomCallback}}(\textcolor{keyword}{const}\ nav\_msgs::Odometry::ConstPtr\&\ msg)}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00047}00047\ \{}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}{currentPosition}}\ =\ Eigen::Vector3d(}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ msg-\/>pose.pose.position.x,}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ msg-\/>pose.pose.position.y,}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ msg-\/>pose.pose.position.z);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{overall__map_8cpp_a699159ca5d125cf65d82bbeaefc750dd}{positionInitialized}})\ \{}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a3e57fc0dd660c31635246086b6428a83}{lastPosition}}\ =\ \mbox{\hyperlink{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}{currentPosition}};}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a699159ca5d125cf65d82bbeaefc750dd}{positionInitialized}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00057}00057\ \}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00065}\mbox{\hyperlink{overall__map_8cpp_ae555b00aee41d288cfc286fe5fdd2f61}{00065}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{overall__map_8cpp_ae555b00aee41d288cfc286fe5fdd2f61}{cloudCallback}}(\textcolor{keyword}{const}\ sensor\_msgs::PointCloud2::ConstPtr\&\ cloudMsg)}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00066}00066\ \{}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00067}00067\ \ \ \ \ pcl::PointCloud<pcl::PointXYZ>::Ptr\ cloud(\textcolor{keyword}{new}\ pcl::PointCloud<pcl::PointXYZ>);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00068}00068\ \ \ \ \ pcl::fromROSMsg(*cloudMsg,\ *cloud);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{double}\ distanceMoved\ =\ (\mbox{\hyperlink{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}{currentPosition}}\ -\/\ \mbox{\hyperlink{overall__map_8cpp_a3e57fc0dd660c31635246086b6428a83}{lastPosition}}).norm();}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00071}00071\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{keywordflow}{if}(distanceMoved\ >\ 0.01)}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00073}00073\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a3e57fc0dd660c31635246086b6428a83}{lastPosition}}\ =\ \mbox{\hyperlink{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}{currentPosition}};}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ pcl::PointCloud<pcl::PointXYZ>::Ptr\ transformedCloud(\textcolor{keyword}{new}\ pcl::PointCloud<pcl::PointXYZ>);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}{tfListener}}-\/>waitForTransform(\textcolor{stringliteral}{"{}odom"{}},\ cloudMsg-\/>header.frame\_id,\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cloudMsg-\/>header.stamp,\ ros::Duration(1.0)))}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ pcl\_ros::transformPointCloud(\textcolor{stringliteral}{"{}odom"{}},\ *cloud,\ *transformedCloud,\ *\mbox{\hyperlink{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}{tfListener}});}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 更新统计信息}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a14ca948851469d68a76e0b26d879a1aa}{cumulativePoints}}\ +=\ transformedCloud-\/>size();}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 更新八叉树}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}{octree}}.setInputCloud(transformedCloud);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}{octree}}.addPointsFromInputCloud();}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00089}00089\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00090}00090\ \}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00099}\mbox{\hyperlink{overall__map_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{00099}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{overall__map_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00100}00100\ \{}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00101}00101\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}octree\_map\_builder"{}});}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00102}00102\ \ \ \ \ ros::NodeHandle\ nh;}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00103}00103\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00104}00104\ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}{tfListener}}\ =\ \textcolor{keyword}{new}\ tf::TransformListener();}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00106}00106\ \ \ \ \ ros::Subscriber\ sub\ =\ nh.subscribe(\textcolor{stringliteral}{"{}/point\_cloud"{}},\ 10,\ \mbox{\hyperlink{overall__map_8cpp_ae555b00aee41d288cfc286fe5fdd2f61}{cloudCallback}});}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00107}00107\ \ \ \ \ ros::Subscriber\ odomSub\ =\ nh.subscribe(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 10,\ \mbox{\hyperlink{overall__map_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}{odomCallback}});}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00108}00108\ \ \ \ \ ros::Publisher\ pub\ =\ nh.advertise<sensor\_msgs::PointCloud2>(\textcolor{stringliteral}{"{}/overall\_map\_cloud"{}},\ 1);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00110}00110\ \ \ \ \ ros::Rate\ rate(10);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00111}00111\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{keywordflow}{while}(ros::ok())}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00113}00113\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 获取当前八叉树状态}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a1bcf55de3abb110c38e335e9fb8f5eb1}{currentVoxels}}\ =\ \mbox{\hyperlink{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}{octree}}.getLeafCount();}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 计算内存占用（假设每个点占12字节：3个float）}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ rawMemoryMB\ =\ (\mbox{\hyperlink{overall__map_8cpp_a14ca948851469d68a76e0b26d879a1aa}{cumulativePoints}}\ *\ \textcolor{keyword}{sizeof}(pcl::PointXYZ))\ /\ (1024.0\ *\ 1024.0);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ octreeMemoryMB\ =\ (\mbox{\hyperlink{overall__map_8cpp_a1bcf55de3abb110c38e335e9fb8f5eb1}{currentVoxels}}\ *\ \textcolor{keyword}{sizeof}(pcl::PointXYZ))\ /\ (1024.0\ *\ 1024.0);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 发布点云}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ pcl::PointCloud<pcl::PointXYZ>::Ptr\ outputCloud(\textcolor{keyword}{new}\ pcl::PointCloud<pcl::PointXYZ>);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}{octree}}.getOccupiedVoxelCenters(outputCloud-\/>points);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ sensor\_msgs::PointCloud2\ outputMsg;}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ pcl::toROSMsg(*outputCloud,\ outputMsg);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ outputMsg.header.stamp\ =\ ros::Time::now();}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ outputMsg.header.frame\_id\ =\ \textcolor{stringliteral}{"{}odom"{}};}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ pub.publish(outputMsg);}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 输出统计信息}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ROS\_INFO\_STREAM("{}Accumulated\ Points:\ "{}\ <<\ cumulativePoints\ }}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}\ ("{}\ <<\ rawMemoryMB\ <<\ "{}\ MB)\ |\ "{}}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}Octree\ Voxels:\ "{}\ <<\ currentVoxels\ }}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}\ ("{}\ <<\ octreeMemoryMB\ <<\ "{}\ MB)"{});}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ rate.sleep();}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00140}00140\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00141}00141\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00142}00142\ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}{tfListener}};}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00143}00143\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{overall__map_8cpp_source_l00144}00144\ \}}
+
+\end{DoxyCode}

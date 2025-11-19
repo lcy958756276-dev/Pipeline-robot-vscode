@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classauto__navigation_1_1point__transform_1_1PointTransformer" kind="class" language="Python" prot="public">
+    <compoundname>auto_navigation::point_transform::PointTransformer</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classauto__navigation_1_1point__transform_1_1PointTransformer_1a3d5f1d1b5ab5ae204610f018fd295536" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>auto_navigation.point_transform.PointTransformer::tf_buffer</definition>
+        <argsstring></argsstring>
+        <name>tf_buffer</name>
+        <qualifiedname>auto_navigation.point_transform.PointTransformer.tf_buffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/point_transform.py" line="47" column="1" bodyfile="auto_navigation/point_transform.py" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classauto__navigation_1_1point__transform_1_1PointTransformer_1ab5070a17f047b8e3721d8fda8ccdac9a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>auto_navigation.point_transform.PointTransformer::tf_listener</definition>
+        <argsstring></argsstring>
+        <name>tf_listener</name>
+        <qualifiedname>auto_navigation.point_transform.PointTransformer.tf_listener</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/point_transform.py" line="48" column="1" bodyfile="auto_navigation/point_transform.py" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classauto__navigation_1_1point__transform_1_1PointTransformer_1ac43e9e3218f6f38cff12a2f1c63e8c6d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>auto_navigation.point_transform.PointTransformer::detection_callback</definition>
+        <argsstring></argsstring>
+        <name>detection_callback</name>
+        <qualifiedname>auto_navigation.point_transform.PointTransformer.detection_callback</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/point_transform.py" line="50" column="1" bodyfile="auto_navigation/point_transform.py" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classauto__navigation_1_1point__transform_1_1PointTransformer_1ae10b95b0c849a250e0154365fcbb37a4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>auto_navigation.point_transform.PointTransformer::detection_pub</definition>
+        <argsstring></argsstring>
+        <name>detection_pub</name>
+        <qualifiedname>auto_navigation.point_transform.PointTransformer.detection_pub</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/point_transform.py" line="51" column="1" bodyfile="auto_navigation/point_transform.py" bodystart="51" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classauto__navigation_1_1point__transform_1_1PointTransformer_1aaedaeb390c4431789c5f13c4e4cac25a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>auto_navigation.point_transform.PointTransformer.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>auto_navigation.point_transform.PointTransformer.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>@brief 构造函数，初始化 ROS 节点、TF2 和订阅/发布者
+
+功能：
+- 初始化 ROS 节点 &apos;point_transformer&apos;
+- 初始化 tf2 缓冲区和监听器
+- 订阅 /_detection_info 接收 detection_new 消息
+- 创建 /transformed_detection_info 发布者
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/point_transform.py" line="35" column="1" bodyfile="auto_navigation/point_transform.py" bodystart="35" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classauto__navigation_1_1point__transform_1_1PointTransformer_1a49a89da8b3e38167ecf4afd22339f0b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>auto_navigation.point_transform.PointTransformer.detection_callback</definition>
+        <argsstring>(self, detection_data)</argsstring>
+        <name>detection_callback</name>
+        <qualifiedname>auto_navigation.point_transform.PointTransformer.detection_callback</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>detection_data</type>
+          <defname>detection_data</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>@brief 检测点回调函数，将检测点从原始坐标系转换到 odom 坐标系并发布
+
+@param detection_data detection_new
+    输入的检测点消息，包含以下字段：
+    - class_name: 检测类别名称
+    - score: 检测置信度
+    - point_stamped: 检测点坐标
+    - min_stamped: 检测点最小值坐标
+    - max_stamped: 检测点最大值坐标
+
+@return None
+    函数无返回值
+
+功能：
+- 使用 tf2 查找检测点坐标到 odom 的变换
+- 对 point_stamped、min_stamped 和 max_stamped 进行坐标变换
+- 将转换后的检测点封装到新的 detection_new 消息并发布
+- 如果发生 TF2 错误，输出错误日志
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/point_transform.py" line="53" column="1" bodyfile="auto_navigation/point_transform.py" bodystart="53" bodyend="101"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>@class PointTransformer
+@brief 检测点坐标转换类
+
+该类功能：
+- 初始化 ROS 节点和 TF2 监听器
+- 接收来自 /_detection_info 的检测点消息
+- 将检测点坐标从原始坐标系转换到 odom 坐标系
+- 发布转换后的检测点消息到 /transformed_detection_info
+</verbatim> </para>
+    </detaileddescription>
+    <location file="auto_navigation/point_transform.py" line="23" column="1" bodyfile="auto_navigation/point_transform.py" bodystart="23" bodyend="101"/>
+    <listofallmembers>
+      <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1aaedaeb390c4431789c5f13c4e4cac25a" prot="public" virt="non-virtual"><scope>auto_navigation::point_transform::PointTransformer</scope><name>__init__</name></member>
+      <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1ac43e9e3218f6f38cff12a2f1c63e8c6d" prot="public" virt="non-virtual"><scope>auto_navigation::point_transform::PointTransformer</scope><name>detection_callback</name></member>
+      <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1a49a89da8b3e38167ecf4afd22339f0b9" prot="public" virt="non-virtual"><scope>auto_navigation::point_transform::PointTransformer</scope><name>detection_callback</name></member>
+      <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1ae10b95b0c849a250e0154365fcbb37a4" prot="public" virt="non-virtual"><scope>auto_navigation::point_transform::PointTransformer</scope><name>detection_pub</name></member>
+      <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1a3d5f1d1b5ab5ae204610f018fd295536" prot="public" virt="non-virtual"><scope>auto_navigation::point_transform::PointTransformer</scope><name>tf_buffer</name></member>
+      <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1ab5070a17f047b8e3721d8fda8ccdac9a" prot="public" virt="non-virtual"><scope>auto_navigation::point_transform::PointTransformer</scope><name>tf_listener</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

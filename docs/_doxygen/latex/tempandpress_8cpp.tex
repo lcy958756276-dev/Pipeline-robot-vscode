@@ -1,0 +1,328 @@
+\doxysection{Motherboard\+\_\+data\+\_\+process/tempandpress.cpp File Reference}
+\hypertarget{tempandpress_8cpp}{}\label{tempandpress_8cpp}\index{Motherboard\_data\_process/tempandpress.cpp@{Motherboard\_data\_process/tempandpress.cpp}}
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$std\+\_\+msgs/\+Float32.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+Include dependency graph for tempandpress.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tempandpress_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{tempandpress_8cpp_aea836183d504027fcec3386ac320d1b0}{read\+Thermal}} (const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em 读取系统文件中存储的 CPU/\+GPU 温度 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tempandpress_8cpp_abba960c86bd339697e78c89131d9a565}{parse\+And\+Publish}} (const std\+::string \&line)
+\begin{DoxyCompactList}\small\item\em 解析 TCP 接收到的一行传感器数据并发布 ROS 消息 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tempandpress_8cpp_a54fb40f1cec43c98df052811a7b15a51}{tcp\+Loop}} (const std\+::string \&ip, int port)
+\begin{DoxyCompactList}\small\item\em TCP 接收循环 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tempandpress_8cpp_a29f4ca4ec279107fd08630624d6a20b1}{publish\+Nano\+Temp}} ()
+\begin{DoxyCompactList}\small\item\em 定时读取 Orin/\+Nano CPU 和 GPU 温度并发布 ROS 消息 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tempandpress_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\begin{DoxyCompactList}\small\item\em 主函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{tempandpress_8cpp_a229938ef2b258aba203e83bca7f47b36}{pub\+\_\+temp}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{tempandpress_8cpp_ab22b3f5f78356af75c89bb0c5e6e3858}{pub\+\_\+press}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{tempandpress_8cpp_ab49abf98d6945a9fd91eed2743b99634}{pub\+\_\+cpu\+\_\+temp}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{tempandpress_8cpp_aab08866a9274281978d9fc03a4d737ab}{pub\+\_\+gpu\+\_\+temp}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{tempandpress_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{tempandpress_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+\index{tempandpress.cpp@{tempandpress.cpp}!main@{main}}
+\index{main@{main}!tempandpress.cpp@{tempandpress.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+
+
+主函数 
+
+初始化 ROS 节点，配置参数，创建发布器和定时器 并调用 tcp\+Loop 开始接收数据 
+
+Definition at line \mbox{\hyperlink{tempandpress_8cpp_source_l00159}{159}} of file \mbox{\hyperlink{tempandpress_8cpp_source}{tempandpress.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}sensor\_bridge\_node"{}});}
+\DoxyCodeLine{00161\ \ \ \ \ ros::NodeHandle\ nh;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ std::string\ ip;}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{int}\ port;}
+\DoxyCodeLine{00165\ \ \ \ \ nh.param<std::string>(\textcolor{stringliteral}{"{}ip"{}},\ ip,\ \textcolor{stringliteral}{"{}192.168.8.11"{}});}
+\DoxyCodeLine{00166\ \ \ \ \ nh.param<\textcolor{keywordtype}{int}>(\textcolor{stringliteral}{"{}port"{}},\ port,\ 12345);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//\ 发布话题}}
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_a229938ef2b258aba203e83bca7f47b36}{pub\_temp}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/temperature\_data"{}},\ 10);}
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_ab22b3f5f78356af75c89bb0c5e6e3858}{pub\_press}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/pressVal"{}},\ 10);}
+\DoxyCodeLine{00171\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_ab49abf98d6945a9fd91eed2743b99634}{pub\_cpu\_temp}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/orin\_cpu\_temp"{}},\ 10);}
+\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_aab08866a9274281978d9fc03a4d737ab}{pub\_gpu\_temp}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/orin\_gpu\_temp"{}},\ 10);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{comment}{//\ CPU/GPU\ 温度定时器，每秒发布一次}}
+\DoxyCodeLine{00175\ \ \ \ \ ros::Timer\ temp\_timer\ =\ nh.createTimer(ros::Duration(1.0),\ [](\textcolor{keyword}{const}\ ros::TimerEvent\&)\{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_a29f4ca4ec279107fd08630624d6a20b1}{publishNanoTemp}}();}
+\DoxyCodeLine{00177\ \ \ \ \ \});}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//\ TCP\ 循环（阻塞式）}}
+\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_a54fb40f1cec43c98df052811a7b15a51}{tcpLoop}}(ip,\ port);}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ ros::spin();}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00184\ \}}
+
+\end{DoxyCode}
+\Hypertarget{tempandpress_8cpp_abba960c86bd339697e78c89131d9a565}\label{tempandpress_8cpp_abba960c86bd339697e78c89131d9a565} 
+\index{tempandpress.cpp@{tempandpress.cpp}!parseAndPublish@{parseAndPublish}}
+\index{parseAndPublish@{parseAndPublish}!tempandpress.cpp@{tempandpress.cpp}}
+\doxysubsubsection{\texorpdfstring{parseAndPublish()}{parseAndPublish()}}
+{\footnotesize\ttfamily void parse\+And\+Publish (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{line }\end{DoxyParamCaption})}
+
+
+
+解析 TCP 接收到的一行传感器数据并发布 ROS 消息 
+
+数据格式示例：
+\begin{DoxyItemize}
+\item "{}\+NTC\+:72.\+5"{} -\/\texorpdfstring{$>$}{>} 温度传感器值
+\item "{}\+AP\+:101.\+3"{} -\/\texorpdfstring{$>$}{>} 压力传感器值
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & 原始数据行 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{tempandpress_8cpp_source_l00049}{49}} of file \mbox{\hyperlink{tempandpress_8cpp_source}{tempandpress.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{float}\ ntc\_val\ =\ -\/1,\ ap\_val\ =\ -\/1;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ pos;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ pos\ =\ line.find(\textcolor{stringliteral}{"{}NTC:"{}});}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ ntc\_val\ =\ std::stof(line.substr(pos\ +\ 4));}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ pos\ =\ line.find(\textcolor{stringliteral}{"{}AP:"{}});}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ ap\_val\ =\ std::stof(line.substr(pos\ +\ 3));}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{if}\ (ntc\_val\ >=\ 0)\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ std\_msgs::Float32\ msg;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ msg.data\ =\ (ntc\_val-\/32)*5/9;\ \ \textcolor{comment}{//\ 华氏转摄氏}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_a229938ef2b258aba203e83bca7f47b36}{pub\_temp}}.publish(msg);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Published\ /temperature\_data\ =\ \%.2f"{}},\ ntc\_val);}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (ap\_val\ >=\ 0)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ std\_msgs::Float32\ msg;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ msg.data\ =\ ap\_val;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_ab22b3f5f78356af75c89bb0c5e6e3858}{pub\_press}}.publish(msg);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Published\ /pressVal\ =\ \%.2f"{}},\ ap\_val);}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \}}
+
+\end{DoxyCode}
+\Hypertarget{tempandpress_8cpp_a29f4ca4ec279107fd08630624d6a20b1}\label{tempandpress_8cpp_a29f4ca4ec279107fd08630624d6a20b1} 
+\index{tempandpress.cpp@{tempandpress.cpp}!publishNanoTemp@{publishNanoTemp}}
+\index{publishNanoTemp@{publishNanoTemp}!tempandpress.cpp@{tempandpress.cpp}}
+\doxysubsubsection{\texorpdfstring{publishNanoTemp()}{publishNanoTemp()}}
+{\footnotesize\ttfamily void publish\+Nano\+Temp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+定时读取 Orin/\+Nano CPU 和 GPU 温度并发布 ROS 消息 
+
+
+
+Definition at line \mbox{\hyperlink{tempandpress_8cpp_source_l00139}{139}} of file \mbox{\hyperlink{tempandpress_8cpp_source}{tempandpress.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{float}\ cpu\_temp\ =\ \mbox{\hyperlink{tempandpress_8cpp_aea836183d504027fcec3386ac320d1b0}{readThermal}}(\textcolor{stringliteral}{"{}/sys/class/thermal/thermal\_zone0/temp"{}});}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{float}\ gpu\_temp\ =\ \mbox{\hyperlink{tempandpress_8cpp_aea836183d504027fcec3386ac320d1b0}{readThermal}}(\textcolor{stringliteral}{"{}/sys/class/thermal/thermal\_zone1/temp"{}});}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ std\_msgs::Float32\ msg\_cpu,\ msg\_gpu;}
+\DoxyCodeLine{00144\ \ \ \ \ msg\_cpu.data\ =\ cpu\_temp;}
+\DoxyCodeLine{00145\ \ \ \ \ msg\_gpu.data\ =\ gpu\_temp;}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_ab49abf98d6945a9fd91eed2743b99634}{pub\_cpu\_temp}}.publish(msg\_cpu);}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_aab08866a9274281978d9fc03a4d737ab}{pub\_gpu\_temp}}.publish(msg\_gpu);}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Orin\ CPU\ Temp:\ \%.2f\ °C,\ GPU\ Temp:\ \%.2f\ °C"{}},\ cpu\_temp,\ gpu\_temp);}
+\DoxyCodeLine{00151\ \}}
+
+\end{DoxyCode}
+\Hypertarget{tempandpress_8cpp_aea836183d504027fcec3386ac320d1b0}\label{tempandpress_8cpp_aea836183d504027fcec3386ac320d1b0} 
+\index{tempandpress.cpp@{tempandpress.cpp}!readThermal@{readThermal}}
+\index{readThermal@{readThermal}!tempandpress.cpp@{tempandpress.cpp}}
+\doxysubsubsection{\texorpdfstring{readThermal()}{readThermal()}}
+{\footnotesize\ttfamily float read\+Thermal (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})}
+
+
+
+读取系统文件中存储的 CPU/\+GPU 温度 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & 系统 thermal\+\_\+zone 文件路径 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+温度值（摄氏度），失败返回 -\/1.\+0 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{tempandpress_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{tempandpress_8cpp_source}{tempandpress.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ std::ifstream\ file(path);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \textcolor{keywordflow}{return}\ -\/1.0;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ milliC;}
+\DoxyCodeLine{00036\ \ \ \ \ file\ >>\ milliC;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ milliC\ /\ 1000.0;}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}
+\Hypertarget{tempandpress_8cpp_a54fb40f1cec43c98df052811a7b15a51}\label{tempandpress_8cpp_a54fb40f1cec43c98df052811a7b15a51} 
+\index{tempandpress.cpp@{tempandpress.cpp}!tcpLoop@{tcpLoop}}
+\index{tcpLoop@{tcpLoop}!tempandpress.cpp@{tempandpress.cpp}}
+\doxysubsubsection{\texorpdfstring{tcpLoop()}{tcpLoop()}}
+{\footnotesize\ttfamily void tcp\+Loop (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+TCP 接收循环 
+
+从指定 IP\+:端口接收数据，每次读取后按行解析 并调用 parse\+And\+Publish 处理。处理不完整行缓存。
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & TCP 服务器 IP \\
+\hline
+{\em port} & TCP 服务器端口 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{tempandpress_8cpp_source_l00087}{87}} of file \mbox{\hyperlink{tempandpress_8cpp_source}{tempandpress.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{int}\ sockfd\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (sockfd\ <\ 0)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Socket\ creation\ failed"{}});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ sockaddr\_in\ serv\_addr;}
+\DoxyCodeLine{00095\ \ \ \ \ serv\_addr.sin\_family\ =\ AF\_INET;}
+\DoxyCodeLine{00096\ \ \ \ \ serv\_addr.sin\_port\ =\ htons(port);}
+\DoxyCodeLine{00097\ \ \ \ \ inet\_pton(AF\_INET,\ ip.c\_str(),\ \&serv\_addr.sin\_addr);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (connect(sockfd,\ (\textcolor{keyword}{struct}\ sockaddr*)\&serv\_addr,\ \textcolor{keyword}{sizeof}(serv\_addr))\ <\ 0)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Connection\ failed\ to\ \%s:\%d"{}},\ ip.c\_str(),\ port);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Connected\ to\ server\ \%s:\%d"{}},\ ip.c\_str(),\ port);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[1024];}
+\DoxyCodeLine{00107\ \ \ \ \ std::string\ leftover;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ ssize\_t\ n\ =\ read(sockfd,\ buffer,\ \textcolor{keyword}{sizeof}(buffer)\ -\/\ 1);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ <=\ 0)\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_WARN(\textcolor{stringliteral}{"{}Server\ disconnected"{}});}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ buffer[n]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ std::string\ data\ =\ leftover\ +\ buffer;}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ std::istringstream\ iss(data);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(iss,\ line))\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!line.empty())\ \mbox{\hyperlink{tempandpress_8cpp_abba960c86bd339697e78c89131d9a565}{parseAndPublish}}(line);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 处理不完整的一行}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (data.back()\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ leftover\ =\ data.substr(data.find\_last\_of(\textcolor{charliteral}{'\(\backslash\)n'})\ +\ 1);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ leftover.clear();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ close(sockfd);}
+\DoxyCodeLine{00134\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{tempandpress_8cpp_ab49abf98d6945a9fd91eed2743b99634}\label{tempandpress_8cpp_ab49abf98d6945a9fd91eed2743b99634} 
+\index{tempandpress.cpp@{tempandpress.cpp}!pub\_cpu\_temp@{pub\_cpu\_temp}}
+\index{pub\_cpu\_temp@{pub\_cpu\_temp}!tempandpress.cpp@{tempandpress.cpp}}
+\doxysubsubsection{\texorpdfstring{pub\_cpu\_temp}{pub\_cpu\_temp}}
+{\footnotesize\ttfamily ros\+::\+Publisher pub\+\_\+cpu\+\_\+temp}
+
+发布 Nano/\+Orin CPU 温度 /orin\+\_\+cpu\+\_\+temp 
+
+Definition at line \mbox{\hyperlink{tempandpress_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{tempandpress_8cpp_source}{tempandpress.\+cpp}}.
+
+\Hypertarget{tempandpress_8cpp_aab08866a9274281978d9fc03a4d737ab}\label{tempandpress_8cpp_aab08866a9274281978d9fc03a4d737ab} 
+\index{tempandpress.cpp@{tempandpress.cpp}!pub\_gpu\_temp@{pub\_gpu\_temp}}
+\index{pub\_gpu\_temp@{pub\_gpu\_temp}!tempandpress.cpp@{tempandpress.cpp}}
+\doxysubsubsection{\texorpdfstring{pub\_gpu\_temp}{pub\_gpu\_temp}}
+{\footnotesize\ttfamily ros\+::\+Publisher pub\+\_\+gpu\+\_\+temp}
+
+发布 Nano/\+Orin GPU 温度 /orin\+\_\+gpu\+\_\+temp 
+
+Definition at line \mbox{\hyperlink{tempandpress_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{tempandpress_8cpp_source}{tempandpress.\+cpp}}.
+
+\Hypertarget{tempandpress_8cpp_ab22b3f5f78356af75c89bb0c5e6e3858}\label{tempandpress_8cpp_ab22b3f5f78356af75c89bb0c5e6e3858} 
+\index{tempandpress.cpp@{tempandpress.cpp}!pub\_press@{pub\_press}}
+\index{pub\_press@{pub\_press}!tempandpress.cpp@{tempandpress.cpp}}
+\doxysubsubsection{\texorpdfstring{pub\_press}{pub\_press}}
+{\footnotesize\ttfamily ros\+::\+Publisher pub\+\_\+press}
+
+发布解析的压力 /press\+Val 
+
+Definition at line \mbox{\hyperlink{tempandpress_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{tempandpress_8cpp_source}{tempandpress.\+cpp}}.
+
+\Hypertarget{tempandpress_8cpp_a229938ef2b258aba203e83bca7f47b36}\label{tempandpress_8cpp_a229938ef2b258aba203e83bca7f47b36} 
+\index{tempandpress.cpp@{tempandpress.cpp}!pub\_temp@{pub\_temp}}
+\index{pub\_temp@{pub\_temp}!tempandpress.cpp@{tempandpress.cpp}}
+\doxysubsubsection{\texorpdfstring{pub\_temp}{pub\_temp}}
+{\footnotesize\ttfamily ros\+::\+Publisher pub\+\_\+temp}
+
+发布解析的温度 /temperature\+\_\+data 
+
+Definition at line \mbox{\hyperlink{tempandpress_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{tempandpress_8cpp_source}{tempandpress.\+cpp}}.
+

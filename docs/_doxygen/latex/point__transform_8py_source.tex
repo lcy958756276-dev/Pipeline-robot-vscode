@@ -1,0 +1,113 @@
+\doxysection{point\+\_\+transform.\+py}
+\hypertarget{point__transform_8py_source}{}\label{point__transform_8py_source}\index{auto\_navigation/point\_transform.py@{auto\_navigation/point\_transform.py}}
+\mbox{\hyperlink{point__transform_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00001}\mbox{\hyperlink{namespaceauto__navigation}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00002}00002\ \textcolor{comment}{\#\ coding:\ UTF-\/8}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00003}00003\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00004}00004\ \textcolor{stringliteral}{@file\ point\_transformer.py}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00005}00005\ \textcolor{stringliteral}{@brief\ 检测点坐标转换模块}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00006}00006\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00007}00007\ \textcolor{stringliteral}{该文件实现了一个\ ROS\ 节点，用于将来自相机坐标系的检测点信息}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00008}00008\ \textcolor{stringliteral}{(detection\_new\ 消息)\ 转换到全局\ odom\ 坐标系下，并发布转换后的检测点。}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00009}00009\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00010}00010\ \textcolor{stringliteral}{功能：}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00011}00011\ \textcolor{stringliteral}{-\/\ 订阅\ /\_detection\_info\ 接收检测点信息}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00012}00012\ \textcolor{stringliteral}{-\/\ 使用\ tf2\ 将检测点从相机坐标系转换到\ odom\ 坐标系}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00013}00013\ \textcolor{stringliteral}{-\/\ 发布转换后的检测点到\ /transformed\_detection\_info}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00014}00014\ \textcolor{stringliteral}{-\/\ 支持检测点的最小值和最大值坐标转换}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00015}00015\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00017}00017\ \textcolor{keyword}{import}\ rospy}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00018}00018\ \textcolor{keyword}{import}\ tf2\_ros}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00019}00019\ \textcolor{keyword}{from}\ geometry\_msgs.msg\ \textcolor{keyword}{import}\ PointStamped}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00020}00020\ \textcolor{keyword}{import}\ tf2\_geometry\_msgs}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00021}00021\ \textcolor{keyword}{from}\ pipeline\_robot.msg\ \textcolor{keyword}{import}\ detection\_new}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00023}\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer}{00023}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer}{PointTransformer}}:}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00024}00024\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00025}00025\ \textcolor{stringliteral}{\ \ \ \ @class\ PointTransformer}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00026}00026\ \textcolor{stringliteral}{\ \ \ \ @brief\ 检测点坐标转换类}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00027}00027\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00028}00028\ \textcolor{stringliteral}{\ \ \ \ 该类功能：}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00029}00029\ \textcolor{stringliteral}{\ \ \ \ -\/\ 初始化\ ROS\ 节点和\ TF2\ 监听器}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00030}00030\ \textcolor{stringliteral}{\ \ \ \ -\/\ 接收来自\ /\_detection\_info\ 的检测点消息}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00031}00031\ \textcolor{stringliteral}{\ \ \ \ -\/\ 将检测点坐标从原始坐标系转换到\ odom\ 坐标系}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00032}00032\ \textcolor{stringliteral}{\ \ \ \ -\/\ 发布转换后的检测点消息到\ /transformed\_detection\_info}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00033}00033\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00035}\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_aaedaeb390c4431789c5f13c4e4cac25a}{00035}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_aaedaeb390c4431789c5f13c4e4cac25a}{\_\_init\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00037}00037\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ 构造函数，初始化\ ROS\ 节点、TF2\ 和订阅/发布者}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00038}00038\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00039}00039\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 功能：}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00040}00040\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 初始化\ ROS\ 节点\ 'point\_transformer'}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00041}00041\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 初始化\ tf2\ 缓冲区和监听器}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00042}00042\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 订阅\ /\_detection\_info\ 接收\ detection\_new\ 消息}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00043}00043\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 创建\ /transformed\_detection\_info\ 发布者}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00044}00044\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ rospy.init\_node(\textcolor{stringliteral}{'point\_transformer'},\ anonymous=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00047}\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_a3d5f1d1b5ab5ae204610f018fd295536}{00047}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_a3d5f1d1b5ab5ae204610f018fd295536}{tf\_buffer}}\ =\ tf2\_ros.Buffer()}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00048}\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_ab5070a17f047b8e3721d8fda8ccdac9a}{00048}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_ab5070a17f047b8e3721d8fda8ccdac9a}{tf\_listener}}\ =\ tf2\_ros.TransformListener(self.\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_a3d5f1d1b5ab5ae204610f018fd295536}{tf\_buffer}})}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00050}\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_ac43e9e3218f6f38cff12a2f1c63e8c6d}{00050}}\ \ \ \ \ \ \ \ \ rospy.Subscriber(\textcolor{stringliteral}{"{}/\_detection\_info"{}},\ detection\_new,\ self.\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_ac43e9e3218f6f38cff12a2f1c63e8c6d}{detection\_callback}}\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_a49a89da8b3e38167ecf4afd22339f0b9}{detection\_callback}})}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00051}\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_ae10b95b0c849a250e0154365fcbb37a4}{00051}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_ae10b95b0c849a250e0154365fcbb37a4}{detection\_pub}}\ =\ rospy.Publisher(\textcolor{stringliteral}{"{}/transformed\_detection\_info"{}},\ detection\_new,\ queue\_size=10)}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00053}\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_a49a89da8b3e38167ecf4afd22339f0b9}{00053}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_ac43e9e3218f6f38cff12a2f1c63e8c6d}{detection\_callback}}(self,\ detection\_data):}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00055}00055\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ 检测点回调函数，将检测点从原始坐标系转换到\ odom\ 坐标系并发布}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00056}00056\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00057}00057\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ detection\_data\ detection\_new}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00058}00058\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ 输入的检测点消息，包含以下字段：}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00059}00059\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ class\_name:\ 检测类别名称}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00060}00060\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ score:\ 检测置信度}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00061}00061\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ point\_stamped:\ 检测点坐标}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00062}00062\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ min\_stamped:\ 检测点最小值坐标}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00063}00063\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ max\_stamped:\ 检测点最大值坐标}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00064}00064\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00065}00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ None}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00066}00066\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ 函数无返回值}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00067}00067\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00068}00068\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 功能：}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00069}00069\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 使用\ tf2\ 查找检测点坐标到\ odom\ 的变换}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00070}00070\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 对\ point\_stamped、min\_stamped\ 和\ max\_stamped\ 进行坐标变换}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00071}00071\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 将转换后的检测点封装到新的\ detection\_new\ 消息并发布}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00072}00072\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 如果发生\ TF2\ 错误，输出错误日志}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00073}00073\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ transform\ =\ self.\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_a3d5f1d1b5ab5ae204610f018fd295536}{tf\_buffer}}.lookup\_transform(\textcolor{stringliteral}{'odom'},}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detection\_data.point\_stamped.header.frame\_id,}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rospy.Time(0),}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rospy.Duration(1.0))}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point\ =\ tf2\_geometry\_msgs.do\_transform\_point(detection\_data.point\_stamped,\ transform)}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point\_min\ =\ tf2\_geometry\_msgs.do\_transform\_point(detection\_data.min\_stamped,\ transform)}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point\_max\ =\ tf2\_geometry\_msgs.do\_transform\_point(detection\_data.max\_stamped,\ transform)}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ rospy.loginfo(\textcolor{stringliteral}{"{}Transformed\ point\ in\ camera\_link:\ (\%s,\%.2f,\ \%.2f,\ \%.2f)"{}},\ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detection\_data.class\_name,}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point.point.x,\ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point.point.y,\ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point.point.z)}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ new\_detection\ =\ detection\_new()}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ new\_detection.class\_name\ =\ detection\_data.class\_name}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ new\_detection.score\ =\ detection\_data.score}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ new\_detection.image\_data\ =\ detection\_data.image\_data\ \ }}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ new\_detection.min\_stamped\ =\ transformed\_point\_min\ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ new\_detection.max\_stamped\ =\ transformed\_point\_max}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_ae10b95b0c849a250e0154365fcbb37a4}{detection\_pub}}.publish(new\_detection)}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ (tf2\_ros.LookupException,\ tf2\_ros.ConnectivityException,\ tf2\_ros.ExtrapolationException)\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ rospy.logerr(\textcolor{stringliteral}{"{}TF2\ Error:\ \%s"{}},\ str(e))}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00102}00102\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{'\_\_main\_\_'}:}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00103}00103\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00104}00104\ \textcolor{stringliteral}{\ \ \ \ @brief\ 主程序入口，创建\ PointTransformer\ 对象并进入\ ROS\ 循环}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00105}00105\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00106}\mbox{\hyperlink{namespaceauto__navigation_1_1point__transform_a63d200727dd1345d7f217f8903c56ec7}{00106}}\ \ \ \ \ pt\ =\ \mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer}{PointTransformer}}()}
+\DoxyCodeLine{\Hypertarget{point__transform_8py_source_l00107}00107\ \ \ \ \ rospy.spin()}
+
+\end{DoxyCode}

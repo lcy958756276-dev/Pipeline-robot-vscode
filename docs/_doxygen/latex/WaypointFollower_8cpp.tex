@@ -1,0 +1,71 @@
+\doxysection{auto\+\_\+navigation/\+Waypoint\+Follower.cpp File Reference}
+\hypertarget{WaypointFollower_8cpp}{}\label{WaypointFollower_8cpp}\index{auto\_navigation/WaypointFollower.cpp@{auto\_navigation/WaypointFollower.cpp}}
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$geometry\+\_\+msgs/\+Pose\+Stamped.\+h$>$}\newline
+{\ttfamily \#include $<$geometry\+\_\+msgs/\+Twist.\+h$>$}\newline
+{\ttfamily \#include $<$nav\+\_\+msgs/\+Odometry.\+h$>$}\newline
+{\ttfamily \#include $<$std\+\_\+msgs/\+Bool.\+h$>$}\newline
+{\ttfamily \#include "{}std\+\_\+msgs/\+String.\+h"{}}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+Include dependency graph for Waypoint\+Follower.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{WaypointFollower_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classWaypointFollower}{Waypoint\+Follower}}
+\begin{DoxyCompactList}\small\item\em 负责接收目标点并控制机器人运动 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{WaypointFollower_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\begin{DoxyCompactList}\small\item\em 主函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{WaypointFollower_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{WaypointFollower_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+\index{WaypointFollower.cpp@{WaypointFollower.cpp}!main@{main}}
+\index{main@{main}!WaypointFollower.cpp@{WaypointFollower.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+
+
+主函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & 参数个数 \\
+\hline
+{\em argv} & 参数数组 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 返回值
+\end{DoxyReturn}
+功能：
+\begin{DoxyItemize}
+\item 初始化 ROS 节点
+\item 创建 \doxylink{classWaypointFollower}{Waypoint\+Follower} 对象
+\item 调用 ros\+::spin() 保持节点运行 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{WaypointFollower_8cpp_source_l00259}{259}} of file \mbox{\hyperlink{WaypointFollower_8cpp_source}{Waypoint\+Follower.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00260\ \{}
+\DoxyCodeLine{00261\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}waypoint\_follower"{}});}
+\DoxyCodeLine{00262\ \ \ \ \ setlocale(LC\_ALL,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00263\ \ \ \ \ \mbox{\hyperlink{classWaypointFollower}{WaypointFollower}}\ wf;}
+\DoxyCodeLine{00264\ \ \ \ \ ros::spin();}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00266\ \}}
+
+\end{DoxyCode}

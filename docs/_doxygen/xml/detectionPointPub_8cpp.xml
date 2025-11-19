@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="detectionPointPub_8cpp" kind="file" language="C++">
+    <compoundname>detectionPointPub.cpp</compoundname>
+    <includes local="no">ros/ros.h</includes>
+    <includes local="no">nav_msgs/Odometry.h</includes>
+    <includes local="no">geometry_msgs/PoseStamped.h</includes>
+    <includes local="yes">pipeline_robot/detection.h</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">algorithm</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>auto_navigation/detectionPointPub.cpp</label>
+        <link refid="detectionPointPub_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>algorithm</label>
+      </node>
+      <node id="4">
+        <label>geometry_msgs/PoseStamped.h</label>
+      </node>
+      <node id="3">
+        <label>nav_msgs/Odometry.h</label>
+      </node>
+      <node id="5">
+        <label>pipeline_robot/detection.h</label>
+      </node>
+      <node id="2">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="6">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classDetectionAnalyzer" prot="public">DetectionAnalyzer</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="detectionPointPub_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+<para>主程序入口 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数数量 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数数组 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int 返回 0 表示正常退出</para>
+</simplesect>
+功能：<itemizedlist>
+<listitem><para>初始化 ROS 节点</para>
+</listitem><listitem><para>创建 <ref refid="classDetectionAnalyzer" kindref="compound">DetectionAnalyzer</ref> 对象</para>
+</listitem><listitem><para>循环处理回调并周期性发布 midgoal </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="203" column="5" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="203" bodyend="218"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>检测点分析与 midgoal 生成模块 </para>
+    </briefdescription>
+    <detaileddescription>
+<para>该文件实现了一个 ROS 节点，用于接收检测点信息、机器人位姿和最终目标点， 并根据检测点和机器人当前位置计算中间目标点 (midgoal)。 功能：<itemizedlist>
+<listitem><para>订阅 /cable/odom 获取机器人位姿</para>
+</listitem><listitem><para>订阅 /transformed_detection_info 获取检测点</para>
+</listitem><listitem><para>订阅 finalgoal 获取最终目标点</para>
+</listitem><listitem><para>根据检测点和机器人位姿生成 midgoal 点</para>
+</listitem><listitem><para>发布 midgoal 点供导航使用 </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros/ros.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nav_msgs/Odometry.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;geometry_msgs/PoseStamped.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pipeline_robot/detection.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="classDetectionAnalyzer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classDetectionAnalyzer" kindref="compound">DetectionAnalyzer</ref></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer_1ac225923772770c2ca24586696310065a" kindref="member">DetectionAnalyzer</ref>();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" kindref="member">odomCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nav_msgs::Odometry::ConstPtr<sp/>&amp;msg);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" kindref="member">finalgoalCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::PoseStamped::ConstPtr<sp/>&amp;msg);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" kindref="member">detectionCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>pipeline_robot::detection::ConstPtr<sp/>&amp;msg);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1aaaba5d735107e6bb589e7937b6a2bc61" kindref="member">publishMidGoal</ref>();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="84" refid="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::NodeHandle<sp/><ref refid="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" kindref="member">nh</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="classDetectionAnalyzer_1abb1eca5770c41109df5688bcecc48c84" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Subscriber<sp/><ref refid="classDetectionAnalyzer_1abb1eca5770c41109df5688bcecc48c84" kindref="member">odom_sub</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86" refid="classDetectionAnalyzer_1a8ef40feef50fb30ffbbbc51e69c8188e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Subscriber<sp/><ref refid="classDetectionAnalyzer_1a8ef40feef50fb30ffbbbc51e69c8188e" kindref="member">detection_sub</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87" refid="classDetectionAnalyzer_1a21f29bbee9e78f3123b82d49f65e6c08" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Subscriber<sp/><ref refid="classDetectionAnalyzer_1a21f29bbee9e78f3123b82d49f65e6c08" kindref="member">finalgoal_sub</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="classDetectionAnalyzer_1a45860f4a2da2f3df0c5f3244d555f3b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Publisher<sp/><ref refid="classDetectionAnalyzer_1a45860f4a2da2f3df0c5f3244d555f3b8" kindref="member">midgoal_pub</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" kindref="member">detections</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91" refid="classDetectionAnalyzer_1a6f19f803d3707ca4bf3999a907d5b3c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="classDetectionAnalyzer_1a6f19f803d3707ca4bf3999a907d5b3c8" kindref="member">published_positions</ref>;<sp/></highlight></codeline>
+<codeline lineno="92" refid="classDetectionAnalyzer_1a5f50ef9dab802e3ac84304b6911d61a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1a5f50ef9dab802e3ac84304b6911d61a5" kindref="member">current_position_x</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93" refid="classDetectionAnalyzer_1ae2b299f48c872f25afffbb68df9739d8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1ae2b299f48c872f25afffbb68df9739d8" kindref="member">final_position_x</ref><sp/>=<sp/>0.1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1a590d7176d4a52897510ff0867cc8655a" kindref="member">isSimilar</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>new_detection_x);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1abc065c153de6540f4b4f32bda30b2507" kindref="member">isSimilarPublished</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" kindref="member">x</ref>);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">//<sp/>===================<sp/>函数实现<sp/>===================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="classDetectionAnalyzer_1ac225923772770c2ca24586696310065a" refkind="member"><highlight class="normal"><ref refid="classDetectionAnalyzer_1ac225923772770c2ca24586696310065a" kindref="member">DetectionAnalyzer::DetectionAnalyzer</ref>()</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer_1abb1eca5770c41109df5688bcecc48c84" kindref="member">odom_sub</ref><sp/>=<sp/><ref refid="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" kindref="member">nh</ref>.subscribe(</highlight><highlight class="stringliteral">&quot;/cable/odom&quot;</highlight><highlight class="normal">,<sp/>10,<sp/>&amp;<ref refid="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" kindref="member">DetectionAnalyzer::odomCallback</ref>,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer_1a8ef40feef50fb30ffbbbc51e69c8188e" kindref="member">detection_sub</ref><sp/>=<sp/><ref refid="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" kindref="member">nh</ref>.subscribe(</highlight><highlight class="stringliteral">&quot;/transformed_detection_info&quot;</highlight><highlight class="normal">,<sp/>10,<sp/>&amp;<ref refid="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" kindref="member">DetectionAnalyzer::detectionCallback</ref>,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer_1a21f29bbee9e78f3123b82d49f65e6c08" kindref="member">finalgoal_sub</ref><sp/>=<sp/><ref refid="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" kindref="member">nh</ref>.subscribe(</highlight><highlight class="stringliteral">&quot;finalgoal&quot;</highlight><highlight class="normal">,<sp/>10,<sp/>&amp;<ref refid="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" kindref="member">DetectionAnalyzer::finalgoalCallback</ref>,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer_1a45860f4a2da2f3df0c5f3244d555f3b8" kindref="member">midgoal_pub</ref><sp/>=<sp/><ref refid="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" kindref="member">nh</ref>.advertise&lt;geometry_msgs::PoseStamped&gt;(</highlight><highlight class="stringliteral">&quot;midgoal&quot;</highlight><highlight class="normal">,<sp/>10);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" kindref="member">DetectionAnalyzer::odomCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nav_msgs::Odometry::ConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer_1a5f50ef9dab802e3ac84304b6911d61a5" kindref="member">current_position_x</ref><sp/>=<sp/>msg-&gt;pose.pose.position.x;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" kindref="member">DetectionAnalyzer::finalgoalCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::PoseStamped::ConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer_1ae2b299f48c872f25afffbb68df9739d8" kindref="member">final_position_x</ref><sp/>=<sp/>msg-&gt;pose.position.x;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137" refid="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" kindref="member">DetectionAnalyzer::detectionCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>pipeline_robot::detection::ConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg-&gt;point_stamped.point.x<sp/>&gt;<sp/>0.5<sp/>&amp;&amp;<sp/>msg-&gt;point_stamped.point.x<sp/>&lt;<sp/>3)</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>new_detection_x<sp/>=<sp/>msg-&gt;point_stamped.point.x<sp/>+<sp/><ref refid="classDetectionAnalyzer_1a5f50ef9dab802e3ac84304b6911d61a5" kindref="member">current_position_x</ref>;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(new_detection_x<sp/>&gt;<sp/><ref refid="classDetectionAnalyzer_1ae2b299f48c872f25afffbb68df9739d8" kindref="member">final_position_x</ref>)</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classDetectionAnalyzer_1a590d7176d4a52897510ff0867cc8655a" kindref="member">isSimilar</ref>(new_detection_x))</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" kindref="member">detections</ref>.push_back(new_detection_x);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="classDetectionAnalyzer_1aaaba5d735107e6bb589e7937b6a2bc61" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1aaaba5d735107e6bb589e7937b6a2bc61" kindref="member">DetectionAnalyzer::publishMidGoal</ref>()</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" kindref="member">detections</ref>.empty())</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>min_it<sp/>=<sp/>std::min_element(<ref refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" kindref="member">detections</ref>.begin(),<sp/><ref refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" kindref="member">detections</ref>.end());</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>min_detection_x<sp/>=<sp/>*min_it;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classDetectionAnalyzer_1abc065c153de6540f4b4f32bda30b2507" kindref="member">isSimilarPublished</ref>(min_detection_x))</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>geometry_msgs::PoseStamped<sp/>midgoal;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>midgoal.header.stamp<sp/>=<sp/>ros::Time::now();</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>midgoal.header.frame_id<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;odom&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>midgoal.pose.position.x<sp/>=<sp/>min_detection_x<sp/>-<sp/>0.5;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>midgoal.pose.orientation.w<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer_1a45860f4a2da2f3df0c5f3244d555f3b8" kindref="member">midgoal_pub</ref>.publish(midgoal);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer_1a6f19f803d3707ca4bf3999a907d5b3c8" kindref="member">published_positions</ref>.push_back(min_detection_x);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" kindref="member">detections</ref>.erase(min_it);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172" refid="classDetectionAnalyzer_1a590d7176d4a52897510ff0867cc8655a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1a590d7176d4a52897510ff0867cc8655a" kindref="member">DetectionAnalyzer::isSimilar</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>new_detection_x)</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>&amp;<ref refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" kindref="member">x</ref><sp/>:<sp/><ref refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" kindref="member">detections</ref>)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::fabs(<ref refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" kindref="member">x</ref><sp/>-<sp/>new_detection_x)<sp/>&lt;<sp/>1)</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182" refid="classDetectionAnalyzer_1abc065c153de6540f4b4f32bda30b2507" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classDetectionAnalyzer_1abc065c153de6540f4b4f32bda30b2507" kindref="member">DetectionAnalyzer::isSimilarPublished</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" kindref="member">x</ref>)</highlight></codeline>
+<codeline lineno="183"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>&amp;published_x<sp/>:<sp/><ref refid="classDetectionAnalyzer_1a6f19f803d3707ca4bf3999a907d5b3c8" kindref="member">published_positions</ref>)</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::fabs(published_x<sp/>-<sp/><ref refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" kindref="member">x</ref>)<sp/>&lt;<sp/>0.5)</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203" refid="detectionPointPub_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="detectionPointPub_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**argv)</highlight></codeline>
+<codeline lineno="204"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::init(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;detection_analyzer&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classDetectionAnalyzer" kindref="compound">DetectionAnalyzer</ref><sp/>analyzer;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Rate<sp/>loop_rate(10);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(ros::ok())</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>analyzer.<ref refid="classDetectionAnalyzer_1aaaba5d735107e6bb589e7937b6a2bc61" kindref="member">publishMidGoal</ref>();</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loop_rate.sleep();</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="auto_navigation/detectionPointPub.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,382 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classDetectionAnalyzer" kind="class" language="C++" prot="public">
+    <compoundname>DetectionAnalyzer</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" prot="private" static="no" mutable="no">
+        <type>ros::NodeHandle</type>
+        <definition>ros::NodeHandle DetectionAnalyzer::nh</definition>
+        <argsstring></argsstring>
+        <name>nh</name>
+        <qualifiedname>DetectionAnalyzer::nh</qualifiedname>
+        <briefdescription>
+<para>ROS 节点句柄 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="84" column="21" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDetectionAnalyzer_1abb1eca5770c41109df5688bcecc48c84" prot="private" static="no" mutable="no">
+        <type>ros::Subscriber</type>
+        <definition>ros::Subscriber DetectionAnalyzer::odom_sub</definition>
+        <argsstring></argsstring>
+        <name>odom_sub</name>
+        <qualifiedname>DetectionAnalyzer::odom_sub</qualifiedname>
+        <briefdescription>
+<para>订阅 /cable/odom </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="85" column="21" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDetectionAnalyzer_1a8ef40feef50fb30ffbbbc51e69c8188e" prot="private" static="no" mutable="no">
+        <type>ros::Subscriber</type>
+        <definition>ros::Subscriber DetectionAnalyzer::detection_sub</definition>
+        <argsstring></argsstring>
+        <name>detection_sub</name>
+        <qualifiedname>DetectionAnalyzer::detection_sub</qualifiedname>
+        <briefdescription>
+<para>订阅 /transformed_detection_info </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="86" column="21" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDetectionAnalyzer_1a21f29bbee9e78f3123b82d49f65e6c08" prot="private" static="no" mutable="no">
+        <type>ros::Subscriber</type>
+        <definition>ros::Subscriber DetectionAnalyzer::finalgoal_sub</definition>
+        <argsstring></argsstring>
+        <name>finalgoal_sub</name>
+        <qualifiedname>DetectionAnalyzer::finalgoal_sub</qualifiedname>
+        <briefdescription>
+<para>订阅 finalgoal </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="87" column="21" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDetectionAnalyzer_1a45860f4a2da2f3df0c5f3244d555f3b8" prot="private" static="no" mutable="no">
+        <type>ros::Publisher</type>
+        <definition>ros::Publisher DetectionAnalyzer::midgoal_pub</definition>
+        <argsstring></argsstring>
+        <name>midgoal_pub</name>
+        <qualifiedname>DetectionAnalyzer::midgoal_pub</qualifiedname>
+        <briefdescription>
+<para>发布 midgoal </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="88" column="20" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; DetectionAnalyzer::detections</definition>
+        <argsstring></argsstring>
+        <name>detections</name>
+        <qualifiedname>DetectionAnalyzer::detections</qualifiedname>
+        <briefdescription>
+<para>缓存检测点 x 坐标 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="90" column="17" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDetectionAnalyzer_1a6f19f803d3707ca4bf3999a907d5b3c8" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; DetectionAnalyzer::published_positions</definition>
+        <argsstring></argsstring>
+        <name>published_positions</name>
+        <qualifiedname>DetectionAnalyzer::published_positions</qualifiedname>
+        <briefdescription>
+<para>已发布 midgoal x 坐标 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="91" column="17" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDetectionAnalyzer_1a5f50ef9dab802e3ac84304b6911d61a5" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float DetectionAnalyzer::current_position_x</definition>
+        <argsstring></argsstring>
+        <name>current_position_x</name>
+        <qualifiedname>DetectionAnalyzer::current_position_x</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>当前机器人 x 坐标 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="92" column="11" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDetectionAnalyzer_1ae2b299f48c872f25afffbb68df9739d8" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float DetectionAnalyzer::final_position_x</definition>
+        <argsstring></argsstring>
+        <name>final_position_x</name>
+        <qualifiedname>DetectionAnalyzer::final_position_x</qualifiedname>
+        <initializer>= 0.1</initializer>
+        <briefdescription>
+<para>最终目标 x 坐标 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="93" column="11" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classDetectionAnalyzer_1ac225923772770c2ca24586696310065a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>DetectionAnalyzer::DetectionAnalyzer</definition>
+        <argsstring>()</argsstring>
+        <name>DetectionAnalyzer</name>
+        <qualifiedname>DetectionAnalyzer::DetectionAnalyzer</qualifiedname>
+        <briefdescription>
+<para>构造函数，初始化 ROS 订阅者与发布者 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>初始化以下订阅者：<itemizedlist>
+<listitem><para>/cable/odom：机器人位姿</para>
+</listitem><listitem><para>/transformed_detection_info：检测点信息</para>
+</listitem><listitem><para>finalgoal：最终目标点 初始化发布者：</para>
+</listitem><listitem><para>midgoal：中间目标点 </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="44" column="5" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="118" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DetectionAnalyzer::odomCallback</definition>
+        <argsstring>(const nav_msgs::Odometry::ConstPtr &amp;msg)</argsstring>
+        <name>odomCallback</name>
+        <qualifiedname>DetectionAnalyzer::odomCallback</qualifiedname>
+        <param>
+          <type>const nav_msgs::Odometry::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>更新机器人当前位置 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>nav_msgs::Odometry 消息，包含机器人当前位置</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+从 odom 消息中获取机器人 x 坐标，并更新 current_position_x </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="52" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="127" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DetectionAnalyzer::finalgoalCallback</definition>
+        <argsstring>(const geometry_msgs::PoseStamped::ConstPtr &amp;msg)</argsstring>
+        <name>finalgoalCallback</name>
+        <qualifiedname>DetectionAnalyzer::finalgoalCallback</qualifiedname>
+        <param>
+          <type>const geometry_msgs::PoseStamped::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>更新最终目标点位置 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>geometry_msgs::PoseStamped 消息，包含最终目标点</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+从 finalgoal 消息中获取最终目标 x 坐标，并更新 final_position_x </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="60" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="132" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DetectionAnalyzer::detectionCallback</definition>
+        <argsstring>(const pipeline_robot::detection::ConstPtr &amp;msg)</argsstring>
+        <name>detectionCallback</name>
+        <qualifiedname>DetectionAnalyzer::detectionCallback</qualifiedname>
+        <param>
+          <type>const pipeline_robot::detection::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>接收并缓存检测点 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pipeline_robot::detection 消息，包含检测点信息</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+功能：<itemizedlist>
+<listitem><para>仅处理 x 坐标在 [0.5, 3] 范围内的检测点</para>
+</listitem><listitem><para>忽略超过最终目标点的检测点</para>
+</listitem><listitem><para>避免缓存重复的检测点 </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="71" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="137" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="classDetectionAnalyzer_1aaaba5d735107e6bb589e7937b6a2bc61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DetectionAnalyzer::publishMidGoal</definition>
+        <argsstring>()</argsstring>
+        <name>publishMidGoal</name>
+        <qualifiedname>DetectionAnalyzer::publishMidGoal</qualifiedname>
+        <briefdescription>
+<para>从缓存检测点中选择最小 x 坐标生成 midgoal 点并发布 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>功能：<itemizedlist>
+<listitem><para>检查新 midgoal 是否与已发布 midgoal 点重复</para>
+</listitem><listitem><para>发布 midgoal 到 &quot;midgoal&quot; 话题</para>
+</listitem><listitem><para>更新已发布 midgoal 缓存 </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="81" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="150" bodyend="170"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classDetectionAnalyzer_1a590d7176d4a52897510ff0867cc8655a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DetectionAnalyzer::isSimilar</definition>
+        <argsstring>(float new_detection_x)</argsstring>
+        <name>isSimilar</name>
+        <qualifiedname>DetectionAnalyzer::isSimilar</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>new_detection_x</declname>
+        </param>
+        <briefdescription>
+<para>判断检测点是否已存在缓存中 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_detection_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>新检测点 x 坐标 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true 如果缓存中存在相似点，否则 false</para>
+</simplesect>
+相似性判定：<itemizedlist>
+<listitem><para>若 |new_detection_x - existing_x| &lt; 1，则认为相似 </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="103" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="172" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="classDetectionAnalyzer_1abc065c153de6540f4b4f32bda30b2507" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DetectionAnalyzer::isSimilarPublished</definition>
+        <argsstring>(float x)</argsstring>
+        <name>isSimilarPublished</name>
+        <qualifiedname>DetectionAnalyzer::isSimilarPublished</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>判断 midgoal 是否已发布 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>midgoal x 坐标 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true 如果已发布点中存在相似点，否则 false</para>
+</simplesect>
+相似性判定：<itemizedlist>
+<listitem><para>若 |x - published_x| &lt; 0.5，则认为相似 </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="113" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="182" bodyend="190"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>分析检测点并生成 midgoal 点 </para>
+    </briefdescription>
+    <detaileddescription>
+<para>该类功能：<itemizedlist>
+<listitem><para>缓存检测点信息，避免重复发布</para>
+</listitem><listitem><para>根据当前机器人位置和最终目标点选择合适的 midgoal 点</para>
+</listitem><listitem><para>发布 midgoal 点供导航模块使用 </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="auto_navigation/detectionPointPub.cpp" line="31" column="1" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="32" bodyend="114"/>
+    <listofallmembers>
+      <member refid="classDetectionAnalyzer_1a5f50ef9dab802e3ac84304b6911d61a5" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>current_position_x</name></member>
+      <member refid="classDetectionAnalyzer_1a8ef40feef50fb30ffbbbc51e69c8188e" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>detection_sub</name></member>
+      <member refid="classDetectionAnalyzer_1ac225923772770c2ca24586696310065a" prot="public" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>DetectionAnalyzer</name></member>
+      <member refid="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" prot="public" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>detectionCallback</name></member>
+      <member refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>detections</name></member>
+      <member refid="classDetectionAnalyzer_1ae2b299f48c872f25afffbb68df9739d8" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>final_position_x</name></member>
+      <member refid="classDetectionAnalyzer_1a21f29bbee9e78f3123b82d49f65e6c08" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>finalgoal_sub</name></member>
+      <member refid="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" prot="public" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>finalgoalCallback</name></member>
+      <member refid="classDetectionAnalyzer_1a590d7176d4a52897510ff0867cc8655a" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>isSimilar</name></member>
+      <member refid="classDetectionAnalyzer_1abc065c153de6540f4b4f32bda30b2507" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>isSimilarPublished</name></member>
+      <member refid="classDetectionAnalyzer_1a45860f4a2da2f3df0c5f3244d555f3b8" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>midgoal_pub</name></member>
+      <member refid="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>nh</name></member>
+      <member refid="classDetectionAnalyzer_1abb1eca5770c41109df5688bcecc48c84" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>odom_sub</name></member>
+      <member refid="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" prot="public" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>odomCallback</name></member>
+      <member refid="classDetectionAnalyzer_1a6f19f803d3707ca4bf3999a907d5b3c8" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>published_positions</name></member>
+      <member refid="classDetectionAnalyzer_1aaaba5d735107e6bb589e7937b6a2bc61" prot="public" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>publishMidGoal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

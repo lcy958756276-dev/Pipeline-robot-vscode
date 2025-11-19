@@ -1,0 +1,150 @@
+\doxysection{odom\+\_\+pub.\+cpp}
+\hypertarget{odom__pub_8cpp_source}{}\label{odom__pub_8cpp_source}\index{cable\_read/odom\_pub.cpp@{cable\_read/odom\_pub.cpp}}
+\mbox{\hyperlink{odom__pub_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <std\_msgs/Int32.h>}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <nav\_msgs/Odometry.h>}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <tf/transform\_broadcaster.h>}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}std\_msgs/String.h"{}}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <regex>}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <std\_msgs/Bool.h>}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00023}00023\ \textcolor{comment}{//\ 重置里程计标志}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00024}\mbox{\hyperlink{odom__pub_8cpp_a30b9d036a79a00e325dd2bbb9e991755}{00024}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{odom__pub_8cpp_a30b9d036a79a00e325dd2bbb9e991755}{reset\_odom}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00026}00026\ \textcolor{comment}{//\ 轮子参数}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00027}\mbox{\hyperlink{odom__pub_8cpp_ac5e0ffa856f94297db93de525454d254}{00027}}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{odom__pub_8cpp_ac5e0ffa856f94297db93de525454d254}{wheel\_radius}}\ =\ 0.0318;\ \ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00028}\mbox{\hyperlink{odom__pub_8cpp_a7528b439f0436b7327b1acaa71f0fc88}{00028}}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{odom__pub_8cpp_a7528b439f0436b7327b1acaa71f0fc88}{wheel\_base}}\ =\ 0.343;\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00030}00030\ \textcolor{comment}{//\ 行进距离}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00031}\mbox{\hyperlink{odom__pub_8cpp_a79b8e036dca6911e3295a47d99f21f43}{00031}}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{odom__pub_8cpp_a79b8e036dca6911e3295a47d99f21f43}{distance}}\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00032}00032\ \textcolor{comment}{//\ double\ right\_distance\ =\ 0.0;\ //\ 右轮距离（未使用）}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00034}00034\ \textcolor{comment}{//\ 当前位姿}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00035}\mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{00035}}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}}\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00036}\mbox{\hyperlink{odom__pub_8cpp_ab927965981178aa1fba979a37168db2a}{00036}}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{odom__pub_8cpp_ab927965981178aa1fba979a37168db2a}{y}}\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00037}\mbox{\hyperlink{odom__pub_8cpp_aca81c35c21e3a5f7f3a8d24504e76664}{00037}}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{odom__pub_8cpp_aca81c35c21e3a5f7f3a8d24504e76664}{theta}}\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00039}00039\ \textcolor{comment}{//\ 每脉冲对应的角度}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00040}\mbox{\hyperlink{odom__pub_8cpp_ac7cf637ac08386a7e08f7a9cb1975056}{00040}}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{odom__pub_8cpp_ac7cf637ac08386a7e08f7a9cb1975056}{pluse}}\ =\ 2.295048561\ *\ 360.0\ /\ (400*4);}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00042}00042\ \textcolor{comment}{//\ 上一次更新时间}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00043}\mbox{\hyperlink{odom__pub_8cpp_a55886e34bc6a03b24f6ce7455fe67289}{00043}}\ ros::Time\ \mbox{\hyperlink{odom__pub_8cpp_a55886e34bc6a03b24f6ce7455fe67289}{last\_time}};}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00050}\mbox{\hyperlink{odom__pub_8cpp_aed25fed1ceb628954de9adc35a411398}{00050}}\ std::string\ \mbox{\hyperlink{odom__pub_8cpp_aed25fed1ceb628954de9adc35a411398}{extra}}(\textcolor{keyword}{const}\ std::string\&\ input)}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00051}00051\ \{}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00052}00052\ \ \ \ \ std::string\ prefix=\textcolor{stringliteral}{"{}e1:"{}};}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00053}00053\ \ \ \ \ std::string\ num;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00054}00054\ \ \ \ \ std::size\_t\ prefix\_pos\ =\ input.find(prefix);}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ prefix\_pos+3;\ i\ <\ input.size();\ i++)}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00056}00056\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(input[i]\ ==\ \textcolor{charliteral}{'p'})\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ num\ +=\ input[i];}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{return}\ num;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00061}00061\ \}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00067}\mbox{\hyperlink{odom__pub_8cpp_a6e9f67764013c92ecd2200c1e90d714a}{00067}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{odom__pub_8cpp_a6e9f67764013c92ecd2200c1e90d714a}{resetOdometryCallback}}(\textcolor{keyword}{const}\ std\_msgs::Bool::ConstPtr\&\ msg)}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00068}00068\ \{}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (msg-\/>data\ ==\ \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00070}00070\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{odom__pub_8cpp_a30b9d036a79a00e325dd2bbb9e991755}{reset\_odom}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ 设置重置标志为真}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00073}00073\ \}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00079}\mbox{\hyperlink{odom__pub_8cpp_afca0ce71eb34f139dd215289e37db241}{00079}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{odom__pub_8cpp_afca0ce71eb34f139dd215289e37db241}{EncoderCallback}}(\textcolor{keyword}{const}\ std\_msgs::String::ConstPtr\ \&msg)}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00080}00080\ \{}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00081}00081\ \ \ \ \ std::string\ str\ =\ msg-\/>data;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (str.find(\textcolor{stringliteral}{"{}e1"{}})\ ==\ std::string::npos)}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00083}00083\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00085}00085\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00086}00086\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00087}00087\ \ \ \ \ std::string\ num\_str\ =\ \mbox{\hyperlink{odom__pub_8cpp_aed25fed1ceb628954de9adc35a411398}{extra}}(str);}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordflow}{if}(num\_str.size()\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00089}00089\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ left\_increment\ =\ std::stoi(num\_str);}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 根据脉冲数计算左轮行进距离}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{odom__pub_8cpp_a79b8e036dca6911e3295a47d99f21f43}{distance}}\ +=\ (left\_increment\ *\ (\mbox{\hyperlink{odom__pub_8cpp_ac7cf637ac08386a7e08f7a9cb1975056}{pluse}}\ /\ 360.0)\ *\ 2\ *\ M\_PI\ *\ \mbox{\hyperlink{odom__pub_8cpp_ac5e0ffa856f94297db93de525454d254}{wheel\_radius}});}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00093}00093\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00094}00094\ \}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00101}\mbox{\hyperlink{odom__pub_8cpp_a8f5e3f6c52f55538bf51ba8c929b3017}{00101}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{odom__pub_8cpp_a8f5e3f6c52f55538bf51ba8c929b3017}{publishOdometry}}(ros::Publisher\&\ odom\_pub,\ tf::TransformBroadcaster\&\ tf\_broadcaster)}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00102}00102\ \{}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00103}00103\ \ \ \ \ ros::Time\ current\_time\ =\ ros::Time::now();}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{keywordtype}{double}\ dt\ =\ (current\_time\ -\/\ \mbox{\hyperlink{odom__pub_8cpp_a55886e34bc6a03b24f6ce7455fe67289}{last\_time}}).toSec();}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ 处理里程计重置}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{odom__pub_8cpp_a30b9d036a79a00e325dd2bbb9e991755}{reset\_odom}})}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00108}00108\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}}\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{odom__pub_8cpp_ab927965981178aa1fba979a37168db2a}{y}}\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{odom__pub_8cpp_aca81c35c21e3a5f7f3a8d24504e76664}{theta}}\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{odom__pub_8cpp_a30b9d036a79a00e325dd2bbb9e991755}{reset\_odom}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ 重置完成}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00113}00113\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00115}00115\ \ \ \ \ \textcolor{keywordtype}{double}\ d\_distance\ =\ \mbox{\hyperlink{odom__pub_8cpp_a79b8e036dca6911e3295a47d99f21f43}{distance}};\ \textcolor{comment}{//\ 计算行进距离}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00116}00116\ \ \ \ \ \mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}}\ +=\ d\_distance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 更新\ x\ 坐标}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00117}00117\ \ \ \ \ \textcolor{comment}{//\ y\ +=\ d\_distance\ *\ sin(theta);\ //\ 更新\ y\ 坐标（未使用）}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00118}00118\ \ \ \ \ \mbox{\hyperlink{odom__pub_8cpp_aca81c35c21e3a5f7f3a8d24504e76664}{theta}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 更新角度}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00120}00120\ \ \ \ \ \textcolor{comment}{//\ 创建里程计消息}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00121}00121\ \ \ \ \ nav\_msgs::Odometry\ odom;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00122}00122\ \ \ \ \ odom.header.frame\_id\ =\ \textcolor{stringliteral}{"{}odom"{}};}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00123}00123\ \ \ \ \ odom.pose.pose.position.x\ =\ \mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}};}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00124}00124\ \ \ \ \ odom.pose.pose.position.y\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00125}00125\ \ \ \ \ odom.pose.pose.position.z\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00126}00126\ \ \ \ \ odom.pose.pose.orientation\ =\ tf::createQuaternionMsgFromYaw(\mbox{\hyperlink{odom__pub_8cpp_aca81c35c21e3a5f7f3a8d24504e76664}{theta}});}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00127}00127\ \ \ \ \ odom.child\_frame\_id\ =\ \textcolor{stringliteral}{"{}base\_link"{}};}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00128}00128\ \ \ \ \ odom.twist.twist.linear.x\ =\ d\_distance\ /\ dt;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{comment}{//\ 发布里程计}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00131}00131\ \ \ \ \ odom\_pub.publish(odom);}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00133}00133\ \ \ \ \ \textcolor{comment}{//\ 广播\ tf\ 变换}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00134}00134\ \ \ \ \ tf::Transform\ transform;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00135}00135\ \ \ \ \ transform.setOrigin(tf::Vector3(\mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}},\ \mbox{\hyperlink{odom__pub_8cpp_ab927965981178aa1fba979a37168db2a}{y}},\ 0.0));}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00136}00136\ \ \ \ \ tf::Quaternion\ q;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00137}00137\ \ \ \ \ q.setRPY(0,\ 0,\ \mbox{\hyperlink{odom__pub_8cpp_aca81c35c21e3a5f7f3a8d24504e76664}{theta}});}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00138}00138\ \ \ \ \ transform.setRotation(q);}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00139}00139\ \ \ \ \ tf\_broadcaster.sendTransform(tf::StampedTransform(transform,\ ros::Time::now(),\ \textcolor{stringliteral}{"{}odom"{}},\ \textcolor{stringliteral}{"{}base\_link"{}}));}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00141}00141\ \ \ \ \ \textcolor{comment}{//\ 重置行进距离}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00142}00142\ \ \ \ \ \mbox{\hyperlink{odom__pub_8cpp_a79b8e036dca6911e3295a47d99f21f43}{distance}}\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00143}00143\ \ \ \ \ \mbox{\hyperlink{odom__pub_8cpp_a55886e34bc6a03b24f6ce7455fe67289}{last\_time}}\ =\ current\_time;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00144}00144\ \}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00152}\mbox{\hyperlink{odom__pub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{00152}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{odom__pub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00153}00153\ \{}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00154}00154\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}odometry\_publisher"{}});}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00155}00155\ \ \ \ \ ros::NodeHandle\ nh;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00157}00157\ \ \ \ \ \textcolor{comment}{//\ 订阅编码器数据}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00158}00158\ \ \ \ \ ros::Subscriber\ ticks\_sub\ =\ nh.subscribe(\textcolor{stringliteral}{"{}/minipc\_echo"{}},\ 1000,\ \mbox{\hyperlink{odom__pub_8cpp_afca0ce71eb34f139dd215289e37db241}{EncoderCallback}});}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00159}00159\ \ \ \ \ \textcolor{comment}{//\ 订阅重置指令}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00160}00160\ \ \ \ \ ros::Subscriber\ reset\_sub\ =\ nh.subscribe(\textcolor{stringliteral}{"{}/reset\_odom"{}},\ 10,\ \mbox{\hyperlink{odom__pub_8cpp_a6e9f67764013c92ecd2200c1e90d714a}{resetOdometryCallback}});}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00162}00162\ \ \ \ \ \textcolor{comment}{//\ 发布里程计}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00163}00163\ \ \ \ \ ros::Publisher\ odom\_pub\ =\ nh.advertise<nav\_msgs::Odometry>(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 1);}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00165}00165\ \ \ \ \ \textcolor{comment}{//\ tf\ 广播器}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00166}00166\ \ \ \ \ tf::TransformBroadcaster\ tf\_broadcaster;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00168}00168\ \ \ \ \ \textcolor{comment}{//\ 初始化循环频率}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00169}00169\ \ \ \ \ ros::Rate\ loop\_rate(10);\ \textcolor{comment}{//\ 10Hz}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00171}00171\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00172}00172\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 发布里程计消息和\ tf}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{odom__pub_8cpp_a8f5e3f6c52f55538bf51ba8c929b3017}{publishOdometry}}(odom\_pub,\ tf\_broadcaster);}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ loop\_rate.sleep();}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00178}00178\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00180}00180\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{odom__pub_8cpp_source_l00181}00181\ \}}
+
+\end{DoxyCode}

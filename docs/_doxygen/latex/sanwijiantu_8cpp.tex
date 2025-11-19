@@ -1,0 +1,64 @@
+\doxysection{3D\+\_\+mapping/sanwijiantu.cpp File Reference}
+\hypertarget{sanwijiantu_8cpp}{}\label{sanwijiantu_8cpp}\index{3D\_mapping/sanwijiantu.cpp@{3D\_mapping/sanwijiantu.cpp}}
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$sensor\+\_\+msgs/\+Point\+Cloud2.\+h$>$}\newline
+{\ttfamily \#include $<$nav\+\_\+msgs/\+Odometry.\+h$>$}\newline
+{\ttfamily \#include $<$pcl/point\+\_\+cloud.\+h$>$}\newline
+{\ttfamily \#include $<$pcl/point\+\_\+types.\+h$>$}\newline
+{\ttfamily \#include $<$pcl\+\_\+conversions/pcl\+\_\+conversions.\+h$>$}\newline
+{\ttfamily \#include $<$pcl/octree/octree\+\_\+pointcloud\+\_\+voxelcentroid.\+h$>$}\newline
+{\ttfamily \#include $<$pipeline\+\_\+robot/\+Distance\+Angle.\+h$>$}\newline
+Include dependency graph for sanwijiantu.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sanwijiantu_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classDA__Octree__Node}{DA\+\_\+\+Octree\+\_\+\+Node}}
+\begin{DoxyCompactList}\small\item\em 通过 Distance-\/\+Angle 数据生成点云并构建八叉树的节点类 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sanwijiantu_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\begin{DoxyCompactList}\small\item\em 主函数，初始化 ROS 节点并启动 \doxylink{classDA__Octree__Node}{DA\+\_\+\+Octree\+\_\+\+Node} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sanwijiantu_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{sanwijiantu_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+\index{sanwijiantu.cpp@{sanwijiantu.cpp}!main@{main}}
+\index{main@{main}!sanwijiantu.cpp@{sanwijiantu.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+
+
+主函数，初始化 ROS 节点并启动 \doxylink{classDA__Octree__Node}{DA\+\_\+\+Octree\+\_\+\+Node} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & 命令行参数数量 \\
+\hline
+{\em argv} & 命令行参数数组 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 程序退出状态 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00110}{110}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}da\_octree\_node"{}});}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node}{DA\_Octree\_Node}}\ node;}
+\DoxyCodeLine{00113\ \ \ \ \ ros::spin();}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00115\ \}}
+
+\end{DoxyCode}

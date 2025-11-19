@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classDA__Octree__Node" kind="class" language="C++" prot="public">
+    <compoundname>DA_Octree_Node</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classDA__Octree__Node_1ac9e99724363e8816834a603e56250462" prot="private" static="no" mutable="no">
+        <type>ros::Subscriber</type>
+        <definition>ros::Subscriber DA_Octree_Node::da_sub_</definition>
+        <argsstring></argsstring>
+        <name>da_sub_</name>
+        <qualifiedname>DA_Octree_Node::da_sub_</qualifiedname>
+        <briefdescription>
+<para>Distance-Angle 数据订阅者 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="3D_mapping/sanwijiantu.cpp" line="93" column="21" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDA__Octree__Node_1a89264bb14609035442fb21d826a7bb71" prot="private" static="no" mutable="no">
+        <type>ros::Subscriber</type>
+        <definition>ros::Subscriber DA_Octree_Node::odom_sub_</definition>
+        <argsstring></argsstring>
+        <name>odom_sub_</name>
+        <qualifiedname>DA_Octree_Node::odom_sub_</qualifiedname>
+        <briefdescription>
+<para>外部 odom 数据订阅者 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="3D_mapping/sanwijiantu.cpp" line="94" column="21" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDA__Octree__Node_1a302c05b9f02186592a77d55372927df9" prot="private" static="no" mutable="no">
+        <type>ros::Publisher</type>
+        <definition>ros::Publisher DA_Octree_Node::cloud_pub_</definition>
+        <argsstring></argsstring>
+        <name>cloud_pub_</name>
+        <qualifiedname>DA_Octree_Node::cloud_pub_</qualifiedname>
+        <briefdescription>
+<para>发布稀疏化点云 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="3D_mapping/sanwijiantu.cpp" line="95" column="20" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDA__Octree__Node_1a9445d49b805496111099deb1cd89e115" prot="private" static="no" mutable="no">
+        <type>pcl::PointCloud&lt; pcl::PointXYZ &gt;::Ptr</type>
+        <definition>pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr DA_Octree_Node::cloud_</definition>
+        <argsstring></argsstring>
+        <name>cloud_</name>
+        <qualifiedname>DA_Octree_Node::cloud_</qualifiedname>
+        <briefdescription>
+<para>原始点云存储 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="3D_mapping/sanwijiantu.cpp" line="97" column="27" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec" prot="private" static="no" mutable="no">
+        <type>pcl::octree::OctreePointCloudVoxelCentroid&lt; pcl::PointXYZ &gt;</type>
+        <definition>pcl::octree::OctreePointCloudVoxelCentroid&lt;pcl::PointXYZ&gt; DA_Octree_Node::octree_</definition>
+        <argsstring></argsstring>
+        <name>octree_</name>
+        <qualifiedname>DA_Octree_Node::octree_</qualifiedname>
+        <briefdescription>
+<para>八叉树对象 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="3D_mapping/sanwijiantu.cpp" line="98" column="48" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDA__Octree__Node_1a4b7666d696a436fb6c444de982b46c04" prot="private" static="no" mutable="no">
+        <type>geometry_msgs::Pose</type>
+        <definition>geometry_msgs::Pose DA_Octree_Node::current_pose_</definition>
+        <argsstring></argsstring>
+        <name>current_pose_</name>
+        <qualifiedname>DA_Octree_Node::current_pose_</qualifiedname>
+        <briefdescription>
+<para>当前机器人位姿 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="3D_mapping/sanwijiantu.cpp" line="100" column="25" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDA__Octree__Node_1a788e3a9b1a9378469f0dff71be998020" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool DA_Octree_Node::odom_received_</definition>
+        <argsstring></argsstring>
+        <name>odom_received_</name>
+        <qualifiedname>DA_Octree_Node::odom_received_</qualifiedname>
+        <briefdescription>
+<para>odom 是否已接收标志 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="3D_mapping/sanwijiantu.cpp" line="101" column="10" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="101" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classDA__Octree__Node_1affd4d94f5e93e83256aa82725fd79509" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>DA_Octree_Node::DA_Octree_Node</definition>
+        <argsstring>()</argsstring>
+        <name>DA_Octree_Node</name>
+        <qualifiedname>DA_Octree_Node::DA_Octree_Node</qualifiedname>
+        <briefdescription>
+<para>构造函数，初始化订阅者、发布者和八叉树 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="3D_mapping/sanwijiantu.cpp" line="30" column="5" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="30" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classDA__Octree__Node_1a5cb1a998850bddf23da20ae4f49119af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DA_Octree_Node::odomCallback</definition>
+        <argsstring>(const nav_msgs::Odometry::ConstPtr &amp;msg)</argsstring>
+        <name>odomCallback</name>
+        <qualifiedname>DA_Octree_Node::odomCallback</qualifiedname>
+        <param>
+          <type>const nav_msgs::Odometry::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>odom 回调函数，更新当前机器人位姿 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>当前里程计消息（nav_msgs::Odometry） </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="3D_mapping/sanwijiantu.cpp" line="50" column="10" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classDA__Octree__Node_1a2cb85a99abd9811255ef21bf99110a6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DA_Octree_Node::daCallback</definition>
+        <argsstring>(const pipeline_robot::DistanceAngle::ConstPtr &amp;msg)</argsstring>
+        <name>daCallback</name>
+        <qualifiedname>DA_Octree_Node::daCallback</qualifiedname>
+        <param>
+          <type>const pipeline_robot::DistanceAngle::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Distance-Angle 回调函数，将距离角度数据转换为点并更新八叉树 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Distance-Angle 消息（pipeline_robot::DistanceAngle） </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 使用外部 odom 的 X</para>
+<para>&lt; 与外部 odom 保持一致</para>
+        </inbodydescription>
+        <location file="3D_mapping/sanwijiantu.cpp" line="59" column="10" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="59" bodyend="90"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>通过 Distance-Angle 数据生成点云并构建八叉树的节点类 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="3D_mapping/sanwijiantu.cpp" line="25" column="1" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="25" bodyend="102"/>
+    <listofallmembers>
+      <member refid="classDA__Octree__Node_1a9445d49b805496111099deb1cd89e115" prot="private" virt="non-virtual"><scope>DA_Octree_Node</scope><name>cloud_</name></member>
+      <member refid="classDA__Octree__Node_1a302c05b9f02186592a77d55372927df9" prot="private" virt="non-virtual"><scope>DA_Octree_Node</scope><name>cloud_pub_</name></member>
+      <member refid="classDA__Octree__Node_1a4b7666d696a436fb6c444de982b46c04" prot="private" virt="non-virtual"><scope>DA_Octree_Node</scope><name>current_pose_</name></member>
+      <member refid="classDA__Octree__Node_1affd4d94f5e93e83256aa82725fd79509" prot="public" virt="non-virtual"><scope>DA_Octree_Node</scope><name>DA_Octree_Node</name></member>
+      <member refid="classDA__Octree__Node_1ac9e99724363e8816834a603e56250462" prot="private" virt="non-virtual"><scope>DA_Octree_Node</scope><name>da_sub_</name></member>
+      <member refid="classDA__Octree__Node_1a2cb85a99abd9811255ef21bf99110a6c" prot="public" virt="non-virtual"><scope>DA_Octree_Node</scope><name>daCallback</name></member>
+      <member refid="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec" prot="private" virt="non-virtual"><scope>DA_Octree_Node</scope><name>octree_</name></member>
+      <member refid="classDA__Octree__Node_1a788e3a9b1a9378469f0dff71be998020" prot="private" virt="non-virtual"><scope>DA_Octree_Node</scope><name>odom_received_</name></member>
+      <member refid="classDA__Octree__Node_1a89264bb14609035442fb21d826a7bb71" prot="private" virt="non-virtual"><scope>DA_Octree_Node</scope><name>odom_sub_</name></member>
+      <member refid="classDA__Octree__Node_1a5cb1a998850bddf23da20ae4f49119af" prot="public" virt="non-virtual"><scope>DA_Octree_Node</scope><name>odomCallback</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

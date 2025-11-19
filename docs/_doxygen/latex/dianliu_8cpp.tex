@@ -1,0 +1,357 @@
+\doxysection{Motherboard\+\_\+data\+\_\+process/dianliu.cpp File Reference}
+\hypertarget{dianliu_8cpp}{}\label{dianliu_8cpp}\index{Motherboard\_data\_process/dianliu.cpp@{Motherboard\_data\_process/dianliu.cpp}}
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$std\+\_\+msgs/\+Float32.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for dianliu.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dianliu_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{dianliu_8cpp_afabe14a1595c4d1f405b54edf87832ae}{extract\+Data}} (const std\+::string \&input, const std\+::string \&prefix)
+\begin{DoxyCompactList}\small\item\em 从输入字符串中提取指定前缀后的数值 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{dianliu_8cpp_af75bf1021320fe67696e7c429821a33b}{is\+Valid\+Integer}} (const std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em 检查字符串是否是有效整数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dianliu_8cpp_abba960c86bd339697e78c89131d9a565}{parse\+And\+Publish}} (const std\+::string \&line)
+\begin{DoxyCompactList}\small\item\em 解析一行\+TCP数据并发布到对应\+ROS话题 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dianliu_8cpp_a54fb40f1cec43c98df052811a7b15a51}{tcp\+Loop}} (const std\+::string \&ip, int port)
+\begin{DoxyCompactList}\small\item\em TCP客户端主循环 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{dianliu_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\begin{DoxyCompactList}\small\item\em 主函数，初始化\+ROS节点并启动\+TCP循环 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{dianliu_8cpp_af00966f1f0d0decfe11c8aad5eb96d06}{pub\+\_\+c0}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{dianliu_8cpp_a2d6c8cd934f13b8a852b4c8a9d4902e3}{pub\+\_\+c1}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{dianliu_8cpp_ae2a1969ef79c05a5e3712df353855b24}{pub\+\_\+c2}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{dianliu_8cpp_a7166717cdbf98b2af031438a974c78b5}{pub\+\_\+c3}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{dianliu_8cpp_a363297453acbeafeeed6e0ceec5f12bf}{pub\+\_\+c4}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dianliu_8cpp_afabe14a1595c4d1f405b54edf87832ae}\label{dianliu_8cpp_afabe14a1595c4d1f405b54edf87832ae} 
+\index{dianliu.cpp@{dianliu.cpp}!extractData@{extractData}}
+\index{extractData@{extractData}!dianliu.cpp@{dianliu.cpp}}
+\doxysubsubsection{\texorpdfstring{extractData()}{extractData()}}
+{\footnotesize\ttfamily std\+::string extract\+Data (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input,  }\item[{const std\+::string \&}]{prefix }\end{DoxyParamCaption})}
+
+
+
+从输入字符串中提取指定前缀后的数值 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & 输入字符串 \\
+\hline
+{\em prefix} & 前缀，例如 "{}c0\+:"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string 提取的数值字符串，如果未找到返回空字符串 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{dianliu_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{dianliu_8cpp_source}{dianliu.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ std::size\_t\ pos\ =\ input.find(prefix);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ ==\ std::string::npos)\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00032\ \ \ \ \ std::string\ num;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ pos\ +\ prefix.size();\ i\ <\ input.size();\ ++i)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input[i]\ ==\ \textcolor{charliteral}{'c'}\ ||\ input[i]\ ==\ \textcolor{charliteral}{'\ '}\ ||\ input[i]\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ num\ +=\ input[i];}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ num;}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}
+\Hypertarget{dianliu_8cpp_af75bf1021320fe67696e7c429821a33b}\label{dianliu_8cpp_af75bf1021320fe67696e7c429821a33b} 
+\index{dianliu.cpp@{dianliu.cpp}!isValidInteger@{isValidInteger}}
+\index{isValidInteger@{isValidInteger}!dianliu.cpp@{dianliu.cpp}}
+\doxysubsubsection{\texorpdfstring{isValidInteger()}{isValidInteger()}}
+{\footnotesize\ttfamily bool is\+Valid\+Integer (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})}
+
+
+
+检查字符串是否是有效整数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & 输入字符串 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 是整数 
+
+false 否 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{dianliu_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{dianliu_8cpp_source}{dianliu.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (str.empty())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{char}\ *p;}
+\DoxyCodeLine{00049\ \ \ \ \ strtol(str.c\_str(),\ \&p,\ 10);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ (*p\ ==\ 0);}
+\DoxyCodeLine{00051\ \}}
+
+\end{DoxyCode}
+\Hypertarget{dianliu_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{dianliu_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+\index{dianliu.cpp@{dianliu.cpp}!main@{main}}
+\index{main@{main}!dianliu.cpp@{dianliu.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+
+
+主函数，初始化\+ROS节点并启动\+TCP循环 
+
+
+
+Definition at line \mbox{\hyperlink{dianliu_8cpp_source_l00166}{166}} of file \mbox{\hyperlink{dianliu_8cpp_source}{dianliu.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}tcp\_current\_node"{}});}
+\DoxyCodeLine{00168\ \ \ \ \ ros::NodeHandle\ nh;}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ std::string\ ip;}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{int}\ port;}
+\DoxyCodeLine{00172\ \ \ \ \ nh.param<std::string>(\textcolor{stringliteral}{"{}ip"{}},\ ip,\ \textcolor{stringliteral}{"{}192.168.8.11"{}});}
+\DoxyCodeLine{00173\ \ \ \ \ nh.param<\textcolor{keywordtype}{int}>(\textcolor{stringliteral}{"{}port"{}},\ port,\ 12345);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ 初始化发布器}}
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{dianliu_8cpp_af00966f1f0d0decfe11c8aad5eb96d06}{pub\_c0}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}current\_data\_cs0"{}},\ 10);}
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{dianliu_8cpp_a2d6c8cd934f13b8a852b4c8a9d4902e3}{pub\_c1}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}current\_data\_cs1"{}},\ 10);}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{dianliu_8cpp_ae2a1969ef79c05a5e3712df353855b24}{pub\_c2}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}current\_data\_cs2"{}},\ 10);}
+\DoxyCodeLine{00179\ \ \ \ \ \mbox{\hyperlink{dianliu_8cpp_a7166717cdbf98b2af031438a974c78b5}{pub\_c3}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}current\_data\_cs3"{}},\ 10);}
+\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{dianliu_8cpp_a363297453acbeafeeed6e0ceec5f12bf}{pub\_c4}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}current\_data\_cs4"{}},\ 10);}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{dianliu_8cpp_a54fb40f1cec43c98df052811a7b15a51}{tcpLoop}}(ip,\ port);}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00184\ \}}
+
+\end{DoxyCode}
+\Hypertarget{dianliu_8cpp_abba960c86bd339697e78c89131d9a565}\label{dianliu_8cpp_abba960c86bd339697e78c89131d9a565} 
+\index{dianliu.cpp@{dianliu.cpp}!parseAndPublish@{parseAndPublish}}
+\index{parseAndPublish@{parseAndPublish}!dianliu.cpp@{dianliu.cpp}}
+\doxysubsubsection{\texorpdfstring{parseAndPublish()}{parseAndPublish()}}
+{\footnotesize\ttfamily void parse\+And\+Publish (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{line }\end{DoxyParamCaption})}
+
+
+
+解析一行\+TCP数据并发布到对应\+ROS话题 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & 输入字符串\\
+\hline
+\end{DoxyParams}
+功能：
+\begin{DoxyItemize}
+\item 解析 c0\texorpdfstring{$\sim$}{\string~}c4 五个通道数据。
+\item 按照公式转换为实际电流值：
+\begin{DoxyItemize}
+\item c0,c1\+: 5\texorpdfstring{$\ast$}{*}value/4095\texorpdfstring{$\ast$}{*}1.55
+\item c2\+: 5\texorpdfstring{$\ast$}{*}(value-\/2048)/2048
+\item c3,c4\+: 5\texorpdfstring{$\ast$}{*}value/4095\texorpdfstring{$\ast$}{*}0.155
+\end{DoxyItemize}
+\item 发布到对应 Float32 话题，并打印日志。 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{dianliu_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{dianliu_8cpp_source}{dianliu.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ std::string\ c0\ =\ \mbox{\hyperlink{dianliu_8cpp_afabe14a1595c4d1f405b54edf87832ae}{extractData}}(line,\ \textcolor{stringliteral}{"{}c0:"{}});}
+\DoxyCodeLine{00067\ \ \ \ \ std::string\ c1\ =\ \mbox{\hyperlink{dianliu_8cpp_afabe14a1595c4d1f405b54edf87832ae}{extractData}}(line,\ \textcolor{stringliteral}{"{}c1:"{}});}
+\DoxyCodeLine{00068\ \ \ \ \ std::string\ c2\ =\ \mbox{\hyperlink{dianliu_8cpp_afabe14a1595c4d1f405b54edf87832ae}{extractData}}(line,\ \textcolor{stringliteral}{"{}c2:"{}});}
+\DoxyCodeLine{00069\ \ \ \ \ std::string\ c3\ =\ \mbox{\hyperlink{dianliu_8cpp_afabe14a1595c4d1f405b54edf87832ae}{extractData}}(line,\ \textcolor{stringliteral}{"{}c3:"{}});}
+\DoxyCodeLine{00070\ \ \ \ \ std::string\ c4\ =\ \mbox{\hyperlink{dianliu_8cpp_afabe14a1595c4d1f405b54edf87832ae}{extractData}}(line,\ \textcolor{stringliteral}{"{}c4:"{}});}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dianliu_8cpp_af75bf1021320fe67696e7c429821a33b}{isValidInteger}}(c0))\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ std\_msgs::Float32\ msg;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ msg.data\ =\ 5\ *\ (std::stof(c0))\ /\ 4095\ *\ 1.55;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dianliu_8cpp_af00966f1f0d0decfe11c8aad5eb96d06}{pub\_c0}}.publish(msg);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}c0\ =\ \%.3f"{}},\ msg.data);}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dianliu_8cpp_af75bf1021320fe67696e7c429821a33b}{isValidInteger}}(c1))\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ std\_msgs::Float32\ msg;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ msg.data\ =\ 5\ *\ (std::stof(c1))\ /\ 4095\ *\ 1.55;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dianliu_8cpp_a2d6c8cd934f13b8a852b4c8a9d4902e3}{pub\_c1}}.publish(msg);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}c1\ =\ \%.3f"{}},\ msg.data);}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dianliu_8cpp_af75bf1021320fe67696e7c429821a33b}{isValidInteger}}(c2))\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ std\_msgs::Float32\ msg;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ msg.data\ =\ 5\ *\ (std::stof(c2)\ -\/\ 2048)\ /\ 2048;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dianliu_8cpp_ae2a1969ef79c05a5e3712df353855b24}{pub\_c2}}.publish(msg);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}c2\ =\ \%.3f"{}},\ msg.data);}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dianliu_8cpp_af75bf1021320fe67696e7c429821a33b}{isValidInteger}}(c3))\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ std\_msgs::Float32\ msg;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ msg.data\ =\ 5\ *\ (std::stof(c3))\ /\ 4095\ *\ 0.155;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dianliu_8cpp_a7166717cdbf98b2af031438a974c78b5}{pub\_c3}}.publish(msg);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}c3\ =\ \%.3f"{}},\ msg.data);}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dianliu_8cpp_af75bf1021320fe67696e7c429821a33b}{isValidInteger}}(c4))\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ std\_msgs::Float32\ msg;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ msg.data\ =\ 5\ *\ (std::stof(c4))\ /\ 4095\ *\ 0.155;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dianliu_8cpp_a363297453acbeafeeed6e0ceec5f12bf}{pub\_c4}}.publish(msg);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}c4\ =\ \%.3f"{}},\ msg.data);}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \}}
+
+\end{DoxyCode}
+\Hypertarget{dianliu_8cpp_a54fb40f1cec43c98df052811a7b15a51}\label{dianliu_8cpp_a54fb40f1cec43c98df052811a7b15a51} 
+\index{dianliu.cpp@{dianliu.cpp}!tcpLoop@{tcpLoop}}
+\index{tcpLoop@{tcpLoop}!dianliu.cpp@{dianliu.cpp}}
+\doxysubsubsection{\texorpdfstring{tcpLoop()}{tcpLoop()}}
+{\footnotesize\ttfamily void tcp\+Loop (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+TCP客户端主循环 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & 服务器\+IP \\
+\hline
+{\em port} & 服务器端口\\
+\hline
+\end{DoxyParams}
+功能：
+\begin{DoxyItemize}
+\item 创建\+TCP socket并连接服务器。
+\item 循环接收数据，按行解析。
+\item 对不完整行进行缓存处理，保证数据完整。
+\item 调用 parse\+And\+Publish 将解析结果发布到 ROS。 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{dianliu_8cpp_source_l00115}{115}} of file \mbox{\hyperlink{dianliu_8cpp_source}{dianliu.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{int}\ sockfd\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{if}\ (sockfd\ <\ 0)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Socket\ creation\ failed"{}});}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ sockaddr\_in\ serv\_addr;}
+\DoxyCodeLine{00123\ \ \ \ \ serv\_addr.sin\_family\ =\ AF\_INET;}
+\DoxyCodeLine{00124\ \ \ \ \ serv\_addr.sin\_port\ =\ htons(port);}
+\DoxyCodeLine{00125\ \ \ \ \ inet\_pton(AF\_INET,\ ip.c\_str(),\ \&serv\_addr.sin\_addr);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{if}\ (connect(sockfd,\ (\textcolor{keyword}{struct}\ sockaddr*)\&serv\_addr,\ \textcolor{keyword}{sizeof}(serv\_addr))\ <\ 0)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Connection\ failed\ to\ \%s:\%d"{}},\ ip.c\_str(),\ port);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Connected\ to\ server\ \%s:\%d"{}},\ ip.c\_str(),\ port);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[1024];}
+\DoxyCodeLine{00135\ \ \ \ \ std::string\ leftover;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ ssize\_t\ n\ =\ read(sockfd,\ buffer,\ \textcolor{keyword}{sizeof}(buffer)\ -\/\ 1);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ <=\ 0)\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_WARN(\textcolor{stringliteral}{"{}Server\ disconnected"{}});}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ buffer[n]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ std::string\ data\ =\ leftover\ +\ buffer;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ std::istringstream\ iss(data);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(iss,\ line))\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!line.empty())\ \mbox{\hyperlink{dianliu_8cpp_abba960c86bd339697e78c89131d9a565}{parseAndPublish}}(line);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 处理不完整的一行}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (data.back()\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ leftover\ =\ data.substr(data.find\_last\_of(\textcolor{charliteral}{'\(\backslash\)n'})\ +\ 1);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ leftover.clear();}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ close(sockfd);}
+\DoxyCodeLine{00161\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{dianliu_8cpp_af00966f1f0d0decfe11c8aad5eb96d06}\label{dianliu_8cpp_af00966f1f0d0decfe11c8aad5eb96d06} 
+\index{dianliu.cpp@{dianliu.cpp}!pub\_c0@{pub\_c0}}
+\index{pub\_c0@{pub\_c0}!dianliu.cpp@{dianliu.cpp}}
+\doxysubsubsection{\texorpdfstring{pub\_c0}{pub\_c0}}
+{\footnotesize\ttfamily ros\+::\+Publisher pub\+\_\+c0}
+
+
+
+Definition at line \mbox{\hyperlink{dianliu_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{dianliu_8cpp_source}{dianliu.\+cpp}}.
+
+\Hypertarget{dianliu_8cpp_a2d6c8cd934f13b8a852b4c8a9d4902e3}\label{dianliu_8cpp_a2d6c8cd934f13b8a852b4c8a9d4902e3} 
+\index{dianliu.cpp@{dianliu.cpp}!pub\_c1@{pub\_c1}}
+\index{pub\_c1@{pub\_c1}!dianliu.cpp@{dianliu.cpp}}
+\doxysubsubsection{\texorpdfstring{pub\_c1}{pub\_c1}}
+{\footnotesize\ttfamily ros\+::\+Publisher pub\+\_\+c1}
+
+
+
+Definition at line \mbox{\hyperlink{dianliu_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{dianliu_8cpp_source}{dianliu.\+cpp}}.
+
+\Hypertarget{dianliu_8cpp_ae2a1969ef79c05a5e3712df353855b24}\label{dianliu_8cpp_ae2a1969ef79c05a5e3712df353855b24} 
+\index{dianliu.cpp@{dianliu.cpp}!pub\_c2@{pub\_c2}}
+\index{pub\_c2@{pub\_c2}!dianliu.cpp@{dianliu.cpp}}
+\doxysubsubsection{\texorpdfstring{pub\_c2}{pub\_c2}}
+{\footnotesize\ttfamily ros\+::\+Publisher pub\+\_\+c2}
+
+
+
+Definition at line \mbox{\hyperlink{dianliu_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{dianliu_8cpp_source}{dianliu.\+cpp}}.
+
+\Hypertarget{dianliu_8cpp_a7166717cdbf98b2af031438a974c78b5}\label{dianliu_8cpp_a7166717cdbf98b2af031438a974c78b5} 
+\index{dianliu.cpp@{dianliu.cpp}!pub\_c3@{pub\_c3}}
+\index{pub\_c3@{pub\_c3}!dianliu.cpp@{dianliu.cpp}}
+\doxysubsubsection{\texorpdfstring{pub\_c3}{pub\_c3}}
+{\footnotesize\ttfamily ros\+::\+Publisher pub\+\_\+c3}
+
+
+
+Definition at line \mbox{\hyperlink{dianliu_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{dianliu_8cpp_source}{dianliu.\+cpp}}.
+
+\Hypertarget{dianliu_8cpp_a363297453acbeafeeed6e0ceec5f12bf}\label{dianliu_8cpp_a363297453acbeafeeed6e0ceec5f12bf} 
+\index{dianliu.cpp@{dianliu.cpp}!pub\_c4@{pub\_c4}}
+\index{pub\_c4@{pub\_c4}!dianliu.cpp@{dianliu.cpp}}
+\doxysubsubsection{\texorpdfstring{pub\_c4}{pub\_c4}}
+{\footnotesize\ttfamily ros\+::\+Publisher pub\+\_\+c4}
+
+
+
+Definition at line \mbox{\hyperlink{dianliu_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{dianliu_8cpp_source}{dianliu.\+cpp}}.
+

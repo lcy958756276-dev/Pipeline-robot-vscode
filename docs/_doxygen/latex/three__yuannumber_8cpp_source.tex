@@ -1,0 +1,214 @@
+\doxysection{three\+\_\+yuannumber.\+cpp}
+\hypertarget{three__yuannumber_8cpp_source}{}\label{three__yuannumber_8cpp_source}\index{Motherboard\_data\_process/three\_yuannumber.cpp@{Motherboard\_data\_process/three\_yuannumber.cpp}}
+\mbox{\hyperlink{three__yuannumber_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <std\_msgs/Float32.h>}\ \ \textcolor{comment}{//\ 用于发布单个浮点数}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <std\_msgs/String.h>}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <netinet/in.h>}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00022}00022\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ 全局变量（线程安全保护）\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00023}\mbox{\hyperlink{three__yuannumber_8cpp_af4be04c36baee6cbd619f7f248678c2b}{00023}}\ std::mutex\ \mbox{\hyperlink{three__yuannumber_8cpp_af4be04c36baee6cbd619f7f248678c2b}{g\_conn\_mutex}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00024}\mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{00024}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}}\ =\ -\/1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00025}\mbox{\hyperlink{three__yuannumber_8cpp_a1e3eec5d094a88a8cfa16aeb59e7ce45}{00025}}\ std::string\ \mbox{\hyperlink{three__yuannumber_8cpp_a1e3eec5d094a88a8cfa16aeb59e7ce45}{g\_ip}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00026}\mbox{\hyperlink{three__yuannumber_8cpp_a6701847851618f32d00a154d16f7f187}{00026}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{three__yuannumber_8cpp_a6701847851618f32d00a154d16f7f187}{g\_port}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00027}\mbox{\hyperlink{three__yuannumber_8cpp_a06c5aa7b1310b56852b7df4784c70ba8}{00027}}\ ros::Publisher\ \mbox{\hyperlink{three__yuannumber_8cpp_a06c5aa7b1310b56852b7df4784c70ba8}{g\_status\_pub}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00029}00029\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ 函数声明\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00039}00039\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{three__yuannumber_8cpp_a222c71617a07df6b5e5dedd3df7159c8}{connectToServer}}(\textcolor{keyword}{const}\ std::string\&\ ip,\ \textcolor{keywordtype}{int}\ port);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00046}00046\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{three__yuannumber_8cpp_a55b66494816d709ecd0c243845ada46c}{publishStatus}}(\textcolor{keyword}{const}\ std::string\&\ status);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00061}00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{three__yuannumber_8cpp_a0a0119bf5ad744347f1530557e24c987}{parseAndPublishData}}(\textcolor{keyword}{const}\ std::string\&\ data,\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ roll\_pub,}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ pitch\_pub,}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ heading\_pub);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00076}00076\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{three__yuannumber_8cpp_a1633fa75ac3410de6330ee6b803787b1}{tcpDataLoop}}(ros::Publisher\&\ raw\_pub,\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ roll\_pub,}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ pitch\_pub,}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ heading\_pub);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00089}00089\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{three__yuannumber_8cpp_ac17b993e3645f9b9a7f96e87fdd5bf62}{handleDisconnection}}(\textcolor{keywordtype}{int}\ max\_reconnect,\ \textcolor{keywordtype}{float}\ interval);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00091}00091\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ main\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00092}\mbox{\hyperlink{three__yuannumber_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{00092}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{three__yuannumber_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00093}00093\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}tcp\_rph\_extractor"{}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00094}00094\ \ \ \ \ ros::NodeHandle\ nh(\textcolor{stringliteral}{"{}\string~"{}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00096}00096\ \ \ \ \ \textcolor{comment}{//\ 参数配置}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00097}00097\ \ \ \ \ nh.param<std::string>(\textcolor{stringliteral}{"{}ip"{}},\ \mbox{\hyperlink{three__yuannumber_8cpp_a1e3eec5d094a88a8cfa16aeb59e7ce45}{g\_ip}},\ \textcolor{stringliteral}{"{}192.168.8.11"{}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00098}00098\ \ \ \ \ nh.param<\textcolor{keywordtype}{int}>(\textcolor{stringliteral}{"{}port"{}},\ \mbox{\hyperlink{three__yuannumber_8cpp_a6701847851618f32d00a154d16f7f187}{g\_port}},\ 12345);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordtype}{int}\ max\_reconnect;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{keywordtype}{float}\ reconnect\_interval;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00101}00101\ \ \ \ \ nh.param<\textcolor{keywordtype}{int}>(\textcolor{stringliteral}{"{}max\_reconnect"{}},\ max\_reconnect,\ 5);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00102}00102\ \ \ \ \ nh.param<\textcolor{keywordtype}{float}>(\textcolor{stringliteral}{"{}reconnect\_interval"{}},\ reconnect\_interval,\ 3.0);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{comment}{//\ 初始化ROS话题}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00105}00105\ \ \ \ \ ros::Publisher\ raw\_pub\ =\ nh.advertise<std\_msgs::String>(\textcolor{stringliteral}{"{}/raw\_data"{}},\ 100);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00106}00106\ \ \ \ \ ros::Publisher\ roll\_pub\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/roll"{}},\ 100);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00107}00107\ \ \ \ \ ros::Publisher\ pitch\_pub\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/pitch"{}},\ 100);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00108}00108\ \ \ \ \ ros::Publisher\ heading\_pub\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/heading"{}},\ 100);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00109}00109\ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a06c5aa7b1310b56852b7df4784c70ba8}{g\_status\_pub}}\ =\ nh.advertise<std\_msgs::String>(\textcolor{stringliteral}{"{}/connection\_status"{}},\ 10);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{comment}{//\ 设置调试级别}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{keywordflow}{if}\ (ros::console::set\_logger\_level(ROSCONSOLE\_DEFAULT\_NAME,\ ros::console::levels::Debug))\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ ros::console::notifyLoggerLevelsChanged();}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00116}00116\ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Starting\ TCP\ RPH\ extractor"{}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{comment}{//\ 主循环}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00119}00119\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{three__yuannumber_8cpp_a222c71617a07df6b5e5dedd3df7159c8}{connectToServer}}(\mbox{\hyperlink{three__yuannumber_8cpp_a1e3eec5d094a88a8cfa16aeb59e7ce45}{g\_ip}},\ \mbox{\hyperlink{three__yuannumber_8cpp_a6701847851618f32d00a154d16f7f187}{g\_port}}))\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a1633fa75ac3410de6330ee6b803787b1}{tcpDataLoop}}(raw\_pub,\ roll\_pub,\ pitch\_pub,\ heading\_pub);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_ac17b993e3645f9b9a7f96e87fdd5bf62}{handleDisconnection}}(max\_reconnect,\ reconnect\_interval);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00126}00126\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00127}00127\ \ \ \ \ close(\mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00129}00129\ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00131}00131\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ 函数实现\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00133}\mbox{\hyperlink{three__yuannumber_8cpp_a222c71617a07df6b5e5dedd3df7159c8}{00133}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{three__yuannumber_8cpp_a222c71617a07df6b5e5dedd3df7159c8}{connectToServer}}(\textcolor{keyword}{const}\ std::string\&\ ip,\ \textcolor{keywordtype}{int}\ port)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00134}00134\ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{three__yuannumber_8cpp_af4be04c36baee6cbd619f7f248678c2b}{g\_conn\_mutex}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00135}00135\ \ \ \ \ ROS\_INFO\_STREAM(\textcolor{stringliteral}{"{}Connecting\ to\ "{}}\ <<\ ip\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ port);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00137}00137\ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}}\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00138}00138\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}}\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ ROS\_ERROR\_STREAM(\textcolor{stringliteral}{"{}Socket\ error:\ "{}}\ <<\ strerror(errno));}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00141}00141\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00143}00143\ \ \ \ \ sockaddr\_in\ serv\_addr;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00144}00144\ \ \ \ \ serv\_addr.sin\_family\ =\ AF\_INET;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00145}00145\ \ \ \ \ serv\_addr.sin\_port\ =\ htons(port);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00146}00146\ \ \ \ \ \textcolor{keywordflow}{if}\ (inet\_pton(AF\_INET,\ ip.c\_str(),\ \&serv\_addr.sin\_addr)\ <=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Invalid\ IP\ format"{}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00149}00149\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00151}00151\ \ \ \ \ \textcolor{keywordflow}{if}\ (connect(\mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}},\ (\textcolor{keyword}{struct}\ sockaddr*)\&serv\_addr,\ \textcolor{keyword}{sizeof}(serv\_addr))\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ ROS\_ERROR\_STREAM(\textcolor{stringliteral}{"{}Connection\ failed:\ "{}}\ <<\ strerror(errno));}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00154}00154\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00156}00156\ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Connected\ to\ server"{}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00157}00157\ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a55b66494816d709ecd0c243845ada46c}{publishStatus}}(\textcolor{stringliteral}{"{}CONNECTED"{}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00158}00158\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00159}00159\ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00161}\mbox{\hyperlink{three__yuannumber_8cpp_a55b66494816d709ecd0c243845ada46c}{00161}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{three__yuannumber_8cpp_a55b66494816d709ecd0c243845ada46c}{publishStatus}}(\textcolor{keyword}{const}\ std::string\&\ status)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00162}00162\ \ \ \ \ std\_msgs::String\ msg;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00163}00163\ \ \ \ \ msg.data\ =\ \textcolor{stringliteral}{"{}[STATUS]\ "{}}\ +\ status\ +\ \textcolor{stringliteral}{"{}\ |\ IP:\ "{}}\ +\ \mbox{\hyperlink{three__yuannumber_8cpp_a1e3eec5d094a88a8cfa16aeb59e7ce45}{g\_ip}};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00164}00164\ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a06c5aa7b1310b56852b7df4784c70ba8}{g\_status\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00165}00165\ \ \ \ \ ROS\_DEBUG\_STREAM(\textcolor{stringliteral}{"{}Status\ published:\ "{}}\ <<\ msg.data);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00166}00166\ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00168}\mbox{\hyperlink{three__yuannumber_8cpp_a1633fa75ac3410de6330ee6b803787b1}{00168}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{three__yuannumber_8cpp_a1633fa75ac3410de6330ee6b803787b1}{tcpDataLoop}}(ros::Publisher\&\ raw\_pub,\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ roll\_pub,}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ pitch\_pub,}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ heading\_pub)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00172}00172\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[4096];}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00173}00173\ \ \ \ \ std::string\ remaining\_data;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00175}00175\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ ssize\_t\ valread\ =\ read(\mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}},\ buffer,\ \textcolor{keyword}{sizeof}(buffer)\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (valread\ <=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_WARN\_STREAM(\textcolor{stringliteral}{"{}Read\ error:\ "{}}\ <<\ (valread\ ==\ 0\ ?\ \textcolor{stringliteral}{"{}EOF"{}}\ :\ strerror(errno)));}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ buffer[valread]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ std::string\ raw\_data\ =\ remaining\_data\ +\ buffer;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ last\_newline\ =\ raw\_data.find\_last\_of(\textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (last\_newline\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 发布原始数据}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ std\_msgs::String\ raw\_msg;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ raw\_msg.data\ =\ \textcolor{stringliteral}{"{}[RAW]\ "{}}\ +\ raw\_data.substr(0,\ 100);\ \ \textcolor{comment}{//\ 截断前100字符}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ raw\_pub.publish(raw\_msg);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 解析RPH数据}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a0a0119bf5ad744347f1530557e24c987}{parseAndPublishData}}(raw\_data.substr(0,\ last\_newline),\ roll\_pub,\ pitch\_pub,\ heading\_pub);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ remaining\_data\ =\ raw\_data.substr(last\_newline\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ remaining\_data\ =\ raw\_data;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_DEBUG(\textcolor{stringliteral}{"{}Buffering\ incomplete\ packet"{}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ memset(buffer,\ 0,\ \textcolor{keyword}{sizeof}(buffer));}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00200}00200\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00201}00201\ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00203}\mbox{\hyperlink{three__yuannumber_8cpp_a0a0119bf5ad744347f1530557e24c987}{00203}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{three__yuannumber_8cpp_a0a0119bf5ad744347f1530557e24c987}{parseAndPublishData}}(\textcolor{keyword}{const}\ std::string\&\ data,\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ roll\_pub,}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ pitch\_pub,}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Publisher\&\ heading\_pub)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00207}00207\ \ \ \ \ std::istringstream\ iss(data);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00208}00208\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00209}00209\ \ \ \ \ \textcolor{keywordtype}{float}\ roll\ =\ 0,\ pitch\ =\ 0,\ heading\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00210}00210\ \ \ \ \ \textcolor{keywordtype}{bool}\ has\_rph\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00212}00212\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(iss,\ line))\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.empty())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ ROS\_DEBUG\_STREAM(\textcolor{stringliteral}{"{}Processing:\ "{}}\ <<\ line);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}R="{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ roll\ =\ std::stof(line.substr(2));}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ has\_rph\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}P="{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pitch\ =\ std::stof(line.substr(2));}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ has\_rph\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}H="{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ heading\ =\ std::stof(line.substr(2));}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (has\_rph)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std\_msgs::Float32\ roll\_msg,\ pitch\_msg,\ heading\_msg;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ roll\_msg.data\ =\ roll;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pitch\_msg.data\ =\ pitch;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ heading\_msg.data\ =\ heading;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ roll\_pub.publish(roll\_msg);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pitch\_pub.publish(pitch\_msg);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ heading\_pub.publish(heading\_msg);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_DEBUG\_STREAM(\textcolor{stringliteral}{"{}Published\ RPH:\ R="{}}\ <<\ roll\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ P="{}}\ <<\ pitch}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ H="{}}\ <<\ heading);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ has\_rph\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_ERROR\_STREAM(\textcolor{stringliteral}{"{}Parse\ error:\ "{}}\ <<\ e.what()\ <<\ \textcolor{stringliteral}{"{}\ in\ line:\ "{}}\ <<\ line);}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00246}00246\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00247}00247\ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00249}\mbox{\hyperlink{three__yuannumber_8cpp_ac17b993e3645f9b9a7f96e87fdd5bf62}{00249}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{three__yuannumber_8cpp_ac17b993e3645f9b9a7f96e87fdd5bf62}{handleDisconnection}}(\textcolor{keywordtype}{int}\ max\_reconnect,\ \textcolor{keywordtype}{float}\ interval)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00250}00250\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ attempts\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00251}00251\ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{three__yuannumber_8cpp_af4be04c36baee6cbd619f7f248678c2b}{g\_conn\_mutex}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00252}00252\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00253}00253\ \ \ \ \ close(\mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00254}00254\ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a55b66494816d709ecd0c243845ada46c}{publishStatus}}(\textcolor{stringliteral}{"{}DISCONNECTED"{}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00256}00256\ \ \ \ \ \textcolor{keywordflow}{if}\ (++attempts\ <=\ max\_reconnect)\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ ROS\_WARN\_STREAM(\textcolor{stringliteral}{"{}Reconnecting\ ("{}}\ <<\ attempts\ <<\ \textcolor{stringliteral}{"{}/"{}}\ <<\ max\_reconnect\ <<\ \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ ros::Duration(interval).sleep();}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00259}00259\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ ROS\_FATAL(\textcolor{stringliteral}{"{}Max\ reconnection\ attempts\ reached"{}});}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ ros::shutdown();}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00262}00262\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{three__yuannumber_8cpp_source_l00263}00263\ \}}
+
+\end{DoxyCode}

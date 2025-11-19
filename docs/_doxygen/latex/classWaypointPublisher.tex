@@ -1,0 +1,664 @@
+\doxysection{Waypoint\+Publisher Class Reference}
+\hypertarget{classWaypointPublisher}{}\label{classWaypointPublisher}\index{WaypointPublisher@{WaypointPublisher}}
+
+
+中途目标点与最终目标点发布器  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classWaypointPublisher_aade0e35d7818b8890d3d3035beef3fb2}{Waypoint\+Publisher}} ()
+\begin{DoxyCompactList}\small\item\em 构造函数，初始化订阅者和发布者 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWaypointPublisher_a2176c42b0a87e9144ea84e334f1b655a}{midgoal\+Callback}} (const geometry\+\_\+msgs\+::\+Pose\+Stamped\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em midgoal 回调函数 \end{DoxyCompactList}\item 
+std\+::queue$<$ geometry\+\_\+msgs\+::\+Pose\+Stamped $>$ \mbox{\hyperlink{classWaypointPublisher_ae281f0d4ec699816476b4ffc860a81ca}{queue\+Sort}} (std\+::queue$<$ geometry\+\_\+msgs\+::\+Pose\+Stamped $>$ \&msg\+Queue)
+\begin{DoxyCompactList}\small\item\em 将队列中的 Pose\+Stamped 按 X 坐标升序排序 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWaypointPublisher_ab3ecb848d99f9b4b35bc37f7f5cba622}{odom\+Callback}} (const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em odom 回调函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWaypointPublisher_acd043704f75fb8f8eb57826c7a3251ff}{finalgoal\+Callback}} (const geometry\+\_\+msgs\+::\+Pose\+Stamped\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em finalgoal 回调函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWaypointPublisher_adf1c93f6db23215a13c59819a1b3dbc6}{process\+Goals}} ()
+\begin{DoxyCompactList}\small\item\em 处理目标点逻辑，动态发布 waypoint \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWaypointPublisher_abeaceaac34b26aff80888ef49c470404}{status\+Callback}} (const std\+\_\+msgs\+::\+Bool\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 状态回调函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ros\+::\+Node\+Handle \mbox{\hyperlink{classWaypointPublisher_a61018f919145d4211b71cd6a5cb1ba8a}{nh}}
+\begin{DoxyCompactList}\small\item\em ROS 节点句柄 \end{DoxyCompactList}\item 
+ros\+::\+Publisher \mbox{\hyperlink{classWaypointPublisher_ad6b13041c5db15b9c98907f9b4ba3c20}{waypoint\+\_\+pub}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{classWaypointPublisher_a47885b59e7318b53b3b2082654e90560}{auto\+\_\+navigation\+\_\+stop\+\_\+pub}}
+\begin{DoxyCompactList}\small\item\em 发布 waypoint 和自动导航停止信号 \end{DoxyCompactList}\item 
+ros\+::\+Subscriber \mbox{\hyperlink{classWaypointPublisher_a087009cba8fbe8e994931e282008b4a2}{midgoal\+\_\+sub}}
+\item 
+ros\+::\+Subscriber \mbox{\hyperlink{classWaypointPublisher_aaf87298f88a3ecbc9a913c07bac58b54}{finalgoal\+\_\+sub}}
+\item 
+ros\+::\+Subscriber \mbox{\hyperlink{classWaypointPublisher_a024fcc12ff98892facd5e28c5ca703f9}{odom\+\_\+sub}}
+\begin{DoxyCompactList}\small\item\em 订阅中途目标、最终目标和 odom \end{DoxyCompactList}\item 
+ros\+::\+Subscriber \mbox{\hyperlink{classWaypointPublisher_ae607b30dfd6060d57255e9b4ef780a0b}{status\+\_\+sub}}
+\begin{DoxyCompactList}\small\item\em 订阅机器人状态 \end{DoxyCompactList}\item 
+std\+::queue$<$ geometry\+\_\+msgs\+::\+Pose\+Stamped $>$ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}
+\begin{DoxyCompactList}\small\item\em 中途目标队列 \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Pose\+Stamped \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\+\_\+goal}}
+\begin{DoxyCompactList}\small\item\em 当前目标点 \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Pose\+Stamped \mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}}
+\begin{DoxyCompactList}\small\item\em 最终目标点 \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Pose\+Stamped \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\+\_\+goal}}
+\begin{DoxyCompactList}\small\item\em 上一个目标点 \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classWaypointPublisher_a2edee68f60a0e465b7646f95ced1d121}{current\+\_\+position}}
+\item 
+double \mbox{\hyperlink{classWaypointPublisher_a0b4c87fc988b12c3bb480b9898916394}{current\+\_\+status}}
+\begin{DoxyCompactList}\small\item\em 当前机器人位置和速度 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWaypointPublisher_a73056696f4260f559e796ea1ec11806d}{finalgoal\+\_\+received}} = false
+\begin{DoxyCompactList}\small\item\em 是否接收到最终目标 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWaypointPublisher_a29cc7107bfbf6d425275a99e95caf53e}{goal\+\_\+reached}} = false
+\begin{DoxyCompactList}\small\item\em 是否到达当前目标 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWaypointPublisher_a0888ce7b8f0cfa2ccc6fd51ec65f49e6}{finalgoal\+\_\+reached}} = false
+\begin{DoxyCompactList}\small\item\em 是否到达最终目标 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWaypointPublisher_aba3de5d71ffcac47e4461bae72d4ec65}{midinital}} = true
+\begin{DoxyCompactList}\small\item\em 是否处理中途目标初始化 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWaypointPublisher_afa16a43e6d8b4c306089109bf71715a0}{finalinital}} = true
+\begin{DoxyCompactList}\small\item\em 是否最终目标初始化 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+中途目标点与最终目标点发布器 
+
+功能：
+\begin{DoxyItemize}
+\item 订阅 midgoal、finalgoal 和机器人状态
+\item 根据机器人当前位置动态发布 waypoint
+\item 管理中途目标队列，并保证按 X 坐标升序发布
+\item 在到达最终目标时发布停止信号 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classWaypointPublisher_aade0e35d7818b8890d3d3035beef3fb2}\label{classWaypointPublisher_aade0e35d7818b8890d3d3035beef3fb2} 
+\index{WaypointPublisher@{WaypointPublisher}!WaypointPublisher@{WaypointPublisher}}
+\index{WaypointPublisher@{WaypointPublisher}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{WaypointPublisher()}{WaypointPublisher()}}
+{\footnotesize\ttfamily Waypoint\+Publisher\+::\+Waypoint\+Publisher (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+构造函数，初始化订阅者和发布者 
+
+初始化发布者：
+\begin{DoxyItemize}
+\item waypoint\+: 发布机器人当前目标点
+\item /whether\+\_\+auto\+\_\+navigation\+: 发布自动导航停止信号
+\end{DoxyItemize}
+
+初始化订阅者：
+\begin{DoxyItemize}
+\item midgoal\+: 中途目标点
+\item finalgoal\+: 最终目标点
+\item robot\+\_\+status\+: 机器人是否到达目标点
+\item /cable/odom\+: 获取机器人当前位置 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ad6b13041c5db15b9c98907f9b4ba3c20}{waypoint\_pub}}\ =\ \mbox{\hyperlink{classWaypointPublisher_a61018f919145d4211b71cd6a5cb1ba8a}{nh}}.advertise<geometry\_msgs::PoseStamped>(\textcolor{stringliteral}{"{}waypoint"{}},\ 10);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a47885b59e7318b53b3b2082654e90560}{auto\_navigation\_stop\_pub}}\ =\ \mbox{\hyperlink{classWaypointPublisher_a61018f919145d4211b71cd6a5cb1ba8a}{nh}}.advertise<std\_msgs::Bool>(\textcolor{stringliteral}{"{}/whether\_auto\_navigation"{}},\ 10);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a087009cba8fbe8e994931e282008b4a2}{midgoal\_sub}}\ =\ \mbox{\hyperlink{classWaypointPublisher_a61018f919145d4211b71cd6a5cb1ba8a}{nh}}.subscribe(\textcolor{stringliteral}{"{}midgoal"{}},\ 10,\ \&\mbox{\hyperlink{classWaypointPublisher_a2176c42b0a87e9144ea84e334f1b655a}{WaypointPublisher::midgoalCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_aaf87298f88a3ecbc9a913c07bac58b54}{finalgoal\_sub}}\ =\ \mbox{\hyperlink{classWaypointPublisher_a61018f919145d4211b71cd6a5cb1ba8a}{nh}}.subscribe(\textcolor{stringliteral}{"{}finalgoal"{}},\ 10,\ \&\mbox{\hyperlink{classWaypointPublisher_acd043704f75fb8f8eb57826c7a3251ff}{WaypointPublisher::finalgoalCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ae607b30dfd6060d57255e9b4ef780a0b}{status\_sub}}\ =\ \mbox{\hyperlink{classWaypointPublisher_a61018f919145d4211b71cd6a5cb1ba8a}{nh}}.subscribe(\textcolor{stringliteral}{"{}robot\_status"{}},\ 10,\ \&\mbox{\hyperlink{classWaypointPublisher_abeaceaac34b26aff80888ef49c470404}{WaypointPublisher::statusCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a024fcc12ff98892facd5e28c5ca703f9}{odom\_sub}}\ =\ \mbox{\hyperlink{classWaypointPublisher_a61018f919145d4211b71cd6a5cb1ba8a}{nh}}.subscribe(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 10,\ \&\mbox{\hyperlink{classWaypointPublisher_ab3ecb848d99f9b4b35bc37f7f5cba622}{WaypointPublisher::odomCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}}.pose.position.x\ =\ std::numeric\_limits<float>::max();}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}.pose.position.x\ =\ -\/1;}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classWaypointPublisher_acd043704f75fb8f8eb57826c7a3251ff}\label{classWaypointPublisher_acd043704f75fb8f8eb57826c7a3251ff} 
+\index{WaypointPublisher@{WaypointPublisher}!finalgoalCallback@{finalgoalCallback}}
+\index{finalgoalCallback@{finalgoalCallback}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{finalgoalCallback()}{finalgoalCallback()}}
+{\footnotesize\ttfamily void Waypoint\+Publisher\+::finalgoal\+Callback (\begin{DoxyParamCaption}\item[{const geometry\+\_\+msgs\+::\+Pose\+Stamped\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+finalgoal 回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的最终目标点 geometry\+\_\+msgs\+::\+Pose\+Stamped 消息\\
+\hline
+\end{DoxyParams}
+功能：
+\begin{DoxyItemize}
+\item 更新 finalgoal 成员变量
+\item 标记最终目标已接收
+\item 如果 finalinital 为 true，则立即发布最终目标点 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00136}{136}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00137\ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}}\ =\ *msg;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a73056696f4260f559e796ea1ec11806d}{finalgoal\_received}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}已加载最终目标点:\ X:\%f,Y:\%f"{}},\ \mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}}.pose.position.x,\ \mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}}.pose.position.y);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaypointPublisher_afa16a43e6d8b4c306089109bf71715a0}{finalinital}})}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ad6b13041c5db15b9c98907f9b4ba3c20}{waypoint\_pub}}.publish(\mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}});}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ad6b13041c5db15b9c98907f9b4ba3c20}{waypoint\_pub}}.publish(\mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}});}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ad6b13041c5db15b9c98907f9b4ba3c20}{waypoint\_pub}}.publish(\mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}});}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}\ =\ \mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_afa16a43e6d8b4c306089109bf71715a0}{finalinital}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classWaypointPublisher_a2176c42b0a87e9144ea84e334f1b655a}\label{classWaypointPublisher_a2176c42b0a87e9144ea84e334f1b655a} 
+\index{WaypointPublisher@{WaypointPublisher}!midgoalCallback@{midgoalCallback}}
+\index{midgoalCallback@{midgoalCallback}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{midgoalCallback()}{midgoalCallback()}}
+{\footnotesize\ttfamily void Waypoint\+Publisher\+::midgoal\+Callback (\begin{DoxyParamCaption}\item[{const geometry\+\_\+msgs\+::\+Pose\+Stamped\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+midgoal 回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的中途目标点 geometry\+\_\+msgs\+::\+Pose\+Stamped 消息\\
+\hline
+\end{DoxyParams}
+功能：
+\begin{DoxyItemize}
+\item 将接收到的中途目标点加入队列
+\item 输出日志 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00066}{66}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.push(*msg);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}已加载中途目标点:\ X:\%f,Y:\%f"{}},\ msg-\/>pose.position.x,\ msg-\/>pose.position.y);}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classWaypointPublisher_ab3ecb848d99f9b4b35bc37f7f5cba622}\label{classWaypointPublisher_ab3ecb848d99f9b4b35bc37f7f5cba622} 
+\index{WaypointPublisher@{WaypointPublisher}!odomCallback@{odomCallback}}
+\index{odomCallback@{odomCallback}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{odomCallback()}{odomCallback()}}
+{\footnotesize\ttfamily void Waypoint\+Publisher\+::odom\+Callback (\begin{DoxyParamCaption}\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+odom 回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的机器人位姿 nav\+\_\+msgs\+::\+Odometry 消息\\
+\hline
+\end{DoxyParams}
+功能：
+\begin{DoxyItemize}
+\item 更新当前机器人位置和速度
+\item 判断是否到达最终目标
+\item 发布自动导航停止信号 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00109}{109}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a2edee68f60a0e465b7646f95ced1d121}{current\_position}}\ =\ msg-\/>pose.pose.position.x;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a0b4c87fc988b12c3bb480b9898916394}{current\_status}}\ =\ msg-\/>twist.twist.linear.x;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (abs(\mbox{\hyperlink{classWaypointPublisher_a2edee68f60a0e465b7646f95ced1d121}{current\_position}}\ -\/\ \mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}}.pose.position.x)\ <\ 0.3)}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ std\_msgs::Bool\ msg;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ msg.data\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_afa16a43e6d8b4c306089109bf71715a0}{finalinital}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a47885b59e7318b53b3b2082654e90560}{auto\_navigation\_stop\_pub}}.publish(msg);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a0888ce7b8f0cfa2ccc6fd51ec65f49e6}{finalgoal\_reached}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a0888ce7b8f0cfa2ccc6fd51ec65f49e6}{finalgoal\_reached}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classWaypointPublisher_adf1c93f6db23215a13c59819a1b3dbc6}\label{classWaypointPublisher_adf1c93f6db23215a13c59819a1b3dbc6} 
+\index{WaypointPublisher@{WaypointPublisher}!processGoals@{processGoals}}
+\index{processGoals@{processGoals}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{processGoals()}{processGoals()}}
+{\footnotesize\ttfamily void Waypoint\+Publisher\+::process\+Goals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+处理目标点逻辑，动态发布 waypoint 
+
+功能：
+\begin{DoxyItemize}
+\item 根据机器人当前位置和中途目标队列判断当前目标点
+\item 判断是否到达当前目标点
+\item 发布 waypoint，确保中途目标按顺序发布
+\item 到达最终目标时，发布停止信号 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00162}{162}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00163\ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.empty())}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.size()\ >\ 1)}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ae281f0d4ec699816476b4ffc860a81ca}{queueSort}}(\mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}});}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}\ =\ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.front();}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}.pose.position.x\ <\ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}.pose.position.x)}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}接收到更近的目标点:X:\%f,Y:\%f,优先处理"{}},\ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}.pose.position.x,\ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}.pose.position.y);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_aba3de5d71ffcac47e4461bae72d4ec65}{midinital}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ad6b13041c5db15b9c98907f9b4ba3c20}{waypoint\_pub}}.publish(\mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}});}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.push(\mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}});}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}\ =\ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.pop();}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaypointPublisher_a29cc7107bfbf6d425275a99e95caf53e}{goal\_reached}}\ ||\ \mbox{\hyperlink{classWaypointPublisher_aba3de5d71ffcac47e4461bae72d4ec65}{midinital}})}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}\ =\ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.front();}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}\ ==\ \mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}}\ \&\&\ (\mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.size()\ -\/\ 1\ >\ 0))}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.pop();}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}\ =\ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.front();}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}\ !=\ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}})}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_aba3de5d71ffcac47e4461bae72d4ec65}{midinital}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}.pose.position.x\ ==\ -\/1)}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}发布第一个目标点:\ X:\%f,Y:\%f"{}},\ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}.pose.position.x,\ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}.pose.position.y);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ad6b13041c5db15b9c98907f9b4ba3c20}{waypoint\_pub}}.publish(\mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}});}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.pop();}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.empty())}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classWaypointPublisher_a73056696f4260f559e796ea1ec11806d}{finalgoal\_received}})}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}加载最终发布点"{}});}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}无中途发布点,队列补充最终发布点1"{}});}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.push(\mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}});}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_aba3de5d71ffcac47e4461bae72d4ec65}{midinital}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}\ =\ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}};}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (abs(\mbox{\hyperlink{classWaypointPublisher_a2edee68f60a0e465b7646f95ced1d121}{current\_position}}\ -\/\ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}.pose.position.x)\ <\ 0.05)}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}目标点:\ X:\%f,Y:\%f已到达,停留10s"{}},\ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}.pose.position.x,\ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}.pose.position.y);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ros::Duration(10).sleep();}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}发布下一个目标点:\ X:\%f,Y:\%f"{}},\ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}.pose.position.x,\ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}}.pose.position.y);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ad6b13041c5db15b9c98907f9b4ba3c20}{waypoint\_pub}}.publish(\mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}});}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.pop();}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.empty()\ \&\&\ \mbox{\hyperlink{classWaypointPublisher_a73056696f4260f559e796ea1ec11806d}{finalgoal\_received}})}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}无中途发布点,队列补充最终发布点2"{}});}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}{midgoals}}.push(\mbox{\hyperlink{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}{finalgoal}});}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_aba3de5d71ffcac47e4461bae72d4ec65}{midinital}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}\ =\ \mbox{\hyperlink{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}{current\_goal}};}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dis\ =\ abs(\mbox{\hyperlink{classWaypointPublisher_a2edee68f60a0e465b7646f95ced1d121}{current\_position}}\ -\/\ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}.pose.position.x);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}正在前往目标点:\ X:\%f,Y:\%f,距离为:\%f"{}},\ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}.pose.position.x,\ \mbox{\hyperlink{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}{pre\_goal}}.pose.position.y,\ dis);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classWaypointPublisher_ae281f0d4ec699816476b4ffc860a81ca}\label{classWaypointPublisher_ae281f0d4ec699816476b4ffc860a81ca} 
+\index{WaypointPublisher@{WaypointPublisher}!queueSort@{queueSort}}
+\index{queueSort@{queueSort}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{queueSort()}{queueSort()}}
+{\footnotesize\ttfamily std\+::queue$<$ geometry\+\_\+msgs\+::\+Pose\+Stamped $>$ Waypoint\+Publisher\+::queue\+Sort (\begin{DoxyParamCaption}\item[{std\+::queue$<$ geometry\+\_\+msgs\+::\+Pose\+Stamped $>$ \&}]{msg\+Queue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+将队列中的 Pose\+Stamped 按 X 坐标升序排序 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg\+Queue} & 待排序队列 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+排序后的队列 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00077}{77}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ std::vector<geometry\_msgs::PoseStamped>\ tempVec;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 将队列中的元素提取到\ vector\ 中}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!msgQueue.empty())\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ tempVec.push\_back(msgQueue.front());}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ msgQueue.pop();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 对\ vector\ 中的元素进行排序，根据\ x\ 坐标升序排序}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ std::sort(tempVec.begin(),\ tempVec.end(),\ [](\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a,\ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.pose.position.x\ <\ b.pose.position.x;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 将排序后的元素重新放回队列中}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ pose\ :\ tempVec)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ msgQueue.push(pose);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ msgQueue;}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classWaypointPublisher_abeaceaac34b26aff80888ef49c470404}\label{classWaypointPublisher_abeaceaac34b26aff80888ef49c470404} 
+\index{WaypointPublisher@{WaypointPublisher}!statusCallback@{statusCallback}}
+\index{statusCallback@{statusCallback}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{statusCallback()}{statusCallback()}}
+{\footnotesize\ttfamily void Waypoint\+Publisher\+::status\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Bool\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+状态回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的机器人状态 std\+\_\+msgs\+::\+Bool 消息\\
+\hline
+\end{DoxyParams}
+功能：
+\begin{DoxyItemize}
+\item 根据消息更新 goal\+\_\+reached 标志 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00242}{242}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00243\ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (msg-\/>data)}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a29cc7107bfbf6d425275a99e95caf53e}{goal\_reached}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointPublisher_a29cc7107bfbf6d425275a99e95caf53e}{goal\_reached}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classWaypointPublisher_a47885b59e7318b53b3b2082654e90560}\label{classWaypointPublisher_a47885b59e7318b53b3b2082654e90560} 
+\index{WaypointPublisher@{WaypointPublisher}!auto\_navigation\_stop\_pub@{auto\_navigation\_stop\_pub}}
+\index{auto\_navigation\_stop\_pub@{auto\_navigation\_stop\_pub}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{auto\_navigation\_stop\_pub}{auto\_navigation\_stop\_pub}}
+{\footnotesize\ttfamily ros\+::\+Publisher Waypoint\+Publisher\+::auto\+\_\+navigation\+\_\+stop\+\_\+pub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+发布 waypoint 和自动导航停止信号 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00256}{256}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1}\label{classWaypointPublisher_af737270bf8d77a1a7d822efd81fb1ea1} 
+\index{WaypointPublisher@{WaypointPublisher}!current\_goal@{current\_goal}}
+\index{current\_goal@{current\_goal}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{current\_goal}{current\_goal}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose\+Stamped Waypoint\+Publisher\+::current\+\_\+goal\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+当前目标点 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00260}{260}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_a2edee68f60a0e465b7646f95ced1d121}\label{classWaypointPublisher_a2edee68f60a0e465b7646f95ced1d121} 
+\index{WaypointPublisher@{WaypointPublisher}!current\_position@{current\_position}}
+\index{current\_position@{current\_position}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{current\_position}{current\_position}}
+{\footnotesize\ttfamily double Waypoint\+Publisher\+::current\+\_\+position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00264}{264}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_a0b4c87fc988b12c3bb480b9898916394}\label{classWaypointPublisher_a0b4c87fc988b12c3bb480b9898916394} 
+\index{WaypointPublisher@{WaypointPublisher}!current\_status@{current\_status}}
+\index{current\_status@{current\_status}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{current\_status}{current\_status}}
+{\footnotesize\ttfamily double Waypoint\+Publisher\+::current\+\_\+status\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+当前机器人位置和速度 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00264}{264}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff}\label{classWaypointPublisher_a0019654df7d05ce712095254bb75c1ff} 
+\index{WaypointPublisher@{WaypointPublisher}!finalgoal@{finalgoal}}
+\index{finalgoal@{finalgoal}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{finalgoal}{finalgoal}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose\+Stamped Waypoint\+Publisher\+::finalgoal\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+最终目标点 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00261}{261}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_a0888ce7b8f0cfa2ccc6fd51ec65f49e6}\label{classWaypointPublisher_a0888ce7b8f0cfa2ccc6fd51ec65f49e6} 
+\index{WaypointPublisher@{WaypointPublisher}!finalgoal\_reached@{finalgoal\_reached}}
+\index{finalgoal\_reached@{finalgoal\_reached}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{finalgoal\_reached}{finalgoal\_reached}}
+{\footnotesize\ttfamily bool Waypoint\+Publisher\+::finalgoal\+\_\+reached = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+是否到达最终目标 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00267}{267}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_a73056696f4260f559e796ea1ec11806d}\label{classWaypointPublisher_a73056696f4260f559e796ea1ec11806d} 
+\index{WaypointPublisher@{WaypointPublisher}!finalgoal\_received@{finalgoal\_received}}
+\index{finalgoal\_received@{finalgoal\_received}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{finalgoal\_received}{finalgoal\_received}}
+{\footnotesize\ttfamily bool Waypoint\+Publisher\+::finalgoal\+\_\+received = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+是否接收到最终目标 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00265}{265}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_aaf87298f88a3ecbc9a913c07bac58b54}\label{classWaypointPublisher_aaf87298f88a3ecbc9a913c07bac58b54} 
+\index{WaypointPublisher@{WaypointPublisher}!finalgoal\_sub@{finalgoal\_sub}}
+\index{finalgoal\_sub@{finalgoal\_sub}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{finalgoal\_sub}{finalgoal\_sub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Waypoint\+Publisher\+::finalgoal\+\_\+sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00257}{257}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_afa16a43e6d8b4c306089109bf71715a0}\label{classWaypointPublisher_afa16a43e6d8b4c306089109bf71715a0} 
+\index{WaypointPublisher@{WaypointPublisher}!finalinital@{finalinital}}
+\index{finalinital@{finalinital}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{finalinital}{finalinital}}
+{\footnotesize\ttfamily bool Waypoint\+Publisher\+::finalinital = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+是否最终目标初始化 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00269}{269}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_a29cc7107bfbf6d425275a99e95caf53e}\label{classWaypointPublisher_a29cc7107bfbf6d425275a99e95caf53e} 
+\index{WaypointPublisher@{WaypointPublisher}!goal\_reached@{goal\_reached}}
+\index{goal\_reached@{goal\_reached}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{goal\_reached}{goal\_reached}}
+{\footnotesize\ttfamily bool Waypoint\+Publisher\+::goal\+\_\+reached = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+是否到达当前目标 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00266}{266}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_a087009cba8fbe8e994931e282008b4a2}\label{classWaypointPublisher_a087009cba8fbe8e994931e282008b4a2} 
+\index{WaypointPublisher@{WaypointPublisher}!midgoal\_sub@{midgoal\_sub}}
+\index{midgoal\_sub@{midgoal\_sub}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{midgoal\_sub}{midgoal\_sub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Waypoint\+Publisher\+::midgoal\+\_\+sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00257}{257}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96}\label{classWaypointPublisher_ae986643ecd10fa38723e962950d48e96} 
+\index{WaypointPublisher@{WaypointPublisher}!midgoals@{midgoals}}
+\index{midgoals@{midgoals}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{midgoals}{midgoals}}
+{\footnotesize\ttfamily std\+::queue$<$geometry\+\_\+msgs\+::\+Pose\+Stamped$>$ Waypoint\+Publisher\+::midgoals\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+中途目标队列 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00259}{259}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_aba3de5d71ffcac47e4461bae72d4ec65}\label{classWaypointPublisher_aba3de5d71ffcac47e4461bae72d4ec65} 
+\index{WaypointPublisher@{WaypointPublisher}!midinital@{midinital}}
+\index{midinital@{midinital}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{midinital}{midinital}}
+{\footnotesize\ttfamily bool Waypoint\+Publisher\+::midinital = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+是否处理中途目标初始化 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00268}{268}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_a61018f919145d4211b71cd6a5cb1ba8a}\label{classWaypointPublisher_a61018f919145d4211b71cd6a5cb1ba8a} 
+\index{WaypointPublisher@{WaypointPublisher}!nh@{nh}}
+\index{nh@{nh}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{nh}{nh}}
+{\footnotesize\ttfamily ros\+::\+Node\+Handle Waypoint\+Publisher\+::nh\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS 节点句柄 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00255}{255}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_a024fcc12ff98892facd5e28c5ca703f9}\label{classWaypointPublisher_a024fcc12ff98892facd5e28c5ca703f9} 
+\index{WaypointPublisher@{WaypointPublisher}!odom\_sub@{odom\_sub}}
+\index{odom\_sub@{odom\_sub}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{odom\_sub}{odom\_sub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Waypoint\+Publisher\+::odom\+\_\+sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+订阅中途目标、最终目标和 odom 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00257}{257}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9}\label{classWaypointPublisher_aba542ec35b2b4bd320b7cde69080c3d9} 
+\index{WaypointPublisher@{WaypointPublisher}!pre\_goal@{pre\_goal}}
+\index{pre\_goal@{pre\_goal}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{pre\_goal}{pre\_goal}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose\+Stamped Waypoint\+Publisher\+::pre\+\_\+goal\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+上一个目标点 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00262}{262}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_ae607b30dfd6060d57255e9b4ef780a0b}\label{classWaypointPublisher_ae607b30dfd6060d57255e9b4ef780a0b} 
+\index{WaypointPublisher@{WaypointPublisher}!status\_sub@{status\_sub}}
+\index{status\_sub@{status\_sub}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{status\_sub}{status\_sub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Waypoint\+Publisher\+::status\+\_\+sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+订阅机器人状态 
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00258}{258}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+\Hypertarget{classWaypointPublisher_ad6b13041c5db15b9c98907f9b4ba3c20}\label{classWaypointPublisher_ad6b13041c5db15b9c98907f9b4ba3c20} 
+\index{WaypointPublisher@{WaypointPublisher}!waypoint\_pub@{waypoint\_pub}}
+\index{waypoint\_pub@{waypoint\_pub}!WaypointPublisher@{WaypointPublisher}}
+\doxysubsubsection{\texorpdfstring{waypoint\_pub}{waypoint\_pub}}
+{\footnotesize\ttfamily ros\+::\+Publisher Waypoint\+Publisher\+::waypoint\+\_\+pub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{WaypointPublisher_8cpp_source_l00256}{256}} of file \mbox{\hyperlink{WaypointPublisher_8cpp_source}{Waypoint\+Publisher.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+auto\+\_\+navigation/\mbox{\hyperlink{WaypointPublisher_8cpp}{Waypoint\+Publisher.\+cpp}}\end{DoxyCompactItemize}

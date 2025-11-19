@@ -1,0 +1,416 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="tempandpress_8cpp" kind="file" language="C++">
+    <compoundname>tempandpress.cpp</compoundname>
+    <includes local="no">ros/ros.h</includes>
+    <includes local="no">std_msgs/Float32.h</includes>
+    <includes local="no">netinet/in.h</includes>
+    <includes local="no">sys/socket.h</includes>
+    <includes local="no">unistd.h</includes>
+    <includes local="no">arpa/inet.h</includes>
+    <includes local="no">string</includes>
+    <includes local="no">sstream</includes>
+    <includes local="no">fstream</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>Motherboard_data_process/tempandpress.cpp</label>
+        <link refid="tempandpress_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>arpa/inet.h</label>
+      </node>
+      <node id="10">
+        <label>fstream</label>
+      </node>
+      <node id="4">
+        <label>netinet/in.h</label>
+      </node>
+      <node id="2">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="9">
+        <label>sstream</label>
+      </node>
+      <node id="3">
+        <label>std_msgs/Float32.h</label>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>sys/socket.h</label>
+      </node>
+      <node id="6">
+        <label>unistd.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="tempandpress_8cpp_1a229938ef2b258aba203e83bca7f47b36" prot="public" static="no" mutable="no">
+        <type>ros::Publisher</type>
+        <definition>ros::Publisher pub_temp</definition>
+        <argsstring></argsstring>
+        <name>pub_temp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>发布解析的温度 /temperature_data </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/tempandpress.cpp" line="22" column="16" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="tempandpress_8cpp_1ab22b3f5f78356af75c89bb0c5e6e3858" prot="public" static="no" mutable="no">
+        <type>ros::Publisher</type>
+        <definition>ros::Publisher pub_press</definition>
+        <argsstring></argsstring>
+        <name>pub_press</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>发布解析的压力 /pressVal </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/tempandpress.cpp" line="23" column="16" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="tempandpress_8cpp_1ab49abf98d6945a9fd91eed2743b99634" prot="public" static="no" mutable="no">
+        <type>ros::Publisher</type>
+        <definition>ros::Publisher pub_cpu_temp</definition>
+        <argsstring></argsstring>
+        <name>pub_cpu_temp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>发布 Nano/Orin CPU 温度 /orin_cpu_temp </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/tempandpress.cpp" line="24" column="16" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="tempandpress_8cpp_1aab08866a9274281978d9fc03a4d737ab" prot="public" static="no" mutable="no">
+        <type>ros::Publisher</type>
+        <definition>ros::Publisher pub_gpu_temp</definition>
+        <argsstring></argsstring>
+        <name>pub_gpu_temp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>发布 Nano/Orin GPU 温度 /orin_gpu_temp </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/tempandpress.cpp" line="25" column="16" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="tempandpress_8cpp_1aea836183d504027fcec3386ac320d1b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float readThermal</definition>
+        <argsstring>(const std::string &amp;path)</argsstring>
+        <name>readThermal</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>读取系统文件中存储的 CPU/GPU 温度 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>系统 thermal_zone 文件路径 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>温度值（摄氏度），失败返回 -1.0 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/tempandpress.cpp" line="32" column="7" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="32" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="tempandpress_8cpp_1abba960c86bd339697e78c89131d9a565" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void parseAndPublish</definition>
+        <argsstring>(const std::string &amp;line)</argsstring>
+        <name>parseAndPublish</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+<para>解析 TCP 接收到的一行传感器数据并发布 ROS 消息 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>数据格式示例：<itemizedlist>
+<listitem><para>&quot;NTC:72.5&quot; -&gt; 温度传感器值</para>
+</listitem><listitem><para>&quot;AP:101.3&quot; -&gt; 压力传感器值</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>line</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>原始数据行 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/tempandpress.cpp" line="49" column="6" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="49" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="tempandpress_8cpp_1a54fb40f1cec43c98df052811a7b15a51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tcpLoop</definition>
+        <argsstring>(const std::string &amp;ip, int port)</argsstring>
+        <name>tcpLoop</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>ip</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <briefdescription>
+<para>TCP 接收循环 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>从指定 IP:端口接收数据，每次读取后按行解析 并调用 parseAndPublish 处理。处理不完整行缓存。</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>TCP 服务器 IP </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>TCP 服务器端口 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/tempandpress.cpp" line="87" column="6" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="87" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="tempandpress_8cpp_1a29f4ca4ec279107fd08630624d6a20b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publishNanoTemp</definition>
+        <argsstring>()</argsstring>
+        <name>publishNanoTemp</name>
+        <briefdescription>
+<para>定时读取 Orin/Nano CPU 和 GPU 温度并发布 ROS 消息 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/tempandpress.cpp" line="139" column="6" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="139" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="tempandpress_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+<para>主函数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>初始化 ROS 节点，配置参数，创建发布器和定时器 并调用 tcpLoop 开始接收数据 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/tempandpress.cpp" line="159" column="5" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="159" bodyend="184"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros/ros.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_msgs/Float32.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;netinet/in.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/socket.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;arpa/inet.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>------------------<sp/>全局发布器<sp/>------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="tempandpress_8cpp_1a229938ef2b258aba203e83bca7f47b36" refkind="member"><highlight class="normal">ros::Publisher<sp/><ref refid="tempandpress_8cpp_1a229938ef2b258aba203e83bca7f47b36" kindref="member">pub_temp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23" refid="tempandpress_8cpp_1ab22b3f5f78356af75c89bb0c5e6e3858" refkind="member"><highlight class="normal">ros::Publisher<sp/><ref refid="tempandpress_8cpp_1ab22b3f5f78356af75c89bb0c5e6e3858" kindref="member">pub_press</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24" refid="tempandpress_8cpp_1ab49abf98d6945a9fd91eed2743b99634" refkind="member"><highlight class="normal">ros::Publisher<sp/><ref refid="tempandpress_8cpp_1ab49abf98d6945a9fd91eed2743b99634" kindref="member">pub_cpu_temp</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25" refid="tempandpress_8cpp_1aab08866a9274281978d9fc03a4d737ab" refkind="member"><highlight class="normal">ros::Publisher<sp/><ref refid="tempandpress_8cpp_1aab08866a9274281978d9fc03a4d737ab" kindref="member">pub_gpu_temp</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32" refid="tempandpress_8cpp_1aea836183d504027fcec3386ac320d1b0" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="tempandpress_8cpp_1aea836183d504027fcec3386ac320d1b0" kindref="member">readThermal</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path)<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ifstream<sp/>file(path);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!file.is_open())<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1.0;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>milliC;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>file<sp/>&gt;&gt;<sp/>milliC;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>milliC<sp/>/<sp/>1000.0;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="tempandpress_8cpp_1abba960c86bd339697e78c89131d9a565" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="tempandpress_8cpp_1abba960c86bd339697e78c89131d9a565" kindref="member">parseAndPublish</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>line)<sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>ntc_val<sp/>=<sp/>-1,<sp/>ap_val<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>pos;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>pos<sp/>=<sp/>line.find(</highlight><highlight class="stringliteral">&quot;NTC:&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pos<sp/>!=<sp/>std::string::npos)<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ntc_val<sp/>=<sp/>std::stof(line.substr(pos<sp/>+<sp/>4));</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>pos<sp/>=<sp/>line.find(</highlight><highlight class="stringliteral">&quot;AP:&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pos<sp/>!=<sp/>std::string::npos)<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ap_val<sp/>=<sp/>std::stof(line.substr(pos<sp/>+<sp/>3));</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ntc_val<sp/>&gt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std_msgs::Float32<sp/>msg;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>msg.data<sp/>=<sp/>(ntc_val-32)*5/9;<sp/><sp/></highlight><highlight class="comment">//<sp/>华氏转摄氏</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="tempandpress_8cpp_1a229938ef2b258aba203e83bca7f47b36" kindref="member">pub_temp</ref>.publish(msg);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Published<sp/>/temperature_data<sp/>=<sp/>%.2f&quot;</highlight><highlight class="normal">,<sp/>ntc_val);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ap_val<sp/>&gt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std_msgs::Float32<sp/>msg;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>msg.data<sp/>=<sp/>ap_val;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="tempandpress_8cpp_1ab22b3f5f78356af75c89bb0c5e6e3858" kindref="member">pub_press</ref>.publish(msg);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Published<sp/>/pressVal<sp/>=<sp/>%.2f&quot;</highlight><highlight class="normal">,<sp/>ap_val);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="tempandpress_8cpp_1a54fb40f1cec43c98df052811a7b15a51" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="tempandpress_8cpp_1a54fb40f1cec43c98df052811a7b15a51" kindref="member">tcpLoop</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>ip,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>port)<sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sockfd<sp/>=<sp/>socket(AF_INET,<sp/>SOCK_STREAM,<sp/>0);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sockfd<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR(</highlight><highlight class="stringliteral">&quot;Socket<sp/>creation<sp/>failed&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>sockaddr_in<sp/>serv_addr;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>serv_addr.sin_family<sp/>=<sp/>AF_INET;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>serv_addr.sin_port<sp/>=<sp/>htons(port);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>inet_pton(AF_INET,<sp/>ip.c_str(),<sp/>&amp;serv_addr.sin_addr);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(connect(sockfd,<sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/>sockaddr*)&amp;serv_addr,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(serv_addr))<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR(</highlight><highlight class="stringliteral">&quot;Connection<sp/>failed<sp/>to<sp/>%s:%d&quot;</highlight><highlight class="normal">,<sp/>ip.c_str(),<sp/>port);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Connected<sp/>to<sp/>server<sp/>%s:%d&quot;</highlight><highlight class="normal">,<sp/>ip.c_str(),<sp/>port);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buffer[1024];</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>leftover;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(ros::ok())<sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ssize_t<sp/>n<sp/>=<sp/>read(sockfd,<sp/>buffer,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(buffer)<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(n<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_WARN(</highlight><highlight class="stringliteral">&quot;Server<sp/>disconnected&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer[n]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>data<sp/>=<sp/>leftover<sp/>+<sp/>buffer;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::istringstream<sp/>iss(data);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>line;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(std::getline(iss,<sp/>line))<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!line.empty())<sp/><ref refid="tempandpress_8cpp_1abba960c86bd339697e78c89131d9a565" kindref="member">parseAndPublish</ref>(line);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>处理不完整的一行</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data.back()<sp/>!=<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>leftover<sp/>=<sp/>data.substr(data.find_last_of(</highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">)<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>leftover.clear();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>close(sockfd);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="tempandpress_8cpp_1a29f4ca4ec279107fd08630624d6a20b1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="tempandpress_8cpp_1a29f4ca4ec279107fd08630624d6a20b1" kindref="member">publishNanoTemp</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>cpu_temp<sp/>=<sp/><ref refid="tempandpress_8cpp_1aea836183d504027fcec3386ac320d1b0" kindref="member">readThermal</ref>(</highlight><highlight class="stringliteral">&quot;/sys/class/thermal/thermal_zone0/temp&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>gpu_temp<sp/>=<sp/><ref refid="tempandpress_8cpp_1aea836183d504027fcec3386ac320d1b0" kindref="member">readThermal</ref>(</highlight><highlight class="stringliteral">&quot;/sys/class/thermal/thermal_zone1/temp&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::Float32<sp/>msg_cpu,<sp/>msg_gpu;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>msg_cpu.data<sp/>=<sp/>cpu_temp;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>msg_gpu.data<sp/>=<sp/>gpu_temp;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tempandpress_8cpp_1ab49abf98d6945a9fd91eed2743b99634" kindref="member">pub_cpu_temp</ref>.publish(msg_cpu);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tempandpress_8cpp_1aab08866a9274281978d9fc03a4d737ab" kindref="member">pub_gpu_temp</ref>.publish(msg_gpu);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Orin<sp/>CPU<sp/>Temp:<sp/>%.2f<sp/>°C,<sp/>GPU<sp/>Temp:<sp/>%.2f<sp/>°C&quot;</highlight><highlight class="normal">,<sp/>cpu_temp,<sp/>gpu_temp);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="tempandpress_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="tempandpress_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>argv)<sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::init(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;sensor_bridge_node&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::NodeHandle<sp/>nh;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>ip;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>port;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>nh.param&lt;std::string&gt;(</highlight><highlight class="stringliteral">&quot;ip&quot;</highlight><highlight class="normal">,<sp/>ip,<sp/></highlight><highlight class="stringliteral">&quot;192.168.8.11&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>nh.param&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;(</highlight><highlight class="stringliteral">&quot;port&quot;</highlight><highlight class="normal">,<sp/>port,<sp/>12345);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>发布话题</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tempandpress_8cpp_1a229938ef2b258aba203e83bca7f47b36" kindref="member">pub_temp</ref><sp/>=<sp/>nh.advertise&lt;std_msgs::Float32&gt;(</highlight><highlight class="stringliteral">&quot;/temperature_data&quot;</highlight><highlight class="normal">,<sp/>10);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tempandpress_8cpp_1ab22b3f5f78356af75c89bb0c5e6e3858" kindref="member">pub_press</ref><sp/>=<sp/>nh.advertise&lt;std_msgs::Float32&gt;(</highlight><highlight class="stringliteral">&quot;/pressVal&quot;</highlight><highlight class="normal">,<sp/>10);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tempandpress_8cpp_1ab49abf98d6945a9fd91eed2743b99634" kindref="member">pub_cpu_temp</ref><sp/>=<sp/>nh.advertise&lt;std_msgs::Float32&gt;(</highlight><highlight class="stringliteral">&quot;/orin_cpu_temp&quot;</highlight><highlight class="normal">,<sp/>10);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tempandpress_8cpp_1aab08866a9274281978d9fc03a4d737ab" kindref="member">pub_gpu_temp</ref><sp/>=<sp/>nh.advertise&lt;std_msgs::Float32&gt;(</highlight><highlight class="stringliteral">&quot;/orin_gpu_temp&quot;</highlight><highlight class="normal">,<sp/>10);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>CPU/GPU<sp/>温度定时器，每秒发布一次</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Timer<sp/>temp_timer<sp/>=<sp/>nh.createTimer(ros::Duration(1.0),<sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ros::TimerEvent&amp;){</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="tempandpress_8cpp_1a29f4ca4ec279107fd08630624d6a20b1" kindref="member">publishNanoTemp</ref>();</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TCP<sp/>循环（阻塞式）</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tempandpress_8cpp_1a54fb40f1cec43c98df052811a7b15a51" kindref="member">tcpLoop</ref>(ip,<sp/>port);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::spin();</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Motherboard_data_process/tempandpress.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,90 @@
+\doxysection{sanwijiantu.\+cpp}
+\hypertarget{sanwijiantu_8cpp_source}{}\label{sanwijiantu_8cpp_source}\index{3D\_mapping/sanwijiantu.cpp@{3D\_mapping/sanwijiantu.cpp}}
+\mbox{\hyperlink{sanwijiantu_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <sensor\_msgs/PointCloud2.h>}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <nav\_msgs/Odometry.h>}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <pcl/point\_cloud.h>}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <pcl/point\_types.h>}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <pcl\_conversions/pcl\_conversions.h>}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <pcl/octree/octree\_pointcloud\_voxelcentroid.h>}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <pipeline\_robot/DistanceAngle.h>}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00025}\mbox{\hyperlink{classDA__Octree__Node}{00025}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDA__Octree__Node}{DA\_Octree\_Node}}\ \{}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00026}00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00030}\mbox{\hyperlink{classDA__Octree__Node_affd4d94f5e93e83256aa82725fd79509}{00030}}\ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_affd4d94f5e93e83256aa82725fd79509}{DA\_Octree\_Node}}()\ :\ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\_}}(0.000001f),\ \mbox{\hyperlink{classDA__Octree__Node_a788e3a9b1a9378469f0dff71be998020}{odom\_received\_}}(false)\ \{}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ ros::NodeHandle\ nh;}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 订阅\ Distance-\/Angle}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_ac9e99724363e8816834a603e56250462}{da\_sub\_}}\ =\ nh.subscribe(\textcolor{stringliteral}{"{}/distance\_angle"{}},\ 1000,\ \&\mbox{\hyperlink{classDA__Octree__Node_a2cb85a99abd9811255ef21bf99110a6c}{DA\_Octree\_Node::daCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 订阅外部\ odom}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a89264bb14609035442fb21d826a7bb71}{odom\_sub\_}}\ =\ nh.subscribe(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 10,\ \&\mbox{\hyperlink{classDA__Octree__Node_a5cb1a998850bddf23da20ae4f49119af}{DA\_Octree\_Node::odomCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 发布稀疏化点云}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a302c05b9f02186592a77d55372927df9}{cloud\_pub\_}}\ =\ nh.advertise<sensor\_msgs::PointCloud2>(\textcolor{stringliteral}{"{}/overall\_map\_cloud"{}},\ 1);}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\_}}.reset(\textcolor{keyword}{new}\ pcl::PointCloud<pcl::PointXYZ>);}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\_}}-\/>is\_dense\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00050}\mbox{\hyperlink{classDA__Octree__Node_a5cb1a998850bddf23da20ae4f49119af}{00050}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDA__Octree__Node_a5cb1a998850bddf23da20ae4f49119af}{odomCallback}}(\textcolor{keyword}{const}\ nav\_msgs::Odometry::ConstPtr\&\ msg)\ \{}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a4b7666d696a436fb6c444de982b46c04}{current\_pose\_}}\ =\ msg-\/>pose.pose;}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a788e3a9b1a9378469f0dff71be998020}{odom\_received\_}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00059}\mbox{\hyperlink{classDA__Octree__Node_a2cb85a99abd9811255ef21bf99110a6c}{00059}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDA__Octree__Node_a2cb85a99abd9811255ef21bf99110a6c}{daCallback}}(\textcolor{keyword}{const}\ pipeline\_robot::DistanceAngle::ConstPtr\&\ msg)\ \{}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classDA__Octree__Node_a788e3a9b1a9378469f0dff71be998020}{odom\_received\_}})\ \{}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_WARN\_THROTTLE(5,\ \textcolor{stringliteral}{"{}Waiting\ for\ /cable/odom\ ..."{}});}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ ros::Time\ current\_time\ =\ ros::Time::now();}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angle\_rad\ =\ msg-\/>angle\ *\ M\_PI\ /\ 180.0;}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ pcl::PointXYZ\ point;}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ point.x\ =\ \mbox{\hyperlink{classDA__Octree__Node_a4b7666d696a436fb6c444de982b46c04}{current\_pose\_}}.position.x;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ point.y\ =\ msg-\/>distance\ *\ sin(angle\_rad)\ *\ 0.01;}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ point.z\ =\ msg-\/>distance\ *\ cos(angle\_rad)\ *\ (-\/0.01);}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\_}}-\/>points.push\_back(point);}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 更新八叉树}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\_}}.setInputCloud(\mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\_}});}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\_}}.addPointsFromInputCloud();}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ pcl::PointCloud<pcl::PointXYZ>::Ptr\ outputCloud(\textcolor{keyword}{new}\ pcl::PointCloud<pcl::PointXYZ>);}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\_}}.getOccupiedVoxelCenters(outputCloud-\/>points);}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ sensor\_msgs::PointCloud2\ outputMsg;}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ pcl::toROSMsg(*outputCloud,\ outputMsg);}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ outputMsg.header.stamp\ =\ current\_time;}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ outputMsg.header.frame\_id\ =\ \textcolor{stringliteral}{"{}odom"{}};\ \ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a302c05b9f02186592a77d55372927df9}{cloud\_pub\_}}.publish(outputMsg);}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ ROS\_INFO\_STREAM(\textcolor{stringliteral}{"{}Octree\ voxels:\ "{}}\ <<\ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\_}}.getLeafCount()}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Input\ points:\ "{}}\ <<\ \mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\_}}-\/>size());}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00090}00090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00092}00092\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00093}\mbox{\hyperlink{classDA__Octree__Node_ac9e99724363e8816834a603e56250462}{00093}}\ \ \ \ \ ros::Subscriber\ \mbox{\hyperlink{classDA__Octree__Node_ac9e99724363e8816834a603e56250462}{da\_sub\_}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00094}\mbox{\hyperlink{classDA__Octree__Node_a89264bb14609035442fb21d826a7bb71}{00094}}\ \ \ \ \ ros::Subscriber\ \mbox{\hyperlink{classDA__Octree__Node_a89264bb14609035442fb21d826a7bb71}{odom\_sub\_}};\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00095}\mbox{\hyperlink{classDA__Octree__Node_a302c05b9f02186592a77d55372927df9}{00095}}\ \ \ \ \ ros::Publisher\ \mbox{\hyperlink{classDA__Octree__Node_a302c05b9f02186592a77d55372927df9}{cloud\_pub\_}};\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00097}\mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{00097}}\ \ \ \ \ pcl::PointCloud<pcl::PointXYZ>::Ptr\ \mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\_}};\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00098}\mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{00098}}\ \ \ \ \ pcl::octree::OctreePointCloudVoxelCentroid<pcl::PointXYZ>\ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\_}};\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00100}\mbox{\hyperlink{classDA__Octree__Node_a4b7666d696a436fb6c444de982b46c04}{00100}}\ \ \ \ \ geometry\_msgs::Pose\ \mbox{\hyperlink{classDA__Octree__Node_a4b7666d696a436fb6c444de982b46c04}{current\_pose\_}};\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00101}\mbox{\hyperlink{classDA__Octree__Node_a788e3a9b1a9378469f0dff71be998020}{00101}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDA__Octree__Node_a788e3a9b1a9378469f0dff71be998020}{odom\_received\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00102}00102\ \};}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00110}\mbox{\hyperlink{sanwijiantu_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{00110}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sanwijiantu_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)\ \{}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00111}00111\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}da\_octree\_node"{}});}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00112}00112\ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node}{DA\_Octree\_Node}}\ node;}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00113}00113\ \ \ \ \ ros::spin();}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{sanwijiantu_8cpp_source_l00115}00115\ \}}
+
+\end{DoxyCode}

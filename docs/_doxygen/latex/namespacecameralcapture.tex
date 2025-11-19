@@ -1,0 +1,100 @@
+\doxysection{cameralcapture Namespace Reference}
+\hypertarget{namespacecameralcapture}{}\label{namespacecameralcapture}\index{cameralcapture@{cameralcapture}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{namespacecameralcapture_ad4821b4d88833619cce7f6782bfd7bb7}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\begin{DoxyCompactList}\small\item\em Main entry point for RTSP reader node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacecameralcapture_ad4821b4d88833619cce7f6782bfd7bb7}\label{namespacecameralcapture_ad4821b4d88833619cce7f6782bfd7bb7} 
+\index{cameralcapture@{cameralcapture}!main@{main}}
+\index{main@{main}!cameralcapture@{cameralcapture}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int cameralcapture\+::main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main entry point for RTSP reader node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command line arguments \\
+\hline
+{\em argv} & Array of command line arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if success, -\/1 if failure 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{testcam_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{testcam_8cpp_source}{testcam.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}rtsp\_reader\_node"{}});\ \textcolor{comment}{//\ 初始化\ ROS\ 节点}}
+\DoxyCodeLine{00020\ \ \ \ \ ros::NodeHandle\ nh;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ 发布自定义\ RGBD\ 压缩消息}}
+\DoxyCodeLine{00023\ \ \ \ \ ros::Publisher\ rgbd\_pub\ =\ nh.advertise<pipeline\_robot::compressedRGBD>(\textcolor{stringliteral}{"{}/camera/rgb\_depth/compressed"{}},\ 1);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ std::string\ rtsp\_url\ =\ \textcolor{stringliteral}{"{}rtsp://admin:123456@192.168.8.10/Streaming/Channels/2"{}};\ \textcolor{comment}{//\ RTSP\ 视频流\ URL}}
+\DoxyCodeLine{00026\ \ \ \ \ cv::VideoCapture\ cap(rtsp\_url);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{if}\ (!cap.isOpened())\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Failed\ to\ open\ RTSP\ stream:\ \%s"{}},\ rtsp\_url.c\_str());}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;\ \textcolor{comment}{//\ 如果无法打开\ RTSP\ 流，返回错误}}
+\DoxyCodeLine{00031\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Successfully\ connected\ to\ RTSP\ stream:\ \%s"{}},\ rtsp\_url.c\_str());}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ ros::Rate\ loop\_rate(30);\ \textcolor{comment}{//\ 设定循环频率为\ 30\ FPS}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ frame\_count\ =\ 0;\ \textcolor{comment}{//\ 帧计数器}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ cv::Mat\ frame;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!cap.read(frame))\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_WARN(\textcolor{stringliteral}{"{}Failed\ to\ read\ frame\ from\ RTSP\ stream,\ retrying..."{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ cap.release();\ \textcolor{comment}{//\ 释放当前的流}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ ros::Duration(1.0).sleep();\ \textcolor{comment}{//\ 等待\ 1\ 秒后重新连接}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ cap.open(rtsp\_url);\ \textcolor{comment}{//\ 重新打开\ RTSP\ 流}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cap.isOpened())\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Reconnected\ to\ RTSP\ stream\ successfully."{}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Reconnect\ failed.\ Will\ retry..."{}});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};\ \textcolor{comment}{//\ 如果读取失败，则继续循环}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ frame\_count++;\ \textcolor{comment}{//\ 增加帧计数}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//ROS\_INFO("{}Received\ frame\ \#\%d,\ size:\ \%dx\%d"{},\ frame\_count,\ frame.cols,\ frame.rows);}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ 压缩\ RGB\ 图像\ -\/-\/-\/}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::vector<uchar>\ buf;\ \textcolor{comment}{//\ 存储压缩后的图像数据}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ std::vector<int>\ params\ =\ \{cv::IMWRITE\_JPEG\_QUALITY,\ 75\};\ \textcolor{comment}{//\ 压缩质量设置为\ 75}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ cv::imencode(\textcolor{stringliteral}{"{}.jpg"{}},\ frame,\ buf,\ params);\ \textcolor{comment}{//\ 压缩图像为\ JPEG\ 格式}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 构建自定义\ RGBD\ 消息}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ pipeline\_robot::compressedRGBD\ msg;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ msg.rgb.header.stamp\ =\ ros::Time::now();\ \textcolor{comment}{//\ 当前时间戳}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ msg.rgb.header.frame\_id\ =\ \textcolor{stringliteral}{"{}camera"{}};\ \textcolor{comment}{//\ 设置帧\ ID}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ msg.rgb.format\ =\ \textcolor{stringliteral}{"{}jpeg"{}};\ \textcolor{comment}{//\ 图像格式}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ msg.rgb.data.assign(buf.begin(),\ buf.end());\ \textcolor{comment}{//\ 将压缩图像数据赋值给消息}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 如果\ depth\ 数据有，也可以在这里填充\ msg.depth}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ msg.depth\ =\ ...}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ rgbd\_pub.publish(msg);\ \textcolor{comment}{//\ 发布消息}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ ros::spinOnce();\ \textcolor{comment}{//\ 处理回调函数}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ loop\_rate.sleep();\ \textcolor{comment}{//\ 按照设定的频率睡眠}}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ cap.release();\ \textcolor{comment}{//\ 释放视频流}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ 正常结束}}
+\DoxyCodeLine{00079\ \}}
+
+\end{DoxyCode}

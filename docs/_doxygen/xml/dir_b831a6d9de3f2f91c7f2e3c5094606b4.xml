@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_b831a6d9de3f2f91c7f2e3c5094606b4" kind="dir">
+    <compoundname>auto_navigation</compoundname>
+    <innerfile refid="____init_____8py">__init__.py</innerfile>
+    <innerfile refid="detectionPointPub_8cpp">detectionPointPub.cpp</innerfile>
+    <innerfile refid="point__transform_8py">point_transform.py</innerfile>
+    <innerfile refid="WaypointFollower_8cpp">WaypointFollower.cpp</innerfile>
+    <innerfile refid="WaypointPublisher_8cpp">WaypointPublisher.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="auto_navigation/"/>
+  </compounddef>
+</doxygen>

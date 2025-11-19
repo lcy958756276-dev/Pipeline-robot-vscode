@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceauto__navigation_1_1point__transform" kind="namespace" language="Python">
+    <compoundname>auto_navigation::point_transform</compoundname>
+    <innerclass refid="classauto__navigation_1_1point__transform_1_1PointTransformer" prot="public">auto_navigation::point_transform::PointTransformer</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceauto__navigation_1_1point__transform_1a63d200727dd1345d7f217f8903c56ec7" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>auto_navigation::point_transform.pt</definition>
+        <argsstring></argsstring>
+        <name>pt</name>
+        <qualifiedname>auto_navigation.point_transform.pt</qualifiedname>
+        <initializer>=  <ref refid="classauto__navigation_1_1point__transform_1_1PointTransformer" kindref="compound">PointTransformer</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/point_transform.py" line="106" column="1" bodyfile="auto_navigation/point_transform.py" bodystart="106" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>@file point_transformer.py
+@brief 检测点坐标转换模块
+
+该文件实现了一个 ROS 节点，用于将来自相机坐标系的检测点信息
+(detection_new 消息) 转换到全局 odom 坐标系下，并发布转换后的检测点。
+
+功能：
+- 订阅 /_detection_info 接收检测点信息
+- 使用 tf2 将检测点从相机坐标系转换到 odom 坐标系
+- 发布转换后的检测点到 /transformed_detection_info
+- 支持检测点的最小值和最大值坐标转换
+</verbatim> </para>
+    </detaileddescription>
+    <location file="auto_navigation/point_transform.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

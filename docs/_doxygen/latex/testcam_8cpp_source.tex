@@ -1,0 +1,76 @@
+\doxysection{testcam.\+cpp}
+\hypertarget{testcam_8cpp_source}{}\label{testcam_8cpp_source}\index{cameralcapture/testcam.cpp@{cameralcapture/testcam.cpp}}
+\mbox{\hyperlink{testcam_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00001}\mbox{\hyperlink{namespacecameralcapture}{00001}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecameralcapture}{cameralcapture}}\ \{}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <opencv2/opencv.hpp>}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <cv\_bridge/cv\_bridge.h>}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <sensor\_msgs/CompressedImage.h>}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}pipeline\_robot/compressedRGBD.h"{}}\ \textcolor{comment}{//\ 包含自定义消息}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00018}\mbox{\hyperlink{namespacecameralcapture_ad4821b4d88833619cce7f6782bfd7bb7}{00018}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacecameralcapture_ad4821b4d88833619cce7f6782bfd7bb7}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)\ \{}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00019}00019\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}rtsp\_reader\_node"{}});\ \textcolor{comment}{//\ 初始化\ ROS\ 节点}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00020}00020\ \ \ \ \ ros::NodeHandle\ nh;}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{comment}{//\ 发布自定义\ RGBD\ 压缩消息}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00023}00023\ \ \ \ \ ros::Publisher\ rgbd\_pub\ =\ nh.advertise<pipeline\_robot::compressedRGBD>(\textcolor{stringliteral}{"{}/camera/rgb\_depth/compressed"{}},\ 1);}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00025}00025\ \ \ \ \ std::string\ rtsp\_url\ =\ \textcolor{stringliteral}{"{}rtsp://admin:123456@192.168.8.10/Streaming/Channels/2"{}};\ \textcolor{comment}{//\ RTSP\ 视频流\ URL}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00026}00026\ \ \ \ \ cv::VideoCapture\ cap(rtsp\_url);}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{if}\ (!cap.isOpened())\ \{}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Failed\ to\ open\ RTSP\ stream:\ \%s"{}},\ rtsp\_url.c\_str());}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;\ \textcolor{comment}{//\ 如果无法打开\ RTSP\ 流，返回错误}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00031}00031\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Successfully\ connected\ to\ RTSP\ stream:\ \%s"{}},\ rtsp\_url.c\_str());}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00035}00035\ \ \ \ \ ros::Rate\ loop\_rate(30);\ \textcolor{comment}{//\ 设定循环频率为\ 30\ FPS}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordtype}{int}\ frame\_count\ =\ 0;\ \textcolor{comment}{//\ 帧计数器}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())\ \{}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ cv::Mat\ frame;}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!cap.read(frame))\ \{}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_WARN(\textcolor{stringliteral}{"{}Failed\ to\ read\ frame\ from\ RTSP\ stream,\ retrying..."{}});}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ cap.release();\ \textcolor{comment}{//\ 释放当前的流}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ ros::Duration(1.0).sleep();\ \textcolor{comment}{//\ 等待\ 1\ 秒后重新连接}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ cap.open(rtsp\_url);\ \textcolor{comment}{//\ 重新打开\ RTSP\ 流}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cap.isOpened())\ \{}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Reconnected\ to\ RTSP\ stream\ successfully."{}});}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Reconnect\ failed.\ Will\ retry..."{}});}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};\ \textcolor{comment}{//\ 如果读取失败，则继续循环}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ frame\_count++;\ \textcolor{comment}{//\ 增加帧计数}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//ROS\_INFO("{}Received\ frame\ \#\%d,\ size:\ \%dx\%d"{},\ frame\_count,\ frame.cols,\ frame.rows);}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ 压缩\ RGB\ 图像\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ std::vector<uchar>\ buf;\ \textcolor{comment}{//\ 存储压缩后的图像数据}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ std::vector<int>\ params\ =\ \{cv::IMWRITE\_JPEG\_QUALITY,\ 75\};\ \textcolor{comment}{//\ 压缩质量设置为\ 75}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ cv::imencode(\textcolor{stringliteral}{"{}.jpg"{}},\ frame,\ buf,\ params);\ \textcolor{comment}{//\ 压缩图像为\ JPEG\ 格式}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 构建自定义\ RGBD\ 消息}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ pipeline\_robot::compressedRGBD\ msg;}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ msg.rgb.header.stamp\ =\ ros::Time::now();\ \textcolor{comment}{//\ 当前时间戳}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ msg.rgb.header.frame\_id\ =\ \textcolor{stringliteral}{"{}camera"{}};\ \textcolor{comment}{//\ 设置帧\ ID}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ msg.rgb.format\ =\ \textcolor{stringliteral}{"{}jpeg"{}};\ \textcolor{comment}{//\ 图像格式}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ msg.rgb.data.assign(buf.begin(),\ buf.end());\ \textcolor{comment}{//\ 将压缩图像数据赋值给消息}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 如果\ depth\ 数据有，也可以在这里填充\ msg.depth}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ msg.depth\ =\ ...}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ rgbd\_pub.publish(msg);\ \textcolor{comment}{//\ 发布消息}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ ros::spinOnce();\ \textcolor{comment}{//\ 处理回调函数}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ loop\_rate.sleep();\ \textcolor{comment}{//\ 按照设定的频率睡眠}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00075}00075\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00077}00077\ \ \ \ \ cap.release();\ \textcolor{comment}{//\ 释放视频流}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ 正常结束}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00079}00079\ \}}
+\DoxyCodeLine{\Hypertarget{testcam_8cpp_source_l00080}00080\ \}\ \textcolor{comment}{//\ namespace\ cameralcapture}}
+
+\end{DoxyCode}

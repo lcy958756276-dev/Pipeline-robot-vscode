@@ -1,0 +1,216 @@
+\doxysection{cable\+\_\+read/stm32.cpp File Reference}
+\hypertarget{stm32_8cpp}{}\label{stm32_8cpp}\index{cable\_read/stm32.cpp@{cable\_read/stm32.cpp}}
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$serial/serial.\+h$>$}\newline
+{\ttfamily \#include $<$std\+\_\+msgs/\+String.\+h$>$}\newline
+{\ttfamily \#include $<$std\+\_\+msgs/\+Empty.\+h$>$}\newline
+{\ttfamily \#include "{}std\+\_\+msgs/\+UInt8.\+h"{}}\newline
+{\ttfamily \#include "{}std\+\_\+msgs/\+UInt8\+Multi\+Array.\+h"{}}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+Include dependency graph for stm32.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stm32_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{stm32_8cpp_aa53aae2dcc352535349deb3a56abdfc4}{datasend\+\_\+callback}} (const std\+\_\+msgs\+::\+String\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 处理订阅到的发送数据，将其发送到串口 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{stm32_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\begin{DoxyCompactList}\small\item\em 主函数，初始化节点，打开串口，订阅/发布主题 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+serial\+::\+Serial \mbox{\hyperlink{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b}{ser}}
+\begin{DoxyCompactList}\small\item\em 全局串口对象 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{stm32_8cpp_aa53aae2dcc352535349deb3a56abdfc4}\label{stm32_8cpp_aa53aae2dcc352535349deb3a56abdfc4} 
+\index{stm32.cpp@{stm32.cpp}!datasend\_callback@{datasend\_callback}}
+\index{datasend\_callback@{datasend\_callback}!stm32.cpp@{stm32.cpp}}
+\doxysubsubsection{\texorpdfstring{datasend\_callback()}{datasend\_callback()}}
+{\footnotesize\ttfamily void datasend\+\_\+callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+String\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+处理订阅到的发送数据，将其发送到串口 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & std\+\_\+msgs\+::\+String 发送的字符串消息\\
+\hline
+\end{DoxyParams}
+功能：
+\begin{DoxyItemize}
+\item 如果消息以 "{}\+AC"{} 开头，将消息中的数字解析出来，进行特定计算后发送。
+\item 否则直接将消息追加 "{}\textbackslash{}r\textbackslash{}n"{} 发送到串口。 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{stm32_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{stm32_8cpp_source}{stm32.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ len\ =\ msg-\/>data.size();}
+\DoxyCodeLine{00036\ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Successfully\ get:\ \%s"{}},\ msg-\/>data.c\_str());}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ 特殊处理\ "{}AC"{}\ 开头的消息}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{if}\ (msg-\/>data.substr(0,\ 2)\ ==\ \textcolor{stringliteral}{"{}AC"{}})}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ number\ =\ std::stod(msg-\/>data.substr(3));}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 根据公式处理数字}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ newNumber\ =\ 72000000\ /\ (number\ *\ 1200\ *\ 3000\ /\ 0.17)\ -\/\ 1;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ std::string\ output\ =\ \textcolor{stringliteral}{"{}AC+"{}}\ +\ std::to\_string(newNumber);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ std::string\ command\_to\_send\ =\ output\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Successfully\ send:\ \%s"{}},\ command\_to\_send.c\_str());}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b}{ser}}.write(command\_to\_send);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ 普通字符串直接发送}}
+\DoxyCodeLine{00052\ \ \ \ \ std::string\ command\_to\_send\ =\ msg-\/>data\ +\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b}{ser}}.write(command\_to\_send);}
+\DoxyCodeLine{00054\ \}}
+
+\end{DoxyCode}
+\Hypertarget{stm32_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{stm32_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+\index{stm32.cpp@{stm32.cpp}!main@{main}}
+\index{main@{main}!stm32.cpp@{stm32.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+
+
+主函数，初始化节点，打开串口，订阅/发布主题 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & 命令行参数个数 \\
+\hline
+{\em argv} & 命令行参数数组 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 程序退出状态
+\end{DoxyReturn}
+功能：
+\begin{DoxyItemize}
+\item 初始化 ROS 节点。
+\item 打开串口 "{}/dev/tty\+ACM0"{}，波特率 19200。
+\item 订阅 "{}cable"{} 主题发送数据。
+\item 发布 "{}minipc\+\_\+echo"{} 主题接收数据。
+\item 循环读取串口数据并发布。 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{stm32_8cpp_source_l00069}{69}} of file \mbox{\hyperlink{stm32_8cpp_source}{stm32.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ 初始化节点}}
+\DoxyCodeLine{00072\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}serial\_readwrite\_node"{}});}
+\DoxyCodeLine{00073\ \ \ \ \ ros::NodeHandle\ nh;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ len;}
+\DoxyCodeLine{00076\ \ \ \ \ std\_msgs::String\ RecvData;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ 订阅发送主题}}
+\DoxyCodeLine{00079\ \ \ \ \ ros::Subscriber\ send\_sub\ =\ nh.subscribe(\textcolor{stringliteral}{"{}cable"{}},\ 1000,\ \mbox{\hyperlink{stm32_8cpp_aa53aae2dcc352535349deb3a56abdfc4}{datasend\_callback}});}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ 发布接收主题}}
+\DoxyCodeLine{00081\ \ \ \ \ ros::Publisher\ read\_pub\ =\ nh.advertise<std\_msgs::String>(\textcolor{stringliteral}{"{}minipc\_echo"{}},\ 1000);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置串口属性并打开}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b}{ser}}.setPort(\textcolor{stringliteral}{"{}/dev/ttyACM0"{}});}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b}{ser}}.setBaudrate(19200);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ serial::Timeout\ to\ =\ serial::Timeout::simpleTimeout(1000);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b}{ser}}.setTimeout(to);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b}{ser}}.open();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 使用\ stty\ 设置串口参数}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ std::string\ port\ =\ \textcolor{stringliteral}{"{}/dev/ttyACM0"{}};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ std::string\ command\ =\ \textcolor{stringliteral}{"{}stty\ -\/F\ "{}}\ +\ port\ +\ \textcolor{stringliteral}{"{}\ cs8\ -\/cstopb\ -\/parenb"{}};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (system(command.c\_str())\ !=\ 0)}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_ERROR\_STREAM(\textcolor{stringliteral}{"{}Failed\ to\ set\ serial\ port\ parameters\ using\ stty"{}});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{catch}\ (serial::IOException\ \&e)}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ ROS\_ERROR\_STREAM(\textcolor{stringliteral}{"{}Unable\ to\ open\ port\ /dev/ttyACM0"{}});}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b}{ser}}.isOpen())}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ ROS\_INFO\_STREAM(\textcolor{stringliteral}{"{}Serial\ Port\ initialized"{}});}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ ros::Rate\ loop\_rate(10);\ \textcolor{comment}{//\ 循环频率\ 10Hz}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())}
+\DoxyCodeLine{00119\ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ len\ =\ \mbox{\hyperlink{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b}{ser}}.available();}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ >\ 2)}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ std\_msgs::UInt8MultiArray\ serial\_data;}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 读取串口数据}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b}{ser}}.read(serial\_data.data,\ len);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ RecvData.data.clear();\ \textcolor{comment}{//\ 清除上一次数据}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ len;\ i++)}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RecvData.data.push\_back(serial\_data.data[i]);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Successfully\ received:\ \%s"{}},\ RecvData.data.c\_str());}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 发布接收到的数据}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (RecvData.data.size()\ >\ 1)}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ read\_pub.publish(RecvData);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 处理订阅消息}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ loop\_rate.sleep();}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00151\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b}\label{stm32_8cpp_a448b5187ce5b494da4cf14cea184169b} 
+\index{stm32.cpp@{stm32.cpp}!ser@{ser}}
+\index{ser@{ser}!stm32.cpp@{stm32.cpp}}
+\doxysubsubsection{\texorpdfstring{ser}{ser}}
+{\footnotesize\ttfamily serial\+::\+Serial ser}
+
+
+
+全局串口对象 
+
+
+
+Definition at line \mbox{\hyperlink{stm32_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{stm32_8cpp_source}{stm32.\+cpp}}.
+

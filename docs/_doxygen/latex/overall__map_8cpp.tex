@@ -1,0 +1,322 @@
+\doxysection{3D\+\_\+mapping/overall\+\_\+map.cpp File Reference}
+\hypertarget{overall__map_8cpp}{}\label{overall__map_8cpp}\index{3D\_mapping/overall\_map.cpp@{3D\_mapping/overall\_map.cpp}}
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$sensor\+\_\+msgs/\+Point\+Cloud2.\+h$>$}\newline
+{\ttfamily \#include $<$nav\+\_\+msgs/\+Odometry.\+h$>$}\newline
+{\ttfamily \#include $<$pcl\+\_\+conversions/pcl\+\_\+conversions.\+h$>$}\newline
+{\ttfamily \#include $<$pcl/point\+\_\+cloud.\+h$>$}\newline
+{\ttfamily \#include $<$pcl/point\+\_\+types.\+h$>$}\newline
+{\ttfamily \#include $<$pcl\+\_\+ros/transforms.\+h$>$}\newline
+{\ttfamily \#include $<$tf/transform\+\_\+listener.\+h$>$}\newline
+{\ttfamily \#include $<$pcl/octree/octree\+\_\+pointcloud\+\_\+voxelcentroid.\+h$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+Include dependency graph for overall\+\_\+map.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{overall__map_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+pcl\+::octree\+::\+Octree\+Point\+Cloud\+Voxel\+Centroid$<$ pcl\+::\+Point\+XYZ $>$ \mbox{\hyperlink{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}{octree}} (\mbox{\hyperlink{overall__map_8cpp_a4333d786c60465d20826583358b2798d}{resolution}})
+\begin{DoxyCompactList}\small\item\em 八叉树对象，用于存储体素中心点 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{overall__map_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}{odom\+Callback}} (const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em odometry 回调函数，更新机器人当前位置 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{overall__map_8cpp_ae555b00aee41d288cfc286fe5fdd2f61}{cloud\+Callback}} (const sensor\+\_\+msgs\+::\+Point\+Cloud2\+::\+Const\+Ptr \&cloud\+Msg)
+\begin{DoxyCompactList}\small\item\em 点云回调函数，将接收到的点云变换到 odom 坐标系并更新八叉树 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{overall__map_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\begin{DoxyCompactList}\small\item\em 主函数，初始化 ROS 节点、订阅者、发布者并循环处理点云 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{overall__map_8cpp_a4333d786c60465d20826583358b2798d}{resolution}} = 0.\+01f
+\begin{DoxyCompactList}\small\item\em 八叉树分辨率 \end{DoxyCompactList}\item 
+tf\+::\+Transform\+Listener \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}{tf\+Listener}}
+\begin{DoxyCompactList}\small\item\em TF 监听器指针，用于坐标变换 \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{overall__map_8cpp_a14ca948851469d68a76e0b26d879a1aa}{cumulative\+Points}} = 0
+\begin{DoxyCompactList}\small\item\em 累计接收点数 \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{overall__map_8cpp_a1bcf55de3abb110c38e335e9fb8f5eb1}{current\+Voxels}} = 0
+\begin{DoxyCompactList}\small\item\em 当前体素数量 \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{overall__map_8cpp_a3e57fc0dd660c31635246086b6428a83}{last\+Position}} = Eigen\+::\+Vector3d\+::\+Zero()
+\begin{DoxyCompactList}\small\item\em 上一时刻机器人位置 \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}{current\+Position}} = Eigen\+::\+Vector3d\+::\+Zero()
+\begin{DoxyCompactList}\small\item\em 当前机器人位置 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{overall__map_8cpp_a699159ca5d125cf65d82bbeaefc750dd}{position\+Initialized}} = false
+\begin{DoxyCompactList}\small\item\em 位置是否初始化标志 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{overall__map_8cpp_ae555b00aee41d288cfc286fe5fdd2f61}\label{overall__map_8cpp_ae555b00aee41d288cfc286fe5fdd2f61} 
+\index{overall\_map.cpp@{overall\_map.cpp}!cloudCallback@{cloudCallback}}
+\index{cloudCallback@{cloudCallback}!overall\_map.cpp@{overall\_map.cpp}}
+\doxysubsubsection{\texorpdfstring{cloudCallback()}{cloudCallback()}}
+{\footnotesize\ttfamily void cloud\+Callback (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Point\+Cloud2\+::\+Const\+Ptr \&}]{cloud\+Msg }\end{DoxyParamCaption})}
+
+
+
+点云回调函数，将接收到的点云变换到 odom 坐标系并更新八叉树 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cloud\+Msg} & 接收到的点云（sensor\+\_\+msgs\+::\+Point\+Cloud2） \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{overall__map_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{overall__map_8cpp_source}{overall\+\_\+map.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ pcl::PointCloud<pcl::PointXYZ>::Ptr\ cloud(\textcolor{keyword}{new}\ pcl::PointCloud<pcl::PointXYZ>);}
+\DoxyCodeLine{00068\ \ \ \ \ pcl::fromROSMsg(*cloudMsg,\ *cloud);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{double}\ distanceMoved\ =\ (\mbox{\hyperlink{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}{currentPosition}}\ -\/\ \mbox{\hyperlink{overall__map_8cpp_a3e57fc0dd660c31635246086b6428a83}{lastPosition}}).norm();}
+\DoxyCodeLine{00071\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}(distanceMoved\ >\ 0.01)}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a3e57fc0dd660c31635246086b6428a83}{lastPosition}}\ =\ \mbox{\hyperlink{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}{currentPosition}};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ pcl::PointCloud<pcl::PointXYZ>::Ptr\ transformedCloud(\textcolor{keyword}{new}\ pcl::PointCloud<pcl::PointXYZ>);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}{tfListener}}-\/>waitForTransform(\textcolor{stringliteral}{"{}odom"{}},\ cloudMsg-\/>header.frame\_id,\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cloudMsg-\/>header.stamp,\ ros::Duration(1.0)))}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ pcl\_ros::transformPointCloud(\textcolor{stringliteral}{"{}odom"{}},\ *cloud,\ *transformedCloud,\ *\mbox{\hyperlink{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}{tfListener}});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 更新统计信息}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a14ca948851469d68a76e0b26d879a1aa}{cumulativePoints}}\ +=\ transformedCloud-\/>size();}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 更新八叉树}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}{octree}}.setInputCloud(transformedCloud);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}{octree}}.addPointsFromInputCloud();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \}}
+
+\end{DoxyCode}
+\Hypertarget{overall__map_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{overall__map_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+\index{overall\_map.cpp@{overall\_map.cpp}!main@{main}}
+\index{main@{main}!overall\_map.cpp@{overall\_map.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+
+
+主函数，初始化 ROS 节点、订阅者、发布者并循环处理点云 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & 命令行参数数量 \\
+\hline
+{\em argv} & 命令行参数数组 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 程序退出状态 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{overall__map_8cpp_source_l00099}{99}} of file \mbox{\hyperlink{overall__map_8cpp_source}{overall\+\_\+map.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}octree\_map\_builder"{}});}
+\DoxyCodeLine{00102\ \ \ \ \ ros::NodeHandle\ nh;}
+\DoxyCodeLine{00103\ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}{tfListener}}\ =\ \textcolor{keyword}{new}\ tf::TransformListener();}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ ros::Subscriber\ sub\ =\ nh.subscribe(\textcolor{stringliteral}{"{}/point\_cloud"{}},\ 10,\ \mbox{\hyperlink{overall__map_8cpp_ae555b00aee41d288cfc286fe5fdd2f61}{cloudCallback}});}
+\DoxyCodeLine{00107\ \ \ \ \ ros::Subscriber\ odomSub\ =\ nh.subscribe(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 10,\ \mbox{\hyperlink{overall__map_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}{odomCallback}});}
+\DoxyCodeLine{00108\ \ \ \ \ ros::Publisher\ pub\ =\ nh.advertise<sensor\_msgs::PointCloud2>(\textcolor{stringliteral}{"{}/overall\_map\_cloud"{}},\ 1);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ ros::Rate\ rate(10);}
+\DoxyCodeLine{00111\ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{while}(ros::ok())}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 获取当前八叉树状态}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a1bcf55de3abb110c38e335e9fb8f5eb1}{currentVoxels}}\ =\ \mbox{\hyperlink{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}{octree}}.getLeafCount();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 计算内存占用（假设每个点占12字节：3个float）}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ rawMemoryMB\ =\ (\mbox{\hyperlink{overall__map_8cpp_a14ca948851469d68a76e0b26d879a1aa}{cumulativePoints}}\ *\ \textcolor{keyword}{sizeof}(pcl::PointXYZ))\ /\ (1024.0\ *\ 1024.0);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ octreeMemoryMB\ =\ (\mbox{\hyperlink{overall__map_8cpp_a1bcf55de3abb110c38e335e9fb8f5eb1}{currentVoxels}}\ *\ \textcolor{keyword}{sizeof}(pcl::PointXYZ))\ /\ (1024.0\ *\ 1024.0);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 发布点云}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ pcl::PointCloud<pcl::PointXYZ>::Ptr\ outputCloud(\textcolor{keyword}{new}\ pcl::PointCloud<pcl::PointXYZ>);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}{octree}}.getOccupiedVoxelCenters(outputCloud-\/>points);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ sensor\_msgs::PointCloud2\ outputMsg;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ pcl::toROSMsg(*outputCloud,\ outputMsg);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ outputMsg.header.stamp\ =\ ros::Time::now();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ outputMsg.header.frame\_id\ =\ \textcolor{stringliteral}{"{}odom"{}};}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ pub.publish(outputMsg);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 输出统计信息}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ROS\_INFO\_STREAM("{}Accumulated\ Points:\ "{}\ <<\ cumulativePoints\ }}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}\ ("{}\ <<\ rawMemoryMB\ <<\ "{}\ MB)\ |\ "{}}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}Octree\ Voxels:\ "{}\ <<\ currentVoxels\ }}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}\ ("{}\ <<\ octreeMemoryMB\ <<\ "{}\ MB)"{});}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ rate.sleep();}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}{tfListener}};}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00144\ \}}
+
+\end{DoxyCode}
+\Hypertarget{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1}\label{overall__map_8cpp_a941d8397015c32731d1f8b1bd52b2ba1} 
+\index{overall\_map.cpp@{overall\_map.cpp}!octree@{octree}}
+\index{octree@{octree}!overall\_map.cpp@{overall\_map.cpp}}
+\doxysubsubsection{\texorpdfstring{octree()}{octree()}}
+{\footnotesize\ttfamily pcl\+::octree\+::\+Octree\+Point\+Cloud\+Voxel\+Centroid$<$ pcl\+::\+Point\+XYZ $>$ octree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{overall__map_8cpp_a4333d786c60465d20826583358b2798d}{resolution}}}]{ }\end{DoxyParamCaption})}
+
+
+
+八叉树对象，用于存储体素中心点 
+
+\Hypertarget{overall__map_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}\label{overall__map_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c} 
+\index{overall\_map.cpp@{overall\_map.cpp}!odomCallback@{odomCallback}}
+\index{odomCallback@{odomCallback}!overall\_map.cpp@{overall\_map.cpp}}
+\doxysubsubsection{\texorpdfstring{odomCallback()}{odomCallback()}}
+{\footnotesize\ttfamily void odom\+Callback (\begin{DoxyParamCaption}\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+odometry 回调函数，更新机器人当前位置 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 当前机器人里程计信息（nav\+\_\+msgs\+::\+Odometry） \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{overall__map_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{overall__map_8cpp_source}{overall\+\_\+map.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}{currentPosition}}\ =\ Eigen::Vector3d(}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ msg-\/>pose.pose.position.x,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ msg-\/>pose.pose.position.y,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ msg-\/>pose.pose.position.z);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{overall__map_8cpp_a699159ca5d125cf65d82bbeaefc750dd}{positionInitialized}})\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a3e57fc0dd660c31635246086b6428a83}{lastPosition}}\ =\ \mbox{\hyperlink{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}{currentPosition}};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{overall__map_8cpp_a699159ca5d125cf65d82bbeaefc750dd}{positionInitialized}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{overall__map_8cpp_a14ca948851469d68a76e0b26d879a1aa}\label{overall__map_8cpp_a14ca948851469d68a76e0b26d879a1aa} 
+\index{overall\_map.cpp@{overall\_map.cpp}!cumulativePoints@{cumulativePoints}}
+\index{cumulativePoints@{cumulativePoints}!overall\_map.cpp@{overall\_map.cpp}}
+\doxysubsubsection{\texorpdfstring{cumulativePoints}{cumulativePoints}}
+{\footnotesize\ttfamily size\+\_\+t cumulative\+Points = 0}
+
+
+
+累计接收点数 
+
+
+
+Definition at line \mbox{\hyperlink{overall__map_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{overall__map_8cpp_source}{overall\+\_\+map.\+cpp}}.
+
+\Hypertarget{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635}\label{overall__map_8cpp_a8bbc76585965c3f3c1067d4e2b8e4635} 
+\index{overall\_map.cpp@{overall\_map.cpp}!currentPosition@{currentPosition}}
+\index{currentPosition@{currentPosition}!overall\_map.cpp@{overall\_map.cpp}}
+\doxysubsubsection{\texorpdfstring{currentPosition}{currentPosition}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d current\+Position = Eigen\+::\+Vector3d\+::\+Zero()}
+
+
+
+当前机器人位置 
+
+
+
+Definition at line \mbox{\hyperlink{overall__map_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{overall__map_8cpp_source}{overall\+\_\+map.\+cpp}}.
+
+\Hypertarget{overall__map_8cpp_a1bcf55de3abb110c38e335e9fb8f5eb1}\label{overall__map_8cpp_a1bcf55de3abb110c38e335e9fb8f5eb1} 
+\index{overall\_map.cpp@{overall\_map.cpp}!currentVoxels@{currentVoxels}}
+\index{currentVoxels@{currentVoxels}!overall\_map.cpp@{overall\_map.cpp}}
+\doxysubsubsection{\texorpdfstring{currentVoxels}{currentVoxels}}
+{\footnotesize\ttfamily size\+\_\+t current\+Voxels = 0}
+
+
+
+当前体素数量 
+
+
+
+Definition at line \mbox{\hyperlink{overall__map_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{overall__map_8cpp_source}{overall\+\_\+map.\+cpp}}.
+
+\Hypertarget{overall__map_8cpp_a3e57fc0dd660c31635246086b6428a83}\label{overall__map_8cpp_a3e57fc0dd660c31635246086b6428a83} 
+\index{overall\_map.cpp@{overall\_map.cpp}!lastPosition@{lastPosition}}
+\index{lastPosition@{lastPosition}!overall\_map.cpp@{overall\_map.cpp}}
+\doxysubsubsection{\texorpdfstring{lastPosition}{lastPosition}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d last\+Position = Eigen\+::\+Vector3d\+::\+Zero()}
+
+
+
+上一时刻机器人位置 
+
+
+
+Definition at line \mbox{\hyperlink{overall__map_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{overall__map_8cpp_source}{overall\+\_\+map.\+cpp}}.
+
+\Hypertarget{overall__map_8cpp_a699159ca5d125cf65d82bbeaefc750dd}\label{overall__map_8cpp_a699159ca5d125cf65d82bbeaefc750dd} 
+\index{overall\_map.cpp@{overall\_map.cpp}!positionInitialized@{positionInitialized}}
+\index{positionInitialized@{positionInitialized}!overall\_map.cpp@{overall\_map.cpp}}
+\doxysubsubsection{\texorpdfstring{positionInitialized}{positionInitialized}}
+{\footnotesize\ttfamily bool position\+Initialized = false}
+
+
+
+位置是否初始化标志 
+
+
+
+Definition at line \mbox{\hyperlink{overall__map_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{overall__map_8cpp_source}{overall\+\_\+map.\+cpp}}.
+
+\Hypertarget{overall__map_8cpp_a4333d786c60465d20826583358b2798d}\label{overall__map_8cpp_a4333d786c60465d20826583358b2798d} 
+\index{overall\_map.cpp@{overall\_map.cpp}!resolution@{resolution}}
+\index{resolution@{resolution}!overall\_map.cpp@{overall\_map.cpp}}
+\doxysubsubsection{\texorpdfstring{resolution}{resolution}}
+{\footnotesize\ttfamily float resolution = 0.\+01f}
+
+
+
+八叉树分辨率 
+
+
+
+Definition at line \mbox{\hyperlink{overall__map_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{overall__map_8cpp_source}{overall\+\_\+map.\+cpp}}.
+
+\Hypertarget{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a}\label{overall__map_8cpp_a82d466187eb99a84467bf27a26ee481a} 
+\index{overall\_map.cpp@{overall\_map.cpp}!tfListener@{tfListener}}
+\index{tfListener@{tfListener}!overall\_map.cpp@{overall\_map.cpp}}
+\doxysubsubsection{\texorpdfstring{tfListener}{tfListener}}
+{\footnotesize\ttfamily tf\+::\+Transform\+Listener\texorpdfstring{$\ast$}{*} tf\+Listener}
+
+
+
+TF 监听器指针，用于坐标变换 
+
+
+
+Definition at line \mbox{\hyperlink{overall__map_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{overall__map_8cpp_source}{overall\+\_\+map.\+cpp}}.
+

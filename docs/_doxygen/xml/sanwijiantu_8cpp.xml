@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="sanwijiantu_8cpp" kind="file" language="C++">
+    <compoundname>sanwijiantu.cpp</compoundname>
+    <includes local="no">ros/ros.h</includes>
+    <includes local="no">sensor_msgs/PointCloud2.h</includes>
+    <includes local="no">nav_msgs/Odometry.h</includes>
+    <includes local="no">pcl/point_cloud.h</includes>
+    <includes local="no">pcl/point_types.h</includes>
+    <includes local="no">pcl_conversions/pcl_conversions.h</includes>
+    <includes local="no">pcl/octree/octree_pointcloud_voxelcentroid.h</includes>
+    <includes local="no">pipeline_robot/DistanceAngle.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>3D_mapping/sanwijiantu.cpp</label>
+        <link refid="sanwijiantu_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>nav_msgs/Odometry.h</label>
+      </node>
+      <node id="8">
+        <label>pcl/octree/octree_pointcloud_voxelcentroid.h</label>
+      </node>
+      <node id="5">
+        <label>pcl/point_cloud.h</label>
+      </node>
+      <node id="6">
+        <label>pcl/point_types.h</label>
+      </node>
+      <node id="7">
+        <label>pcl_conversions/pcl_conversions.h</label>
+      </node>
+      <node id="9">
+        <label>pipeline_robot/DistanceAngle.h</label>
+      </node>
+      <node id="2">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="3">
+        <label>sensor_msgs/PointCloud2.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classDA__Octree__Node" prot="public">DA_Octree_Node</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="sanwijiantu_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+<para>主函数，初始化 ROS 节点并启动 <ref refid="classDA__Octree__Node" kindref="compound">DA_Octree_Node</ref> </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数数量 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数数组 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int 程序退出状态 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="3D_mapping/sanwijiantu.cpp" line="110" column="5" bodyfile="3D_mapping/sanwijiantu.cpp" bodystart="110" bodyend="115"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros/ros.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/PointCloud2.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nav_msgs/Odometry.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pcl/point_cloud.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pcl/point_types.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pcl_conversions/pcl_conversions.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pcl/octree/octree_pointcloud_voxelcentroid.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pipeline_robot/DistanceAngle.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="classDA__Octree__Node" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classDA__Octree__Node" kindref="compound">DA_Octree_Node</ref><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="30" refid="classDA__Octree__Node_1affd4d94f5e93e83256aa82725fd79509" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1affd4d94f5e93e83256aa82725fd79509" kindref="member">DA_Octree_Node</ref>()<sp/>:<sp/><ref refid="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec" kindref="member">octree_</ref>(0.000001f),<sp/><ref refid="classDA__Octree__Node_1a788e3a9b1a9378469f0dff71be998020" kindref="member">odom_received_</ref>(false)<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::NodeHandle<sp/>nh;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>订阅<sp/>Distance-Angle</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1ac9e99724363e8816834a603e56250462" kindref="member">da_sub_</ref><sp/>=<sp/>nh.subscribe(</highlight><highlight class="stringliteral">&quot;/distance_angle&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;<ref refid="classDA__Octree__Node_1a2cb85a99abd9811255ef21bf99110a6c" kindref="member">DA_Octree_Node::daCallback</ref>,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>订阅外部<sp/>odom</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1a89264bb14609035442fb21d826a7bb71" kindref="member">odom_sub_</ref><sp/>=<sp/>nh.subscribe(</highlight><highlight class="stringliteral">&quot;/cable/odom&quot;</highlight><highlight class="normal">,<sp/>10,<sp/>&amp;<ref refid="classDA__Octree__Node_1a5cb1a998850bddf23da20ae4f49119af" kindref="member">DA_Octree_Node::odomCallback</ref>,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>发布稀疏化点云</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1a302c05b9f02186592a77d55372927df9" kindref="member">cloud_pub_</ref><sp/>=<sp/>nh.advertise&lt;sensor_msgs::PointCloud2&gt;(</highlight><highlight class="stringliteral">&quot;/overall_map_cloud&quot;</highlight><highlight class="normal">,<sp/>1);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1a9445d49b805496111099deb1cd89e115" kindref="member">cloud_</ref>.reset(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>pcl::PointCloud&lt;pcl::PointXYZ&gt;);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1a9445d49b805496111099deb1cd89e115" kindref="member">cloud_</ref>-&gt;is_dense<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="classDA__Octree__Node_1a5cb1a998850bddf23da20ae4f49119af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDA__Octree__Node_1a5cb1a998850bddf23da20ae4f49119af" kindref="member">odomCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nav_msgs::Odometry::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1a4b7666d696a436fb6c444de982b46c04" kindref="member">current_pose_</ref><sp/>=<sp/>msg-&gt;pose.pose;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1a788e3a9b1a9378469f0dff71be998020" kindref="member">odom_received_</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="classDA__Octree__Node_1a2cb85a99abd9811255ef21bf99110a6c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDA__Octree__Node_1a2cb85a99abd9811255ef21bf99110a6c" kindref="member">daCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>pipeline_robot::DistanceAngle::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classDA__Octree__Node_1a788e3a9b1a9378469f0dff71be998020" kindref="member">odom_received_</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_WARN_THROTTLE(5,<sp/></highlight><highlight class="stringliteral">&quot;Waiting<sp/>for<sp/>/cable/odom<sp/>...&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Time<sp/>current_time<sp/>=<sp/>ros::Time::now();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>angle_rad<sp/>=<sp/>msg-&gt;angle<sp/>*<sp/>M_PI<sp/>/<sp/>180.0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcl::PointXYZ<sp/>point;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>point.x<sp/>=<sp/><ref refid="classDA__Octree__Node_1a4b7666d696a436fb6c444de982b46c04" kindref="member">current_pose_</ref>.position.x;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>point.y<sp/>=<sp/>msg-&gt;distance<sp/>*<sp/>sin(angle_rad)<sp/>*<sp/>0.01;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>point.z<sp/>=<sp/>msg-&gt;distance<sp/>*<sp/>cos(angle_rad)<sp/>*<sp/>(-0.01);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1a9445d49b805496111099deb1cd89e115" kindref="member">cloud_</ref>-&gt;points.push_back(point);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>更新八叉树</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec" kindref="member">octree_</ref>.setInputCloud(<ref refid="classDA__Octree__Node_1a9445d49b805496111099deb1cd89e115" kindref="member">cloud_</ref>);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec" kindref="member">octree_</ref>.addPointsFromInputCloud();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr<sp/>outputCloud(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>pcl::PointCloud&lt;pcl::PointXYZ&gt;);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec" kindref="member">octree_</ref>.getOccupiedVoxelCenters(outputCloud-&gt;points);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sensor_msgs::PointCloud2<sp/>outputMsg;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcl::toROSMsg(*outputCloud,<sp/>outputMsg);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outputMsg.header.stamp<sp/>=<sp/>current_time;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outputMsg.header.frame_id<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;odom&quot;</highlight><highlight class="normal">;<sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node_1a302c05b9f02186592a77d55372927df9" kindref="member">cloud_pub_</ref>.publish(outputMsg);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO_STREAM(</highlight><highlight class="stringliteral">&quot;Octree<sp/>voxels:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec" kindref="member">octree_</ref>.getLeafCount()</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>|<sp/>Input<sp/>points:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classDA__Octree__Node_1a9445d49b805496111099deb1cd89e115" kindref="member">cloud_</ref>-&gt;size());</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="93" refid="classDA__Octree__Node_1ac9e99724363e8816834a603e56250462" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Subscriber<sp/><ref refid="classDA__Octree__Node_1ac9e99724363e8816834a603e56250462" kindref="member">da_sub_</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94" refid="classDA__Octree__Node_1a89264bb14609035442fb21d826a7bb71" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Subscriber<sp/><ref refid="classDA__Octree__Node_1a89264bb14609035442fb21d826a7bb71" kindref="member">odom_sub_</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95" refid="classDA__Octree__Node_1a302c05b9f02186592a77d55372927df9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Publisher<sp/><ref refid="classDA__Octree__Node_1a302c05b9f02186592a77d55372927df9" kindref="member">cloud_pub_</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="classDA__Octree__Node_1a9445d49b805496111099deb1cd89e115" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr<sp/><ref refid="classDA__Octree__Node_1a9445d49b805496111099deb1cd89e115" kindref="member">cloud_</ref>;<sp/></highlight></codeline>
+<codeline lineno="98" refid="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>pcl::octree::OctreePointCloudVoxelCentroid&lt;pcl::PointXYZ&gt;<sp/><ref refid="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec" kindref="member">octree_</ref>;<sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="classDA__Octree__Node_1a4b7666d696a436fb6c444de982b46c04" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>geometry_msgs::Pose<sp/><ref refid="classDA__Octree__Node_1a4b7666d696a436fb6c444de982b46c04" kindref="member">current_pose_</ref>;<sp/></highlight></codeline>
+<codeline lineno="101" refid="classDA__Octree__Node_1a788e3a9b1a9378469f0dff71be998020" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classDA__Octree__Node_1a788e3a9b1a9378469f0dff71be998020" kindref="member">odom_received_</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="sanwijiantu_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sanwijiantu_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>argv)<sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::init(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;da_octree_node&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classDA__Octree__Node" kindref="compound">DA_Octree_Node</ref><sp/>node;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::spin();</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="3D_mapping/sanwijiantu.cpp"/>
+  </compounddef>
+</doxygen>

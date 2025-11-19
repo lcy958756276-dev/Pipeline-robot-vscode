@@ -1,0 +1,212 @@
+\doxysection{auto\+\_\+navigation.\+point\+\_\+transform.\+Point\+Transformer Class Reference}
+\hypertarget{classauto__navigation_1_1point__transform_1_1PointTransformer}{}\label{classauto__navigation_1_1point__transform_1_1PointTransformer}\index{auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_aaedaeb390c4431789c5f13c4e4cac25a}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_a49a89da8b3e38167ecf4afd22339f0b9}{detection\+\_\+callback}} (self, detection\+\_\+data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_a3d5f1d1b5ab5ae204610f018fd295536}{tf\+\_\+buffer}}
+\item 
+\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_ab5070a17f047b8e3721d8fda8ccdac9a}{tf\+\_\+listener}}
+\item 
+\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_ac43e9e3218f6f38cff12a2f1c63e8c6d}{detection\+\_\+callback}}
+\item 
+\mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer_ae10b95b0c849a250e0154365fcbb37a4}{detection\+\_\+pub}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@class PointTransformer
+@brief 检测点坐标转换类
+
+该类功能：
+- 初始化 ROS 节点和 TF2 监听器
+- 接收来自 /_detection_info 的检测点消息
+- 将检测点坐标从原始坐标系转换到 odom 坐标系
+- 发布转换后的检测点消息到 /transformed_detection_info
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{point__transform_8py_source_l00023}{23}} of file \mbox{\hyperlink{point__transform_8py_source}{point\+\_\+transform.\+py}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classauto__navigation_1_1point__transform_1_1PointTransformer_aaedaeb390c4431789c5f13c4e4cac25a}\label{classauto__navigation_1_1point__transform_1_1PointTransformer_aaedaeb390c4431789c5f13c4e4cac25a} 
+\index{auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily auto\+\_\+navigation.\+point\+\_\+transform.\+Point\+Transformer.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief 构造函数，初始化 ROS 节点、TF2 和订阅/发布者
+
+功能：
+- 初始化 ROS 节点 'point_transformer'
+- 初始化 tf2 缓冲区和监听器
+- 订阅 /_detection_info 接收 detection_new 消息
+- 创建 /transformed_detection_info 发布者
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{point__transform_8py_source_l00035}{35}} of file \mbox{\hyperlink{point__transform_8py_source}{point\+\_\+transform.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self):}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00037\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ 构造函数，初始化\ ROS\ 节点、TF2\ 和订阅/发布者}}
+\DoxyCodeLine{00038\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00039\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 功能：}}
+\DoxyCodeLine{00040\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 初始化\ ROS\ 节点\ 'point\_transformer'}}
+\DoxyCodeLine{00041\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 初始化\ tf2\ 缓冲区和监听器}}
+\DoxyCodeLine{00042\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 订阅\ /\_detection\_info\ 接收\ detection\_new\ 消息}}
+\DoxyCodeLine{00043\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 创建\ /transformed\_detection\_info\ 发布者}}
+\DoxyCodeLine{00044\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ rospy.init\_node(\textcolor{stringliteral}{'point\_transformer'},\ anonymous=\textcolor{keyword}{True})}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ self.tf\_buffer\ =\ tf2\_ros.Buffer()}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ self.tf\_listener\ =\ tf2\_ros.TransformListener(self.tf\_buffer)}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ rospy.Subscriber(\textcolor{stringliteral}{"{}/\_detection\_info"{}},\ detection\_new,\ self.detection\_callback)}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ self.detection\_pub\ =\ rospy.Publisher(\textcolor{stringliteral}{"{}/transformed\_detection\_info"{}},\ detection\_new,\ queue\_size=10)}
+\DoxyCodeLine{00052\ }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classauto__navigation_1_1point__transform_1_1PointTransformer_a49a89da8b3e38167ecf4afd22339f0b9}\label{classauto__navigation_1_1point__transform_1_1PointTransformer_a49a89da8b3e38167ecf4afd22339f0b9} 
+\index{auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}!detection\_callback@{detection\_callback}}
+\index{detection\_callback@{detection\_callback}!auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}}
+\doxysubsubsection{\texorpdfstring{detection\_callback()}{detection\_callback()}}
+{\footnotesize\ttfamily auto\+\_\+navigation.\+point\+\_\+transform.\+Point\+Transformer.\+detection\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{detection\+\_\+data }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief 检测点回调函数，将检测点从原始坐标系转换到 odom 坐标系并发布
+
+@param detection_data detection_new
+    输入的检测点消息，包含以下字段：
+    - class_name: 检测类别名称
+    - score: 检测置信度
+    - point_stamped: 检测点坐标
+    - min_stamped: 检测点最小值坐标
+    - max_stamped: 检测点最大值坐标
+
+@return None
+    函数无返回值
+
+功能：
+- 使用 tf2 查找检测点坐标到 odom 的变换
+- 对 point_stamped、min_stamped 和 max_stamped 进行坐标变换
+- 将转换后的检测点封装到新的 detection_new 消息并发布
+- 如果发生 TF2 错误，输出错误日志
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{point__transform_8py_source_l00053}{53}} of file \mbox{\hyperlink{point__transform_8py_source}{point\+\_\+transform.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{def\ }detection\_callback(self,\ detection\_data):}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00055\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @brief\ 检测点回调函数，将检测点从原始坐标系转换到\ odom\ 坐标系并发布}}
+\DoxyCodeLine{00056\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00057\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @param\ detection\_data\ detection\_new}}
+\DoxyCodeLine{00058\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ 输入的检测点消息，包含以下字段：}}
+\DoxyCodeLine{00059\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ class\_name:\ 检测类别名称}}
+\DoxyCodeLine{00060\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ score:\ 检测置信度}}
+\DoxyCodeLine{00061\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ point\_stamped:\ 检测点坐标}}
+\DoxyCodeLine{00062\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ min\_stamped:\ 检测点最小值坐标}}
+\DoxyCodeLine{00063\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ max\_stamped:\ 检测点最大值坐标}}
+\DoxyCodeLine{00064\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ None}}
+\DoxyCodeLine{00066\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ 函数无返回值}}
+\DoxyCodeLine{00067\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00068\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 功能：}}
+\DoxyCodeLine{00069\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 使用\ tf2\ 查找检测点坐标到\ odom\ 的变换}}
+\DoxyCodeLine{00070\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 对\ point\_stamped、min\_stamped\ 和\ max\_stamped\ 进行坐标变换}}
+\DoxyCodeLine{00071\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 将转换后的检测点封装到新的\ detection\_new\ 消息并发布}}
+\DoxyCodeLine{00072\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ -\/\ 如果发生\ TF2\ 错误，输出错误日志}}
+\DoxyCodeLine{00073\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ transform\ =\ self.tf\_buffer.lookup\_transform(\textcolor{stringliteral}{'odom'},}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detection\_data.point\_stamped.header.frame\_id,}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rospy.Time(0),}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rospy.Duration(1.0))}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point\ =\ tf2\_geometry\_msgs.do\_transform\_point(detection\_data.point\_stamped,\ transform)}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point\_min\ =\ tf2\_geometry\_msgs.do\_transform\_point(detection\_data.min\_stamped,\ transform)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point\_max\ =\ tf2\_geometry\_msgs.do\_transform\_point(detection\_data.max\_stamped,\ transform)}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ rospy.loginfo(\textcolor{stringliteral}{"{}Transformed\ point\ in\ camera\_link:\ (\%s,\%.2f,\ \%.2f,\ \%.2f)"{}},\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detection\_data.class\_name,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point.point.x,\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point.point.y,\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transformed\_point.point.z)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ new\_detection\ =\ detection\_new()}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ new\_detection.class\_name\ =\ detection\_data.class\_name}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ new\_detection.score\ =\ detection\_data.score}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ new\_detection.image\_data\ =\ detection\_data.image\_data\ \ }}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ new\_detection.min\_stamped\ =\ transformed\_point\_min\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ new\_detection.max\_stamped\ =\ transformed\_point\_max}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ self.detection\_pub.publish(new\_detection)}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ (tf2\_ros.LookupException,\ tf2\_ros.ConnectivityException,\ tf2\_ros.ExtrapolationException)\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ rospy.logerr(\textcolor{stringliteral}{"{}TF2\ Error:\ \%s"{}},\ str(e))}
+\DoxyCodeLine{00101\ }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classauto__navigation_1_1point__transform_1_1PointTransformer_ac43e9e3218f6f38cff12a2f1c63e8c6d}\label{classauto__navigation_1_1point__transform_1_1PointTransformer_ac43e9e3218f6f38cff12a2f1c63e8c6d} 
+\index{auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}!detection\_callback@{detection\_callback}}
+\index{detection\_callback@{detection\_callback}!auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}}
+\doxysubsubsection{\texorpdfstring{detection\_callback}{detection\_callback}}
+{\footnotesize\ttfamily auto\+\_\+navigation.\+point\+\_\+transform.\+Point\+Transformer.\+detection\+\_\+callback}
+
+
+
+Definition at line \mbox{\hyperlink{point__transform_8py_source_l00050}{50}} of file \mbox{\hyperlink{point__transform_8py_source}{point\+\_\+transform.\+py}}.
+
+\Hypertarget{classauto__navigation_1_1point__transform_1_1PointTransformer_ae10b95b0c849a250e0154365fcbb37a4}\label{classauto__navigation_1_1point__transform_1_1PointTransformer_ae10b95b0c849a250e0154365fcbb37a4} 
+\index{auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}!detection\_pub@{detection\_pub}}
+\index{detection\_pub@{detection\_pub}!auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}}
+\doxysubsubsection{\texorpdfstring{detection\_pub}{detection\_pub}}
+{\footnotesize\ttfamily auto\+\_\+navigation.\+point\+\_\+transform.\+Point\+Transformer.\+detection\+\_\+pub}
+
+
+
+Definition at line \mbox{\hyperlink{point__transform_8py_source_l00051}{51}} of file \mbox{\hyperlink{point__transform_8py_source}{point\+\_\+transform.\+py}}.
+
+\Hypertarget{classauto__navigation_1_1point__transform_1_1PointTransformer_a3d5f1d1b5ab5ae204610f018fd295536}\label{classauto__navigation_1_1point__transform_1_1PointTransformer_a3d5f1d1b5ab5ae204610f018fd295536} 
+\index{auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}!tf\_buffer@{tf\_buffer}}
+\index{tf\_buffer@{tf\_buffer}!auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}}
+\doxysubsubsection{\texorpdfstring{tf\_buffer}{tf\_buffer}}
+{\footnotesize\ttfamily auto\+\_\+navigation.\+point\+\_\+transform.\+Point\+Transformer.\+tf\+\_\+buffer}
+
+
+
+Definition at line \mbox{\hyperlink{point__transform_8py_source_l00047}{47}} of file \mbox{\hyperlink{point__transform_8py_source}{point\+\_\+transform.\+py}}.
+
+\Hypertarget{classauto__navigation_1_1point__transform_1_1PointTransformer_ab5070a17f047b8e3721d8fda8ccdac9a}\label{classauto__navigation_1_1point__transform_1_1PointTransformer_ab5070a17f047b8e3721d8fda8ccdac9a} 
+\index{auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}!tf\_listener@{tf\_listener}}
+\index{tf\_listener@{tf\_listener}!auto\_navigation.point\_transform.PointTransformer@{auto\_navigation.point\_transform.PointTransformer}}
+\doxysubsubsection{\texorpdfstring{tf\_listener}{tf\_listener}}
+{\footnotesize\ttfamily auto\+\_\+navigation.\+point\+\_\+transform.\+Point\+Transformer.\+tf\+\_\+listener}
+
+
+
+Definition at line \mbox{\hyperlink{point__transform_8py_source_l00048}{48}} of file \mbox{\hyperlink{point__transform_8py_source}{point\+\_\+transform.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+auto\+\_\+navigation/\mbox{\hyperlink{point__transform_8py}{point\+\_\+transform.\+py}}\end{DoxyCompactItemize}

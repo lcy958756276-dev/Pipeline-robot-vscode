@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_baa7334b549432b23df2b0f18fb5210d" kind="dir">
+    <compoundname>Motherboard_data_process</compoundname>
+    <innerfile refid="dianliu_8cpp">dianliu.cpp</innerfile>
+    <innerfile refid="lidarimudata_8cpp">lidarimudata.cpp</innerfile>
+    <innerfile refid="tempandpress_8cpp">tempandpress.cpp</innerfile>
+    <innerfile refid="three__yuannumber_8cpp">three_yuannumber.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Motherboard_data_process/"/>
+  </compounddef>
+</doxygen>

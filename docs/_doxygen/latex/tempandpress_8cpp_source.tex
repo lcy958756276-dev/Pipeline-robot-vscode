@@ -1,0 +1,148 @@
+\doxysection{tempandpress.\+cpp}
+\hypertarget{tempandpress_8cpp_source}{}\label{tempandpress_8cpp_source}\index{Motherboard\_data\_process/tempandpress.cpp@{Motherboard\_data\_process/tempandpress.cpp}}
+\mbox{\hyperlink{tempandpress_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <std\_msgs/Float32.h>}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <netinet/in.h>}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00021}00021\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ 全局发布器\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00022}\mbox{\hyperlink{tempandpress_8cpp_a229938ef2b258aba203e83bca7f47b36}{00022}}\ ros::Publisher\ \mbox{\hyperlink{tempandpress_8cpp_a229938ef2b258aba203e83bca7f47b36}{pub\_temp}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00023}\mbox{\hyperlink{tempandpress_8cpp_ab22b3f5f78356af75c89bb0c5e6e3858}{00023}}\ ros::Publisher\ \mbox{\hyperlink{tempandpress_8cpp_ab22b3f5f78356af75c89bb0c5e6e3858}{pub\_press}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00024}\mbox{\hyperlink{tempandpress_8cpp_ab49abf98d6945a9fd91eed2743b99634}{00024}}\ ros::Publisher\ \mbox{\hyperlink{tempandpress_8cpp_ab49abf98d6945a9fd91eed2743b99634}{pub\_cpu\_temp}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00025}\mbox{\hyperlink{tempandpress_8cpp_aab08866a9274281978d9fc03a4d737ab}{00025}}\ ros::Publisher\ \mbox{\hyperlink{tempandpress_8cpp_aab08866a9274281978d9fc03a4d737ab}{pub\_gpu\_temp}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00032}\mbox{\hyperlink{tempandpress_8cpp_aea836183d504027fcec3386ac320d1b0}{00032}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{tempandpress_8cpp_aea836183d504027fcec3386ac320d1b0}{readThermal}}(\textcolor{keyword}{const}\ std::string\&\ path)\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00033}00033\ \ \ \ \ std::ifstream\ file(path);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \textcolor{keywordflow}{return}\ -\/1.0;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{int}\ milliC;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00036}00036\ \ \ \ \ file\ >>\ milliC;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{return}\ milliC\ /\ 1000.0;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00038}00038\ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00049}\mbox{\hyperlink{tempandpress_8cpp_abba960c86bd339697e78c89131d9a565}{00049}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tempandpress_8cpp_abba960c86bd339697e78c89131d9a565}{parseAndPublish}}(\textcolor{keyword}{const}\ std::string\&\ line)\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{float}\ ntc\_val\ =\ -\/1,\ ap\_val\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ pos;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00053}00053\ \ \ \ \ pos\ =\ line.find(\textcolor{stringliteral}{"{}NTC:"{}});}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ ntc\_val\ =\ std::stof(line.substr(pos\ +\ 4));}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00058}00058\ \ \ \ \ pos\ =\ line.find(\textcolor{stringliteral}{"{}AP:"{}});}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ ap\_val\ =\ std::stof(line.substr(pos\ +\ 3));}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{if}\ (ntc\_val\ >=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ std\_msgs::Float32\ msg;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ msg.data\ =\ (ntc\_val-\/32)*5/9;\ \ \textcolor{comment}{//\ 华氏转摄氏}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_a229938ef2b258aba203e83bca7f47b36}{pub\_temp}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Published\ /temperature\_data\ =\ \%.2f"{}},\ ntc\_val);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (ap\_val\ >=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ std\_msgs::Float32\ msg;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ msg.data\ =\ ap\_val;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_ab22b3f5f78356af75c89bb0c5e6e3858}{pub\_press}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Published\ /pressVal\ =\ \%.2f"{}},\ ap\_val);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00075}00075\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00076}00076\ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00087}\mbox{\hyperlink{tempandpress_8cpp_a54fb40f1cec43c98df052811a7b15a51}{00087}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tempandpress_8cpp_a54fb40f1cec43c98df052811a7b15a51}{tcpLoop}}(\textcolor{keyword}{const}\ std::string\&\ ip,\ \textcolor{keywordtype}{int}\ port)\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordtype}{int}\ sockfd\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (sockfd\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Socket\ creation\ failed"{}});}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00094}00094\ \ \ \ \ sockaddr\_in\ serv\_addr;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00095}00095\ \ \ \ \ serv\_addr.sin\_family\ =\ AF\_INET;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00096}00096\ \ \ \ \ serv\_addr.sin\_port\ =\ htons(port);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00097}00097\ \ \ \ \ inet\_pton(AF\_INET,\ ip.c\_str(),\ \&serv\_addr.sin\_addr);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (connect(sockfd,\ (\textcolor{keyword}{struct}\ sockaddr*)\&serv\_addr,\ \textcolor{keyword}{sizeof}(serv\_addr))\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Connection\ failed\ to\ \%s:\%d"{}},\ ip.c\_str(),\ port);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00102}00102\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00104}00104\ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Connected\ to\ server\ \%s:\%d"{}},\ ip.c\_str(),\ port);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[1024];}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00107}00107\ \ \ \ \ std::string\ leftover;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ ssize\_t\ n\ =\ read(sockfd,\ buffer,\ \textcolor{keyword}{sizeof}(buffer)\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ <=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_WARN(\textcolor{stringliteral}{"{}Server\ disconnected"{}});}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ buffer[n]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ std::string\ data\ =\ leftover\ +\ buffer;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ std::istringstream\ iss(data);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(iss,\ line))\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!line.empty())\ \mbox{\hyperlink{tempandpress_8cpp_abba960c86bd339697e78c89131d9a565}{parseAndPublish}}(line);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 处理不完整的一行}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (data.back()\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ leftover\ =\ data.substr(data.find\_last\_of(\textcolor{charliteral}{'\(\backslash\)n'})\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ leftover.clear();}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00131}00131\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00133}00133\ \ \ \ \ close(sockfd);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00134}00134\ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00139}\mbox{\hyperlink{tempandpress_8cpp_a29f4ca4ec279107fd08630624d6a20b1}{00139}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tempandpress_8cpp_a29f4ca4ec279107fd08630624d6a20b1}{publishNanoTemp}}()\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00140}00140\ \ \ \ \ \textcolor{keywordtype}{float}\ cpu\_temp\ =\ \mbox{\hyperlink{tempandpress_8cpp_aea836183d504027fcec3386ac320d1b0}{readThermal}}(\textcolor{stringliteral}{"{}/sys/class/thermal/thermal\_zone0/temp"{}});}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00141}00141\ \ \ \ \ \textcolor{keywordtype}{float}\ gpu\_temp\ =\ \mbox{\hyperlink{tempandpress_8cpp_aea836183d504027fcec3386ac320d1b0}{readThermal}}(\textcolor{stringliteral}{"{}/sys/class/thermal/thermal\_zone1/temp"{}});}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00143}00143\ \ \ \ \ std\_msgs::Float32\ msg\_cpu,\ msg\_gpu;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00144}00144\ \ \ \ \ msg\_cpu.data\ =\ cpu\_temp;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00145}00145\ \ \ \ \ msg\_gpu.data\ =\ gpu\_temp;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00147}00147\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_ab49abf98d6945a9fd91eed2743b99634}{pub\_cpu\_temp}}.publish(msg\_cpu);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00148}00148\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_aab08866a9274281978d9fc03a4d737ab}{pub\_gpu\_temp}}.publish(msg\_gpu);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00150}00150\ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Orin\ CPU\ Temp:\ \%.2f\ °C,\ GPU\ Temp:\ \%.2f\ °C"{}},\ cpu\_temp,\ gpu\_temp);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00151}00151\ \}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00159}\mbox{\hyperlink{tempandpress_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{00159}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tempandpress_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)\ \{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00160}00160\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}sensor\_bridge\_node"{}});}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00161}00161\ \ \ \ \ ros::NodeHandle\ nh;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00163}00163\ \ \ \ \ std::string\ ip;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00164}00164\ \ \ \ \ \textcolor{keywordtype}{int}\ port;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00165}00165\ \ \ \ \ nh.param<std::string>(\textcolor{stringliteral}{"{}ip"{}},\ ip,\ \textcolor{stringliteral}{"{}192.168.8.11"{}});}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00166}00166\ \ \ \ \ nh.param<\textcolor{keywordtype}{int}>(\textcolor{stringliteral}{"{}port"{}},\ port,\ 12345);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00168}00168\ \ \ \ \ \textcolor{comment}{//\ 发布话题}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00169}00169\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_a229938ef2b258aba203e83bca7f47b36}{pub\_temp}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/temperature\_data"{}},\ 10);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00170}00170\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_ab22b3f5f78356af75c89bb0c5e6e3858}{pub\_press}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/pressVal"{}},\ 10);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00171}00171\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_ab49abf98d6945a9fd91eed2743b99634}{pub\_cpu\_temp}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/orin\_cpu\_temp"{}},\ 10);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00172}00172\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_aab08866a9274281978d9fc03a4d737ab}{pub\_gpu\_temp}}\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/orin\_gpu\_temp"{}},\ 10);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00174}00174\ \ \ \ \ \textcolor{comment}{//\ CPU/GPU\ 温度定时器，每秒发布一次}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00175}00175\ \ \ \ \ ros::Timer\ temp\_timer\ =\ nh.createTimer(ros::Duration(1.0),\ [](\textcolor{keyword}{const}\ ros::TimerEvent\&)\{}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_a29f4ca4ec279107fd08630624d6a20b1}{publishNanoTemp}}();}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00177}00177\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00179}00179\ \ \ \ \ \textcolor{comment}{//\ TCP\ 循环（阻塞式）}}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00180}00180\ \ \ \ \ \mbox{\hyperlink{tempandpress_8cpp_a54fb40f1cec43c98df052811a7b15a51}{tcpLoop}}(ip,\ port);}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00182}00182\ \ \ \ \ ros::spin();}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00183}00183\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{tempandpress_8cpp_source_l00184}00184\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,269 @@
+\doxysection{DA\+\_\+\+Octree\+\_\+\+Node Class Reference}
+\hypertarget{classDA__Octree__Node}{}\label{classDA__Octree__Node}\index{DA\_Octree\_Node@{DA\_Octree\_Node}}
+
+
+通过 Distance-\/\+Angle 数据生成点云并构建八叉树的节点类  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDA__Octree__Node_affd4d94f5e93e83256aa82725fd79509}{DA\+\_\+\+Octree\+\_\+\+Node}} ()
+\begin{DoxyCompactList}\small\item\em 构造函数，初始化订阅者、发布者和八叉树 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDA__Octree__Node_a5cb1a998850bddf23da20ae4f49119af}{odom\+Callback}} (const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em odom 回调函数，更新当前机器人位姿 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDA__Octree__Node_a2cb85a99abd9811255ef21bf99110a6c}{da\+Callback}} (const pipeline\+\_\+robot\+::\+Distance\+Angle\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Distance-\/\+Angle 回调函数，将距离角度数据转换为点并更新八叉树 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ros\+::\+Subscriber \mbox{\hyperlink{classDA__Octree__Node_ac9e99724363e8816834a603e56250462}{da\+\_\+sub\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Distance-\/\+Angle 数据订阅者 \end{DoxyCompactList}\item 
+ros\+::\+Subscriber \mbox{\hyperlink{classDA__Octree__Node_a89264bb14609035442fb21d826a7bb71}{odom\+\_\+sub\+\_\+}}
+\begin{DoxyCompactList}\small\item\em 外部 odom 数据订阅者 \end{DoxyCompactList}\item 
+ros\+::\+Publisher \mbox{\hyperlink{classDA__Octree__Node_a302c05b9f02186592a77d55372927df9}{cloud\+\_\+pub\+\_\+}}
+\begin{DoxyCompactList}\small\item\em 发布稀疏化点云 \end{DoxyCompactList}\item 
+pcl\+::\+Point\+Cloud$<$ pcl\+::\+Point\+XYZ $>$\+::\+Ptr \mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\+\_\+}}
+\begin{DoxyCompactList}\small\item\em 原始点云存储 \end{DoxyCompactList}\item 
+pcl\+::octree\+::\+Octree\+Point\+Cloud\+Voxel\+Centroid$<$ pcl\+::\+Point\+XYZ $>$ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\+\_\+}}
+\begin{DoxyCompactList}\small\item\em 八叉树对象 \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Pose \mbox{\hyperlink{classDA__Octree__Node_a4b7666d696a436fb6c444de982b46c04}{current\+\_\+pose\+\_\+}}
+\begin{DoxyCompactList}\small\item\em 当前机器人位姿 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDA__Octree__Node_a788e3a9b1a9378469f0dff71be998020}{odom\+\_\+received\+\_\+}}
+\begin{DoxyCompactList}\small\item\em odom 是否已接收标志 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+通过 Distance-\/\+Angle 数据生成点云并构建八叉树的节点类 
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classDA__Octree__Node_affd4d94f5e93e83256aa82725fd79509}\label{classDA__Octree__Node_affd4d94f5e93e83256aa82725fd79509} 
+\index{DA\_Octree\_Node@{DA\_Octree\_Node}!DA\_Octree\_Node@{DA\_Octree\_Node}}
+\index{DA\_Octree\_Node@{DA\_Octree\_Node}!DA\_Octree\_Node@{DA\_Octree\_Node}}
+\doxysubsubsection{\texorpdfstring{DA\_Octree\_Node()}{DA\_Octree\_Node()}}
+{\footnotesize\ttfamily DA\+\_\+\+Octree\+\_\+\+Node\+::\+DA\+\_\+\+Octree\+\_\+\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+构造函数，初始化订阅者、发布者和八叉树 
+
+
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\_}}(0.000001f),\ \mbox{\hyperlink{classDA__Octree__Node_a788e3a9b1a9378469f0dff71be998020}{odom\_received\_}}(\textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ ros::NodeHandle\ nh;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 订阅\ Distance-\/Angle}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_ac9e99724363e8816834a603e56250462}{da\_sub\_}}\ =\ nh.subscribe(\textcolor{stringliteral}{"{}/distance\_angle"{}},\ 1000,\ \&\mbox{\hyperlink{classDA__Octree__Node_a2cb85a99abd9811255ef21bf99110a6c}{DA\_Octree\_Node::daCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 订阅外部\ odom}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a89264bb14609035442fb21d826a7bb71}{odom\_sub\_}}\ =\ nh.subscribe(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 10,\ \&\mbox{\hyperlink{classDA__Octree__Node_a5cb1a998850bddf23da20ae4f49119af}{DA\_Octree\_Node::odomCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 发布稀疏化点云}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a302c05b9f02186592a77d55372927df9}{cloud\_pub\_}}\ =\ nh.advertise<sensor\_msgs::PointCloud2>(\textcolor{stringliteral}{"{}/overall\_map\_cloud"{}},\ 1);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\_}}.reset(\textcolor{keyword}{new}\ pcl::PointCloud<pcl::PointXYZ>);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\_}}-\/>is\_dense\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDA__Octree__Node_a2cb85a99abd9811255ef21bf99110a6c}\label{classDA__Octree__Node_a2cb85a99abd9811255ef21bf99110a6c} 
+\index{DA\_Octree\_Node@{DA\_Octree\_Node}!daCallback@{daCallback}}
+\index{daCallback@{daCallback}!DA\_Octree\_Node@{DA\_Octree\_Node}}
+\doxysubsubsection{\texorpdfstring{daCallback()}{daCallback()}}
+{\footnotesize\ttfamily void DA\+\_\+\+Octree\+\_\+\+Node\+::da\+Callback (\begin{DoxyParamCaption}\item[{const pipeline\+\_\+robot\+::\+Distance\+Angle\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Distance-\/\+Angle 回调函数，将距离角度数据转换为点并更新八叉树 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Distance-\/\+Angle 消息（pipeline\+\_\+robot\+::\+Distance\+Angle） \\
+\hline
+\end{DoxyParams}
+\texorpdfstring{$<$}{<} 使用外部 odom 的 X
+
+\texorpdfstring{$<$}{<} 与外部 odom 保持一致
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00059}{59}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classDA__Octree__Node_a788e3a9b1a9378469f0dff71be998020}{odom\_received\_}})\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_WARN\_THROTTLE(5,\ \textcolor{stringliteral}{"{}Waiting\ for\ /cable/odom\ ..."{}});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ ros::Time\ current\_time\ =\ ros::Time::now();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angle\_rad\ =\ msg-\/>angle\ *\ M\_PI\ /\ 180.0;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ pcl::PointXYZ\ point;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ point.x\ =\ \mbox{\hyperlink{classDA__Octree__Node_a4b7666d696a436fb6c444de982b46c04}{current\_pose\_}}.position.x;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ point.y\ =\ msg-\/>distance\ *\ sin(angle\_rad)\ *\ 0.01;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ point.z\ =\ msg-\/>distance\ *\ cos(angle\_rad)\ *\ (-\/0.01);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\_}}-\/>points.push\_back(point);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 更新八叉树}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\_}}.setInputCloud(\mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\_}});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\_}}.addPointsFromInputCloud();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ pcl::PointCloud<pcl::PointXYZ>::Ptr\ outputCloud(\textcolor{keyword}{new}\ pcl::PointCloud<pcl::PointXYZ>);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\_}}.getOccupiedVoxelCenters(outputCloud-\/>points);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ sensor\_msgs::PointCloud2\ outputMsg;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ pcl::toROSMsg(*outputCloud,\ outputMsg);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ outputMsg.header.stamp\ =\ current\_time;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ outputMsg.header.frame\_id\ =\ \textcolor{stringliteral}{"{}odom"{}};\ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a302c05b9f02186592a77d55372927df9}{cloud\_pub\_}}.publish(outputMsg);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ ROS\_INFO\_STREAM(\textcolor{stringliteral}{"{}Octree\ voxels:\ "{}}\ <<\ \mbox{\hyperlink{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}{octree\_}}.getLeafCount()}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Input\ points:\ "{}}\ <<\ \mbox{\hyperlink{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}{cloud\_}}-\/>size());}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classDA__Octree__Node_a5cb1a998850bddf23da20ae4f49119af}\label{classDA__Octree__Node_a5cb1a998850bddf23da20ae4f49119af} 
+\index{DA\_Octree\_Node@{DA\_Octree\_Node}!odomCallback@{odomCallback}}
+\index{odomCallback@{odomCallback}!DA\_Octree\_Node@{DA\_Octree\_Node}}
+\doxysubsubsection{\texorpdfstring{odomCallback()}{odomCallback()}}
+{\footnotesize\ttfamily void DA\+\_\+\+Octree\+\_\+\+Node\+::odom\+Callback (\begin{DoxyParamCaption}\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+odom 回调函数，更新当前机器人位姿 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 当前里程计消息（nav\+\_\+msgs\+::\+Odometry） \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a4b7666d696a436fb6c444de982b46c04}{current\_pose\_}}\ =\ msg-\/>pose.pose;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDA__Octree__Node_a788e3a9b1a9378469f0dff71be998020}{odom\_received\_}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115}\label{classDA__Octree__Node_a9445d49b805496111099deb1cd89e115} 
+\index{DA\_Octree\_Node@{DA\_Octree\_Node}!cloud\_@{cloud\_}}
+\index{cloud\_@{cloud\_}!DA\_Octree\_Node@{DA\_Octree\_Node}}
+\doxysubsubsection{\texorpdfstring{cloud\_}{cloud\_}}
+{\footnotesize\ttfamily pcl\+::\+Point\+Cloud$<$pcl\+::\+Point\+XYZ$>$\+::\+Ptr DA\+\_\+\+Octree\+\_\+\+Node\+::cloud\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+原始点云存储 
+
+
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00097}{97}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+\Hypertarget{classDA__Octree__Node_a302c05b9f02186592a77d55372927df9}\label{classDA__Octree__Node_a302c05b9f02186592a77d55372927df9} 
+\index{DA\_Octree\_Node@{DA\_Octree\_Node}!cloud\_pub\_@{cloud\_pub\_}}
+\index{cloud\_pub\_@{cloud\_pub\_}!DA\_Octree\_Node@{DA\_Octree\_Node}}
+\doxysubsubsection{\texorpdfstring{cloud\_pub\_}{cloud\_pub\_}}
+{\footnotesize\ttfamily ros\+::\+Publisher DA\+\_\+\+Octree\+\_\+\+Node\+::cloud\+\_\+pub\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+发布稀疏化点云 
+
+
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00095}{95}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+\Hypertarget{classDA__Octree__Node_a4b7666d696a436fb6c444de982b46c04}\label{classDA__Octree__Node_a4b7666d696a436fb6c444de982b46c04} 
+\index{DA\_Octree\_Node@{DA\_Octree\_Node}!current\_pose\_@{current\_pose\_}}
+\index{current\_pose\_@{current\_pose\_}!DA\_Octree\_Node@{DA\_Octree\_Node}}
+\doxysubsubsection{\texorpdfstring{current\_pose\_}{current\_pose\_}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose DA\+\_\+\+Octree\+\_\+\+Node\+::current\+\_\+pose\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+当前机器人位姿 
+
+
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00100}{100}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+\Hypertarget{classDA__Octree__Node_ac9e99724363e8816834a603e56250462}\label{classDA__Octree__Node_ac9e99724363e8816834a603e56250462} 
+\index{DA\_Octree\_Node@{DA\_Octree\_Node}!da\_sub\_@{da\_sub\_}}
+\index{da\_sub\_@{da\_sub\_}!DA\_Octree\_Node@{DA\_Octree\_Node}}
+\doxysubsubsection{\texorpdfstring{da\_sub\_}{da\_sub\_}}
+{\footnotesize\ttfamily ros\+::\+Subscriber DA\+\_\+\+Octree\+\_\+\+Node\+::da\+\_\+sub\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Distance-\/\+Angle 数据订阅者 
+
+
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00093}{93}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+\Hypertarget{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec}\label{classDA__Octree__Node_a8851e9db2952ddbecebbf6bffa8dd6ec} 
+\index{DA\_Octree\_Node@{DA\_Octree\_Node}!octree\_@{octree\_}}
+\index{octree\_@{octree\_}!DA\_Octree\_Node@{DA\_Octree\_Node}}
+\doxysubsubsection{\texorpdfstring{octree\_}{octree\_}}
+{\footnotesize\ttfamily pcl\+::octree\+::\+Octree\+Point\+Cloud\+Voxel\+Centroid$<$pcl\+::\+Point\+XYZ$>$ DA\+\_\+\+Octree\+\_\+\+Node\+::octree\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+八叉树对象 
+
+
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+\Hypertarget{classDA__Octree__Node_a788e3a9b1a9378469f0dff71be998020}\label{classDA__Octree__Node_a788e3a9b1a9378469f0dff71be998020} 
+\index{DA\_Octree\_Node@{DA\_Octree\_Node}!odom\_received\_@{odom\_received\_}}
+\index{odom\_received\_@{odom\_received\_}!DA\_Octree\_Node@{DA\_Octree\_Node}}
+\doxysubsubsection{\texorpdfstring{odom\_received\_}{odom\_received\_}}
+{\footnotesize\ttfamily bool DA\+\_\+\+Octree\+\_\+\+Node\+::odom\+\_\+received\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+odom 是否已接收标志 
+
+
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00101}{101}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+\Hypertarget{classDA__Octree__Node_a89264bb14609035442fb21d826a7bb71}\label{classDA__Octree__Node_a89264bb14609035442fb21d826a7bb71} 
+\index{DA\_Octree\_Node@{DA\_Octree\_Node}!odom\_sub\_@{odom\_sub\_}}
+\index{odom\_sub\_@{odom\_sub\_}!DA\_Octree\_Node@{DA\_Octree\_Node}}
+\doxysubsubsection{\texorpdfstring{odom\_sub\_}{odom\_sub\_}}
+{\footnotesize\ttfamily ros\+::\+Subscriber DA\+\_\+\+Octree\+\_\+\+Node\+::odom\+\_\+sub\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+外部 odom 数据订阅者 
+
+
+
+Definition at line \mbox{\hyperlink{sanwijiantu_8cpp_source_l00094}{94}} of file \mbox{\hyperlink{sanwijiantu_8cpp_source}{sanwijiantu.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+3\+D\+\_\+mapping/\mbox{\hyperlink{sanwijiantu_8cpp}{sanwijiantu.\+cpp}}\end{DoxyCompactItemize}

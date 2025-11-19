@@ -1,0 +1,625 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="three__yuannumber_8cpp" kind="file" language="C++">
+    <compoundname>three_yuannumber.cpp</compoundname>
+    <includes local="no">ros/ros.h</includes>
+    <includes local="no">std_msgs/Float32.h</includes>
+    <includes local="no">std_msgs/String.h</includes>
+    <includes local="no">netinet/in.h</includes>
+    <includes local="no">sys/socket.h</includes>
+    <includes local="no">unistd.h</includes>
+    <includes local="no">arpa/inet.h</includes>
+    <includes local="no">sstream</includes>
+    <includes local="no">mutex</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>Motherboard_data_process/three_yuannumber.cpp</label>
+        <link refid="three__yuannumber_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>arpa/inet.h</label>
+      </node>
+      <node id="10">
+        <label>mutex</label>
+      </node>
+      <node id="5">
+        <label>netinet/in.h</label>
+      </node>
+      <node id="2">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="9">
+        <label>sstream</label>
+      </node>
+      <node id="3">
+        <label>std_msgs/Float32.h</label>
+      </node>
+      <node id="4">
+        <label>std_msgs/String.h</label>
+      </node>
+      <node id="6">
+        <label>sys/socket.h</label>
+      </node>
+      <node id="7">
+        <label>unistd.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="three__yuannumber_8cpp_1af4be04c36baee6cbd619f7f248678c2b" prot="public" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex g_conn_mutex</definition>
+        <argsstring></argsstring>
+        <name>g_conn_mutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>TCP 连接互斥锁 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/three_yuannumber.cpp" line="23" column="12" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int g_sockfd</definition>
+        <argsstring></argsstring>
+        <name>g_sockfd</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>TCP 套接字文件描述符 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/three_yuannumber.cpp" line="24" column="5" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="three__yuannumber_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string g_ip</definition>
+        <argsstring></argsstring>
+        <name>g_ip</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>TCP 服务器 IP </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/three_yuannumber.cpp" line="25" column="13" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="three__yuannumber_8cpp_1a6701847851618f32d00a154d16f7f187" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int g_port</definition>
+        <argsstring></argsstring>
+        <name>g_port</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>TCP 服务器端口 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/three_yuannumber.cpp" line="26" column="5" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="three__yuannumber_8cpp_1a06c5aa7b1310b56852b7df4784c70ba8" prot="public" static="no" mutable="no">
+        <type>ros::Publisher</type>
+        <definition>ros::Publisher g_status_pub</definition>
+        <argsstring></argsstring>
+        <name>g_status_pub</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>发布连接状态消息 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/three_yuannumber.cpp" line="27" column="16" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="three__yuannumber_8cpp_1a222c71617a07df6b5e5dedd3df7159c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool connectToServer</definition>
+        <argsstring>(const std::string &amp;ip, int port)</argsstring>
+        <name>connectToServer</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>ip</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <briefdescription>
+<para>连接 TCP 服务器 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>服务器 IP 地址 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>服务器端口 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true 连接成功 </para>
+</simplesect>
+<simplesect kind="return"><para>false 连接失败 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/three_yuannumber.cpp" line="133" column="6" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="133" bodyend="159" declfile="Motherboard_data_process/three_yuannumber.cpp" declline="39" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="three__yuannumber_8cpp_1a55b66494816d709ecd0c243845ada46c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publishStatus</definition>
+        <argsstring>(const std::string &amp;status)</argsstring>
+        <name>publishStatus</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+<para>发布 TCP 连接状态到 /connection_status </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>status</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>状态字符串，如 &quot;CONNECTED&quot; 或 &quot;DISCONNECTED&quot; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/three_yuannumber.cpp" line="161" column="6" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="161" bodyend="166" declfile="Motherboard_data_process/three_yuannumber.cpp" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="three__yuannumber_8cpp_1a0a0119bf5ad744347f1530557e24c987" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void parseAndPublishData</definition>
+        <argsstring>(const std::string &amp;data, ros::Publisher &amp;roll_pub, ros::Publisher &amp;pitch_pub, ros::Publisher &amp;heading_pub)</argsstring>
+        <name>parseAndPublishData</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ros::Publisher &amp;</type>
+          <declname>roll_pub</declname>
+        </param>
+        <param>
+          <type>ros::Publisher &amp;</type>
+          <declname>pitch_pub</declname>
+        </param>
+        <param>
+          <type>ros::Publisher &amp;</type>
+          <declname>heading_pub</declname>
+        </param>
+        <briefdescription>
+<para>解析 RPH 数据并发布到对应 ROS 话题 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>数据格式示例：<itemizedlist>
+<listitem><para>&quot;R=1.23&quot; -&gt; Roll</para>
+</listitem><listitem><para>&quot;P=2.34&quot; -&gt; Pitch</para>
+</listitem><listitem><para>&quot;H=3.45&quot; -&gt; Heading</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>原始数据字符串 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>roll_pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>发布 Roll 的 ROS Publisher </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pitch_pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>发布 Pitch 的 ROS Publisher </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heading_pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>发布 Heading 的 ROS Publisher </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/three_yuannumber.cpp" line="203" column="6" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="203" bodyend="247" declfile="Motherboard_data_process/three_yuannumber.cpp" declline="61" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="three__yuannumber_8cpp_1a1633fa75ac3410de6330ee6b803787b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tcpDataLoop</definition>
+        <argsstring>(ros::Publisher &amp;raw_pub, ros::Publisher &amp;roll_pub, ros::Publisher &amp;pitch_pub, ros::Publisher &amp;heading_pub)</argsstring>
+        <name>tcpDataLoop</name>
+        <param>
+          <type>ros::Publisher &amp;</type>
+          <declname>raw_pub</declname>
+        </param>
+        <param>
+          <type>ros::Publisher &amp;</type>
+          <declname>roll_pub</declname>
+        </param>
+        <param>
+          <type>ros::Publisher &amp;</type>
+          <declname>pitch_pub</declname>
+        </param>
+        <param>
+          <type>ros::Publisher &amp;</type>
+          <declname>heading_pub</declname>
+        </param>
+        <briefdescription>
+<para>TCP 数据接收循环 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>持续读取 TCP 数据，并按行解析 RPH，发布原始数据和解析数据</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>raw_pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>发布原始数据的 ROS Publisher </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>roll_pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>发布 Roll 的 ROS Publisher </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pitch_pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>发布 Pitch 的 ROS Publisher </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heading_pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>发布 Heading 的 ROS Publisher </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/three_yuannumber.cpp" line="168" column="6" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="168" bodyend="201" declfile="Motherboard_data_process/three_yuannumber.cpp" declline="76" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="three__yuannumber_8cpp_1ac17b993e3645f9b9a7f96e87fdd5bf62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void handleDisconnection</definition>
+        <argsstring>(int max_reconnect, float interval)</argsstring>
+        <name>handleDisconnection</name>
+        <param>
+          <type>int</type>
+          <declname>max_reconnect</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>interval</declname>
+        </param>
+        <briefdescription>
+<para>处理 TCP 断开连接 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>支持自动重连，达到最大重试次数则关闭 ROS 节点</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>max_reconnect</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最大重连次数 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>interval</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>重连间隔（秒） </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/three_yuannumber.cpp" line="249" column="6" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="249" bodyend="263" declfile="Motherboard_data_process/three_yuannumber.cpp" declline="89" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="three__yuannumber_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Motherboard_data_process/three_yuannumber.cpp" line="92" column="5" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="92" bodyend="129"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros/ros.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_msgs/Float32.h&gt;</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>用于发布单个浮点数</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_msgs/String.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;netinet/in.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/socket.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;arpa/inet.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>------------------<sp/>全局变量（线程安全保护）<sp/>------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="three__yuannumber_8cpp_1af4be04c36baee6cbd619f7f248678c2b" refkind="member"><highlight class="normal">std::mutex<sp/><ref refid="three__yuannumber_8cpp_1af4be04c36baee6cbd619f7f248678c2b" kindref="member">g_conn_mutex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24" refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" kindref="member">g_sockfd</ref><sp/>=<sp/>-1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25" refid="three__yuannumber_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" refkind="member"><highlight class="normal">std::string<sp/><ref refid="three__yuannumber_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" kindref="member">g_ip</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26" refid="three__yuannumber_8cpp_1a6701847851618f32d00a154d16f7f187" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1a6701847851618f32d00a154d16f7f187" kindref="member">g_port</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27" refid="three__yuannumber_8cpp_1a06c5aa7b1310b56852b7df4784c70ba8" refkind="member"><highlight class="normal">ros::Publisher<sp/><ref refid="three__yuannumber_8cpp_1a06c5aa7b1310b56852b7df4784c70ba8" kindref="member">g_status_pub</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>------------------<sp/>函数声明<sp/>------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1a222c71617a07df6b5e5dedd3df7159c8" kindref="member">connectToServer</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>ip,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>port);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1a55b66494816d709ecd0c243845ada46c" kindref="member">publishStatus</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>status);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1a0a0119bf5ad744347f1530557e24c987" kindref="member">parseAndPublishData</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>data,<sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>roll_pub,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>pitch_pub,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>heading_pub);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1a1633fa75ac3410de6330ee6b803787b1" kindref="member">tcpDataLoop</ref>(ros::Publisher&amp;<sp/>raw_pub,<sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>roll_pub,</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>pitch_pub,</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>heading_pub);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1ac17b993e3645f9b9a7f96e87fdd5bf62" kindref="member">handleDisconnection</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_reconnect,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>interval);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">//<sp/>------------------<sp/>main<sp/>------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="three__yuannumber_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>argv)<sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::init(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;tcp_rph_extractor&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::NodeHandle<sp/>nh(</highlight><highlight class="stringliteral">&quot;~&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>参数配置</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>nh.param&lt;std::string&gt;(</highlight><highlight class="stringliteral">&quot;ip&quot;</highlight><highlight class="normal">,<sp/><ref refid="three__yuannumber_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" kindref="member">g_ip</ref>,<sp/></highlight><highlight class="stringliteral">&quot;192.168.8.11&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>nh.param&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;(</highlight><highlight class="stringliteral">&quot;port&quot;</highlight><highlight class="normal">,<sp/><ref refid="three__yuannumber_8cpp_1a6701847851618f32d00a154d16f7f187" kindref="member">g_port</ref>,<sp/>12345);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_reconnect;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reconnect_interval;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>nh.param&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;(</highlight><highlight class="stringliteral">&quot;max_reconnect&quot;</highlight><highlight class="normal">,<sp/>max_reconnect,<sp/>5);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>nh.param&lt;</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">&gt;(</highlight><highlight class="stringliteral">&quot;reconnect_interval&quot;</highlight><highlight class="normal">,<sp/>reconnect_interval,<sp/>3.0);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>初始化ROS话题</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Publisher<sp/>raw_pub<sp/>=<sp/>nh.advertise&lt;std_msgs::String&gt;(</highlight><highlight class="stringliteral">&quot;/raw_data&quot;</highlight><highlight class="normal">,<sp/>100);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Publisher<sp/>roll_pub<sp/>=<sp/>nh.advertise&lt;std_msgs::Float32&gt;(</highlight><highlight class="stringliteral">&quot;/roll&quot;</highlight><highlight class="normal">,<sp/>100);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Publisher<sp/>pitch_pub<sp/>=<sp/>nh.advertise&lt;std_msgs::Float32&gt;(</highlight><highlight class="stringliteral">&quot;/pitch&quot;</highlight><highlight class="normal">,<sp/>100);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Publisher<sp/>heading_pub<sp/>=<sp/>nh.advertise&lt;std_msgs::Float32&gt;(</highlight><highlight class="stringliteral">&quot;/heading&quot;</highlight><highlight class="normal">,<sp/>100);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="three__yuannumber_8cpp_1a06c5aa7b1310b56852b7df4784c70ba8" kindref="member">g_status_pub</ref><sp/>=<sp/>nh.advertise&lt;std_msgs::String&gt;(</highlight><highlight class="stringliteral">&quot;/connection_status&quot;</highlight><highlight class="normal">,<sp/>10);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>设置调试级别</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME,<sp/>ros::console::levels::Debug))<sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::console::notifyLoggerLevelsChanged();</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Starting<sp/>TCP<sp/>RPH<sp/>extractor&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>主循环</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(ros::ok())<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="three__yuannumber_8cpp_1a222c71617a07df6b5e5dedd3df7159c8" kindref="member">connectToServer</ref>(<ref refid="three__yuannumber_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" kindref="member">g_ip</ref>,<sp/><ref refid="three__yuannumber_8cpp_1a6701847851618f32d00a154d16f7f187" kindref="member">g_port</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="three__yuannumber_8cpp_1a1633fa75ac3410de6330ee6b803787b1" kindref="member">tcpDataLoop</ref>(raw_pub,<sp/>roll_pub,<sp/>pitch_pub,<sp/>heading_pub);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="three__yuannumber_8cpp_1ac17b993e3645f9b9a7f96e87fdd5bf62" kindref="member">handleDisconnection</ref>(max_reconnect,<sp/>reconnect_interval);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>close(<ref refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" kindref="member">g_sockfd</ref>);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="comment">//<sp/>------------------<sp/>函数实现<sp/>------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133" refid="three__yuannumber_8cpp_1a222c71617a07df6b5e5dedd3df7159c8" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1a222c71617a07df6b5e5dedd3df7159c8" kindref="member">connectToServer</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>ip,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>port)<sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="three__yuannumber_8cpp_1af4be04c36baee6cbd619f7f248678c2b" kindref="member">g_conn_mutex</ref>);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_INFO_STREAM(</highlight><highlight class="stringliteral">&quot;Connecting<sp/>to<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ip<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;:&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>port);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" kindref="member">g_sockfd</ref><sp/>=<sp/>socket(AF_INET,<sp/>SOCK_STREAM,<sp/>0);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" kindref="member">g_sockfd</ref><sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR_STREAM(</highlight><highlight class="stringliteral">&quot;Socket<sp/>error:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>strerror(errno));</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>sockaddr_in<sp/>serv_addr;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>serv_addr.sin_family<sp/>=<sp/>AF_INET;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>serv_addr.sin_port<sp/>=<sp/>htons(port);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(inet_pton(AF_INET,<sp/>ip.c_str(),<sp/>&amp;serv_addr.sin_addr)<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR(</highlight><highlight class="stringliteral">&quot;Invalid<sp/>IP<sp/>format&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(connect(<ref refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" kindref="member">g_sockfd</ref>,<sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/>sockaddr*)&amp;serv_addr,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(serv_addr))<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR_STREAM(</highlight><highlight class="stringliteral">&quot;Connection<sp/>failed:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>strerror(errno));</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Connected<sp/>to<sp/>server&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="three__yuannumber_8cpp_1a55b66494816d709ecd0c243845ada46c" kindref="member">publishStatus</ref>(</highlight><highlight class="stringliteral">&quot;CONNECTED&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161" refid="three__yuannumber_8cpp_1a55b66494816d709ecd0c243845ada46c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1a55b66494816d709ecd0c243845ada46c" kindref="member">publishStatus</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>status)<sp/>{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::String<sp/>msg;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.data<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;[STATUS]<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>status<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>|<sp/>IP:<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/><ref refid="three__yuannumber_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" kindref="member">g_ip</ref>;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="three__yuannumber_8cpp_1a06c5aa7b1310b56852b7df4784c70ba8" kindref="member">g_status_pub</ref>.publish(msg);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_DEBUG_STREAM(</highlight><highlight class="stringliteral">&quot;Status<sp/>published:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>msg.data);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168" refid="three__yuannumber_8cpp_1a1633fa75ac3410de6330ee6b803787b1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1a1633fa75ac3410de6330ee6b803787b1" kindref="member">tcpDataLoop</ref>(ros::Publisher&amp;<sp/>raw_pub,<sp/></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>roll_pub,</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>pitch_pub,</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>heading_pub)<sp/>{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buffer[4096];</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>remaining_data;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(ros::ok())<sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ssize_t<sp/>valread<sp/>=<sp/>read(<ref refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" kindref="member">g_sockfd</ref>,<sp/>buffer,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(buffer)<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(valread<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_WARN_STREAM(</highlight><highlight class="stringliteral">&quot;Read<sp/>error:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>(valread<sp/>==<sp/>0<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;EOF&quot;</highlight><highlight class="normal"><sp/>:<sp/>strerror(errno)));</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer[valread]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>raw_data<sp/>=<sp/>remaining_data<sp/>+<sp/>buffer;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>last_newline<sp/>=<sp/>raw_data.find_last_of(</highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(last_newline<sp/>!=<sp/>std::string::npos)<sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>发布原始数据</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std_msgs::String<sp/>raw_msg;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>raw_msg.data<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;[RAW]<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>raw_data.substr(0,<sp/>100);<sp/><sp/></highlight><highlight class="comment">//<sp/>截断前100字符</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>raw_pub.publish(raw_msg);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>解析RPH数据</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="three__yuannumber_8cpp_1a0a0119bf5ad744347f1530557e24c987" kindref="member">parseAndPublishData</ref>(raw_data.substr(0,<sp/>last_newline),<sp/>roll_pub,<sp/>pitch_pub,<sp/>heading_pub);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>remaining_data<sp/>=<sp/>raw_data.substr(last_newline<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>remaining_data<sp/>=<sp/>raw_data;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_DEBUG(</highlight><highlight class="stringliteral">&quot;Buffering<sp/>incomplete<sp/>packet&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memset(buffer,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(buffer));</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203" refid="three__yuannumber_8cpp_1a0a0119bf5ad744347f1530557e24c987" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1a0a0119bf5ad744347f1530557e24c987" kindref="member">parseAndPublishData</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>data,<sp/></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>roll_pub,</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>pitch_pub,</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Publisher&amp;<sp/>heading_pub)<sp/>{</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>std::istringstream<sp/>iss(data);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>line;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>roll<sp/>=<sp/>0,<sp/>pitch<sp/>=<sp/>0,<sp/>heading<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>has_rph<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(std::getline(iss,<sp/>line))<sp/>{</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(line.empty())<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_DEBUG_STREAM(</highlight><highlight class="stringliteral">&quot;Processing:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>line);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(line.find(</highlight><highlight class="stringliteral">&quot;R=&quot;</highlight><highlight class="normal">)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>roll<sp/>=<sp/>std::stof(line.substr(2));</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>has_rph<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(line.find(</highlight><highlight class="stringliteral">&quot;P=&quot;</highlight><highlight class="normal">)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pitch<sp/>=<sp/>std::stof(line.substr(2));</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>has_rph<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(line.find(</highlight><highlight class="stringliteral">&quot;H=&quot;</highlight><highlight class="normal">)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>heading<sp/>=<sp/>std::stof(line.substr(2));</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(has_rph)<sp/>{</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std_msgs::Float32<sp/>roll_msg,<sp/>pitch_msg,<sp/>heading_msg;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>roll_msg.data<sp/>=<sp/>roll;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pitch_msg.data<sp/>=<sp/>pitch;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>heading_msg.data<sp/>=<sp/>heading;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>roll_pub.publish(roll_msg);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pitch_pub.publish(pitch_msg);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>heading_pub.publish(heading_msg);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_DEBUG_STREAM(</highlight><highlight class="stringliteral">&quot;Published<sp/>RPH:<sp/>R=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>roll<sp/></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>P=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>pitch</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>H=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>heading);</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>has_rph<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::exception&amp;<sp/>e)<sp/>{</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR_STREAM(</highlight><highlight class="stringliteral">&quot;Parse<sp/>error:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>e.what()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>in<sp/>line:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>line);</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="247"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight></codeline>
+<codeline lineno="249" refid="three__yuannumber_8cpp_1ac17b993e3645f9b9a7f96e87fdd5bf62" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="three__yuannumber_8cpp_1ac17b993e3645f9b9a7f96e87fdd5bf62" kindref="member">handleDisconnection</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_reconnect,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>interval)<sp/>{</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>attempts<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="three__yuannumber_8cpp_1af4be04c36baee6cbd619f7f248678c2b" kindref="member">g_conn_mutex</ref>);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>close(<ref refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" kindref="member">g_sockfd</ref>);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="three__yuannumber_8cpp_1a55b66494816d709ecd0c243845ada46c" kindref="member">publishStatus</ref>(</highlight><highlight class="stringliteral">&quot;DISCONNECTED&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(++attempts<sp/>&lt;=<sp/>max_reconnect)<sp/>{</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_WARN_STREAM(</highlight><highlight class="stringliteral">&quot;Reconnecting<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>attempts<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>max_reconnect<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Duration(interval).sleep();</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_FATAL(</highlight><highlight class="stringliteral">&quot;Max<sp/>reconnection<sp/>attempts<sp/>reached&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::shutdown();</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="263"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Motherboard_data_process/three_yuannumber.cpp"/>
+  </compounddef>
+</doxygen>

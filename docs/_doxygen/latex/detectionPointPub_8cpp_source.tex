@@ -1,0 +1,136 @@
+\doxysection{detection\+Point\+Pub.\+cpp}
+\hypertarget{detectionPointPub_8cpp_source}{}\label{detectionPointPub_8cpp_source}\index{auto\_navigation/detectionPointPub.cpp@{auto\_navigation/detectionPointPub.cpp}}
+\mbox{\hyperlink{detectionPointPub_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <nav\_msgs/Odometry.h>}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <geometry\_msgs/PoseStamped.h>}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}pipeline\_robot/detection.h"{}}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00031}\mbox{\hyperlink{classDetectionAnalyzer}{00031}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDetectionAnalyzer}{DetectionAnalyzer}}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00032}00032\ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00033}00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_ac225923772770c2ca24586696310065a}{DetectionAnalyzer}}();}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDetectionAnalyzer_abb1da63aefde85e3e8ff8e452e518ecd}{odomCallback}}(\textcolor{keyword}{const}\ nav\_msgs::Odometry::ConstPtr\ \&msg);}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDetectionAnalyzer_a6d547bc01c1d8a7852bcd39a62cf829a}{finalgoalCallback}}(\textcolor{keyword}{const}\ geometry\_msgs::PoseStamped::ConstPtr\ \&msg);}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00071}00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDetectionAnalyzer_acdf4deceaaab4a087f8fa510069f756d}{detectionCallback}}(\textcolor{keyword}{const}\ pipeline\_robot::detection::ConstPtr\ \&msg);}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDetectionAnalyzer_aaaba5d735107e6bb589e7937b6a2bc61}{publishMidGoal}}();}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00083}00083\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00084}\mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{00084}}\ \ \ \ \ ros::NodeHandle\ \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00085}\mbox{\hyperlink{classDetectionAnalyzer_abb1eca5770c41109df5688bcecc48c84}{00085}}\ \ \ \ \ ros::Subscriber\ \mbox{\hyperlink{classDetectionAnalyzer_abb1eca5770c41109df5688bcecc48c84}{odom\_sub}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00086}\mbox{\hyperlink{classDetectionAnalyzer_a8ef40feef50fb30ffbbbc51e69c8188e}{00086}}\ \ \ \ \ ros::Subscriber\ \mbox{\hyperlink{classDetectionAnalyzer_a8ef40feef50fb30ffbbbc51e69c8188e}{detection\_sub}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00087}\mbox{\hyperlink{classDetectionAnalyzer_a21f29bbee9e78f3123b82d49f65e6c08}{00087}}\ \ \ \ \ ros::Subscriber\ \mbox{\hyperlink{classDetectionAnalyzer_a21f29bbee9e78f3123b82d49f65e6c08}{finalgoal\_sub}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00088}\mbox{\hyperlink{classDetectionAnalyzer_a45860f4a2da2f3df0c5f3244d555f3b8}{00088}}\ \ \ \ \ ros::Publisher\ \mbox{\hyperlink{classDetectionAnalyzer_a45860f4a2da2f3df0c5f3244d555f3b8}{midgoal\_pub}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00090}\mbox{\hyperlink{classDetectionAnalyzer_a056e9fd8971aa591a9fe662d2c67fe83}{00090}}\ \ \ \ \ std::vector<float>\ \mbox{\hyperlink{classDetectionAnalyzer_a056e9fd8971aa591a9fe662d2c67fe83}{detections}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00091}\mbox{\hyperlink{classDetectionAnalyzer_a6f19f803d3707ca4bf3999a907d5b3c8}{00091}}\ \ \ \ \ std::vector<float>\ \mbox{\hyperlink{classDetectionAnalyzer_a6f19f803d3707ca4bf3999a907d5b3c8}{published\_positions}};\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00092}\mbox{\hyperlink{classDetectionAnalyzer_a5f50ef9dab802e3ac84304b6911d61a5}{00092}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classDetectionAnalyzer_a5f50ef9dab802e3ac84304b6911d61a5}{current\_position\_x}}\ =\ 0;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00093}\mbox{\hyperlink{classDetectionAnalyzer_ae2b299f48c872f25afffbb68df9739d8}{00093}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classDetectionAnalyzer_ae2b299f48c872f25afffbb68df9739d8}{final\_position\_x}}\ =\ 0.1;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00103}00103\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDetectionAnalyzer_a590d7176d4a52897510ff0867cc8655a}{isSimilar}}(\textcolor{keywordtype}{float}\ new\_detection\_x);}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDetectionAnalyzer_abc065c153de6540f4b4f32bda30b2507}{isSimilarPublished}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}});}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00114}00114\ \};}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00116}00116\ \textcolor{comment}{//\ ===================\ 函数实现\ ===================}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00118}\mbox{\hyperlink{classDetectionAnalyzer_ac225923772770c2ca24586696310065a}{00118}}\ \mbox{\hyperlink{classDetectionAnalyzer_ac225923772770c2ca24586696310065a}{DetectionAnalyzer::DetectionAnalyzer}}()}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00119}00119\ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00120}00120\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_abb1eca5770c41109df5688bcecc48c84}{odom\_sub}}\ =\ \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}}.subscribe(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 10,\ \&\mbox{\hyperlink{classDetectionAnalyzer_abb1da63aefde85e3e8ff8e452e518ecd}{DetectionAnalyzer::odomCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00121}00121\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a8ef40feef50fb30ffbbbc51e69c8188e}{detection\_sub}}\ =\ \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}}.subscribe(\textcolor{stringliteral}{"{}/transformed\_detection\_info"{}},\ 10,\ \&\mbox{\hyperlink{classDetectionAnalyzer_acdf4deceaaab4a087f8fa510069f756d}{DetectionAnalyzer::detectionCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00122}00122\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a21f29bbee9e78f3123b82d49f65e6c08}{finalgoal\_sub}}\ =\ \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}}.subscribe(\textcolor{stringliteral}{"{}finalgoal"{}},\ 10,\ \&\mbox{\hyperlink{classDetectionAnalyzer_a6d547bc01c1d8a7852bcd39a62cf829a}{DetectionAnalyzer::finalgoalCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00124}00124\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a45860f4a2da2f3df0c5f3244d555f3b8}{midgoal\_pub}}\ =\ \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}}.advertise<geometry\_msgs::PoseStamped>(\textcolor{stringliteral}{"{}midgoal"{}},\ 10);}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00125}00125\ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00127}\mbox{\hyperlink{classDetectionAnalyzer_abb1da63aefde85e3e8ff8e452e518ecd}{00127}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDetectionAnalyzer_abb1da63aefde85e3e8ff8e452e518ecd}{DetectionAnalyzer::odomCallback}}(\textcolor{keyword}{const}\ nav\_msgs::Odometry::ConstPtr\ \&msg)}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00128}00128\ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00129}00129\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a5f50ef9dab802e3ac84304b6911d61a5}{current\_position\_x}}\ =\ msg-\/>pose.pose.position.x;}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00130}00130\ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00132}\mbox{\hyperlink{classDetectionAnalyzer_a6d547bc01c1d8a7852bcd39a62cf829a}{00132}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDetectionAnalyzer_a6d547bc01c1d8a7852bcd39a62cf829a}{DetectionAnalyzer::finalgoalCallback}}(\textcolor{keyword}{const}\ geometry\_msgs::PoseStamped::ConstPtr\ \&msg)}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00133}00133\ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00134}00134\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_ae2b299f48c872f25afffbb68df9739d8}{final\_position\_x}}\ =\ msg-\/>pose.position.x;}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00135}00135\ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00137}\mbox{\hyperlink{classDetectionAnalyzer_acdf4deceaaab4a087f8fa510069f756d}{00137}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDetectionAnalyzer_acdf4deceaaab4a087f8fa510069f756d}{DetectionAnalyzer::detectionCallback}}(\textcolor{keyword}{const}\ pipeline\_robot::detection::ConstPtr\ \&msg)}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00138}00138\ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00139}00139\ \ \ \ \ \textcolor{keywordflow}{if}\ (msg-\/>point\_stamped.point.x\ >\ 0.5\ \&\&\ msg-\/>point\_stamped.point.x\ <\ 3)}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00140}00140\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ new\_detection\_x\ =\ msg-\/>point\_stamped.point.x\ +\ \mbox{\hyperlink{classDetectionAnalyzer_a5f50ef9dab802e3ac84304b6911d61a5}{current\_position\_x}};}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (new\_detection\_x\ >\ \mbox{\hyperlink{classDetectionAnalyzer_ae2b299f48c872f25afffbb68df9739d8}{final\_position\_x}})}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classDetectionAnalyzer_a590d7176d4a52897510ff0867cc8655a}{isSimilar}}(new\_detection\_x))}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a056e9fd8971aa591a9fe662d2c67fe83}{detections}}.push\_back(new\_detection\_x);}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00147}00147\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00148}00148\ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00150}\mbox{\hyperlink{classDetectionAnalyzer_aaaba5d735107e6bb589e7937b6a2bc61}{00150}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDetectionAnalyzer_aaaba5d735107e6bb589e7937b6a2bc61}{DetectionAnalyzer::publishMidGoal}}()}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00151}00151\ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classDetectionAnalyzer_a056e9fd8971aa591a9fe662d2c67fe83}{detections}}.empty())}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00153}00153\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ min\_it\ =\ std::min\_element(\mbox{\hyperlink{classDetectionAnalyzer_a056e9fd8971aa591a9fe662d2c67fe83}{detections}}.begin(),\ \mbox{\hyperlink{classDetectionAnalyzer_a056e9fd8971aa591a9fe662d2c67fe83}{detections}}.end());}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ min\_detection\_x\ =\ *min\_it;}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classDetectionAnalyzer_abc065c153de6540f4b4f32bda30b2507}{isSimilarPublished}}(min\_detection\_x))}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ geometry\_msgs::PoseStamped\ midgoal;}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ midgoal.header.stamp\ =\ ros::Time::now();}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ midgoal.header.frame\_id\ =\ \textcolor{stringliteral}{"{}odom"{}};}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ midgoal.pose.position.x\ =\ min\_detection\_x\ -\/\ 0.5;}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ midgoal.pose.orientation.w\ =\ 1.0;}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a45860f4a2da2f3df0c5f3244d555f3b8}{midgoal\_pub}}.publish(midgoal);}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a6f19f803d3707ca4bf3999a907d5b3c8}{published\_positions}}.push\_back(min\_detection\_x);}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a056e9fd8971aa591a9fe662d2c67fe83}{detections}}.erase(min\_it);}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00169}00169\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00170}00170\ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00172}\mbox{\hyperlink{classDetectionAnalyzer_a590d7176d4a52897510ff0867cc8655a}{00172}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDetectionAnalyzer_a590d7176d4a52897510ff0867cc8655a}{DetectionAnalyzer::isSimilar}}(\textcolor{keywordtype}{float}\ new\_detection\_x)}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00173}00173\ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00174}00174\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&\mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}}\ :\ \mbox{\hyperlink{classDetectionAnalyzer_a056e9fd8971aa591a9fe662d2c67fe83}{detections}})}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00175}00175\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::fabs(\mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}}\ -\/\ new\_detection\_x)\ <\ 1)}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00178}00178\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00179}00179\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00180}00180\ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00182}\mbox{\hyperlink{classDetectionAnalyzer_abc065c153de6540f4b4f32bda30b2507}{00182}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDetectionAnalyzer_abc065c153de6540f4b4f32bda30b2507}{DetectionAnalyzer::isSimilarPublished}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}})}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00183}00183\ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00184}00184\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&published\_x\ :\ \mbox{\hyperlink{classDetectionAnalyzer_a6f19f803d3707ca4bf3999a907d5b3c8}{published\_positions}})}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00185}00185\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::fabs(published\_x\ -\/\ \mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}})\ <\ 0.5)}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00188}00188\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00189}00189\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00190}00190\ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00203}\mbox{\hyperlink{detectionPointPub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{00203}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{detectionPointPub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00204}00204\ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00205}00205\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}detection\_analyzer"{}});}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00206}00206\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer}{DetectionAnalyzer}}\ analyzer;}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00208}00208\ \ \ \ \ ros::Rate\ loop\_rate(10);}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00210}00210\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00211}00211\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ analyzer.\mbox{\hyperlink{classDetectionAnalyzer_aaaba5d735107e6bb589e7937b6a2bc61}{publishMidGoal}}();}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ loop\_rate.sleep();}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00215}00215\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00217}00217\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00218}00218\ \}}
+
+\end{DoxyCode}

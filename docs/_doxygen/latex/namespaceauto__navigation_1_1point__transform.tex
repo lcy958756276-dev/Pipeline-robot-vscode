@@ -1,0 +1,40 @@
+\doxysection{auto\+\_\+navigation.\+point\+\_\+transform Namespace Reference}
+\hypertarget{namespaceauto__navigation_1_1point__transform}{}\label{namespaceauto__navigation_1_1point__transform}\index{auto\_navigation.point\_transform@{auto\_navigation.point\_transform}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer}{Point\+Transformer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceauto__navigation_1_1point__transform_a63d200727dd1345d7f217f8903c56ec7}{pt}} = \mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer}{Point\+Transformer}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@file point_transformer.py
+@brief 检测点坐标转换模块
+
+该文件实现了一个 ROS 节点，用于将来自相机坐标系的检测点信息
+(detection_new 消息) 转换到全局 odom 坐标系下，并发布转换后的检测点。
+
+功能：
+- 订阅 /_detection_info 接收检测点信息
+- 使用 tf2 将检测点从相机坐标系转换到 odom 坐标系
+- 发布转换后的检测点到 /transformed_detection_info
+- 支持检测点的最小值和最大值坐标转换
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceauto__navigation_1_1point__transform_a63d200727dd1345d7f217f8903c56ec7}\label{namespaceauto__navigation_1_1point__transform_a63d200727dd1345d7f217f8903c56ec7} 
+\index{auto\_navigation.point\_transform@{auto\_navigation.point\_transform}!pt@{pt}}
+\index{pt@{pt}!auto\_navigation.point\_transform@{auto\_navigation.point\_transform}}
+\doxysubsubsection{\texorpdfstring{pt}{pt}}
+{\footnotesize\ttfamily auto\+\_\+navigation.\+point\+\_\+transform.\+pt = \mbox{\hyperlink{classauto__navigation_1_1point__transform_1_1PointTransformer}{Point\+Transformer}}()}
+
+
+
+Definition at line \mbox{\hyperlink{point__transform_8py_source_l00106}{106}} of file \mbox{\hyperlink{point__transform_8py_source}{point\+\_\+transform.\+py}}.
+

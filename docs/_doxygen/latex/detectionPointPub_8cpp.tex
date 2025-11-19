@@ -1,0 +1,97 @@
+\doxysection{auto\+\_\+navigation/detection\+Point\+Pub.cpp File Reference}
+\hypertarget{detectionPointPub_8cpp}{}\label{detectionPointPub_8cpp}\index{auto\_navigation/detectionPointPub.cpp@{auto\_navigation/detectionPointPub.cpp}}
+
+
+检测点分析与 midgoal 生成模块  
+
+
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$nav\+\_\+msgs/\+Odometry.\+h$>$}\newline
+{\ttfamily \#include $<$geometry\+\_\+msgs/\+Pose\+Stamped.\+h$>$}\newline
+{\ttfamily \#include "{}pipeline\+\_\+robot/detection.\+h"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+Include dependency graph for detection\+Point\+Pub.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{detectionPointPub_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classDetectionAnalyzer}{Detection\+Analyzer}}
+\begin{DoxyCompactList}\small\item\em 分析检测点并生成 midgoal 点 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{detectionPointPub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\begin{DoxyCompactList}\small\item\em 主程序入口 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+检测点分析与 midgoal 生成模块 
+
+该文件实现了一个 ROS 节点，用于接收检测点信息、机器人位姿和最终目标点， 并根据检测点和机器人当前位置计算中间目标点 (midgoal)。 功能：
+\begin{DoxyItemize}
+\item 订阅 /cable/odom 获取机器人位姿
+\item 订阅 /transformed\+\_\+detection\+\_\+info 获取检测点
+\item 订阅 finalgoal 获取最终目标点
+\item 根据检测点和机器人位姿生成 midgoal 点
+\item 发布 midgoal 点供导航使用 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{detectionPointPub_8cpp_source}{detection\+Point\+Pub.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{detectionPointPub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{detectionPointPub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+\index{detectionPointPub.cpp@{detectionPointPub.cpp}!main@{main}}
+\index{main@{main}!detectionPointPub.cpp@{detectionPointPub.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+
+
+主程序入口 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & 命令行参数数量 \\
+\hline
+{\em argv} & 命令行参数数组 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 返回 0 表示正常退出
+\end{DoxyReturn}
+功能：
+\begin{DoxyItemize}
+\item 初始化 ROS 节点
+\item 创建 \doxylink{classDetectionAnalyzer}{Detection\+Analyzer} 对象
+\item 循环处理回调并周期性发布 midgoal 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{detectionPointPub_8cpp_source_l00203}{203}} of file \mbox{\hyperlink{detectionPointPub_8cpp_source}{detection\+Point\+Pub.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00204\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}detection\_analyzer"{}});}
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer}{DetectionAnalyzer}}\ analyzer;}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ ros::Rate\ loop\_rate(10);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())}
+\DoxyCodeLine{00211\ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ analyzer.\mbox{\hyperlink{classDetectionAnalyzer_aaaba5d735107e6bb589e7937b6a2bc61}{publishMidGoal}}();}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ loop\_rate.sleep();}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00218\ \}}
+
+\end{DoxyCode}

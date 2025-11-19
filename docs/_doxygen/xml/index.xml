@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="classDA__Octree__Node" kind="class"><name>DA_Octree_Node</name>
+    <member refid="classDA__Octree__Node_1ac9e99724363e8816834a603e56250462" kind="variable"><name>da_sub_</name></member>
+    <member refid="classDA__Octree__Node_1a89264bb14609035442fb21d826a7bb71" kind="variable"><name>odom_sub_</name></member>
+    <member refid="classDA__Octree__Node_1a302c05b9f02186592a77d55372927df9" kind="variable"><name>cloud_pub_</name></member>
+    <member refid="classDA__Octree__Node_1a9445d49b805496111099deb1cd89e115" kind="variable"><name>cloud_</name></member>
+    <member refid="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec" kind="variable"><name>octree_</name></member>
+    <member refid="classDA__Octree__Node_1a4b7666d696a436fb6c444de982b46c04" kind="variable"><name>current_pose_</name></member>
+    <member refid="classDA__Octree__Node_1a788e3a9b1a9378469f0dff71be998020" kind="variable"><name>odom_received_</name></member>
+    <member refid="classDA__Octree__Node_1affd4d94f5e93e83256aa82725fd79509" kind="function"><name>DA_Octree_Node</name></member>
+    <member refid="classDA__Octree__Node_1a5cb1a998850bddf23da20ae4f49119af" kind="function"><name>odomCallback</name></member>
+    <member refid="classDA__Octree__Node_1a2cb85a99abd9811255ef21bf99110a6c" kind="function"><name>daCallback</name></member>
+  </compound>
+  <compound refid="classDetectionAnalyzer" kind="class"><name>DetectionAnalyzer</name>
+    <member refid="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" kind="variable"><name>nh</name></member>
+    <member refid="classDetectionAnalyzer_1abb1eca5770c41109df5688bcecc48c84" kind="variable"><name>odom_sub</name></member>
+    <member refid="classDetectionAnalyzer_1a8ef40feef50fb30ffbbbc51e69c8188e" kind="variable"><name>detection_sub</name></member>
+    <member refid="classDetectionAnalyzer_1a21f29bbee9e78f3123b82d49f65e6c08" kind="variable"><name>finalgoal_sub</name></member>
+    <member refid="classDetectionAnalyzer_1a45860f4a2da2f3df0c5f3244d555f3b8" kind="variable"><name>midgoal_pub</name></member>
+    <member refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" kind="variable"><name>detections</name></member>
+    <member refid="classDetectionAnalyzer_1a6f19f803d3707ca4bf3999a907d5b3c8" kind="variable"><name>published_positions</name></member>
+    <member refid="classDetectionAnalyzer_1a5f50ef9dab802e3ac84304b6911d61a5" kind="variable"><name>current_position_x</name></member>
+    <member refid="classDetectionAnalyzer_1ae2b299f48c872f25afffbb68df9739d8" kind="variable"><name>final_position_x</name></member>
+    <member refid="classDetectionAnalyzer_1ac225923772770c2ca24586696310065a" kind="function"><name>DetectionAnalyzer</name></member>
+    <member refid="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" kind="function"><name>odomCallback</name></member>
+    <member refid="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" kind="function"><name>finalgoalCallback</name></member>
+    <member refid="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" kind="function"><name>detectionCallback</name></member>
+    <member refid="classDetectionAnalyzer_1aaaba5d735107e6bb589e7937b6a2bc61" kind="function"><name>publishMidGoal</name></member>
+    <member refid="classDetectionAnalyzer_1a590d7176d4a52897510ff0867cc8655a" kind="function"><name>isSimilar</name></member>
+    <member refid="classDetectionAnalyzer_1abc065c153de6540f4b4f32bda30b2507" kind="function"><name>isSimilarPublished</name></member>
+  </compound>
+  <compound refid="classauto__navigation_1_1point__transform_1_1PointTransformer" kind="class"><name>auto_navigation::point_transform::PointTransformer</name>
+    <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1a3d5f1d1b5ab5ae204610f018fd295536" kind="variable"><name>tf_buffer</name></member>
+    <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1ab5070a17f047b8e3721d8fda8ccdac9a" kind="variable"><name>tf_listener</name></member>
+    <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1ac43e9e3218f6f38cff12a2f1c63e8c6d" kind="variable"><name>detection_callback</name></member>
+    <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1ae10b95b0c849a250e0154365fcbb37a4" kind="variable"><name>detection_pub</name></member>
+    <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1aaedaeb390c4431789c5f13c4e4cac25a" kind="function"><name>__init__</name></member>
+    <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1a49a89da8b3e38167ecf4afd22339f0b9" kind="function"><name>detection_callback</name></member>
+  </compound>
+  <compound refid="classWaypointFollower" kind="class"><name>WaypointFollower</name>
+    <member refid="classWaypointFollower_1a72cb1a8e64c3cc38b8940803cd7037cc" kind="variable"><name>nh</name></member>
+    <member refid="classWaypointFollower_1a4a1443a0114401ae0b78a81c0c3cf58a" kind="variable"><name>waypoint_sub</name></member>
+    <member refid="classWaypointFollower_1a3b9942db7b168597201c4ad6b0f9ac7b" kind="variable"><name>odom_sub</name></member>
+    <member refid="classWaypointFollower_1ad0f58349481e6b336f8a00aa541e6f90" kind="variable"><name>stop_sub</name></member>
+    <member refid="classWaypointFollower_1ab9cc6a514a64b03567557379aaa237e8" kind="variable"><name>cmd_vel_pub</name></member>
+    <member refid="classWaypointFollower_1a2bd72689fcdaad74fc86d775ed0c8a83" kind="variable"><name>status_pub</name></member>
+    <member refid="classWaypointFollower_1a51d836104234c50dbd26d381510cc86b" kind="variable"><name>control_pub</name></member>
+    <member refid="classWaypointFollower_1a45515f08d85d4c17f9781f5f459d95e6" kind="variable"><name>target_position</name></member>
+    <member refid="classWaypointFollower_1ad4b215b4b432a6322748e187e51d5b5a" kind="variable"><name>target_position_received</name></member>
+    <member refid="classWaypointFollower_1a81cfefd2cf42de846f636aed4b8cf932" kind="variable"><name>is_target_reached</name></member>
+    <member refid="classWaypointFollower_1a6c1c10423b227c062f44c62ce6ef32b3" kind="variable"><name>stop</name></member>
+    <member refid="classWaypointFollower_1a6af39c0afc8b0370618dc947d7152d7a" kind="variable"><name>tolerance</name></member>
+    <member refid="classWaypointFollower_1a56e663bb36f1fe73cf6162225b893931" kind="function"><name>WaypointFollower</name></member>
+    <member refid="classWaypointFollower_1a04b6d9d584f72a3bb5236c387beba11a" kind="function"><name>~WaypointFollower</name></member>
+    <member refid="classWaypointFollower_1a60c2276b9fc46718bac2856ab386f4a7" kind="function"><name>waypointCallback</name></member>
+    <member refid="classWaypointFollower_1ad6da0db3e82faa5c29c4c4d742e9357f" kind="function"><name>stopCallback</name></member>
+    <member refid="classWaypointFollower_1ae4775ce77917cc3056ce2de4e3d38d16" kind="function"><name>correctYPosition</name></member>
+    <member refid="classWaypointFollower_1acf8f1df597d3fb75adf335c046c3a407" kind="function"><name>odomCallback</name></member>
+    <member refid="classWaypointFollower_1a4fe8fa93ac086ef4411c120e7cca67d8" kind="function"><name>checkTargetReached</name></member>
+  </compound>
+  <compound refid="classWaypointPublisher" kind="class"><name>WaypointPublisher</name>
+    <member refid="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" kind="variable"><name>nh</name></member>
+    <member refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" kind="variable"><name>waypoint_pub</name></member>
+    <member refid="classWaypointPublisher_1a47885b59e7318b53b3b2082654e90560" kind="variable"><name>auto_navigation_stop_pub</name></member>
+    <member refid="classWaypointPublisher_1a087009cba8fbe8e994931e282008b4a2" kind="variable"><name>midgoal_sub</name></member>
+    <member refid="classWaypointPublisher_1aaf87298f88a3ecbc9a913c07bac58b54" kind="variable"><name>finalgoal_sub</name></member>
+    <member refid="classWaypointPublisher_1a024fcc12ff98892facd5e28c5ca703f9" kind="variable"><name>odom_sub</name></member>
+    <member refid="classWaypointPublisher_1ae607b30dfd6060d57255e9b4ef780a0b" kind="variable"><name>status_sub</name></member>
+    <member refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kind="variable"><name>midgoals</name></member>
+    <member refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kind="variable"><name>current_goal</name></member>
+    <member refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kind="variable"><name>finalgoal</name></member>
+    <member refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kind="variable"><name>pre_goal</name></member>
+    <member refid="classWaypointPublisher_1a2edee68f60a0e465b7646f95ced1d121" kind="variable"><name>current_position</name></member>
+    <member refid="classWaypointPublisher_1a0b4c87fc988b12c3bb480b9898916394" kind="variable"><name>current_status</name></member>
+    <member refid="classWaypointPublisher_1a73056696f4260f559e796ea1ec11806d" kind="variable"><name>finalgoal_received</name></member>
+    <member refid="classWaypointPublisher_1a29cc7107bfbf6d425275a99e95caf53e" kind="variable"><name>goal_reached</name></member>
+    <member refid="classWaypointPublisher_1a0888ce7b8f0cfa2ccc6fd51ec65f49e6" kind="variable"><name>finalgoal_reached</name></member>
+    <member refid="classWaypointPublisher_1aba3de5d71ffcac47e4461bae72d4ec65" kind="variable"><name>midinital</name></member>
+    <member refid="classWaypointPublisher_1afa16a43e6d8b4c306089109bf71715a0" kind="variable"><name>finalinital</name></member>
+    <member refid="classWaypointPublisher_1aade0e35d7818b8890d3d3035beef3fb2" kind="function"><name>WaypointPublisher</name></member>
+    <member refid="classWaypointPublisher_1a2176c42b0a87e9144ea84e334f1b655a" kind="function"><name>midgoalCallback</name></member>
+    <member refid="classWaypointPublisher_1ae281f0d4ec699816476b4ffc860a81ca" kind="function"><name>queueSort</name></member>
+    <member refid="classWaypointPublisher_1ab3ecb848d99f9b4b35bc37f7f5cba622" kind="function"><name>odomCallback</name></member>
+    <member refid="classWaypointPublisher_1acd043704f75fb8f8eb57826c7a3251ff" kind="function"><name>finalgoalCallback</name></member>
+    <member refid="classWaypointPublisher_1adf1c93f6db23215a13c59819a1b3dbc6" kind="function"><name>processGoals</name></member>
+    <member refid="classWaypointPublisher_1abeaceaac34b26aff80888ef49c470404" kind="function"><name>statusCallback</name></member>
+  </compound>
+  <compound refid="namespaceauto__navigation" kind="namespace"><name>auto_navigation</name>
+  </compound>
+  <compound refid="namespaceauto__navigation_1_1point__transform" kind="namespace"><name>auto_navigation::point_transform</name>
+    <member refid="namespaceauto__navigation_1_1point__transform_1a63d200727dd1345d7f217f8903c56ec7" kind="variable"><name>pt</name></member>
+  </compound>
+  <compound refid="namespacecameralcapture" kind="namespace"><name>cameralcapture</name>
+    <member refid="namespacecameralcapture_1ad4821b4d88833619cce7f6782bfd7bb7" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="overall__map_8cpp" kind="file"><name>overall_map.cpp</name>
+    <member refid="overall__map_8cpp_1a4333d786c60465d20826583358b2798d" kind="variable"><name>resolution</name></member>
+    <member refid="overall__map_8cpp_1a82d466187eb99a84467bf27a26ee481a" kind="variable"><name>tfListener</name></member>
+    <member refid="overall__map_8cpp_1a14ca948851469d68a76e0b26d879a1aa" kind="variable"><name>cumulativePoints</name></member>
+    <member refid="overall__map_8cpp_1a1bcf55de3abb110c38e335e9fb8f5eb1" kind="variable"><name>currentVoxels</name></member>
+    <member refid="overall__map_8cpp_1a3e57fc0dd660c31635246086b6428a83" kind="variable"><name>lastPosition</name></member>
+    <member refid="overall__map_8cpp_1a8bbc76585965c3f3c1067d4e2b8e4635" kind="variable"><name>currentPosition</name></member>
+    <member refid="overall__map_8cpp_1a699159ca5d125cf65d82bbeaefc750dd" kind="variable"><name>positionInitialized</name></member>
+    <member refid="overall__map_8cpp_1a941d8397015c32731d1f8b1bd52b2ba1" kind="function"><name>octree</name></member>
+    <member refid="overall__map_8cpp_1ae77e5d68ff0f4892f5154064e8b5e21c" kind="function"><name>odomCallback</name></member>
+    <member refid="overall__map_8cpp_1ae555b00aee41d288cfc286fe5fdd2f61" kind="function"><name>cloudCallback</name></member>
+    <member refid="overall__map_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="sanwijiantu_8cpp" kind="file"><name>sanwijiantu.cpp</name>
+    <member refid="sanwijiantu_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="____init_____8py" kind="file"><name>__init__.py</name>
+  </compound>
+  <compound refid="detectionPointPub_8cpp" kind="file"><name>detectionPointPub.cpp</name>
+    <member refid="detectionPointPub_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="point__transform_8py" kind="file"><name>point_transform.py</name>
+  </compound>
+  <compound refid="WaypointFollower_8cpp" kind="file"><name>WaypointFollower.cpp</name>
+    <member refid="WaypointFollower_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="WaypointPublisher_8cpp" kind="file"><name>WaypointPublisher.cpp</name>
+    <member refid="WaypointPublisher_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="odom__pub_8cpp" kind="file"><name>odom_pub.cpp</name>
+    <member refid="odom__pub_8cpp_1a30b9d036a79a00e325dd2bbb9e991755" kind="variable"><name>reset_odom</name></member>
+    <member refid="odom__pub_8cpp_1ac5e0ffa856f94297db93de525454d254" kind="variable"><name>wheel_radius</name></member>
+    <member refid="odom__pub_8cpp_1a7528b439f0436b7327b1acaa71f0fc88" kind="variable"><name>wheel_base</name></member>
+    <member refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" kind="variable"><name>distance</name></member>
+    <member refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" kind="variable"><name>x</name></member>
+    <member refid="odom__pub_8cpp_1ab927965981178aa1fba979a37168db2a" kind="variable"><name>y</name></member>
+    <member refid="odom__pub_8cpp_1aca81c35c21e3a5f7f3a8d24504e76664" kind="variable"><name>theta</name></member>
+    <member refid="odom__pub_8cpp_1ac7cf637ac08386a7e08f7a9cb1975056" kind="variable"><name>pluse</name></member>
+    <member refid="odom__pub_8cpp_1a55886e34bc6a03b24f6ce7455fe67289" kind="variable"><name>last_time</name></member>
+    <member refid="odom__pub_8cpp_1aed25fed1ceb628954de9adc35a411398" kind="function"><name>extra</name></member>
+    <member refid="odom__pub_8cpp_1a6e9f67764013c92ecd2200c1e90d714a" kind="function"><name>resetOdometryCallback</name></member>
+    <member refid="odom__pub_8cpp_1afca0ce71eb34f139dd215289e37db241" kind="function"><name>EncoderCallback</name></member>
+    <member refid="odom__pub_8cpp_1a8f5e3f6c52f55538bf51ba8c929b3017" kind="function"><name>publishOdometry</name></member>
+    <member refid="odom__pub_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="stm32_8cpp" kind="file"><name>stm32.cpp</name>
+    <member refid="stm32_8cpp_1a448b5187ce5b494da4cf14cea184169b" kind="variable"><name>ser</name></member>
+    <member refid="stm32_8cpp_1aa53aae2dcc352535349deb3a56abdfc4" kind="function"><name>datasend_callback</name></member>
+    <member refid="stm32_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="testcam_8cpp" kind="file"><name>testcam.cpp</name>
+  </compound>
+  <compound refid="dianliu_8cpp" kind="file"><name>dianliu.cpp</name>
+    <member refid="dianliu_8cpp_1af00966f1f0d0decfe11c8aad5eb96d06" kind="variable"><name>pub_c0</name></member>
+    <member refid="dianliu_8cpp_1a2d6c8cd934f13b8a852b4c8a9d4902e3" kind="variable"><name>pub_c1</name></member>
+    <member refid="dianliu_8cpp_1ae2a1969ef79c05a5e3712df353855b24" kind="variable"><name>pub_c2</name></member>
+    <member refid="dianliu_8cpp_1a7166717cdbf98b2af031438a974c78b5" kind="variable"><name>pub_c3</name></member>
+    <member refid="dianliu_8cpp_1a363297453acbeafeeed6e0ceec5f12bf" kind="variable"><name>pub_c4</name></member>
+    <member refid="dianliu_8cpp_1afabe14a1595c4d1f405b54edf87832ae" kind="function"><name>extractData</name></member>
+    <member refid="dianliu_8cpp_1af75bf1021320fe67696e7c429821a33b" kind="function"><name>isValidInteger</name></member>
+    <member refid="dianliu_8cpp_1abba960c86bd339697e78c89131d9a565" kind="function"><name>parseAndPublish</name></member>
+    <member refid="dianliu_8cpp_1a54fb40f1cec43c98df052811a7b15a51" kind="function"><name>tcpLoop</name></member>
+    <member refid="dianliu_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="lidarimudata_8cpp" kind="file"><name>lidarimudata.cpp</name>
+    <member refid="lidarimudata_8cpp_1af4be04c36baee6cbd619f7f248678c2b" kind="variable"><name>g_conn_mutex</name></member>
+    <member refid="lidarimudata_8cpp_1a8667af10789ec10299828b588f33fa66" kind="variable"><name>g_sockfd</name></member>
+    <member refid="lidarimudata_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" kind="variable"><name>g_ip</name></member>
+    <member refid="lidarimudata_8cpp_1a6701847851618f32d00a154d16f7f187" kind="variable"><name>g_port</name></member>
+    <member refid="lidarimudata_8cpp_1a06c5aa7b1310b56852b7df4784c70ba8" kind="variable"><name>g_status_pub</name></member>
+    <member refid="lidarimudata_8cpp_1a222c71617a07df6b5e5dedd3df7159c8" kind="function"><name>connectToServer</name></member>
+    <member refid="lidarimudata_8cpp_1a55b66494816d709ecd0c243845ada46c" kind="function"><name>publishStatus</name></member>
+    <member refid="lidarimudata_8cpp_1a1b31693e822f01154ca4c6c8482c5288" kind="function"><name>parseAndPublishData</name></member>
+    <member refid="lidarimudata_8cpp_1ac17b993e3645f9b9a7f96e87fdd5bf62" kind="function"><name>handleDisconnection</name></member>
+    <member refid="lidarimudata_8cpp_1a7ee213d0ef876d9aeb03815d68d708ab" kind="function"><name>tcpDataLoop</name></member>
+    <member refid="lidarimudata_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="tempandpress_8cpp" kind="file"><name>tempandpress.cpp</name>
+    <member refid="tempandpress_8cpp_1a229938ef2b258aba203e83bca7f47b36" kind="variable"><name>pub_temp</name></member>
+    <member refid="tempandpress_8cpp_1ab22b3f5f78356af75c89bb0c5e6e3858" kind="variable"><name>pub_press</name></member>
+    <member refid="tempandpress_8cpp_1ab49abf98d6945a9fd91eed2743b99634" kind="variable"><name>pub_cpu_temp</name></member>
+    <member refid="tempandpress_8cpp_1aab08866a9274281978d9fc03a4d737ab" kind="variable"><name>pub_gpu_temp</name></member>
+    <member refid="tempandpress_8cpp_1aea836183d504027fcec3386ac320d1b0" kind="function"><name>readThermal</name></member>
+    <member refid="tempandpress_8cpp_1abba960c86bd339697e78c89131d9a565" kind="function"><name>parseAndPublish</name></member>
+    <member refid="tempandpress_8cpp_1a54fb40f1cec43c98df052811a7b15a51" kind="function"><name>tcpLoop</name></member>
+    <member refid="tempandpress_8cpp_1a29f4ca4ec279107fd08630624d6a20b1" kind="function"><name>publishNanoTemp</name></member>
+    <member refid="tempandpress_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="three__yuannumber_8cpp" kind="file"><name>three_yuannumber.cpp</name>
+    <member refid="three__yuannumber_8cpp_1af4be04c36baee6cbd619f7f248678c2b" kind="variable"><name>g_conn_mutex</name></member>
+    <member refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" kind="variable"><name>g_sockfd</name></member>
+    <member refid="three__yuannumber_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" kind="variable"><name>g_ip</name></member>
+    <member refid="three__yuannumber_8cpp_1a6701847851618f32d00a154d16f7f187" kind="variable"><name>g_port</name></member>
+    <member refid="three__yuannumber_8cpp_1a06c5aa7b1310b56852b7df4784c70ba8" kind="variable"><name>g_status_pub</name></member>
+    <member refid="three__yuannumber_8cpp_1a222c71617a07df6b5e5dedd3df7159c8" kind="function"><name>connectToServer</name></member>
+    <member refid="three__yuannumber_8cpp_1a55b66494816d709ecd0c243845ada46c" kind="function"><name>publishStatus</name></member>
+    <member refid="three__yuannumber_8cpp_1a0a0119bf5ad744347f1530557e24c987" kind="function"><name>parseAndPublishData</name></member>
+    <member refid="three__yuannumber_8cpp_1a1633fa75ac3410de6330ee6b803787b1" kind="function"><name>tcpDataLoop</name></member>
+    <member refid="three__yuannumber_8cpp_1ac17b993e3645f9b9a7f96e87fdd5bf62" kind="function"><name>handleDisconnection</name></member>
+    <member refid="three__yuannumber_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="dir_a2794b1d7be6989d30674203e9569ab9" kind="dir"><name>3D_mapping</name>
+  </compound>
+  <compound refid="dir_b831a6d9de3f2f91c7f2e3c5094606b4" kind="dir"><name>auto_navigation</name>
+  </compound>
+  <compound refid="dir_27c6120959a9944d1bab3e77bbd4ef2e" kind="dir"><name>cable_read</name>
+  </compound>
+  <compound refid="dir_d79eecd18aa11c1aeb114a23ed426d6f" kind="dir"><name>cameralcapture</name>
+  </compound>
+  <compound refid="dir_baa7334b549432b23df2b0f18fb5210d" kind="dir"><name>Motherboard_data_process</name>
+  </compound>
+</doxygenindex>

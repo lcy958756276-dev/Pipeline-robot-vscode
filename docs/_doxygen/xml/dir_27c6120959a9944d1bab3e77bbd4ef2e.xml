@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_27c6120959a9944d1bab3e77bbd4ef2e" kind="dir">
+    <compoundname>cable_read</compoundname>
+    <innerfile refid="odom__pub_8cpp">odom_pub.cpp</innerfile>
+    <innerfile refid="stm32_8cpp">stm32.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cable_read/"/>
+  </compounddef>
+</doxygen>

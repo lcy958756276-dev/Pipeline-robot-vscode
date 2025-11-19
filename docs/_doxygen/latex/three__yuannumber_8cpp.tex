@@ -1,0 +1,422 @@
+\doxysection{Motherboard\+\_\+data\+\_\+process/three\+\_\+yuannumber.cpp File Reference}
+\hypertarget{three__yuannumber_8cpp}{}\label{three__yuannumber_8cpp}\index{Motherboard\_data\_process/three\_yuannumber.cpp@{Motherboard\_data\_process/three\_yuannumber.cpp}}
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$std\+\_\+msgs/\+Float32.\+h$>$}\newline
+{\ttfamily \#include $<$std\+\_\+msgs/\+String.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+Include dependency graph for three\+\_\+yuannumber.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{three__yuannumber_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{three__yuannumber_8cpp_a222c71617a07df6b5e5dedd3df7159c8}{connect\+To\+Server}} (const std\+::string \&ip, int port)
+\begin{DoxyCompactList}\small\item\em 连接 TCP 服务器 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{three__yuannumber_8cpp_a55b66494816d709ecd0c243845ada46c}{publish\+Status}} (const std\+::string \&status)
+\begin{DoxyCompactList}\small\item\em 发布 TCP 连接状态到 /connection\+\_\+status \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{three__yuannumber_8cpp_a0a0119bf5ad744347f1530557e24c987}{parse\+And\+Publish\+Data}} (const std\+::string \&data, ros\+::\+Publisher \&roll\+\_\+pub, ros\+::\+Publisher \&pitch\+\_\+pub, ros\+::\+Publisher \&heading\+\_\+pub)
+\begin{DoxyCompactList}\small\item\em 解析 RPH 数据并发布到对应 ROS 话题 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{three__yuannumber_8cpp_a1633fa75ac3410de6330ee6b803787b1}{tcp\+Data\+Loop}} (ros\+::\+Publisher \&raw\+\_\+pub, ros\+::\+Publisher \&roll\+\_\+pub, ros\+::\+Publisher \&pitch\+\_\+pub, ros\+::\+Publisher \&heading\+\_\+pub)
+\begin{DoxyCompactList}\small\item\em TCP 数据接收循环 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{three__yuannumber_8cpp_ac17b993e3645f9b9a7f96e87fdd5bf62}{handle\+Disconnection}} (int max\+\_\+reconnect, float interval)
+\begin{DoxyCompactList}\small\item\em 处理 TCP 断开连接 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{three__yuannumber_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::mutex \mbox{\hyperlink{three__yuannumber_8cpp_af4be04c36baee6cbd619f7f248678c2b}{g\+\_\+conn\+\_\+mutex}}
+\item 
+int \mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\+\_\+sockfd}} = -\/1
+\item 
+std\+::string \mbox{\hyperlink{three__yuannumber_8cpp_a1e3eec5d094a88a8cfa16aeb59e7ce45}{g\+\_\+ip}}
+\item 
+int \mbox{\hyperlink{three__yuannumber_8cpp_a6701847851618f32d00a154d16f7f187}{g\+\_\+port}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{three__yuannumber_8cpp_a06c5aa7b1310b56852b7df4784c70ba8}{g\+\_\+status\+\_\+pub}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{three__yuannumber_8cpp_a222c71617a07df6b5e5dedd3df7159c8}\label{three__yuannumber_8cpp_a222c71617a07df6b5e5dedd3df7159c8} 
+\index{three\_yuannumber.cpp@{three\_yuannumber.cpp}!connectToServer@{connectToServer}}
+\index{connectToServer@{connectToServer}!three\_yuannumber.cpp@{three\_yuannumber.cpp}}
+\doxysubsubsection{\texorpdfstring{connectToServer()}{connectToServer()}}
+{\footnotesize\ttfamily bool connect\+To\+Server (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+连接 TCP 服务器 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & 服务器 IP 地址 \\
+\hline
+{\em port} & 服务器端口 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 连接成功 
+
+false 连接失败 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{three__yuannumber_8cpp_source_l00133}{133}} of file \mbox{\hyperlink{three__yuannumber_8cpp_source}{three\+\_\+yuannumber.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{three__yuannumber_8cpp_af4be04c36baee6cbd619f7f248678c2b}{g\_conn\_mutex}});}
+\DoxyCodeLine{00135\ \ \ \ \ ROS\_INFO\_STREAM(\textcolor{stringliteral}{"{}Connecting\ to\ "{}}\ <<\ ip\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ port);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}}\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}}\ <\ 0)\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ ROS\_ERROR\_STREAM(\textcolor{stringliteral}{"{}Socket\ error:\ "{}}\ <<\ strerror(errno));}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ sockaddr\_in\ serv\_addr;}
+\DoxyCodeLine{00144\ \ \ \ \ serv\_addr.sin\_family\ =\ AF\_INET;}
+\DoxyCodeLine{00145\ \ \ \ \ serv\_addr.sin\_port\ =\ htons(port);}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{if}\ (inet\_pton(AF\_INET,\ ip.c\_str(),\ \&serv\_addr.sin\_addr)\ <=\ 0)\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Invalid\ IP\ format"{}});}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{if}\ (connect(\mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}},\ (\textcolor{keyword}{struct}\ sockaddr*)\&serv\_addr,\ \textcolor{keyword}{sizeof}(serv\_addr))\ <\ 0)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ ROS\_ERROR\_STREAM(\textcolor{stringliteral}{"{}Connection\ failed:\ "{}}\ <<\ strerror(errno));}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Connected\ to\ server"{}});}
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a55b66494816d709ecd0c243845ada46c}{publishStatus}}(\textcolor{stringliteral}{"{}CONNECTED"{}});}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00159\ \}}
+
+\end{DoxyCode}
+\Hypertarget{three__yuannumber_8cpp_ac17b993e3645f9b9a7f96e87fdd5bf62}\label{three__yuannumber_8cpp_ac17b993e3645f9b9a7f96e87fdd5bf62} 
+\index{three\_yuannumber.cpp@{three\_yuannumber.cpp}!handleDisconnection@{handleDisconnection}}
+\index{handleDisconnection@{handleDisconnection}!three\_yuannumber.cpp@{three\_yuannumber.cpp}}
+\doxysubsubsection{\texorpdfstring{handleDisconnection()}{handleDisconnection()}}
+{\footnotesize\ttfamily void handle\+Disconnection (\begin{DoxyParamCaption}\item[{int}]{max\+\_\+reconnect,  }\item[{float}]{interval }\end{DoxyParamCaption})}
+
+
+
+处理 TCP 断开连接 
+
+支持自动重连，达到最大重试次数则关闭 ROS 节点
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+\_\+reconnect} & 最大重连次数 \\
+\hline
+{\em interval} & 重连间隔（秒） \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{three__yuannumber_8cpp_source_l00249}{249}} of file \mbox{\hyperlink{three__yuannumber_8cpp_source}{three\+\_\+yuannumber.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ attempts\ =\ 0;}
+\DoxyCodeLine{00251\ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{three__yuannumber_8cpp_af4be04c36baee6cbd619f7f248678c2b}{g\_conn\_mutex}});}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ close(\mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}});}
+\DoxyCodeLine{00254\ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a55b66494816d709ecd0c243845ada46c}{publishStatus}}(\textcolor{stringliteral}{"{}DISCONNECTED"{}});}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keywordflow}{if}\ (++attempts\ <=\ max\_reconnect)\ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ ROS\_WARN\_STREAM(\textcolor{stringliteral}{"{}Reconnecting\ ("{}}\ <<\ attempts\ <<\ \textcolor{stringliteral}{"{}/"{}}\ <<\ max\_reconnect\ <<\ \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ ros::Duration(interval).sleep();}
+\DoxyCodeLine{00259\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ ROS\_FATAL(\textcolor{stringliteral}{"{}Max\ reconnection\ attempts\ reached"{}});}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ ros::shutdown();}
+\DoxyCodeLine{00262\ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \}}
+
+\end{DoxyCode}
+\Hypertarget{three__yuannumber_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{three__yuannumber_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+\index{three\_yuannumber.cpp@{three\_yuannumber.cpp}!main@{main}}
+\index{main@{main}!three\_yuannumber.cpp@{three\_yuannumber.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{three__yuannumber_8cpp_source_l00092}{92}} of file \mbox{\hyperlink{three__yuannumber_8cpp_source}{three\+\_\+yuannumber.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}tcp\_rph\_extractor"{}});}
+\DoxyCodeLine{00094\ \ \ \ \ ros::NodeHandle\ nh(\textcolor{stringliteral}{"{}\string~"{}});}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ 参数配置}}
+\DoxyCodeLine{00097\ \ \ \ \ nh.param<std::string>(\textcolor{stringliteral}{"{}ip"{}},\ \mbox{\hyperlink{three__yuannumber_8cpp_a1e3eec5d094a88a8cfa16aeb59e7ce45}{g\_ip}},\ \textcolor{stringliteral}{"{}192.168.8.11"{}});}
+\DoxyCodeLine{00098\ \ \ \ \ nh.param<\textcolor{keywordtype}{int}>(\textcolor{stringliteral}{"{}port"{}},\ \mbox{\hyperlink{three__yuannumber_8cpp_a6701847851618f32d00a154d16f7f187}{g\_port}},\ 12345);}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{int}\ max\_reconnect;}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{float}\ reconnect\_interval;}
+\DoxyCodeLine{00101\ \ \ \ \ nh.param<\textcolor{keywordtype}{int}>(\textcolor{stringliteral}{"{}max\_reconnect"{}},\ max\_reconnect,\ 5);}
+\DoxyCodeLine{00102\ \ \ \ \ nh.param<\textcolor{keywordtype}{float}>(\textcolor{stringliteral}{"{}reconnect\_interval"{}},\ reconnect\_interval,\ 3.0);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ 初始化ROS话题}}
+\DoxyCodeLine{00105\ \ \ \ \ ros::Publisher\ raw\_pub\ =\ nh.advertise<std\_msgs::String>(\textcolor{stringliteral}{"{}/raw\_data"{}},\ 100);}
+\DoxyCodeLine{00106\ \ \ \ \ ros::Publisher\ roll\_pub\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/roll"{}},\ 100);}
+\DoxyCodeLine{00107\ \ \ \ \ ros::Publisher\ pitch\_pub\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/pitch"{}},\ 100);}
+\DoxyCodeLine{00108\ \ \ \ \ ros::Publisher\ heading\_pub\ =\ nh.advertise<std\_msgs::Float32>(\textcolor{stringliteral}{"{}/heading"{}},\ 100);}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a06c5aa7b1310b56852b7df4784c70ba8}{g\_status\_pub}}\ =\ nh.advertise<std\_msgs::String>(\textcolor{stringliteral}{"{}/connection\_status"{}},\ 10);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ 设置调试级别}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{if}\ (ros::console::set\_logger\_level(ROSCONSOLE\_DEFAULT\_NAME,\ ros::console::levels::Debug))\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ ros::console::notifyLoggerLevelsChanged();}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}Starting\ TCP\ RPH\ extractor"{}});}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//\ 主循环}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{three__yuannumber_8cpp_a222c71617a07df6b5e5dedd3df7159c8}{connectToServer}}(\mbox{\hyperlink{three__yuannumber_8cpp_a1e3eec5d094a88a8cfa16aeb59e7ce45}{g\_ip}},\ \mbox{\hyperlink{three__yuannumber_8cpp_a6701847851618f32d00a154d16f7f187}{g\_port}}))\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a1633fa75ac3410de6330ee6b803787b1}{tcpDataLoop}}(raw\_pub,\ roll\_pub,\ pitch\_pub,\ heading\_pub);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_ac17b993e3645f9b9a7f96e87fdd5bf62}{handleDisconnection}}(max\_reconnect,\ reconnect\_interval);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ close(\mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}});}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00129\ \}}
+
+\end{DoxyCode}
+\Hypertarget{three__yuannumber_8cpp_a0a0119bf5ad744347f1530557e24c987}\label{three__yuannumber_8cpp_a0a0119bf5ad744347f1530557e24c987} 
+\index{three\_yuannumber.cpp@{three\_yuannumber.cpp}!parseAndPublishData@{parseAndPublishData}}
+\index{parseAndPublishData@{parseAndPublishData}!three\_yuannumber.cpp@{three\_yuannumber.cpp}}
+\doxysubsubsection{\texorpdfstring{parseAndPublishData()}{parseAndPublishData()}}
+{\footnotesize\ttfamily void parse\+And\+Publish\+Data (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{data,  }\item[{ros\+::\+Publisher \&}]{roll\+\_\+pub,  }\item[{ros\+::\+Publisher \&}]{pitch\+\_\+pub,  }\item[{ros\+::\+Publisher \&}]{heading\+\_\+pub }\end{DoxyParamCaption})}
+
+
+
+解析 RPH 数据并发布到对应 ROS 话题 
+
+数据格式示例：
+\begin{DoxyItemize}
+\item "{}\+R=1.\+23"{} -\/\texorpdfstring{$>$}{>} Roll
+\item "{}\+P=2.\+34"{} -\/\texorpdfstring{$>$}{>} Pitch
+\item "{}\+H=3.\+45"{} -\/\texorpdfstring{$>$}{>} Heading
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & 原始数据字符串 \\
+\hline
+{\em roll\+\_\+pub} & 发布 Roll 的 ROS Publisher \\
+\hline
+{\em pitch\+\_\+pub} & 发布 Pitch 的 ROS Publisher \\
+\hline
+{\em heading\+\_\+pub} & 发布 Heading 的 ROS Publisher \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{three__yuannumber_8cpp_source_l00203}{203}} of file \mbox{\hyperlink{three__yuannumber_8cpp_source}{three\+\_\+yuannumber.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ std::istringstream\ iss(data);}
+\DoxyCodeLine{00208\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{float}\ roll\ =\ 0,\ pitch\ =\ 0,\ heading\ =\ 0;}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{bool}\ has\_rph\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(iss,\ line))\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.empty())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ ROS\_DEBUG\_STREAM(\textcolor{stringliteral}{"{}Processing:\ "{}}\ <<\ line);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}R="{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ roll\ =\ std::stof(line.substr(2));}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ has\_rph\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}P="{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pitch\ =\ std::stof(line.substr(2));}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ has\_rph\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}H="{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ heading\ =\ std::stof(line.substr(2));}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (has\_rph)\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std\_msgs::Float32\ roll\_msg,\ pitch\_msg,\ heading\_msg;}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ roll\_msg.data\ =\ roll;}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pitch\_msg.data\ =\ pitch;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ heading\_msg.data\ =\ heading;}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ roll\_pub.publish(roll\_msg);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pitch\_pub.publish(pitch\_msg);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ heading\_pub.publish(heading\_msg);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_DEBUG\_STREAM(\textcolor{stringliteral}{"{}Published\ RPH:\ R="{}}\ <<\ roll\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ P="{}}\ <<\ pitch}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ H="{}}\ <<\ heading);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ has\_rph\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_ERROR\_STREAM(\textcolor{stringliteral}{"{}Parse\ error:\ "{}}\ <<\ e.what()\ <<\ \textcolor{stringliteral}{"{}\ in\ line:\ "{}}\ <<\ line);}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \}}
+
+\end{DoxyCode}
+\Hypertarget{three__yuannumber_8cpp_a55b66494816d709ecd0c243845ada46c}\label{three__yuannumber_8cpp_a55b66494816d709ecd0c243845ada46c} 
+\index{three\_yuannumber.cpp@{three\_yuannumber.cpp}!publishStatus@{publishStatus}}
+\index{publishStatus@{publishStatus}!three\_yuannumber.cpp@{three\_yuannumber.cpp}}
+\doxysubsubsection{\texorpdfstring{publishStatus()}{publishStatus()}}
+{\footnotesize\ttfamily void publish\+Status (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{status }\end{DoxyParamCaption})}
+
+
+
+发布 TCP 连接状态到 /connection\+\_\+status 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & 状态字符串，如 "{}\+CONNECTED"{} 或 "{}\+DISCONNECTED"{} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{three__yuannumber_8cpp_source_l00161}{161}} of file \mbox{\hyperlink{three__yuannumber_8cpp_source}{three\+\_\+yuannumber.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ std\_msgs::String\ msg;}
+\DoxyCodeLine{00163\ \ \ \ \ msg.data\ =\ \textcolor{stringliteral}{"{}[STATUS]\ "{}}\ +\ status\ +\ \textcolor{stringliteral}{"{}\ |\ IP:\ "{}}\ +\ \mbox{\hyperlink{three__yuannumber_8cpp_a1e3eec5d094a88a8cfa16aeb59e7ce45}{g\_ip}};}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a06c5aa7b1310b56852b7df4784c70ba8}{g\_status\_pub}}.publish(msg);}
+\DoxyCodeLine{00165\ \ \ \ \ ROS\_DEBUG\_STREAM(\textcolor{stringliteral}{"{}Status\ published:\ "{}}\ <<\ msg.data);}
+\DoxyCodeLine{00166\ \}}
+
+\end{DoxyCode}
+\Hypertarget{three__yuannumber_8cpp_a1633fa75ac3410de6330ee6b803787b1}\label{three__yuannumber_8cpp_a1633fa75ac3410de6330ee6b803787b1} 
+\index{three\_yuannumber.cpp@{three\_yuannumber.cpp}!tcpDataLoop@{tcpDataLoop}}
+\index{tcpDataLoop@{tcpDataLoop}!three\_yuannumber.cpp@{three\_yuannumber.cpp}}
+\doxysubsubsection{\texorpdfstring{tcpDataLoop()}{tcpDataLoop()}}
+{\footnotesize\ttfamily void tcp\+Data\+Loop (\begin{DoxyParamCaption}\item[{ros\+::\+Publisher \&}]{raw\+\_\+pub,  }\item[{ros\+::\+Publisher \&}]{roll\+\_\+pub,  }\item[{ros\+::\+Publisher \&}]{pitch\+\_\+pub,  }\item[{ros\+::\+Publisher \&}]{heading\+\_\+pub }\end{DoxyParamCaption})}
+
+
+
+TCP 数据接收循环 
+
+持续读取 TCP 数据，并按行解析 RPH，发布原始数据和解析数据
+
+
+\begin{DoxyParams}{Parameters}
+{\em raw\+\_\+pub} & 发布原始数据的 ROS Publisher \\
+\hline
+{\em roll\+\_\+pub} & 发布 Roll 的 ROS Publisher \\
+\hline
+{\em pitch\+\_\+pub} & 发布 Pitch 的 ROS Publisher \\
+\hline
+{\em heading\+\_\+pub} & 发布 Heading 的 ROS Publisher \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{three__yuannumber_8cpp_source_l00168}{168}} of file \mbox{\hyperlink{three__yuannumber_8cpp_source}{three\+\_\+yuannumber.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[4096];}
+\DoxyCodeLine{00173\ \ \ \ \ std::string\ remaining\_data;}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{while}\ (ros::ok())\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ ssize\_t\ valread\ =\ read(\mbox{\hyperlink{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}{g\_sockfd}},\ buffer,\ \textcolor{keyword}{sizeof}(buffer)\ -\/\ 1);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (valread\ <=\ 0)\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_WARN\_STREAM(\textcolor{stringliteral}{"{}Read\ error:\ "{}}\ <<\ (valread\ ==\ 0\ ?\ \textcolor{stringliteral}{"{}EOF"{}}\ :\ strerror(errno)));}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ buffer[valread]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ std::string\ raw\_data\ =\ remaining\_data\ +\ buffer;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ last\_newline\ =\ raw\_data.find\_last\_of(\textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (last\_newline\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 发布原始数据}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ std\_msgs::String\ raw\_msg;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ raw\_msg.data\ =\ \textcolor{stringliteral}{"{}[RAW]\ "{}}\ +\ raw\_data.substr(0,\ 100);\ \ \textcolor{comment}{//\ 截断前100字符}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ raw\_pub.publish(raw\_msg);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 解析RPH数据}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{three__yuannumber_8cpp_a0a0119bf5ad744347f1530557e24c987}{parseAndPublishData}}(raw\_data.substr(0,\ last\_newline),\ roll\_pub,\ pitch\_pub,\ heading\_pub);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ remaining\_data\ =\ raw\_data.substr(last\_newline\ +\ 1);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ remaining\_data\ =\ raw\_data;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_DEBUG(\textcolor{stringliteral}{"{}Buffering\ incomplete\ packet"{}});}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ memset(buffer,\ 0,\ \textcolor{keyword}{sizeof}(buffer));}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{three__yuannumber_8cpp_af4be04c36baee6cbd619f7f248678c2b}\label{three__yuannumber_8cpp_af4be04c36baee6cbd619f7f248678c2b} 
+\index{three\_yuannumber.cpp@{three\_yuannumber.cpp}!g\_conn\_mutex@{g\_conn\_mutex}}
+\index{g\_conn\_mutex@{g\_conn\_mutex}!three\_yuannumber.cpp@{three\_yuannumber.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_conn\_mutex}{g\_conn\_mutex}}
+{\footnotesize\ttfamily std\+::mutex g\+\_\+conn\+\_\+mutex}
+
+TCP 连接互斥锁 
+
+Definition at line \mbox{\hyperlink{three__yuannumber_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{three__yuannumber_8cpp_source}{three\+\_\+yuannumber.\+cpp}}.
+
+\Hypertarget{three__yuannumber_8cpp_a1e3eec5d094a88a8cfa16aeb59e7ce45}\label{three__yuannumber_8cpp_a1e3eec5d094a88a8cfa16aeb59e7ce45} 
+\index{three\_yuannumber.cpp@{three\_yuannumber.cpp}!g\_ip@{g\_ip}}
+\index{g\_ip@{g\_ip}!three\_yuannumber.cpp@{three\_yuannumber.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_ip}{g\_ip}}
+{\footnotesize\ttfamily std\+::string g\+\_\+ip}
+
+TCP 服务器 IP 
+
+Definition at line \mbox{\hyperlink{three__yuannumber_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{three__yuannumber_8cpp_source}{three\+\_\+yuannumber.\+cpp}}.
+
+\Hypertarget{three__yuannumber_8cpp_a6701847851618f32d00a154d16f7f187}\label{three__yuannumber_8cpp_a6701847851618f32d00a154d16f7f187} 
+\index{three\_yuannumber.cpp@{three\_yuannumber.cpp}!g\_port@{g\_port}}
+\index{g\_port@{g\_port}!three\_yuannumber.cpp@{three\_yuannumber.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_port}{g\_port}}
+{\footnotesize\ttfamily int g\+\_\+port}
+
+TCP 服务器端口 
+
+Definition at line \mbox{\hyperlink{three__yuannumber_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{three__yuannumber_8cpp_source}{three\+\_\+yuannumber.\+cpp}}.
+
+\Hypertarget{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66}\label{three__yuannumber_8cpp_a8667af10789ec10299828b588f33fa66} 
+\index{three\_yuannumber.cpp@{three\_yuannumber.cpp}!g\_sockfd@{g\_sockfd}}
+\index{g\_sockfd@{g\_sockfd}!three\_yuannumber.cpp@{three\_yuannumber.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_sockfd}{g\_sockfd}}
+{\footnotesize\ttfamily int g\+\_\+sockfd = -\/1}
+
+TCP 套接字文件描述符 
+
+Definition at line \mbox{\hyperlink{three__yuannumber_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{three__yuannumber_8cpp_source}{three\+\_\+yuannumber.\+cpp}}.
+
+\Hypertarget{three__yuannumber_8cpp_a06c5aa7b1310b56852b7df4784c70ba8}\label{three__yuannumber_8cpp_a06c5aa7b1310b56852b7df4784c70ba8} 
+\index{three\_yuannumber.cpp@{three\_yuannumber.cpp}!g\_status\_pub@{g\_status\_pub}}
+\index{g\_status\_pub@{g\_status\_pub}!three\_yuannumber.cpp@{three\_yuannumber.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_status\_pub}{g\_status\_pub}}
+{\footnotesize\ttfamily ros\+::\+Publisher g\+\_\+status\+\_\+pub}
+
+发布连接状态消息 
+
+Definition at line \mbox{\hyperlink{three__yuannumber_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{three__yuannumber_8cpp_source}{three\+\_\+yuannumber.\+cpp}}.
+

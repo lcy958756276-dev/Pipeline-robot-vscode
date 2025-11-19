@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="WaypointPublisher_8cpp" kind="file" language="C++">
+    <compoundname>WaypointPublisher.cpp</compoundname>
+    <includes local="no">ros/ros.h</includes>
+    <includes local="no">geometry_msgs/PoseStamped.h</includes>
+    <includes local="no">queue</includes>
+    <includes local="no">std_msgs/Bool.h</includes>
+    <includes local="no">nav_msgs/Odometry.h</includes>
+    <includes local="no">limits</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>auto_navigation/WaypointPublisher.cpp</label>
+        <link refid="WaypointPublisher_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>geometry_msgs/PoseStamped.h</label>
+      </node>
+      <node id="7">
+        <label>limits</label>
+      </node>
+      <node id="6">
+        <label>nav_msgs/Odometry.h</label>
+      </node>
+      <node id="4">
+        <label>queue</label>
+      </node>
+      <node id="2">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="5">
+        <label>std_msgs/Bool.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classWaypointPublisher" prot="public">WaypointPublisher</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="WaypointPublisher_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+<para>主程序入口 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数数量 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数数组 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int 返回 0 表示正常退出</para>
+</simplesect>
+功能：<itemizedlist>
+<listitem><para>初始化 ROS 节点</para>
+</listitem><listitem><para>创建 <ref refid="classWaypointPublisher" kindref="compound">WaypointPublisher</ref> 对象</para>
+</listitem><listitem><para>循环调用 processGoals，发布目标点 </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointPublisher.cpp" line="283" column="5" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="283" bodyend="296"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros/ros.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;geometry_msgs/PoseStamped.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;queue&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_msgs/Bool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nav_msgs/Odometry.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="classWaypointPublisher" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classWaypointPublisher" kindref="compound">WaypointPublisher</ref></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="46" refid="classWaypointPublisher_1aade0e35d7818b8890d3d3035beef3fb2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1aade0e35d7818b8890d3d3035beef3fb2" kindref="member">WaypointPublisher</ref>()</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" kindref="member">waypoint_pub</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" kindref="member">nh</ref>.advertise&lt;geometry_msgs::PoseStamped&gt;(</highlight><highlight class="stringliteral">&quot;waypoint&quot;</highlight><highlight class="normal">,<sp/>10);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a47885b59e7318b53b3b2082654e90560" kindref="member">auto_navigation_stop_pub</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" kindref="member">nh</ref>.advertise&lt;std_msgs::Bool&gt;(</highlight><highlight class="stringliteral">&quot;/whether_auto_navigation&quot;</highlight><highlight class="normal">,<sp/>10);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a087009cba8fbe8e994931e282008b4a2" kindref="member">midgoal_sub</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" kindref="member">nh</ref>.subscribe(</highlight><highlight class="stringliteral">&quot;midgoal&quot;</highlight><highlight class="normal">,<sp/>10,<sp/>&amp;<ref refid="classWaypointPublisher_1a2176c42b0a87e9144ea84e334f1b655a" kindref="member">WaypointPublisher::midgoalCallback</ref>,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1aaf87298f88a3ecbc9a913c07bac58b54" kindref="member">finalgoal_sub</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" kindref="member">nh</ref>.subscribe(</highlight><highlight class="stringliteral">&quot;finalgoal&quot;</highlight><highlight class="normal">,<sp/>10,<sp/>&amp;<ref refid="classWaypointPublisher_1acd043704f75fb8f8eb57826c7a3251ff" kindref="member">WaypointPublisher::finalgoalCallback</ref>,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ae607b30dfd6060d57255e9b4ef780a0b" kindref="member">status_sub</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" kindref="member">nh</ref>.subscribe(</highlight><highlight class="stringliteral">&quot;robot_status&quot;</highlight><highlight class="normal">,<sp/>10,<sp/>&amp;<ref refid="classWaypointPublisher_1abeaceaac34b26aff80888ef49c470404" kindref="member">WaypointPublisher::statusCallback</ref>,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a024fcc12ff98892facd5e28c5ca703f9" kindref="member">odom_sub</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" kindref="member">nh</ref>.subscribe(</highlight><highlight class="stringliteral">&quot;/cable/odom&quot;</highlight><highlight class="normal">,<sp/>10,<sp/>&amp;<ref refid="classWaypointPublisher_1ab3ecb848d99f9b4b35bc37f7f5cba622" kindref="member">WaypointPublisher::odomCallback</ref>,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref>.pose.position.x<sp/>=<sp/>std::numeric_limits&lt;float&gt;::max();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>.pose.position.x<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="classWaypointPublisher_1a2176c42b0a87e9144ea84e334f1b655a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classWaypointPublisher_1a2176c42b0a87e9144ea84e334f1b655a" kindref="member">midgoalCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::PoseStamped::ConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.push(*msg);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;已加载中途目标点:<sp/>X:%f,Y:%f&quot;</highlight><highlight class="normal">,<sp/>msg-&gt;pose.position.x,<sp/>msg-&gt;pose.position.y);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="classWaypointPublisher_1ae281f0d4ec699816476b4ffc860a81ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::queue&lt;geometry_msgs::PoseStamped&gt;<sp/><ref refid="classWaypointPublisher_1ae281f0d4ec699816476b4ffc860a81ca" kindref="member">queueSort</ref>(std::queue&lt;geometry_msgs::PoseStamped&gt;<sp/>&amp;msgQueue)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;geometry_msgs::PoseStamped&gt;<sp/>tempVec;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>将队列中的元素提取到<sp/>vector<sp/>中</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!msgQueue.empty())<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tempVec.push_back(msgQueue.front());</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>msgQueue.pop();</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>对<sp/>vector<sp/>中的元素进行排序，根据<sp/>x<sp/>坐标升序排序</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::sort(tempVec.begin(),<sp/>tempVec.end(),<sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>b)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>a.pose.position.x<sp/>&lt;<sp/>b.pose.position.x;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>将排序后的元素重新放回队列中</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>pose<sp/>:<sp/>tempVec)<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>msgQueue.push(pose);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>msgQueue;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="classWaypointPublisher_1ab3ecb848d99f9b4b35bc37f7f5cba622" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classWaypointPublisher_1ab3ecb848d99f9b4b35bc37f7f5cba622" kindref="member">odomCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nav_msgs::Odometry::ConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a2edee68f60a0e465b7646f95ced1d121" kindref="member">current_position</ref><sp/>=<sp/>msg-&gt;pose.pose.position.x;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a0b4c87fc988b12c3bb480b9898916394" kindref="member">current_status</ref><sp/>=<sp/>msg-&gt;twist.twist.linear.x;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(abs(<ref refid="classWaypointPublisher_1a2edee68f60a0e465b7646f95ced1d121" kindref="member">current_position</ref><sp/>-<sp/><ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref>.pose.position.x)<sp/>&lt;<sp/>0.3)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std_msgs::Bool<sp/>msg;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>msg.data<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1afa16a43e6d8b4c306089109bf71715a0" kindref="member">finalinital</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a47885b59e7318b53b3b2082654e90560" kindref="member">auto_navigation_stop_pub</ref>.publish(msg);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a0888ce7b8f0cfa2ccc6fd51ec65f49e6" kindref="member">finalgoal_reached</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a0888ce7b8f0cfa2ccc6fd51ec65f49e6" kindref="member">finalgoal_reached</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="classWaypointPublisher_1acd043704f75fb8f8eb57826c7a3251ff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classWaypointPublisher_1acd043704f75fb8f8eb57826c7a3251ff" kindref="member">finalgoalCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::PoseStamped::ConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref><sp/>=<sp/>*msg;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a73056696f4260f559e796ea1ec11806d" kindref="member">finalgoal_received</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;已加载最终目标点:<sp/>X:%f,Y:%f&quot;</highlight><highlight class="normal">,<sp/><ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref>.pose.position.x,<sp/><ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref>.pose.position.y);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWaypointPublisher_1afa16a43e6d8b4c306089109bf71715a0" kindref="member">finalinital</ref>)</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" kindref="member">waypoint_pub</ref>.publish(<ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref>);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" kindref="member">waypoint_pub</ref>.publish(<ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref>);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" kindref="member">waypoint_pub</ref>.publish(<ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref>);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref>;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1afa16a43e6d8b4c306089109bf71715a0" kindref="member">finalinital</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="classWaypointPublisher_1adf1c93f6db23215a13c59819a1b3dbc6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classWaypointPublisher_1adf1c93f6db23215a13c59819a1b3dbc6" kindref="member">processGoals</ref>()</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.empty())</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.size()<sp/>&gt;<sp/>1)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ae281f0d4ec699816476b4ffc860a81ca" kindref="member">queueSort</ref>(<ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.front();</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>.pose.position.x<sp/>&lt;<sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>.pose.position.x)</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;接收到更近的目标点:X:%f,Y:%f,优先处理&quot;</highlight><highlight class="normal">,<sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>.pose.position.x,<sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>.pose.position.y);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1aba3de5d71ffcac47e4461bae72d4ec65" kindref="member">midinital</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" kindref="member">waypoint_pub</ref>.publish(<ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.push(<ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.pop();</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWaypointPublisher_1a29cc7107bfbf6d425275a99e95caf53e" kindref="member">goal_reached</ref><sp/>||<sp/><ref refid="classWaypointPublisher_1aba3de5d71ffcac47e4461bae72d4ec65" kindref="member">midinital</ref>)</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.front();</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref><sp/>==<sp/><ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref><sp/>&amp;&amp;<sp/>(<ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.size()<sp/>-<sp/>1<sp/>&gt;<sp/>0))</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.pop();</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.front();</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref><sp/>!=<sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>)</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1aba3de5d71ffcac47e4461bae72d4ec65" kindref="member">midinital</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>.pose.position.x<sp/>==<sp/>-1)</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;发布第一个目标点:<sp/>X:%f,Y:%f&quot;</highlight><highlight class="normal">,<sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>.pose.position.x,<sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>.pose.position.y);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" kindref="member">waypoint_pub</ref>.publish(<ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.pop();</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.empty())</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classWaypointPublisher_1a73056696f4260f559e796ea1ec11806d" kindref="member">finalgoal_received</ref>)</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;加载最终发布点&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;无中途发布点,队列补充最终发布点1&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.push(<ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref>);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1aba3de5d71ffcac47e4461bae72d4ec65" kindref="member">midinital</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(abs(<ref refid="classWaypointPublisher_1a2edee68f60a0e465b7646f95ced1d121" kindref="member">current_position</ref><sp/>-<sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>.pose.position.x)<sp/>&lt;<sp/>0.05)</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;目标点:<sp/>X:%f,Y:%f已到达,停留10s&quot;</highlight><highlight class="normal">,<sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>.pose.position.x,<sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>.pose.position.y);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::Duration(10).sleep();</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;发布下一个目标点:<sp/>X:%f,Y:%f&quot;</highlight><highlight class="normal">,<sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>.pose.position.x,<sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>.pose.position.y);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" kindref="member">waypoint_pub</ref>.publish(<ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>);</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.pop();</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.empty()<sp/>&amp;&amp;<sp/><ref refid="classWaypointPublisher_1a73056696f4260f559e796ea1ec11806d" kindref="member">finalgoal_received</ref>)</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;无中途发布点,队列补充最终发布点2&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>.push(<ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref>);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1aba3de5d71ffcac47e4461bae72d4ec65" kindref="member">midinital</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref><sp/>=<sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>dis<sp/>=<sp/>abs(<ref refid="classWaypointPublisher_1a2edee68f60a0e465b7646f95ced1d121" kindref="member">current_position</ref><sp/>-<sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>.pose.position.x);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;正在前往目标点:<sp/>X:%f,Y:%f,距离为:%f&quot;</highlight><highlight class="normal">,<sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>.pose.position.x,<sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>.pose.position.y,<sp/>dis);</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242" refid="classWaypointPublisher_1abeaceaac34b26aff80888ef49c470404" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classWaypointPublisher_1abeaceaac34b26aff80888ef49c470404" kindref="member">statusCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Bool::ConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg-&gt;data)</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a29cc7107bfbf6d425275a99e95caf53e" kindref="member">goal_reached</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher_1a29cc7107bfbf6d425275a99e95caf53e" kindref="member">goal_reached</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="255" refid="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::NodeHandle<sp/><ref refid="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" kindref="member">nh</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="256" refid="classWaypointPublisher_1a47885b59e7318b53b3b2082654e90560" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Publisher<sp/><ref refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" kindref="member">waypoint_pub</ref>,<sp/><ref refid="classWaypointPublisher_1a47885b59e7318b53b3b2082654e90560" kindref="member">auto_navigation_stop_pub</ref>;<sp/></highlight></codeline>
+<codeline lineno="257" refid="classWaypointPublisher_1aaf87298f88a3ecbc9a913c07bac58b54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Subscriber<sp/><ref refid="classWaypointPublisher_1a087009cba8fbe8e994931e282008b4a2" kindref="member">midgoal_sub</ref>,<sp/><ref refid="classWaypointPublisher_1aaf87298f88a3ecbc9a913c07bac58b54" kindref="member">finalgoal_sub</ref>,<sp/><ref refid="classWaypointPublisher_1a024fcc12ff98892facd5e28c5ca703f9" kindref="member">odom_sub</ref>;<sp/></highlight></codeline>
+<codeline lineno="258" refid="classWaypointPublisher_1ae607b30dfd6060d57255e9b4ef780a0b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Subscriber<sp/><ref refid="classWaypointPublisher_1ae607b30dfd6060d57255e9b4ef780a0b" kindref="member">status_sub</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="259" refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::queue&lt;geometry_msgs::PoseStamped&gt;<sp/><ref refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" kindref="member">midgoals</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="260" refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>geometry_msgs::PoseStamped<sp/><ref refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" kindref="member">current_goal</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="261" refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>geometry_msgs::PoseStamped<sp/><ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="262" refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>geometry_msgs::PoseStamped<sp/><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"></highlight></codeline>
+<codeline lineno="264" refid="classWaypointPublisher_1a2edee68f60a0e465b7646f95ced1d121" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classWaypointPublisher_1a2edee68f60a0e465b7646f95ced1d121" kindref="member">current_position</ref>,<sp/><ref refid="classWaypointPublisher_1a0b4c87fc988b12c3bb480b9898916394" kindref="member">current_status</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="265" refid="classWaypointPublisher_1a73056696f4260f559e796ea1ec11806d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classWaypointPublisher_1a73056696f4260f559e796ea1ec11806d" kindref="member">finalgoal_received</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="266" refid="classWaypointPublisher_1a29cc7107bfbf6d425275a99e95caf53e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classWaypointPublisher_1a29cc7107bfbf6d425275a99e95caf53e" kindref="member">goal_reached</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="267" refid="classWaypointPublisher_1a0888ce7b8f0cfa2ccc6fd51ec65f49e6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classWaypointPublisher_1a0888ce7b8f0cfa2ccc6fd51ec65f49e6" kindref="member">finalgoal_reached</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="268" refid="classWaypointPublisher_1aba3de5d71ffcac47e4461bae72d4ec65" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classWaypointPublisher_1aba3de5d71ffcac47e4461bae72d4ec65" kindref="member">midinital</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="269" refid="classWaypointPublisher_1afa16a43e6d8b4c306089109bf71715a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classWaypointPublisher_1afa16a43e6d8b4c306089109bf71715a0" kindref="member">finalinital</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="270"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283" refid="WaypointPublisher_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="WaypointPublisher_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**argv)</highlight></codeline>
+<codeline lineno="284"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::init(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;waypoint_publisher&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/>setlocale(LC_ALL,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classWaypointPublisher" kindref="compound">WaypointPublisher</ref><sp/>wp_publisher;</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Rate<sp/>loop_rate(10);<sp/></highlight><highlight class="comment">//<sp/>10Hz</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(ros::ok())</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wp_publisher.<ref refid="classWaypointPublisher_1adf1c93f6db23215a13c59819a1b3dbc6" kindref="member">processGoals</ref>();</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loop_rate.sleep();</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="auto_navigation/WaypointPublisher.cpp"/>
+  </compounddef>
+</doxygen>
