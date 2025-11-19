@@ -1,0 +1,382 @@
+\doxysection{QT\+\_\+function\+\_\+other/settingwidget.cpp File Reference}
+\hypertarget{settingwidget_8cpp}{}\label{settingwidget_8cpp}\index{QT\_function\_other/settingwidget.cpp@{QT\_function\_other/settingwidget.cpp}}
+
+
+系统设置界面类，实现片头信息管理、数据库操作、路径选择及导出功能  
+
+
+{\ttfamily \#include "{}settingwidget.\+h"{}}\newline
+{\ttfamily \#include "{}ui\+\_\+settingwidget.\+h"{}}\newline
+Include dependency graph for settingwidget.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{settingwidget_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{settingwidget_8cpp_a8b1953256a61c736ad79424a6dc429bc}{Setting\+Widget}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv, QWidget \texorpdfstring{$\ast$}{*}parent)
+\begin{DoxyCompactList}\small\item\em 构造函数，初始化 UI 和数据库，绑定信号槽 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{settingwidget_8cpp_a14ed5fc42b52c0ce3daf892cdfef0bc6}{\texorpdfstring{$\sim$}{\string~}\+Setting\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em 析构函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{settingwidget_8cpp_a509447921b14094295e6a82b93e6c39e}{on\+Push\+Button\+Clicked}} ()
+\begin{DoxyCompactList}\small\item\em 弹出文件夹选择对话框，更新路径显示 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{settingwidget_8cpp_a6abea0a92fbcad04f22f95b80daece40}{on\+\_\+add\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 弹出新增片头信息窗口 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{settingwidget_8cpp_afa249ebf98de8e53a0aa9d1c080f3d5d}{slot\+Update\+Table\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em 更新 table\+Widget 显示数据库内容 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{settingwidget_8cpp_a833917a8e76fe990ede52c223b806e89}{on\+\_\+del\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 删除当前选中行及数据库记录 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{settingwidget_8cpp_a090b612fcfff6e44016e4b00e3f3eef4}{on\+\_\+change\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 修改当前选中行的数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{settingwidget_8cpp_a750245a2880656959b5cec63e72a495d}{on\+\_\+pian\+Tou\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 将选中行设置为片头，并通过 ROS 发布 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{settingwidget_8cpp_ad9cbdc26e3e9860b10676afb1e5511c3}{on\+\_\+push\+Button\+\_\+2\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 导出数据库表 headers 到 Excel 文件 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+系统设置界面类，实现片头信息管理、数据库操作、路径选择及导出功能 
+
+功能：
+\begin{DoxyItemize}
+\item 设置文件保存路径
+\item 数据库增删改查
+\item 片头信息设置
+\item 表格导出到 Excel 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{settingwidget_8cpp_source}{settingwidget.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{settingwidget_8cpp_a6abea0a92fbcad04f22f95b80daece40}\label{settingwidget_8cpp_a6abea0a92fbcad04f22f95b80daece40} 
+\index{settingwidget.cpp@{settingwidget.cpp}!on\_addButton\_clicked@{on\_addButton\_clicked}}
+\index{on\_addButton\_clicked@{on\_addButton\_clicked}!settingwidget.cpp@{settingwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_addButton\_clicked()}{on\_addButton\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+add\+Button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+弹出新增片头信息窗口 
+
+
+
+Definition at line \mbox{\hyperlink{settingwidget_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{settingwidget_8cpp_source}{settingwidget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ addWindow-\/>initLineEdit();}
+\DoxyCodeLine{00076\ \ \ \ \ addWindow-\/>initCheckBox();}
+\DoxyCodeLine{00077\ \ \ \ \ addWindow-\/>setMode(Dialog::AddMode);}
+\DoxyCodeLine{00078\ \ \ \ \ addWindow-\/>show();}
+\DoxyCodeLine{00079\ \}}
+
+\end{DoxyCode}
+\Hypertarget{settingwidget_8cpp_a090b612fcfff6e44016e4b00e3f3eef4}\label{settingwidget_8cpp_a090b612fcfff6e44016e4b00e3f3eef4} 
+\index{settingwidget.cpp@{settingwidget.cpp}!on\_changeButton\_clicked@{on\_changeButton\_clicked}}
+\index{on\_changeButton\_clicked@{on\_changeButton\_clicked}!settingwidget.cpp@{settingwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_changeButton\_clicked()}{on\_changeButton\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+change\+Button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+修改当前选中行的数据 
+
+
+
+Definition at line \mbox{\hyperlink{settingwidget_8cpp_source_l00134}{134}} of file \mbox{\hyperlink{settingwidget_8cpp_source}{settingwidget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{int}\ currentRow\ =\ ui-\/>tableWidget-\/>currentRow();}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentRow\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}警告"{}},\ \textcolor{stringliteral}{"{}您未选中要修改的行！"{}});}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ ui-\/>tableWidget-\/>item(currentRow,\ 0)-\/>text().toInt();}
+\DoxyCodeLine{00142\ \ \ \ \ addWindow-\/>setMode(Dialog::EditMode);}
+\DoxyCodeLine{00143\ \ \ \ \ addWindow-\/>setRecordId(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00144\ \ \ \ \ addWindow-\/>show();}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ QSqlRecord\ record\ =\ sqlDatabase-\/>queryRecordById(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00147\ \ \ \ \ addWindow-\/>setEdit(}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}DetectionLocation"{}}).toString(),}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}DetectionDate"{}}).toDate(),}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}DetectionUnit"{}}).toString(),}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}Task"{}}).toString(),}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}TaskNumber"{}}).toString(),}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}Inspector"{}}).toString(),}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}PipeType"{}}).toString(),}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}PipeMaterial"{}}).toString(),}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}TotalPipeLength"{}}).toString(),}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}PipeDiameter"{}}).toString(),}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}WellDepth"{}}).toString(),}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}DetectionDirection"{}}).toString(),}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}StartWellNumber"{}}).toString(),}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}EndWellNumber"{}}).toString(),}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ record.value(\textcolor{stringliteral}{"{}PipeLength"{}}).toString()}
+\DoxyCodeLine{00163\ \ \ \ \ );}
+\DoxyCodeLine{00164\ \}}
+
+\end{DoxyCode}
+\Hypertarget{settingwidget_8cpp_a833917a8e76fe990ede52c223b806e89}\label{settingwidget_8cpp_a833917a8e76fe990ede52c223b806e89} 
+\index{settingwidget.cpp@{settingwidget.cpp}!on\_delButton\_clicked@{on\_delButton\_clicked}}
+\index{on\_delButton\_clicked@{on\_delButton\_clicked}!settingwidget.cpp@{settingwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_delButton\_clicked()}{on\_delButton\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+del\+Button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+删除当前选中行及数据库记录 
+
+
+
+Definition at line \mbox{\hyperlink{settingwidget_8cpp_source_l00119}{119}} of file \mbox{\hyperlink{settingwidget_8cpp_source}{settingwidget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{int}\ selectedRow\ =\ ui-\/>tableWidget-\/>currentRow();}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{if}\ (selectedRow\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}警告"{}},\ \textcolor{stringliteral}{"{}你未选中删除的行"{}});}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ ui-\/>tableWidget-\/>item(selectedRow,\ 0)-\/>text().toInt();}
+\DoxyCodeLine{00127\ \ \ \ \ sqlDatabase-\/>deleteHeaderFromDatabase(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00128\ \ \ \ \ ui-\/>tableWidget-\/>removeRow(selectedRow);}
+\DoxyCodeLine{00129\ \}}
+
+\end{DoxyCode}
+\Hypertarget{settingwidget_8cpp_a750245a2880656959b5cec63e72a495d}\label{settingwidget_8cpp_a750245a2880656959b5cec63e72a495d} 
+\index{settingwidget.cpp@{settingwidget.cpp}!on\_pianTouButton\_clicked@{on\_pianTouButton\_clicked}}
+\index{on\_pianTouButton\_clicked@{on\_pianTouButton\_clicked}!settingwidget.cpp@{settingwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_pianTouButton\_clicked()}{on\_pianTouButton\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+pian\+Tou\+Button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+将选中行设置为片头，并通过 ROS 发布 
+
+
+
+Definition at line \mbox{\hyperlink{settingwidget_8cpp_source_l00169}{169}} of file \mbox{\hyperlink{settingwidget_8cpp_source}{settingwidget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{int}\ selectedRow\ =\ ui-\/>tableWidget-\/>currentRow();}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{if}\ (selectedRow\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}警告"{}},\ \textcolor{stringliteral}{"{}你未选中的行"{}});}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ ui-\/>tableWidget-\/>item(selectedRow,\ 0)-\/>text().toInt();}
+\DoxyCodeLine{00177\ \ \ \ \ QSqlRecord\ record\ =\ sqlDatabase-\/>queryRecordById(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ pipeline::HeaderInfo\ msg;}
+\DoxyCodeLine{00180\ \ \ \ \ msg.id\ =\ record.value(\textcolor{stringliteral}{"{}ID"{}}).toInt();}
+\DoxyCodeLine{00181\ \ \ \ \ msg.location\ =\ record.value(\textcolor{stringliteral}{"{}DetectionLocation"{}}).toString().toStdString();}
+\DoxyCodeLine{00182\ \ \ \ \ msg.date\ =\ record.value(\textcolor{stringliteral}{"{}DetectionDate"{}}).toString().toStdString();}
+\DoxyCodeLine{00183\ \ \ \ \ msg.unit\ =\ record.value(\textcolor{stringliteral}{"{}DetectionUnit"{}}).toString().toStdString();}
+\DoxyCodeLine{00184\ \ \ \ \ msg.task\ =\ record.value(\textcolor{stringliteral}{"{}Task"{}}).toString().toStdString();}
+\DoxyCodeLine{00185\ \ \ \ \ msg.taskNumber\ =\ record.value(\textcolor{stringliteral}{"{}TaskNumber"{}}).toString().toStdString();}
+\DoxyCodeLine{00186\ \ \ \ \ msg.inspector\ =\ record.value(\textcolor{stringliteral}{"{}Inspector"{}}).toString().toStdString();}
+\DoxyCodeLine{00187\ \ \ \ \ msg.pipeType\ =\ record.value(\textcolor{stringliteral}{"{}PipeType"{}}).toString().toStdString();}
+\DoxyCodeLine{00188\ \ \ \ \ msg.pipeMaterial\ =\ record.value(\textcolor{stringliteral}{"{}PipeMaterial"{}}).toString().toStdString();}
+\DoxyCodeLine{00189\ \ \ \ \ msg.totalPipeLength\ =\ record.value(\textcolor{stringliteral}{"{}TotalPipeLength"{}}).toDouble();}
+\DoxyCodeLine{00190\ \ \ \ \ msg.pipeDiameter\ =\ record.value(\textcolor{stringliteral}{"{}PipeDiameter"{}}).toDouble();}
+\DoxyCodeLine{00191\ \ \ \ \ msg.wellDepth\ =\ record.value(\textcolor{stringliteral}{"{}WellDepth"{}}).toDouble();}
+\DoxyCodeLine{00192\ \ \ \ \ msg.detectionDirection\ =\ record.value(\textcolor{stringliteral}{"{}DetectionDirection"{}}).toString().toStdString();}
+\DoxyCodeLine{00193\ \ \ \ \ msg.startWellNumber\ =\ record.value(\textcolor{stringliteral}{"{}StartWellNumber"{}}).toString().toStdString();}
+\DoxyCodeLine{00194\ \ \ \ \ msg.endWellNumber\ =\ record.value(\textcolor{stringliteral}{"{}EndWellNumber"{}}).toString().toStdString();}
+\DoxyCodeLine{00195\ \ \ \ \ msg.pipeLength\ =\ record.value(\textcolor{stringliteral}{"{}PipeLength"{}}).toDouble();}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ node.publishPianTou(msg);}
+\DoxyCodeLine{00198\ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}提示"{}},\ \textcolor{stringliteral}{"{}设置成功"{}});}
+\DoxyCodeLine{00199\ \}}
+
+\end{DoxyCode}
+\Hypertarget{settingwidget_8cpp_ad9cbdc26e3e9860b10676afb1e5511c3}\label{settingwidget_8cpp_ad9cbdc26e3e9860b10676afb1e5511c3} 
+\index{settingwidget.cpp@{settingwidget.cpp}!on\_pushButton\_2\_clicked@{on\_pushButton\_2\_clicked}}
+\index{on\_pushButton\_2\_clicked@{on\_pushButton\_2\_clicked}!settingwidget.cpp@{settingwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_pushButton\_2\_clicked()}{on\_pushButton\_2\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+push\+Button\+\_\+2\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+导出数据库表 headers 到 Excel 文件 
+
+
+
+Definition at line \mbox{\hyperlink{settingwidget_8cpp_source_l00204}{204}} of file \mbox{\hyperlink{settingwidget_8cpp_source}{settingwidget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ sqlDatabase-\/>exportTableToExcel(\textcolor{stringliteral}{"{}headers"{}});}
+\DoxyCodeLine{00206\ \}}
+
+\end{DoxyCode}
+\Hypertarget{settingwidget_8cpp_a509447921b14094295e6a82b93e6c39e}\label{settingwidget_8cpp_a509447921b14094295e6a82b93e6c39e} 
+\index{settingwidget.cpp@{settingwidget.cpp}!onPushButtonClicked@{onPushButtonClicked}}
+\index{onPushButtonClicked@{onPushButtonClicked}!settingwidget.cpp@{settingwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{onPushButtonClicked()}{onPushButtonClicked()}}
+{\footnotesize\ttfamily void on\+Push\+Button\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+弹出文件夹选择对话框，更新路径显示 
+
+
+
+Definition at line \mbox{\hyperlink{settingwidget_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{settingwidget_8cpp_source}{settingwidget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ QString\ directory\ =\ QFileDialog::getExistingDirectory(}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},\ tr(\textcolor{stringliteral}{"{}选择文件夹"{}}),\ \textcolor{stringliteral}{"{}/home"{}},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ QFileDialog::ShowDirsOnly\ |\ QFileDialog::DontResolveSymlinks}
+\DoxyCodeLine{00064\ \ \ \ \ );}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{if}\ (!directory.isEmpty())\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ ui-\/>label\_3-\/>setText(directory);}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \}}
+
+\end{DoxyCode}
+\Hypertarget{settingwidget_8cpp_a8b1953256a61c736ad79424a6dc429bc}\label{settingwidget_8cpp_a8b1953256a61c736ad79424a6dc429bc} 
+\index{settingwidget.cpp@{settingwidget.cpp}!SettingWidget@{SettingWidget}}
+\index{SettingWidget@{SettingWidget}!settingwidget.cpp@{settingwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{SettingWidget()}{SettingWidget()}}
+{\footnotesize\ttfamily Setting\+Widget (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv,  }\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent }\end{DoxyParamCaption})}
+
+
+
+构造函数，初始化 UI 和数据库，绑定信号槽 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & ROS 初始化参数个数 \\
+\hline
+{\em argv} & ROS 初始化参数列表 \\
+\hline
+{\em parent} & 父 QWidget \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{settingwidget_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{settingwidget_8cpp_source}{settingwidget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{00022\ \ \ \ \ QWidget(parent),}
+\DoxyCodeLine{00023\ \ \ \ \ node(argc,\ argv,\ \textcolor{stringliteral}{"{}test"{}}),\ \textcolor{comment}{//\ 使用参数初始化node}}
+\DoxyCodeLine{00024\ \ \ \ \ ui(\textcolor{keyword}{new}\ Ui::SettingWidget)}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ ui-\/>setupUi(\textcolor{keyword}{this});}
+\DoxyCodeLine{00027\ \ \ \ \ addWindow\ =\ \textcolor{keyword}{new}\ Dialog;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ ui-\/>label\_3-\/>clear();\ \textcolor{comment}{//\ 清空默认显示}}
+\DoxyCodeLine{00030\ \ \ \ \ sqlDatabase\ =\ \textcolor{keyword}{new}\ Sql();}
+\DoxyCodeLine{00031\ \ \ \ \ sqlDatabase-\/>initDatabase();}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{settingwidget_8cpp_afa249ebf98de8e53a0aa9d1c080f3d5d}{slotUpdateTableWidget}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ 绑定按钮点击事件}}
+\DoxyCodeLine{00035\ \ \ \ \ connect(ui-\/>pushButton,\ SIGNAL(clicked()),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{settingwidget_8cpp_a509447921b14094295e6a82b93e6c39e}{onPushButtonClicked}}()));}
+\DoxyCodeLine{00036\ \ \ \ \ connect(addWindow,\ \&QDialog::accepted,\ \textcolor{keyword}{this},\ \&SettingWidget::slotUpdateTableWidget);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ 设置文件保存目录}}
+\DoxyCodeLine{00039\ \ \ \ \ QString\ defaultPath\ =\ QDir::currentPath()\ +\ \textcolor{stringliteral}{"{}/storage"{}};}
+\DoxyCodeLine{00040\ \ \ \ \ QDir\ dir(defaultPath);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dir.exists())\ dir.mkpath(\textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{00042\ \ \ \ \ ui-\/>label\_3-\/>setText(defaultPath);}
+\DoxyCodeLine{00043\ \ \ \ \ ui-\/>label\_3-\/>setWordWrap(\textcolor{keyword}{true});}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ 调整\ tableWidget\ 列宽}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ column\ =\ 0;\ column\ <\ ui-\/>tableWidget-\/>columnCount();\ ++column)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ ui-\/>tableWidget-\/>setColumnWidth(column,\ 95);}
+\DoxyCodeLine{00048\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{settingwidget_8cpp_source_l00060}{on\+Push\+Button\+Clicked()}}, and \mbox{\hyperlink{settingwidget_8cpp_source_l00086}{slot\+Update\+Table\+Widget()}}.
+
+\Hypertarget{settingwidget_8cpp_afa249ebf98de8e53a0aa9d1c080f3d5d}\label{settingwidget_8cpp_afa249ebf98de8e53a0aa9d1c080f3d5d} 
+\index{settingwidget.cpp@{settingwidget.cpp}!slotUpdateTableWidget@{slotUpdateTableWidget}}
+\index{slotUpdateTableWidget@{slotUpdateTableWidget}!settingwidget.cpp@{settingwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{slotUpdateTableWidget()}{slotUpdateTableWidget()}}
+{\footnotesize\ttfamily void slot\+Update\+Table\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+更新 table\+Widget 显示数据库内容 
+
+查询 headers 表，填充表格。 
+
+Definition at line \mbox{\hyperlink{settingwidget_8cpp_source_l00086}{86}} of file \mbox{\hyperlink{settingwidget_8cpp_source}{settingwidget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}slotUpdateTableWidget函数被激活"{}};}
+\DoxyCodeLine{00088\ \ \ \ \ ui-\/>tableWidget-\/>clearContents();}
+\DoxyCodeLine{00089\ \ \ \ \ ui-\/>tableWidget-\/>setRowCount(0);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ QSqlQuery\ query;}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{if}\ (!query.exec(\textcolor{stringliteral}{"{}SELECT\ ID,\ DetectionLocation,\ DetectionDate,\ Task,\ TaskNumber,\ "{}}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}PipeType,\ StartWellNumber,\ EndWellNumber\ FROM\ headers"{}}))\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Query\ failed:"{}}\ <<\ query.lastError().text();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{while}\ (query.next())\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rowCount\ =\ ui-\/>tableWidget-\/>rowCount();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ ui-\/>tableWidget-\/>insertRow(rowCount);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ ui-\/>tableWidget-\/>setItem(rowCount,\ 0,\ \textcolor{keyword}{new}\ QTableWidgetItem(query.value(0).toString()));\ \textcolor{comment}{//\ ID}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ ui-\/>tableWidget-\/>setItem(rowCount,\ 1,\ \textcolor{keyword}{new}\ QTableWidgetItem(query.value(1).toString()));\ \textcolor{comment}{//\ DetectionLocation}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ ui-\/>tableWidget-\/>setItem(rowCount,\ 4,\ \textcolor{keyword}{new}\ QTableWidgetItem(query.value(2).toDate().toString(\textcolor{stringliteral}{"{}yyyy-\/MM-\/dd"{}})));\ \textcolor{comment}{//\ DetectionDate}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ ui-\/>tableWidget-\/>setItem(rowCount,\ 2,\ \textcolor{keyword}{new}\ QTableWidgetItem(query.value(3).toString()));\ \textcolor{comment}{//\ Task}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ ui-\/>tableWidget-\/>setItem(rowCount,\ 3,\ \textcolor{keyword}{new}\ QTableWidgetItem(query.value(4).toString()));\ \textcolor{comment}{//\ TaskNumber}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ ui-\/>tableWidget-\/>setItem(rowCount,\ 7,\ \textcolor{keyword}{new}\ QTableWidgetItem(query.value(5).toString()));\ \textcolor{comment}{//\ PipeType}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ ui-\/>tableWidget-\/>setItem(rowCount,\ 5,\ \textcolor{keyword}{new}\ QTableWidgetItem(query.value(6).toString()));\ \textcolor{comment}{//\ StartWellNumber}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ ui-\/>tableWidget-\/>setItem(rowCount,\ 6,\ \textcolor{keyword}{new}\ QTableWidgetItem(query.value(7).toString()));\ \textcolor{comment}{//\ EndWellNumber}}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ ui-\/>tableWidget-\/>setColumnHidden(0,\ \textcolor{keyword}{true});\ \textcolor{comment}{//\ 隐藏\ ID\ 列}}
+\DoxyCodeLine{00113\ \ \ \ \ ui-\/>tableWidget-\/>update();}
+\DoxyCodeLine{00114\ \}}
+
+\end{DoxyCode}
+\Hypertarget{settingwidget_8cpp_a14ed5fc42b52c0ce3daf892cdfef0bc6}\label{settingwidget_8cpp_a14ed5fc42b52c0ce3daf892cdfef0bc6} 
+\index{settingwidget.cpp@{settingwidget.cpp}!````~SettingWidget@{\texorpdfstring{$\sim$}{\string~}SettingWidget}}
+\index{````~SettingWidget@{\texorpdfstring{$\sim$}{\string~}SettingWidget}!settingwidget.cpp@{settingwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SettingWidget()}{\string~SettingWidget()}}
+{\footnotesize\ttfamily \texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{settingwidget_8cpp_a8b1953256a61c736ad79424a6dc429bc}{Setting\+Widget}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+析构函数 
+
+
+
+Definition at line \mbox{\hyperlink{settingwidget_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{settingwidget_8cpp_source}{settingwidget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{delete}\ ui;}
+\DoxyCodeLine{00055\ \}}
+
+\end{DoxyCode}

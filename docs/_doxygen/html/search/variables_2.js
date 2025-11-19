@@ -1,9 +1,20 @@
 var searchData=
 [
-  ['da_5fsub_5f_0',['da_sub_',['../classDA__Octree__Node.html#ac9e99724363e8816834a603e56250462',1,'DA_Octree_Node']]],
-  ['detection_5fcallback_1',['detection_callback',['../classauto__navigation_1_1point__transform_1_1PointTransformer.html#ac43e9e3218f6f38cff12a2f1c63e8c6d',1,'auto_navigation::point_transform::PointTransformer']]],
-  ['detection_5fpub_2',['detection_pub',['../classauto__navigation_1_1point__transform_1_1PointTransformer.html#ae10b95b0c849a250e0154365fcbb37a4',1,'auto_navigation::point_transform::PointTransformer']]],
-  ['detection_5fsub_3',['detection_sub',['../classDetectionAnalyzer.html#a8ef40feef50fb30ffbbbc51e69c8188e',1,'DetectionAnalyzer']]],
-  ['detections_4',['detections',['../classDetectionAnalyzer.html#a056e9fd8971aa591a9fe662d2c67fe83',1,'DetectionAnalyzer']]],
-  ['distance_5',['distance',['../odom__pub_8cpp.html#a79b8e036dca6911e3295a47d99f21f43',1,'odom_pub.cpp']]]
+  ['cloud_5f_0',['cloud_',['../classDA__Octree__Node.html#a9445d49b805496111099deb1cd89e115',1,'DA_Octree_Node']]],
+  ['cloud_5fpub_5f_1',['cloud_pub_',['../classDA__Octree__Node.html#a302c05b9f02186592a77d55372927df9',1,'DA_Octree_Node']]],
+  ['cmd_5fvel_5fpub_2',['cmd_vel_pub',['../classWaypointFollower.html#ab9cc6a514a64b03567557379aaa237e8',1,'WaypointFollower']]],
+  ['control_5fpub_3',['control_pub',['../classWaypointFollower.html#a1a201b8ae9618d3e5ba75c46a8239501',1,'WaypointFollower::control_pub'],['../classWaypointFollower.html#a51d836104234c50dbd26d381510cc86b',1,'WaypointFollower::control_pub']]],
+  ['cumulativepoints_4',['cumulativePoints',['../overall__map_8cpp.html#a14ca948851469d68a76e0b26d879a1aa',1,'overall_map.cpp']]],
+  ['current_5fgoal_5',['current_goal',['../classWaypointPublisher.html#af737270bf8d77a1a7d822efd81fb1ea1',1,'WaypointPublisher']]],
+  ['current_5fpose_5f_6',['current_pose_',['../classDA__Octree__Node.html#a4b7666d696a436fb6c444de982b46c04',1,'DA_Octree_Node']]],
+  ['current_5fposition_7',['current_position',['../classWaypointPublisher.html#a2edee68f60a0e465b7646f95ced1d121',1,'WaypointPublisher']]],
+  ['current_5fposition_5fx_8',['current_position_x',['../classDetectionAnalyzer.html#a5f50ef9dab802e3ac84304b6911d61a5',1,'DetectionAnalyzer']]],
+  ['current_5fstatus_9',['current_status',['../classWaypointPublisher.html#a0b4c87fc988b12c3bb480b9898916394',1,'WaypointPublisher']]],
+  ['current_5fvideo_5ftopic_10',['current_video_topic',['../qnode_8cpp.html#ac4ba270cc7bf5e19ebfbebcbc6b7fd9a',1,'qnode.cpp']]],
+  ['currentfy_5flimit_5fflag_11',['currentfy_limit_flag',['../widget_8cpp.html#af7273f322abca46101f0b7d85eab01d3',1,'widget.cpp']]],
+  ['currentposition_12',['currentPosition',['../overall__map_8cpp.html#a8bbc76585965c3f3c1067d4e2b8e4635',1,'overall_map.cpp']]],
+  ['currentr_5flimit_5fflag_13',['currentR_limit_flag',['../widget_8cpp.html#a03dd8def03190553a1559b0151327105',1,'widget.cpp']]],
+  ['currentsj_5flimit_5fflag_14',['currentsj_limit_flag',['../widget_8cpp.html#aea821c00f026ff864e42b6346cd3c7f7',1,'widget.cpp']]],
+  ['currentvoxels_15',['currentVoxels',['../overall__map_8cpp.html#a1bcf55de3abb110c38e335e9fb8f5eb1',1,'overall_map.cpp']]],
+  ['currentxz_5flimit_5fflag_16',['currentxz_limit_flag',['../widget_8cpp.html#a3bfa1006325e5a8eed4c4f94ae0644cf',1,'widget.cpp']]]
 ];

@@ -238,6 +238,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="cable_read/odom_pub.cpp" line="67" column="6" bodyfile="cable_read/odom_pub.cpp" bodystart="67" bodyend="73"/>
+        <references refid="odom__pub_8cpp_1a30b9d036a79a00e325dd2bbb9e991755" compoundref="odom__pub_8cpp" startline="24">reset_odom</references>
       </memberdef>
       <memberdef kind="function" id="odom__pub_8cpp_1afca0ce71eb34f139dd215289e37db241" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -266,6 +267,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="cable_read/odom_pub.cpp" line="79" column="6" bodyfile="cable_read/odom_pub.cpp" bodystart="79" bodyend="94"/>
+        <references refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" compoundref="odom__pub_8cpp" startline="31">distance</references>
+        <references refid="odom__pub_8cpp_1aed25fed1ceb628954de9adc35a411398" compoundref="odom__pub_8cpp" startline="50" endline="61">extra</references>
+        <references refid="odom__pub_8cpp_1ac7cf637ac08386a7e08f7a9cb1975056" compoundref="odom__pub_8cpp" startline="40">pluse</references>
+        <references refid="odom__pub_8cpp_1ac5e0ffa856f94297db93de525454d254" compoundref="odom__pub_8cpp" startline="27">wheel_radius</references>
       </memberdef>
       <memberdef kind="function" id="odom__pub_8cpp_1a8f5e3f6c52f55538bf51ba8c929b3017" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -306,6 +311,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="cable_read/odom_pub.cpp" line="101" column="6" bodyfile="cable_read/odom_pub.cpp" bodystart="101" bodyend="144"/>
+        <references refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" compoundref="odom__pub_8cpp" startline="31">distance</references>
+        <references refid="odom__pub_8cpp_1a55886e34bc6a03b24f6ce7455fe67289" compoundref="odom__pub_8cpp" startline="43">last_time</references>
+        <references refid="odom__pub_8cpp_1a30b9d036a79a00e325dd2bbb9e991755" compoundref="odom__pub_8cpp" startline="24">reset_odom</references>
+        <references refid="odom__pub_8cpp_1aca81c35c21e3a5f7f3a8d24504e76664" compoundref="odom__pub_8cpp" startline="37">theta</references>
+        <references refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" compoundref="odom__pub_8cpp" startline="35">x</references>
+        <references refid="odom__pub_8cpp_1ab927965981178aa1fba979a37168db2a" compoundref="odom__pub_8cpp" startline="36">y</references>
       </memberdef>
       <memberdef kind="function" id="odom__pub_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -348,6 +359,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="cable_read/odom_pub.cpp" line="152" column="5" bodyfile="cable_read/odom_pub.cpp" bodystart="152" bodyend="181"/>
+        <references refid="odom__pub_8cpp_1afca0ce71eb34f139dd215289e37db241" compoundref="odom__pub_8cpp" startline="79" endline="94">EncoderCallback</references>
+        <references refid="odom__pub_8cpp_1a8f5e3f6c52f55538bf51ba8c929b3017" compoundref="odom__pub_8cpp" startline="101" endline="144">publishOdometry</references>
+        <references refid="odom__pub_8cpp_1a6e9f67764013c92ecd2200c1e90d714a" compoundref="odom__pub_8cpp" startline="67" endline="73">resetOdometryCallback</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

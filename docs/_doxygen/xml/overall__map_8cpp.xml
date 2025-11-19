@@ -221,6 +221,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="3D_mapping/overall_map.cpp" line="46" column="6" bodyfile="3D_mapping/overall_map.cpp" bodystart="46" bodyend="57"/>
+        <references refid="overall__map_8cpp_1a8bbc76585965c3f3c1067d4e2b8e4635" compoundref="overall__map_8cpp" startline="37">currentPosition</references>
+        <references refid="overall__map_8cpp_1a3e57fc0dd660c31635246086b6428a83" compoundref="overall__map_8cpp" startline="36">lastPosition</references>
+        <references refid="overall__map_8cpp_1a699159ca5d125cf65d82bbeaefc750dd" compoundref="overall__map_8cpp" startline="38">positionInitialized</references>
       </memberdef>
       <memberdef kind="function" id="overall__map_8cpp_1ae555b00aee41d288cfc286fe5fdd2f61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -251,6 +254,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="3D_mapping/overall_map.cpp" line="65" column="6" bodyfile="3D_mapping/overall_map.cpp" bodystart="65" bodyend="90"/>
+        <references refid="overall__map_8cpp_1a14ca948851469d68a76e0b26d879a1aa" compoundref="overall__map_8cpp" startline="34">cumulativePoints</references>
+        <references refid="overall__map_8cpp_1a8bbc76585965c3f3c1067d4e2b8e4635" compoundref="overall__map_8cpp" startline="37">currentPosition</references>
+        <references refid="overall__map_8cpp_1a3e57fc0dd660c31635246086b6428a83" compoundref="overall__map_8cpp" startline="36">lastPosition</references>
+        <references refid="overall__map_8cpp_1a941d8397015c32731d1f8b1bd52b2ba1">octree</references>
+        <references refid="overall__map_8cpp_1a82d466187eb99a84467bf27a26ee481a" compoundref="overall__map_8cpp" startline="31">tfListener</references>
       </memberdef>
       <memberdef kind="function" id="overall__map_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -293,6 +301,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="3D_mapping/overall_map.cpp" line="99" column="5" bodyfile="3D_mapping/overall_map.cpp" bodystart="99" bodyend="144"/>
+        <references refid="overall__map_8cpp_1ae555b00aee41d288cfc286fe5fdd2f61" compoundref="overall__map_8cpp" startline="65" endline="90">cloudCallback</references>
+        <references refid="overall__map_8cpp_1a14ca948851469d68a76e0b26d879a1aa" compoundref="overall__map_8cpp" startline="34">cumulativePoints</references>
+        <references refid="overall__map_8cpp_1a1bcf55de3abb110c38e335e9fb8f5eb1" compoundref="overall__map_8cpp" startline="35">currentVoxels</references>
+        <references refid="overall__map_8cpp_1a941d8397015c32731d1f8b1bd52b2ba1">octree</references>
+        <references refid="overall__map_8cpp_1ae77e5d68ff0f4892f5154064e8b5e21c" compoundref="overall__map_8cpp" startline="46" endline="57">odomCallback</references>
+        <references refid="overall__map_8cpp_1a82d466187eb99a84467bf27a26ee481a" compoundref="overall__map_8cpp" startline="31">tfListener</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

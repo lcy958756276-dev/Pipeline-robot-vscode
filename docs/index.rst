@@ -27,6 +27,9 @@ documentation for details.
    scripts/Motherboard_data_process
    scripts/3D_mapping
    scripts/cable_read
+   intro2
+   scripts/function_key
+   scripts/QT_function_other
 
 
 

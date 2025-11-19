@@ -13,7 +13,7 @@
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00031}\mbox{\hyperlink{classDetectionAnalyzer}{00031}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDetectionAnalyzer}{DetectionAnalyzer}}}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00032}00032\ \{}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00033}00033\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_ac225923772770c2ca24586696310065a}{DetectionAnalyzer}}();}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer}{DetectionAnalyzer}}();}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00045}00045\ }
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDetectionAnalyzer_abb1da63aefde85e3e8ff8e452e518ecd}{odomCallback}}(\textcolor{keyword}{const}\ nav\_msgs::Odometry::ConstPtr\ \&msg);}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00053}00053\ }
@@ -42,7 +42,7 @@
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00115}00115\ }
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00116}00116\ \textcolor{comment}{//\ ===================\ 函数实现\ ===================}}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00117}00117\ }
-\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00118}\mbox{\hyperlink{classDetectionAnalyzer_ac225923772770c2ca24586696310065a}{00118}}\ \mbox{\hyperlink{classDetectionAnalyzer_ac225923772770c2ca24586696310065a}{DetectionAnalyzer::DetectionAnalyzer}}()}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00118}00118\ DetectionAnalyzer::DetectionAnalyzer()}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00119}00119\ \{}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00120}00120\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_abb1eca5770c41109df5688bcecc48c84}{odom\_sub}}\ =\ \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}}.subscribe(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 10,\ \&\mbox{\hyperlink{classDetectionAnalyzer_abb1da63aefde85e3e8ff8e452e518ecd}{DetectionAnalyzer::odomCallback}},\ \textcolor{keyword}{this});}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00121}00121\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a8ef40feef50fb30ffbbbc51e69c8188e}{detection\_sub}}\ =\ \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}}.subscribe(\textcolor{stringliteral}{"{}/transformed\_detection\_info"{}},\ 10,\ \&\mbox{\hyperlink{classDetectionAnalyzer_acdf4deceaaab4a087f8fa510069f756d}{DetectionAnalyzer::detectionCallback}},\ \textcolor{keyword}{this});}
@@ -116,7 +116,7 @@
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00189}00189\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00190}00190\ \}}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00191}00191\ }
-\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00203}\mbox{\hyperlink{detectionPointPub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{00203}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{detectionPointPub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00203}\mbox{\hyperlink{classDetectionAnalyzer_a66bf832eda7e55e9fad72f725bc38d72}{00203}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{detectionPointPub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00204}00204\ \{}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00205}00205\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}detection\_analyzer"{}});}
 \DoxyCodeLine{\Hypertarget{detectionPointPub_8cpp_source_l00206}00206\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer}{DetectionAnalyzer}}\ analyzer;}

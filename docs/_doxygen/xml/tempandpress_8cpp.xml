@@ -183,6 +183,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/tempandpress.cpp" line="49" column="6" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="49" bodyend="76"/>
+        <references refid="tempandpress_8cpp_1ab22b3f5f78356af75c89bb0c5e6e3858" compoundref="tempandpress_8cpp" startline="23">pub_press</references>
+        <references refid="tempandpress_8cpp_1a229938ef2b258aba203e83bca7f47b36" compoundref="tempandpress_8cpp" startline="22">pub_temp</references>
       </memberdef>
       <memberdef kind="function" id="tempandpress_8cpp_1a54fb40f1cec43c98df052811a7b15a51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -224,6 +226,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/tempandpress.cpp" line="87" column="6" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="87" bodyend="134"/>
+        <references refid="tempandpress_8cpp_1abba960c86bd339697e78c89131d9a565" compoundref="tempandpress_8cpp" startline="49" endline="76">parseAndPublish</references>
       </memberdef>
       <memberdef kind="function" id="tempandpress_8cpp_1a29f4ca4ec279107fd08630624d6a20b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -238,6 +241,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/tempandpress.cpp" line="139" column="6" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="139" bodyend="151"/>
+        <references refid="tempandpress_8cpp_1ab49abf98d6945a9fd91eed2743b99634" compoundref="tempandpress_8cpp" startline="24">pub_cpu_temp</references>
+        <references refid="tempandpress_8cpp_1aab08866a9274281978d9fc03a4d737ab" compoundref="tempandpress_8cpp" startline="25">pub_gpu_temp</references>
+        <references refid="tempandpress_8cpp_1aea836183d504027fcec3386ac320d1b0" compoundref="tempandpress_8cpp" startline="32" endline="38">readThermal</references>
       </memberdef>
       <memberdef kind="function" id="tempandpress_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -261,6 +267,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/tempandpress.cpp" line="159" column="5" bodyfile="Motherboard_data_process/tempandpress.cpp" bodystart="159" bodyend="184"/>
+        <references refid="tempandpress_8cpp_1ab49abf98d6945a9fd91eed2743b99634" compoundref="tempandpress_8cpp" startline="24">pub_cpu_temp</references>
+        <references refid="tempandpress_8cpp_1aab08866a9274281978d9fc03a4d737ab" compoundref="tempandpress_8cpp" startline="25">pub_gpu_temp</references>
+        <references refid="tempandpress_8cpp_1ab22b3f5f78356af75c89bb0c5e6e3858" compoundref="tempandpress_8cpp" startline="23">pub_press</references>
+        <references refid="tempandpress_8cpp_1a229938ef2b258aba203e83bca7f47b36" compoundref="tempandpress_8cpp" startline="22">pub_temp</references>
+        <references refid="tempandpress_8cpp_1a29f4ca4ec279107fd08630624d6a20b1" compoundref="tempandpress_8cpp" startline="139" endline="151">publishNanoTemp</references>
+        <references refid="tempandpress_8cpp_1a54fb40f1cec43c98df052811a7b15a51" compoundref="tempandpress_8cpp" startline="87" endline="134">tcpLoop</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['nh_0',['nh',['../classDetectionAnalyzer.html#a02fc6744acfe3aaeab6498dfd1846365',1,'DetectionAnalyzer::nh'],['../classWaypointFollower.html#a72cb1a8e64c3cc38b8940803cd7037cc',1,'WaypointFollower::nh'],['../classWaypointPublisher.html#a61018f919145d4211b71cd6a5cb1ba8a',1,'WaypointPublisher::nh']]]
+  ['midgoal_5fpub_0',['midgoal_pub',['../classDetectionAnalyzer.html#a45860f4a2da2f3df0c5f3244d555f3b8',1,'DetectionAnalyzer']]],
+  ['midgoal_5fsub_1',['midgoal_sub',['../classWaypointPublisher.html#a03e20938b3b219530b49c63fb71e939b',1,'WaypointPublisher::midgoal_sub'],['../classWaypointPublisher.html#a087009cba8fbe8e994931e282008b4a2',1,'WaypointPublisher::midgoal_sub']]],
+  ['midgoals_2',['midgoals',['../classWaypointPublisher.html#ae986643ecd10fa38723e962950d48e96',1,'WaypointPublisher']]],
+  ['midinital_3',['midinital',['../classWaypointPublisher.html#aba3de5d71ffcac47e4461bae72d4ec65',1,'WaypointPublisher']]]
 ];

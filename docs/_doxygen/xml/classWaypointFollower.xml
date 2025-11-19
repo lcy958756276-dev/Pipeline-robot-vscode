@@ -3,6 +3,95 @@
   <compounddef id="classWaypointFollower" kind="class" language="C++" prot="public">
     <compoundname>WaypointFollower</compoundname>
     <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classWaypointFollower_1a68ec92fa7adea5b2d5f3786b3aa57ac0" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointFollower::__pad0__</definition>
+        <argsstring></argsstring>
+        <name>__pad0__</name>
+        <qualifiedname>WaypointFollower::__pad0__</qualifiedname>
+        <bitfield> WaypointFollower() { waypoint_sub = nh.subscribe(&quot;waypoint&quot;</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointFollower.cpp" line="259" column="5" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointFollower_1a4150806658f06faa7b766ffcaa6950c3" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointFollower::this</definition>
+        <argsstring></argsstring>
+        <name>this</name>
+        <qualifiedname>WaypointFollower::this</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointFollower.cpp" line="41" column="38" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointFollower_1ab324b18d122d2103a1f6d0cb1549be98" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointFollower::odom_sub</definition>
+        <argsstring></argsstring>
+        <name>odom_sub</name>
+        <qualifiedname>WaypointFollower::odom_sub</qualifiedname>
+        <initializer>= nh.subscribe(&quot;/cable/odom&quot;, 10, &amp;<ref refid="classWaypointFollower_1acf8f1df597d3fb75adf335c046c3a407" kindref="member">WaypointFollower::odomCallback</ref>, <ref refid="classWaypointFollower_1a4150806658f06faa7b766ffcaa6950c3" kindref="member">this</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointFollower.cpp" line="42" column="9" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointFollower_1aba6130482571adb505d754c296484d3c" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointFollower::stop_sub</definition>
+        <argsstring></argsstring>
+        <name>stop_sub</name>
+        <qualifiedname>WaypointFollower::stop_sub</qualifiedname>
+        <initializer>= nh.subscribe(&quot;whether_stop&quot;, 10, &amp;<ref refid="classWaypointFollower_1ad6da0db3e82faa5c29c4c4d742e9357f" kindref="member">WaypointFollower::stopCallback</ref>, <ref refid="classWaypointFollower_1a4150806658f06faa7b766ffcaa6950c3" kindref="member">this</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointFollower.cpp" line="43" column="9" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointFollower_1a6d1edecb98a76d8b74c3b03f047000d7" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointFollower::status_pub</definition>
+        <argsstring></argsstring>
+        <name>status_pub</name>
+        <qualifiedname>WaypointFollower::status_pub</qualifiedname>
+        <initializer>= nh.advertise&lt;std_msgs::Bool&gt;(&quot;robot_status&quot;, 10)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointFollower.cpp" line="45" column="9" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointFollower_1a1a201b8ae9618d3e5ba75c46a8239501" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointFollower::control_pub</definition>
+        <argsstring></argsstring>
+        <name>control_pub</name>
+        <qualifiedname>WaypointFollower::control_pub</qualifiedname>
+        <initializer>= nh.advertise&lt;std_msgs::String&gt;(&quot;Pub2stm&quot;, 10)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointFollower.cpp" line="46" column="9" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="classWaypointFollower_1a72cb1a8e64c3cc38b8940803cd7037cc" prot="private" static="no" mutable="no">
         <type>ros::NodeHandle</type>
         <definition>ros::NodeHandle WaypointFollower::nh</definition>
@@ -189,23 +278,8 @@
         <location file="auto_navigation/WaypointFollower.cpp" line="245" column="18" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="245" bodyend="-1"/>
       </memberdef>
     </sectiondef>
-    <sectiondef kind="public-func">
-      <memberdef kind="function" id="classWaypointFollower_1a56e663bb36f1fe73cf6162225b893931" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>WaypointFollower::WaypointFollower</definition>
-        <argsstring>()</argsstring>
-        <name>WaypointFollower</name>
-        <qualifiedname>WaypointFollower::WaypointFollower</qualifiedname>
-        <briefdescription>
-<para>构造函数，初始化订阅者和发布者 </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="auto_navigation/WaypointFollower.cpp" line="39" column="5" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="39" bodyend="47"/>
-      </memberdef>
-      <memberdef kind="function" id="classWaypointFollower_1a04b6d9d584f72a3bb5236c387beba11a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classWaypointFollower_1a04b6d9d584f72a3bb5236c387beba11a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>WaypointFollower::~WaypointFollower</definition>
         <argsstring>()</argsstring>
@@ -219,10 +293,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/WaypointFollower.cpp" line="52" column="5" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="52" bodyend="61"/>
+        <references refid="classWaypointFollower_1a1a201b8ae9618d3e5ba75c46a8239501" compoundref="WaypointFollower_8cpp" startline="46">control_pub</references>
       </memberdef>
-      <memberdef kind="function" id="classWaypointFollower_1a60c2276b9fc46718bac2856ab386f4a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classWaypointFollower_1a5c0017261c119c75a282734229e44f11" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void WaypointFollower::waypointCallback</definition>
+        <definition>&amp; WaypointFollower::waypointCallback</definition>
         <argsstring>(const geometry_msgs::PoseStamped::ConstPtr &amp;msg)</argsstring>
         <name>waypointCallback</name>
         <qualifiedname>WaypointFollower::waypointCallback</qualifiedname>
@@ -253,8 +328,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/WaypointFollower.cpp" line="72" column="10" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="72" bodyend="78"/>
+        <references refid="classWaypointFollower_1a81cfefd2cf42de846f636aed4b8cf932" compoundref="WaypointFollower_8cpp" startline="243">is_target_reached</references>
+        <references refid="classWaypointFollower_1a45515f08d85d4c17f9781f5f459d95e6" compoundref="WaypointFollower_8cpp" startline="241">target_position</references>
+        <references refid="classWaypointFollower_1ad4b215b4b432a6322748e187e51d5b5a" compoundref="WaypointFollower_8cpp" startline="242">target_position_received</references>
       </memberdef>
-      <memberdef kind="function" id="classWaypointFollower_1ad6da0db3e82faa5c29c4c4d742e9357f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classWaypointFollower_1ad6da0db3e82faa5c29c4c4d742e9357f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void WaypointFollower::stopCallback</definition>
         <argsstring>(const std_msgs::Bool::ConstPtr &amp;msg)</argsstring>
@@ -286,8 +364,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/WaypointFollower.cpp" line="88" column="10" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="88" bodyend="95"/>
+        <references refid="classWaypointFollower_1a6c1c10423b227c062f44c62ce6ef32b3" compoundref="WaypointFollower_8cpp" startline="244">stop</references>
       </memberdef>
-      <memberdef kind="function" id="classWaypointFollower_1ae4775ce77917cc3056ce2de4e3d38d16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classWaypointFollower_1ae4775ce77917cc3056ce2de4e3d38d16" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void WaypointFollower::correctYPosition</definition>
         <argsstring>(double y_error)</argsstring>
@@ -318,8 +397,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/WaypointFollower.cpp" line="104" column="10" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="104" bodyend="160"/>
+        <references refid="classWaypointFollower_1a1a201b8ae9618d3e5ba75c46a8239501" compoundref="WaypointFollower_8cpp" startline="46">control_pub</references>
       </memberdef>
-      <memberdef kind="function" id="classWaypointFollower_1acf8f1df597d3fb75adf335c046c3a407" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classWaypointFollower_1acf8f1df597d3fb75adf335c046c3a407" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void WaypointFollower::odomCallback</definition>
         <argsstring>(const nav_msgs::Odometry::ConstPtr &amp;msg)</argsstring>
@@ -352,8 +432,14 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/WaypointFollower.cpp" line="171" column="10" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="171" bodyend="200"/>
+        <references refid="classWaypointFollower_1a4fe8fa93ac086ef4411c120e7cca67d8" compoundref="WaypointFollower_8cpp" startline="212" endline="230">checkTargetReached</references>
+        <references refid="classWaypointFollower_1a1a201b8ae9618d3e5ba75c46a8239501" compoundref="WaypointFollower_8cpp" startline="46">control_pub</references>
+        <references refid="classWaypointFollower_1a81cfefd2cf42de846f636aed4b8cf932" compoundref="WaypointFollower_8cpp" startline="243">is_target_reached</references>
+        <references refid="classWaypointFollower_1a6c1c10423b227c062f44c62ce6ef32b3" compoundref="WaypointFollower_8cpp" startline="244">stop</references>
+        <references refid="classWaypointFollower_1a45515f08d85d4c17f9781f5f459d95e6" compoundref="WaypointFollower_8cpp" startline="241">target_position</references>
+        <references refid="classWaypointFollower_1ad4b215b4b432a6322748e187e51d5b5a" compoundref="WaypointFollower_8cpp" startline="242">target_position_received</references>
       </memberdef>
-      <memberdef kind="function" id="classWaypointFollower_1a4fe8fa93ac086ef4411c120e7cca67d8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classWaypointFollower_1a4fe8fa93ac086ef4411c120e7cca67d8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void WaypointFollower::checkTargetReached</definition>
         <argsstring>(double error, double vel)</argsstring>
@@ -398,6 +484,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/WaypointFollower.cpp" line="212" column="10" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="212" bodyend="230"/>
+        <references refid="classWaypointFollower_1a1a201b8ae9618d3e5ba75c46a8239501" compoundref="WaypointFollower_8cpp" startline="46">control_pub</references>
+        <references refid="classWaypointFollower_1a81cfefd2cf42de846f636aed4b8cf932" compoundref="WaypointFollower_8cpp" startline="243">is_target_reached</references>
+        <references refid="classWaypointFollower_1a6d1edecb98a76d8b74c3b03f047000d7" compoundref="WaypointFollower_8cpp" startline="45">status_pub</references>
+        <references refid="classWaypointFollower_1a6af39c0afc8b0370618dc947d7152d7a" compoundref="WaypointFollower_8cpp" startline="245">tolerance</references>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -414,25 +504,30 @@
     </detaileddescription>
     <location file="auto_navigation/WaypointFollower.cpp" line="33" column="1" bodyfile="auto_navigation/WaypointFollower.cpp" bodystart="34" bodyend="246"/>
     <listofallmembers>
-      <member refid="classWaypointFollower_1a4fe8fa93ac086ef4411c120e7cca67d8" prot="public" virt="non-virtual"><scope>WaypointFollower</scope><name>checkTargetReached</name></member>
+      <member refid="classWaypointFollower_1a68ec92fa7adea5b2d5f3786b3aa57ac0" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>__pad0__</name></member>
+      <member refid="classWaypointFollower_1a4fe8fa93ac086ef4411c120e7cca67d8" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>checkTargetReached</name></member>
       <member refid="classWaypointFollower_1ab9cc6a514a64b03567557379aaa237e8" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>cmd_vel_pub</name></member>
+      <member refid="classWaypointFollower_1a1a201b8ae9618d3e5ba75c46a8239501" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>control_pub</name></member>
       <member refid="classWaypointFollower_1a51d836104234c50dbd26d381510cc86b" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>control_pub</name></member>
-      <member refid="classWaypointFollower_1ae4775ce77917cc3056ce2de4e3d38d16" prot="public" virt="non-virtual"><scope>WaypointFollower</scope><name>correctYPosition</name></member>
+      <member refid="classWaypointFollower_1ae4775ce77917cc3056ce2de4e3d38d16" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>correctYPosition</name></member>
       <member refid="classWaypointFollower_1a81cfefd2cf42de846f636aed4b8cf932" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>is_target_reached</name></member>
       <member refid="classWaypointFollower_1a72cb1a8e64c3cc38b8940803cd7037cc" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>nh</name></member>
+      <member refid="classWaypointFollower_1ab324b18d122d2103a1f6d0cb1549be98" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>odom_sub</name></member>
       <member refid="classWaypointFollower_1a3b9942db7b168597201c4ad6b0f9ac7b" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>odom_sub</name></member>
-      <member refid="classWaypointFollower_1acf8f1df597d3fb75adf335c046c3a407" prot="public" virt="non-virtual"><scope>WaypointFollower</scope><name>odomCallback</name></member>
+      <member refid="classWaypointFollower_1acf8f1df597d3fb75adf335c046c3a407" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>odomCallback</name></member>
+      <member refid="classWaypointFollower_1a6d1edecb98a76d8b74c3b03f047000d7" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>status_pub</name></member>
       <member refid="classWaypointFollower_1a2bd72689fcdaad74fc86d775ed0c8a83" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>status_pub</name></member>
       <member refid="classWaypointFollower_1a6c1c10423b227c062f44c62ce6ef32b3" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>stop</name></member>
+      <member refid="classWaypointFollower_1aba6130482571adb505d754c296484d3c" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>stop_sub</name></member>
       <member refid="classWaypointFollower_1ad0f58349481e6b336f8a00aa541e6f90" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>stop_sub</name></member>
-      <member refid="classWaypointFollower_1ad6da0db3e82faa5c29c4c4d742e9357f" prot="public" virt="non-virtual"><scope>WaypointFollower</scope><name>stopCallback</name></member>
+      <member refid="classWaypointFollower_1ad6da0db3e82faa5c29c4c4d742e9357f" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>stopCallback</name></member>
       <member refid="classWaypointFollower_1a45515f08d85d4c17f9781f5f459d95e6" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>target_position</name></member>
       <member refid="classWaypointFollower_1ad4b215b4b432a6322748e187e51d5b5a" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>target_position_received</name></member>
+      <member refid="classWaypointFollower_1a4150806658f06faa7b766ffcaa6950c3" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>this</name></member>
       <member refid="classWaypointFollower_1a6af39c0afc8b0370618dc947d7152d7a" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>tolerance</name></member>
       <member refid="classWaypointFollower_1a4a1443a0114401ae0b78a81c0c3cf58a" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>waypoint_sub</name></member>
-      <member refid="classWaypointFollower_1a60c2276b9fc46718bac2856ab386f4a7" prot="public" virt="non-virtual"><scope>WaypointFollower</scope><name>waypointCallback</name></member>
-      <member refid="classWaypointFollower_1a56e663bb36f1fe73cf6162225b893931" prot="public" virt="non-virtual"><scope>WaypointFollower</scope><name>WaypointFollower</name></member>
-      <member refid="classWaypointFollower_1a04b6d9d584f72a3bb5236c387beba11a" prot="public" virt="non-virtual"><scope>WaypointFollower</scope><name>~WaypointFollower</name></member>
+      <member refid="classWaypointFollower_1a5c0017261c119c75a282734229e44f11" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>waypointCallback</name></member>
+      <member refid="classWaypointFollower_1a04b6d9d584f72a3bb5236c387beba11a" prot="private" virt="non-virtual"><scope>WaypointFollower</scope><name>~WaypointFollower</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

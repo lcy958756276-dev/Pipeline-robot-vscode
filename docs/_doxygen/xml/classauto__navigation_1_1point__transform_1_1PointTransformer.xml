@@ -127,6 +127,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/point_transform.py" line="53" column="1" bodyfile="auto_navigation/point_transform.py" bodystart="53" bodyend="101"/>
+        <references refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1ae10b95b0c849a250e0154365fcbb37a4" compoundref="point__transform_8py" startline="51">auto_navigation.point_transform.PointTransformer.detection_pub</references>
+        <references refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1a3d5f1d1b5ab5ae204610f018fd295536" compoundref="point__transform_8py" startline="47">auto_navigation.point_transform.PointTransformer.tf_buffer</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

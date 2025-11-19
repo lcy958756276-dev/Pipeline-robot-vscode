@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="settingwidget_8cpp" kind="file" language="C++">
+    <compoundname>settingwidget.cpp</compoundname>
+    <includes local="yes">settingwidget.h</includes>
+    <includes local="yes">ui_settingwidget.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>QT_function_other/settingwidget.cpp</label>
+        <link refid="settingwidget_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>settingwidget.h</label>
+      </node>
+      <node id="3">
+        <label>ui_settingwidget.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="settingwidget_8cpp_1a8b1953256a61c736ad79424a6dc429bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SettingWidget</definition>
+        <argsstring>(int argc, char **argv, QWidget *parent)</argsstring>
+        <name>SettingWidget</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <param>
+          <type>QWidget *</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>构造函数，初始化 UI 和数据库，绑定信号槽 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ROS 初始化参数个数 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ROS 初始化参数列表 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>父 QWidget </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/settingwidget.cpp" line="21" column="1" bodyfile="QT_function_other/settingwidget.cpp" bodystart="21" bodyend="48"/>
+        <references refid="settingwidget_8cpp_1a509447921b14094295e6a82b93e6c39e" compoundref="settingwidget_8cpp" startline="60" endline="69">onPushButtonClicked</references>
+        <references refid="settingwidget_8cpp_1afa249ebf98de8e53a0aa9d1c080f3d5d" compoundref="settingwidget_8cpp" startline="86" endline="114">slotUpdateTableWidget</references>
+      </memberdef>
+      <memberdef kind="function" id="settingwidget_8cpp_1a14ed5fc42b52c0ce3daf892cdfef0bc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~SettingWidget</definition>
+        <argsstring>()</argsstring>
+        <name>~SettingWidget</name>
+        <briefdescription>
+<para>析构函数 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/settingwidget.cpp" line="53" column="1" bodyfile="QT_function_other/settingwidget.cpp" bodystart="53" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="settingwidget_8cpp_1a509447921b14094295e6a82b93e6c39e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void onPushButtonClicked</definition>
+        <argsstring>()</argsstring>
+        <name>onPushButtonClicked</name>
+        <briefdescription>
+<para>弹出文件夹选择对话框，更新路径显示 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/settingwidget.cpp" line="60" column="6" bodyfile="QT_function_other/settingwidget.cpp" bodystart="60" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="settingwidget_8cpp_1a6abea0a92fbcad04f22f95b80daece40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void on_addButton_clicked</definition>
+        <argsstring>()</argsstring>
+        <name>on_addButton_clicked</name>
+        <briefdescription>
+<para>弹出新增片头信息窗口 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/settingwidget.cpp" line="74" column="6" bodyfile="QT_function_other/settingwidget.cpp" bodystart="74" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="settingwidget_8cpp_1afa249ebf98de8e53a0aa9d1c080f3d5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void slotUpdateTableWidget</definition>
+        <argsstring>()</argsstring>
+        <name>slotUpdateTableWidget</name>
+        <briefdescription>
+<para>更新 tableWidget 显示数据库内容 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>查询 headers 表，填充表格。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/settingwidget.cpp" line="86" column="6" bodyfile="QT_function_other/settingwidget.cpp" bodystart="86" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="settingwidget_8cpp_1a833917a8e76fe990ede52c223b806e89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void on_delButton_clicked</definition>
+        <argsstring>()</argsstring>
+        <name>on_delButton_clicked</name>
+        <briefdescription>
+<para>删除当前选中行及数据库记录 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/settingwidget.cpp" line="119" column="6" bodyfile="QT_function_other/settingwidget.cpp" bodystart="119" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="settingwidget_8cpp_1a090b612fcfff6e44016e4b00e3f3eef4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void on_changeButton_clicked</definition>
+        <argsstring>()</argsstring>
+        <name>on_changeButton_clicked</name>
+        <briefdescription>
+<para>修改当前选中行的数据 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/settingwidget.cpp" line="134" column="6" bodyfile="QT_function_other/settingwidget.cpp" bodystart="134" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="settingwidget_8cpp_1a750245a2880656959b5cec63e72a495d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void on_pianTouButton_clicked</definition>
+        <argsstring>()</argsstring>
+        <name>on_pianTouButton_clicked</name>
+        <briefdescription>
+<para>将选中行设置为片头，并通过 ROS 发布 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/settingwidget.cpp" line="169" column="6" bodyfile="QT_function_other/settingwidget.cpp" bodystart="169" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="settingwidget_8cpp_1ad9cbdc26e3e9860b10676afb1e5511c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void on_pushButton_2_clicked</definition>
+        <argsstring>()</argsstring>
+        <name>on_pushButton_2_clicked</name>
+        <briefdescription>
+<para>导出数据库表 headers 到 Excel 文件 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/settingwidget.cpp" line="204" column="6" bodyfile="QT_function_other/settingwidget.cpp" bodystart="204" bodyend="206"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>系统设置界面类，实现片头信息管理、数据库操作、路径选择及导出功能 </para>
+    </briefdescription>
+    <detaileddescription>
+<para>功能：<itemizedlist>
+<listitem><para>设置文件保存路径</para>
+</listitem><listitem><para>数据库增删改查</para>
+</listitem><listitem><para>片头信息设置</para>
+</listitem><listitem><para>表格导出到 Excel </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;settingwidget.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;ui_settingwidget.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="settingwidget_8cpp_1a8b1953256a61c736ad79424a6dc429bc" refkind="member"><highlight class="normal"><ref refid="settingwidget_8cpp_1a8b1953256a61c736ad79424a6dc429bc" kindref="member">SettingWidget</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**argv,<sp/>QWidget<sp/>*parent)<sp/>:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>QWidget(parent),</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>node(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;test&quot;</highlight><highlight class="normal">),<sp/></highlight><highlight class="comment">//<sp/>使用参数初始化node</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>ui(new<sp/>Ui::<ref refid="settingwidget_8cpp_1a8b1953256a61c736ad79424a6dc429bc" kindref="member">SettingWidget</ref>)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>ui-&gt;setupUi(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>addWindow<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Dialog;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>ui-&gt;label_3-&gt;clear();<sp/></highlight><highlight class="comment">//<sp/>清空默认显示</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>sqlDatabase<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Sql();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>sqlDatabase-&gt;initDatabase();</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="settingwidget_8cpp_1afa249ebf98de8e53a0aa9d1c080f3d5d" kindref="member">slotUpdateTableWidget</ref>();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>绑定按钮点击事件</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>connect(ui-&gt;pushButton,<sp/>SIGNAL(clicked()),<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>SLOT(<ref refid="settingwidget_8cpp_1a509447921b14094295e6a82b93e6c39e" kindref="member">onPushButtonClicked</ref>()));</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>connect(addWindow,<sp/>&amp;QDialog::accepted,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>&amp;SettingWidget::slotUpdateTableWidget);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>设置文件保存目录</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/>defaultPath<sp/>=<sp/>QDir::currentPath()<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/storage&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>QDir<sp/>dir(defaultPath);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!dir.exists())<sp/>dir.mkpath(</highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>ui-&gt;label_3-&gt;setText(defaultPath);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>ui-&gt;label_3-&gt;setWordWrap(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>调整<sp/>tableWidget<sp/>列宽</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>column<sp/>=<sp/>0;<sp/>column<sp/>&lt;<sp/>ui-&gt;tableWidget-&gt;columnCount();<sp/>++column)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;setColumnWidth(column,<sp/>95);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="settingwidget_8cpp_1a14ed5fc42b52c0ce3daf892cdfef0bc6" refkind="member"><highlight class="normal"><ref refid="settingwidget_8cpp_1a14ed5fc42b52c0ce3daf892cdfef0bc6" kindref="member">~SettingWidget</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>ui;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="settingwidget_8cpp_1a509447921b14094295e6a82b93e6c39e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="settingwidget_8cpp_1a509447921b14094295e6a82b93e6c39e" kindref="member">onPushButtonClicked</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/>directory<sp/>=<sp/>QFileDialog::getExistingDirectory(</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>tr(</highlight><highlight class="stringliteral">&quot;选择文件夹&quot;</highlight><highlight class="normal">),<sp/></highlight><highlight class="stringliteral">&quot;/home&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QFileDialog::ShowDirsOnly<sp/>|<sp/>QFileDialog::DontResolveSymlinks</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!directory.isEmpty())<sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ui-&gt;label_3-&gt;setText(directory);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="settingwidget_8cpp_1a6abea0a92fbcad04f22f95b80daece40" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="settingwidget_8cpp_1a6abea0a92fbcad04f22f95b80daece40" kindref="member">on_addButton_clicked</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>addWindow-&gt;initLineEdit();</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>addWindow-&gt;initCheckBox();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>addWindow-&gt;setMode(Dialog::AddMode);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>addWindow-&gt;show();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="settingwidget_8cpp_1afa249ebf98de8e53a0aa9d1c080f3d5d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="settingwidget_8cpp_1afa249ebf98de8e53a0aa9d1c080f3d5d" kindref="member">slotUpdateTableWidget</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>qDebug()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;slotUpdateTableWidget函数被激活&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;clearContents();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;setRowCount(0);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>QSqlQuery<sp/>query;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!query.exec(</highlight><highlight class="stringliteral">&quot;SELECT<sp/>ID,<sp/>DetectionLocation,<sp/>DetectionDate,<sp/>Task,<sp/>TaskNumber,<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;PipeType,<sp/>StartWellNumber,<sp/>EndWellNumber<sp/>FROM<sp/>headers&quot;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qDebug()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Query<sp/>failed:&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>query.lastError().text();</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(query.next())<sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rowCount<sp/>=<sp/>ui-&gt;tableWidget-&gt;rowCount();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;insertRow(rowCount);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;setItem(rowCount,<sp/>0,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QTableWidgetItem(query.value(0).toString()));<sp/></highlight><highlight class="comment">//<sp/>ID</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;setItem(rowCount,<sp/>1,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QTableWidgetItem(query.value(1).toString()));<sp/></highlight><highlight class="comment">//<sp/>DetectionLocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;setItem(rowCount,<sp/>4,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QTableWidgetItem(query.value(2).toDate().toString(</highlight><highlight class="stringliteral">&quot;yyyy-MM-dd&quot;</highlight><highlight class="normal">)));<sp/></highlight><highlight class="comment">//<sp/>DetectionDate</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;setItem(rowCount,<sp/>2,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QTableWidgetItem(query.value(3).toString()));<sp/></highlight><highlight class="comment">//<sp/>Task</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;setItem(rowCount,<sp/>3,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QTableWidgetItem(query.value(4).toString()));<sp/></highlight><highlight class="comment">//<sp/>TaskNumber</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;setItem(rowCount,<sp/>7,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QTableWidgetItem(query.value(5).toString()));<sp/></highlight><highlight class="comment">//<sp/>PipeType</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;setItem(rowCount,<sp/>5,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QTableWidgetItem(query.value(6).toString()));<sp/></highlight><highlight class="comment">//<sp/>StartWellNumber</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;setItem(rowCount,<sp/>6,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QTableWidgetItem(query.value(7).toString()));<sp/></highlight><highlight class="comment">//<sp/>EndWellNumber</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;setColumnHidden(0,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);<sp/></highlight><highlight class="comment">//<sp/>隐藏<sp/>ID<sp/>列</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;update();</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="settingwidget_8cpp_1a833917a8e76fe990ede52c223b806e89" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="settingwidget_8cpp_1a833917a8e76fe990ede52c223b806e89" kindref="member">on_delButton_clicked</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>selectedRow<sp/>=<sp/>ui-&gt;tableWidget-&gt;currentRow();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(selectedRow<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QMessageBox::warning(</highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;警告&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;你未选中删除的行&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal"><sp/>=<sp/>ui-&gt;tableWidget-&gt;item(selectedRow,<sp/>0)-&gt;text().toInt();</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>sqlDatabase-&gt;deleteHeaderFromDatabase(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>ui-&gt;tableWidget-&gt;removeRow(selectedRow);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="settingwidget_8cpp_1a090b612fcfff6e44016e4b00e3f3eef4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="settingwidget_8cpp_1a090b612fcfff6e44016e4b00e3f3eef4" kindref="member">on_changeButton_clicked</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currentRow<sp/>=<sp/>ui-&gt;tableWidget-&gt;currentRow();</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(currentRow<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QMessageBox::warning(</highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;警告&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;您未选中要修改的行！&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal"><sp/>=<sp/>ui-&gt;tableWidget-&gt;item(currentRow,<sp/>0)-&gt;text().toInt();</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>addWindow-&gt;setMode(Dialog::EditMode);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>addWindow-&gt;setRecordId(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>addWindow-&gt;show();</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>QSqlRecord<sp/>record<sp/>=<sp/>sqlDatabase-&gt;queryRecordById(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>addWindow-&gt;setEdit(</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;DetectionLocation&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;DetectionDate&quot;</highlight><highlight class="normal">).toDate(),</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;DetectionUnit&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;Task&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;TaskNumber&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;Inspector&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;PipeType&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;PipeMaterial&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;TotalPipeLength&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;PipeDiameter&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;WellDepth&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;DetectionDirection&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;StartWellNumber&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;EndWellNumber&quot;</highlight><highlight class="normal">).toString(),</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>record.value(</highlight><highlight class="stringliteral">&quot;PipeLength&quot;</highlight><highlight class="normal">).toString()</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169" refid="settingwidget_8cpp_1a750245a2880656959b5cec63e72a495d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="settingwidget_8cpp_1a750245a2880656959b5cec63e72a495d" kindref="member">on_pianTouButton_clicked</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>selectedRow<sp/>=<sp/>ui-&gt;tableWidget-&gt;currentRow();</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(selectedRow<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QMessageBox::warning(</highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;警告&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;你未选中的行&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal"><sp/>=<sp/>ui-&gt;tableWidget-&gt;item(selectedRow,<sp/>0)-&gt;text().toInt();</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>QSqlRecord<sp/>record<sp/>=<sp/>sqlDatabase-&gt;queryRecordById(</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>pipeline::HeaderInfo<sp/>msg;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.id<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;ID&quot;</highlight><highlight class="normal">).toInt();</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.location<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;DetectionLocation&quot;</highlight><highlight class="normal">).toString().toStdString();</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.date<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;DetectionDate&quot;</highlight><highlight class="normal">).toString().toStdString();</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.unit<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;DetectionUnit&quot;</highlight><highlight class="normal">).toString().toStdString();</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.task<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;Task&quot;</highlight><highlight class="normal">).toString().toStdString();</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.taskNumber<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;TaskNumber&quot;</highlight><highlight class="normal">).toString().toStdString();</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.inspector<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;Inspector&quot;</highlight><highlight class="normal">).toString().toStdString();</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.pipeType<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;PipeType&quot;</highlight><highlight class="normal">).toString().toStdString();</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.pipeMaterial<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;PipeMaterial&quot;</highlight><highlight class="normal">).toString().toStdString();</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.totalPipeLength<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;TotalPipeLength&quot;</highlight><highlight class="normal">).toDouble();</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.pipeDiameter<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;PipeDiameter&quot;</highlight><highlight class="normal">).toDouble();</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.wellDepth<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;WellDepth&quot;</highlight><highlight class="normal">).toDouble();</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.detectionDirection<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;DetectionDirection&quot;</highlight><highlight class="normal">).toString().toStdString();</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.startWellNumber<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;StartWellNumber&quot;</highlight><highlight class="normal">).toString().toStdString();</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.endWellNumber<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;EndWellNumber&quot;</highlight><highlight class="normal">).toString().toStdString();</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.pipeLength<sp/>=<sp/>record.value(</highlight><highlight class="stringliteral">&quot;PipeLength&quot;</highlight><highlight class="normal">).toDouble();</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>node.publishPianTou(msg);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>QMessageBox::warning(</highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;提示&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;设置成功&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204" refid="settingwidget_8cpp_1ad9cbdc26e3e9860b10676afb1e5511c3" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="settingwidget_8cpp_1ad9cbdc26e3e9860b10676afb1e5511c3" kindref="member">on_pushButton_2_clicked</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>sqlDatabase-&gt;exportTableToExcel(</highlight><highlight class="stringliteral">&quot;headers&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="QT_function_other/settingwidget.cpp"/>
+  </compounddef>
+</doxygen>

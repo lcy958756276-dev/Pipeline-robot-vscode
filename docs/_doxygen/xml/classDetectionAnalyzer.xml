@@ -3,6 +3,21 @@
   <compounddef id="classDetectionAnalyzer" kind="class" language="C++" prot="public">
     <compoundname>DetectionAnalyzer</compoundname>
     <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classDetectionAnalyzer_1a66bf832eda7e55e9fad72f725bc38d72" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>DetectionAnalyzer::__pad0__</definition>
+        <argsstring></argsstring>
+        <name>__pad0__</name>
+        <qualifiedname>DetectionAnalyzer::__pad0__</qualifiedname>
+        <bitfield> DetectionAnalyzer()</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/detectionPointPub.cpp" line="203" column="5" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" prot="private" static="no" mutable="no">
         <type>ros::NodeHandle</type>
         <definition>ros::NodeHandle DetectionAnalyzer::nh</definition>
@@ -141,30 +156,8 @@
         <location file="auto_navigation/detectionPointPub.cpp" line="93" column="11" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="93" bodyend="-1"/>
       </memberdef>
     </sectiondef>
-    <sectiondef kind="public-func">
-      <memberdef kind="function" id="classDetectionAnalyzer_1ac225923772770c2ca24586696310065a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type></type>
-        <definition>DetectionAnalyzer::DetectionAnalyzer</definition>
-        <argsstring>()</argsstring>
-        <name>DetectionAnalyzer</name>
-        <qualifiedname>DetectionAnalyzer::DetectionAnalyzer</qualifiedname>
-        <briefdescription>
-<para>构造函数，初始化 ROS 订阅者与发布者 </para>
-        </briefdescription>
-        <detaileddescription>
-<para>初始化以下订阅者：<itemizedlist>
-<listitem><para>/cable/odom：机器人位姿</para>
-</listitem><listitem><para>/transformed_detection_info：检测点信息</para>
-</listitem><listitem><para>finalgoal：最终目标点 初始化发布者：</para>
-</listitem><listitem><para>midgoal：中间目标点 </para>
-</listitem></itemizedlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="auto_navigation/detectionPointPub.cpp" line="44" column="5" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="118" bodyend="125"/>
-      </memberdef>
-      <memberdef kind="function" id="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void DetectionAnalyzer::odomCallback</definition>
         <argsstring>(const nav_msgs::Odometry::ConstPtr &amp;msg)</argsstring>
@@ -192,8 +185,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/detectionPointPub.cpp" line="52" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="127" bodyend="130"/>
+        <references refid="classDetectionAnalyzer_1a5f50ef9dab802e3ac84304b6911d61a5" compoundref="detectionPointPub_8cpp" startline="92">current_position_x</references>
       </memberdef>
-      <memberdef kind="function" id="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void DetectionAnalyzer::finalgoalCallback</definition>
         <argsstring>(const geometry_msgs::PoseStamped::ConstPtr &amp;msg)</argsstring>
@@ -221,8 +215,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/detectionPointPub.cpp" line="60" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="132" bodyend="135"/>
+        <references refid="classDetectionAnalyzer_1ae2b299f48c872f25afffbb68df9739d8" compoundref="detectionPointPub_8cpp" startline="93">final_position_x</references>
       </memberdef>
-      <memberdef kind="function" id="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void DetectionAnalyzer::detectionCallback</definition>
         <argsstring>(const pipeline_robot::detection::ConstPtr &amp;msg)</argsstring>
@@ -255,8 +250,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/detectionPointPub.cpp" line="71" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="137" bodyend="148"/>
+        <references refid="classDetectionAnalyzer_1a5f50ef9dab802e3ac84304b6911d61a5" compoundref="detectionPointPub_8cpp" startline="92">current_position_x</references>
+        <references refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" compoundref="detectionPointPub_8cpp" startline="90">detections</references>
+        <references refid="classDetectionAnalyzer_1ae2b299f48c872f25afffbb68df9739d8" compoundref="detectionPointPub_8cpp" startline="93">final_position_x</references>
+        <references refid="classDetectionAnalyzer_1a590d7176d4a52897510ff0867cc8655a" compoundref="detectionPointPub_8cpp" startline="172" endline="180">isSimilar</references>
       </memberdef>
-      <memberdef kind="function" id="classDetectionAnalyzer_1aaaba5d735107e6bb589e7937b6a2bc61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classDetectionAnalyzer_1aaaba5d735107e6bb589e7937b6a2bc61" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void DetectionAnalyzer::publishMidGoal</definition>
         <argsstring>()</argsstring>
@@ -276,9 +275,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/detectionPointPub.cpp" line="81" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="150" bodyend="170"/>
+        <references refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" compoundref="detectionPointPub_8cpp" startline="90">detections</references>
+        <references refid="classDetectionAnalyzer_1abc065c153de6540f4b4f32bda30b2507" compoundref="detectionPointPub_8cpp" startline="182" endline="190">isSimilarPublished</references>
+        <references refid="classDetectionAnalyzer_1a45860f4a2da2f3df0c5f3244d555f3b8" compoundref="detectionPointPub_8cpp" startline="88">midgoal_pub</references>
+        <references refid="classDetectionAnalyzer_1a6f19f803d3707ca4bf3999a907d5b3c8" compoundref="detectionPointPub_8cpp" startline="91">published_positions</references>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-func">
       <memberdef kind="function" id="classDetectionAnalyzer_1a590d7176d4a52897510ff0867cc8655a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool DetectionAnalyzer::isSimilar</definition>
@@ -312,6 +313,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/detectionPointPub.cpp" line="103" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="172" bodyend="180"/>
+        <references refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" compoundref="detectionPointPub_8cpp" startline="90">detections</references>
+        <references refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" compoundref="odom__pub_8cpp" startline="35">x</references>
       </memberdef>
       <memberdef kind="function" id="classDetectionAnalyzer_1abc065c153de6540f4b4f32bda30b2507" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -346,6 +349,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/detectionPointPub.cpp" line="113" column="10" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="182" bodyend="190"/>
+        <references refid="classDetectionAnalyzer_1a6f19f803d3707ca4bf3999a907d5b3c8" compoundref="detectionPointPub_8cpp" startline="91">published_positions</references>
+        <references refid="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10" compoundref="odom__pub_8cpp" startline="35">x</references>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -361,22 +366,22 @@
     </detaileddescription>
     <location file="auto_navigation/detectionPointPub.cpp" line="31" column="1" bodyfile="auto_navigation/detectionPointPub.cpp" bodystart="32" bodyend="114"/>
     <listofallmembers>
+      <member refid="classDetectionAnalyzer_1a66bf832eda7e55e9fad72f725bc38d72" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>__pad0__</name></member>
       <member refid="classDetectionAnalyzer_1a5f50ef9dab802e3ac84304b6911d61a5" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>current_position_x</name></member>
       <member refid="classDetectionAnalyzer_1a8ef40feef50fb30ffbbbc51e69c8188e" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>detection_sub</name></member>
-      <member refid="classDetectionAnalyzer_1ac225923772770c2ca24586696310065a" prot="public" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>DetectionAnalyzer</name></member>
-      <member refid="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" prot="public" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>detectionCallback</name></member>
+      <member refid="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>detectionCallback</name></member>
       <member refid="classDetectionAnalyzer_1a056e9fd8971aa591a9fe662d2c67fe83" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>detections</name></member>
       <member refid="classDetectionAnalyzer_1ae2b299f48c872f25afffbb68df9739d8" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>final_position_x</name></member>
       <member refid="classDetectionAnalyzer_1a21f29bbee9e78f3123b82d49f65e6c08" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>finalgoal_sub</name></member>
-      <member refid="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" prot="public" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>finalgoalCallback</name></member>
+      <member refid="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>finalgoalCallback</name></member>
       <member refid="classDetectionAnalyzer_1a590d7176d4a52897510ff0867cc8655a" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>isSimilar</name></member>
       <member refid="classDetectionAnalyzer_1abc065c153de6540f4b4f32bda30b2507" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>isSimilarPublished</name></member>
       <member refid="classDetectionAnalyzer_1a45860f4a2da2f3df0c5f3244d555f3b8" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>midgoal_pub</name></member>
       <member refid="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>nh</name></member>
       <member refid="classDetectionAnalyzer_1abb1eca5770c41109df5688bcecc48c84" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>odom_sub</name></member>
-      <member refid="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" prot="public" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>odomCallback</name></member>
+      <member refid="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>odomCallback</name></member>
       <member refid="classDetectionAnalyzer_1a6f19f803d3707ca4bf3999a907d5b3c8" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>published_positions</name></member>
-      <member refid="classDetectionAnalyzer_1aaaba5d735107e6bb589e7937b6a2bc61" prot="public" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>publishMidGoal</name></member>
+      <member refid="classDetectionAnalyzer_1aaaba5d735107e6bb589e7937b6a2bc61" prot="private" virt="non-virtual"><scope>DetectionAnalyzer</scope><name>publishMidGoal</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

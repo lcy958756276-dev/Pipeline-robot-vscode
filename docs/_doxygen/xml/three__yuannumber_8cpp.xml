@@ -179,6 +179,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/three_yuannumber.cpp" line="133" column="6" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="133" bodyend="159" declfile="Motherboard_data_process/three_yuannumber.cpp" declline="39" declcolumn="6"/>
+        <references refid="three__yuannumber_8cpp_1af4be04c36baee6cbd619f7f248678c2b" compoundref="three__yuannumber_8cpp" startline="23">g_conn_mutex</references>
+        <references refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" compoundref="three__yuannumber_8cpp" startline="24">g_sockfd</references>
+        <references refid="three__yuannumber_8cpp_1a55b66494816d709ecd0c243845ada46c" compoundref="three__yuannumber_8cpp" startline="161" endline="166">publishStatus</references>
       </memberdef>
       <memberdef kind="function" id="three__yuannumber_8cpp_1a55b66494816d709ecd0c243845ada46c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -207,6 +210,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/three_yuannumber.cpp" line="161" column="6" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="161" bodyend="166" declfile="Motherboard_data_process/three_yuannumber.cpp" declline="46" declcolumn="6"/>
+        <references refid="three__yuannumber_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" compoundref="three__yuannumber_8cpp" startline="25">g_ip</references>
+        <references refid="three__yuannumber_8cpp_1a06c5aa7b1310b56852b7df4784c70ba8" compoundref="three__yuannumber_8cpp" startline="27">g_status_pub</references>
       </memberdef>
       <memberdef kind="function" id="three__yuannumber_8cpp_1a0a0119bf5ad744347f1530557e24c987" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -342,6 +347,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/three_yuannumber.cpp" line="168" column="6" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="168" bodyend="201" declfile="Motherboard_data_process/three_yuannumber.cpp" declline="76" declcolumn="6"/>
+        <references refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" compoundref="three__yuannumber_8cpp" startline="24">g_sockfd</references>
+        <references refid="three__yuannumber_8cpp_1a0a0119bf5ad744347f1530557e24c987" compoundref="three__yuannumber_8cpp" startline="203" endline="247">parseAndPublishData</references>
       </memberdef>
       <memberdef kind="function" id="three__yuannumber_8cpp_1ac17b993e3645f9b9a7f96e87fdd5bf62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -383,6 +390,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/three_yuannumber.cpp" line="249" column="6" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="249" bodyend="263" declfile="Motherboard_data_process/three_yuannumber.cpp" declline="89" declcolumn="6"/>
+        <references refid="three__yuannumber_8cpp_1af4be04c36baee6cbd619f7f248678c2b" compoundref="three__yuannumber_8cpp" startline="23">g_conn_mutex</references>
+        <references refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" compoundref="three__yuannumber_8cpp" startline="24">g_sockfd</references>
+        <references refid="three__yuannumber_8cpp_1a55b66494816d709ecd0c243845ada46c" compoundref="three__yuannumber_8cpp" startline="161" endline="166">publishStatus</references>
       </memberdef>
       <memberdef kind="function" id="three__yuannumber_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -404,6 +414,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/three_yuannumber.cpp" line="92" column="5" bodyfile="Motherboard_data_process/three_yuannumber.cpp" bodystart="92" bodyend="129"/>
+        <references refid="three__yuannumber_8cpp_1a222c71617a07df6b5e5dedd3df7159c8" compoundref="three__yuannumber_8cpp" startline="133" endline="159">connectToServer</references>
+        <references refid="three__yuannumber_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" compoundref="three__yuannumber_8cpp" startline="25">g_ip</references>
+        <references refid="three__yuannumber_8cpp_1a6701847851618f32d00a154d16f7f187" compoundref="three__yuannumber_8cpp" startline="26">g_port</references>
+        <references refid="three__yuannumber_8cpp_1a8667af10789ec10299828b588f33fa66" compoundref="three__yuannumber_8cpp" startline="24">g_sockfd</references>
+        <references refid="three__yuannumber_8cpp_1a06c5aa7b1310b56852b7df4784c70ba8" compoundref="three__yuannumber_8cpp" startline="27">g_status_pub</references>
+        <references refid="three__yuannumber_8cpp_1ac17b993e3645f9b9a7f96e87fdd5bf62" compoundref="three__yuannumber_8cpp" startline="249" endline="263">handleDisconnection</references>
+        <references refid="three__yuannumber_8cpp_1a1633fa75ac3410de6330ee6b803787b1" compoundref="three__yuannumber_8cpp" startline="168" endline="201">tcpDataLoop</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

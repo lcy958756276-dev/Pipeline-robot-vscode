@@ -1,0 +1,105 @@
+\doxysection{torque.\+cpp}
+\hypertarget{torque_8cpp_source}{}\label{torque_8cpp_source}\index{QT\_function\_other/torque.cpp@{QT\_function\_other/torque.cpp}}
+\mbox{\hyperlink{torque_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <torque.h>}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <QDebug>}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <qmath.h>}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00018}\mbox{\hyperlink{torque_8cpp_a598a3330b3c21701223ee0ca14316eca}{00018}}\ \textcolor{preprocessor}{\#define\ PI\ 3.14159265358979323846}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00020}00020\ \textcolor{comment}{//\ 系统几何尺寸}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00021}\mbox{\hyperlink{torque_8cpp_ad91129aeadd7d76e6d3ac94a9e4312bb}{00021}}\ \textcolor{preprocessor}{\#define\ l1\ 0.18\ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00022}\mbox{\hyperlink{torque_8cpp_a1ce864b284ac751ffd8a0d98d5ccab55}{00022}}\ \textcolor{preprocessor}{\#define\ L1\ 0.2\ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00023}\mbox{\hyperlink{torque_8cpp_a9dab8aab6ec1023e189b7a11c7500dd7}{00023}}\ \textcolor{preprocessor}{\#define\ l3\ 0.2\ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00024}\mbox{\hyperlink{torque_8cpp_a1fe17aa2ff1722c937379044a27da68a}{00024}}\ \textcolor{preprocessor}{\#define\ d1\ 0.02\ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00025}\mbox{\hyperlink{torque_8cpp_ae285311ed52dd83bff9d175ded67efb3}{00025}}\ \textcolor{preprocessor}{\#define\ d2\ 0.21\ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00026}\mbox{\hyperlink{torque_8cpp_a7acd2af28e07089bfd7c09fb0292c0db}{00026}}\ \textcolor{preprocessor}{\#define\ d3\ 0.1\ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00027}\mbox{\hyperlink{torque_8cpp_ab89a77e63a7226fffaecb2e2c2ab5219}{00027}}\ \textcolor{preprocessor}{\#define\ a1\ 5\ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00028}\mbox{\hyperlink{torque_8cpp_a307fa7a9ebf3c98ea1ee9815f096ef0f}{00028}}\ \textcolor{preprocessor}{\#define\ d4\ 0.17\ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00029}\mbox{\hyperlink{torque_8cpp_a76f03c748e228fa6e50eb0a5f08d817c}{00029}}\ \textcolor{preprocessor}{\#define\ LLA\ 100\ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00030}\mbox{\hyperlink{torque_8cpp_a955f504eccf76b4eb2489c0adab03121}{00030}}\ \textcolor{preprocessor}{\#define\ A\ 215/8.5}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00032}00032\ \textcolor{comment}{//\ 质量和力学参数}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00033}\mbox{\hyperlink{torque_8cpp_ac597abe7cf610f262f7aaec53ed1d413}{00033}}\ \textcolor{preprocessor}{\#define\ M1\ 3\ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00034}\mbox{\hyperlink{torque_8cpp_ad801d72bd01ef1ac9b86dbf4de0d355d}{00034}}\ \textcolor{preprocessor}{\#define\ M3\ 1\ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00035}\mbox{\hyperlink{torque_8cpp_a167d2c0ec9b943d55f2124f7442b2f6d}{00035}}\ \textcolor{preprocessor}{\#define\ g\ 9.81\ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00036}\mbox{\hyperlink{torque_8cpp_a64f8055b64cf2a4c299c841130c5c938}{00036}}\ \textcolor{preprocessor}{\#define\ u1\ 0.1\ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00037}\mbox{\hyperlink{torque_8cpp_a55ef8d87fd202b8417704c089899c5b9}{00037}}\ \textcolor{preprocessor}{\#define\ u2\ 0.2\ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00038}\mbox{\hyperlink{torque_8cpp_ad3a63ae99a964cd86585b7feaf2be9e2}{00038}}\ \textcolor{preprocessor}{\#define\ u3\ 0.2\ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00039}\mbox{\hyperlink{torque_8cpp_a88b795c26c0900ddc7c68576a872ef87}{00039}}\ \textcolor{preprocessor}{\#define\ R\_1\ 0.035}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00040}\mbox{\hyperlink{torque_8cpp_acc55daa58d88a3612f2ef74a6abbe97f}{00040}}\ \textcolor{preprocessor}{\#define\ LB\ 2\ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00041}\mbox{\hyperlink{torque_8cpp_a7cbbe2d9e20a97058cad5b7c91115a76}{00041}}\ \textcolor{preprocessor}{\#define\ Fa\_1\ 5\ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00042}\mbox{\hyperlink{torque_8cpp_a2748566f4c443ee77aa831e63dbb5ebe}{00042}}\ \textcolor{preprocessor}{\#define\ P\ 0.02\ \ \ }}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00047}00047\ torque::torque()\ \{}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00048}00048\ \ \ \ \ R\ =\ ((\mbox{\hyperlink{torque_8cpp_a76f03c748e228fa6e50eb0a5f08d817c}{LLA}}\ -\/\ La)\ /\ \mbox{\hyperlink{torque_8cpp_a955f504eccf76b4eb2489c0adab03121}{A}})\ *\ (0.0085\ /\ 2)\ +\ 0.065;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 初始绕线盘半径}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00049}00049\ \ \ \ \ M2\ =\ \mbox{\hyperlink{torque_8cpp_ac597abe7cf610f262f7aaec53ed1d413}{M1}}\ +\ (\mbox{\hyperlink{torque_8cpp_a76f03c748e228fa6e50eb0a5f08d817c}{LLA}}\ -\/\ La)\ *\ 0.12;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 绕线盘与绳子的总质量}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00050}00050\ \ \ \ \ Fa\ =\ \mbox{\hyperlink{torque_8cpp_ad801d72bd01ef1ac9b86dbf4de0d355d}{M3}}\ *\ \mbox{\hyperlink{torque_8cpp_a167d2c0ec9b943d55f2124f7442b2f6d}{g}}\ *\ \mbox{\hyperlink{torque_8cpp_ad3a63ae99a964cd86585b7feaf2be9e2}{u3}}\ +\ \mbox{\hyperlink{torque_8cpp_a7cbbe2d9e20a97058cad5b7c91115a76}{Fa\_1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 丝杆推力}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00051}00051\ \ \ \ \ Ta\ =\ (Fa\ *\ \mbox{\hyperlink{torque_8cpp_a2748566f4c443ee77aa831e63dbb5ebe}{P}})\ /\ (2\ *\ \mbox{\hyperlink{torque_8cpp_a598a3330b3c21701223ee0ca14316eca}{PI}});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 推力与扭矩关系}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00052}00052\ \ \ \ \ Tc\ =\ (Ta\ /\ Zi)\ *\ q;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 调整系数后的扭矩}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00053}00053\ \}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00066}00066\ \textcolor{keywordtype}{void}\ torque::TG\_Measure(\textcolor{keywordtype}{double}\ La\_1)\ \{}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00067}00067\ \ \ \ \ La\ =\ La\_1;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//\ 绕线盘几何角度计算}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{double}\ angle\_1\ =\ atan(\mbox{\hyperlink{torque_8cpp_a1fe17aa2ff1722c937379044a27da68a}{d1}}\ /\ \mbox{\hyperlink{torque_8cpp_ad91129aeadd7d76e6d3ac94a9e4312bb}{l1}})\ *\ 180\ /\ \mbox{\hyperlink{torque_8cpp_a598a3330b3c21701223ee0ca14316eca}{PI}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00071}00071\ \ \ \ \ l2\ =\ sqrt(\mbox{\hyperlink{torque_8cpp_a1fe17aa2ff1722c937379044a27da68a}{d1}}*\mbox{\hyperlink{torque_8cpp_a1fe17aa2ff1722c937379044a27da68a}{d1}}\ +\ \mbox{\hyperlink{torque_8cpp_ad91129aeadd7d76e6d3ac94a9e4312bb}{l1}}*\mbox{\hyperlink{torque_8cpp_ad91129aeadd7d76e6d3ac94a9e4312bb}{l1}});}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{keywordtype}{double}\ angle\_2\ =\ acos(R\ /\ l2)\ *\ 180\ /\ \mbox{\hyperlink{torque_8cpp_a598a3330b3c21701223ee0ca14316eca}{PI}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordtype}{double}\ angle\_3\ =\ 90\ -\/\ (angle\_2\ +\ angle\_1);}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00074}00074\ \ \ \ \ \textcolor{keywordtype}{double}\ angle\_rad\_3\ =\ angle\_3\ /\ 180.0\ *\ \mbox{\hyperlink{torque_8cpp_a598a3330b3c21701223ee0ca14316eca}{PI}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00076}00076\ \ \ \ \ \textcolor{comment}{//\ 坐标计算}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordtype}{double}\ Xa\ =\ R\ *\ sin(angle\_rad\_3);}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordtype}{double}\ Ya\ =\ R\ *\ cos(angle\_rad\_3)\ +\ \mbox{\hyperlink{torque_8cpp_ae285311ed52dd83bff9d175ded67efb3}{d2}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{keywordtype}{double}\ Xb\ =\ \mbox{\hyperlink{torque_8cpp_ad91129aeadd7d76e6d3ac94a9e4312bb}{l1}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{keywordtype}{double}\ Yb\ =\ \mbox{\hyperlink{torque_8cpp_a1fe17aa2ff1722c937379044a27da68a}{d1}}\ +\ \mbox{\hyperlink{torque_8cpp_ae285311ed52dd83bff9d175ded67efb3}{d2}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keywordtype}{double}\ Xc\ =\ \mbox{\hyperlink{torque_8cpp_ad91129aeadd7d76e6d3ac94a9e4312bb}{l1}}\ +\ \mbox{\hyperlink{torque_8cpp_a9dab8aab6ec1023e189b7a11c7500dd7}{l3}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordtype}{double}\ Yc\ =\ \mbox{\hyperlink{torque_8cpp_a1fe17aa2ff1722c937379044a27da68a}{d1}}\ +\ \mbox{\hyperlink{torque_8cpp_ae285311ed52dd83bff9d175ded67efb3}{d2}}\ +\ \mbox{\hyperlink{torque_8cpp_a7acd2af28e07089bfd7c09fb0292c0db}{d3}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{keywordtype}{double}\ Xd\ =\ \mbox{\hyperlink{torque_8cpp_ad91129aeadd7d76e6d3ac94a9e4312bb}{l1}}\ +\ \mbox{\hyperlink{torque_8cpp_a9dab8aab6ec1023e189b7a11c7500dd7}{l3}}\ +\ La;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{keywordtype}{double}\ Yd\ =\ 0.17;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{comment}{//\ 绳索长度与拉伸计算}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00087}00087\ \ \ \ \ l4\ =\ Xd\ -\/\ \mbox{\hyperlink{torque_8cpp_ad91129aeadd7d76e6d3ac94a9e4312bb}{l1}}\ -\/\ \mbox{\hyperlink{torque_8cpp_a9dab8aab6ec1023e189b7a11c7500dd7}{l3}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00088}00088\ \ \ \ \ L4\ =\ sqrt(pow((\mbox{\hyperlink{torque_8cpp_ae285311ed52dd83bff9d175ded67efb3}{d2}}+\mbox{\hyperlink{torque_8cpp_a1fe17aa2ff1722c937379044a27da68a}{d1}}+\mbox{\hyperlink{torque_8cpp_a7acd2af28e07089bfd7c09fb0292c0db}{d3}}-\/\mbox{\hyperlink{torque_8cpp_a307fa7a9ebf3c98ea1ee9815f096ef0f}{d4}}),2)\ +\ pow(l4,2));}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{comment}{//\ 更新绕线盘半径}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{keywordflow}{if}\ (L4\ <\ previous\_D)\ \{}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ R\ +=\ 0.0085\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ DL\ =\ 2\ *\ \mbox{\hyperlink{torque_8cpp_a598a3330b3c21701223ee0ca14316eca}{PI}}\ *\ R;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ DD\ =\ DL\ *\ \mbox{\hyperlink{torque_8cpp_a955f504eccf76b4eb2489c0adab03121}{A}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ previous\_D\ =\ L4\ -\/\ DD;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00098}00098\ \ \ \ \ \textcolor{comment}{//\ 绕线盘与绳子重量的摩擦扭矩}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordtype}{double}\ W\ =\ M2\ *\ \mbox{\hyperlink{torque_8cpp_a167d2c0ec9b943d55f2124f7442b2f6d}{g}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{keywordtype}{double}\ Ff\ =\ W\ *\ \mbox{\hyperlink{torque_8cpp_a64f8055b64cf2a4c299c841130c5c938}{u1}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordtype}{double}\ Tf\ =\ Ff\ *\ R;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00103}00103\ \ \ \ \ \textcolor{comment}{//\ 绳索悬空力计算}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{keywordtype}{double}\ angle\_rad\_4\ =\ atan((\mbox{\hyperlink{torque_8cpp_a1fe17aa2ff1722c937379044a27da68a}{d1}}\ +\ \mbox{\hyperlink{torque_8cpp_ae285311ed52dd83bff9d175ded67efb3}{d2}}\ +\ \mbox{\hyperlink{torque_8cpp_a7acd2af28e07089bfd7c09fb0292c0db}{d3}}\ -\/\ Yd)/\mbox{\hyperlink{torque_8cpp_acc55daa58d88a3612f2ef74a6abbe97f}{LB}});}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00105}00105\ \ \ \ \ G\ =\ \mbox{\hyperlink{torque_8cpp_acc55daa58d88a3612f2ef74a6abbe97f}{LB}}\ *\ 1.2;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordtype}{double}\ F5\_1\ =\ G\ /\ sin(angle\_rad\_4);}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{keywordtype}{double}\ Ff2\ =\ (l4\ -\/\ \mbox{\hyperlink{torque_8cpp_acc55daa58d88a3612f2ef74a6abbe97f}{LB}})\ *\ 0.12\ *\ \mbox{\hyperlink{torque_8cpp_a167d2c0ec9b943d55f2124f7442b2f6d}{g}}\ *\ \mbox{\hyperlink{torque_8cpp_a55ef8d87fd202b8417704c089899c5b9}{u2}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{keywordtype}{double}\ F5\_2\ =\ Ff2\ /\ cos(angle\_rad\_4);}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{keywordtype}{double}\ F5\ =\ F5\_1\ +\ F5\_2;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{comment}{//\ 合力转矩}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{keywordtype}{double}\ angle\_rad\_5\ =\ atan(\mbox{\hyperlink{torque_8cpp_a7acd2af28e07089bfd7c09fb0292c0db}{d3}}\ /\ \mbox{\hyperlink{torque_8cpp_a9dab8aab6ec1023e189b7a11c7500dd7}{l3}});}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordtype}{double}\ F2\ =\ F5\ *\ cos(angle\_rad\_5)\ /\ cos(angle\_rad\_3);}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00114}00114\ \ \ \ \ TG\ =\ F2\ *\ R\ +\ Tf\ +\ Tc;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00116}00116\ \ \ \ \ \textcolor{comment}{//\ 百分比表示}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00117}00117\ \ \ \ \ TG\_1\ =\ TG\ /\ 1.27\ /\ 20\ *\ 100;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00119}00119\ \ \ \ \ \textcolor{comment}{//\ 输出调试信息}}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00120}00120\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}TG\ ="{}}\ <<\ TG;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00121}00121\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}F2\ ="{}}\ <<\ F2;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00122}00122\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}F5\ ="{}}\ <<\ F5;}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00123}00123\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}TG\_1\ ="{}}\ <<\ TG\_1\ <<\ \textcolor{stringliteral}{"{}\%"{}};}
+\DoxyCodeLine{\Hypertarget{torque_8cpp_source_l00124}00124\ \}}
+
+\end{DoxyCode}

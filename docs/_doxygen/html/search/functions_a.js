@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['queuesort_0',['queueSort',['../classWaypointPublisher.html#ae281f0d4ec699816476b4ffc860a81ca',1,'WaypointPublisher']]]
+  ['loadsettings_0',['loadSettings',['../widget_8cpp.html#a1165e1d4439a045e94970c9fbc73bb3c',1,'widget.cpp']]]
 ];

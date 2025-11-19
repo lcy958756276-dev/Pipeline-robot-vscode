@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['tempandpress_2ecpp_0',['tempandpress.cpp',['../tempandpress_8cpp.html',1,'']]],
-  ['testcam_2ecpp_1',['testcam.cpp',['../testcam_8cpp.html',1,'']]],
-  ['three_5fyuannumber_2ecpp_2',['three_yuannumber.cpp',['../three__yuannumber_8cpp.html',1,'']]]
+  ['point_5ftransform_2epy_0',['point_transform.py',['../point__transform_8py.html',1,'']]]
 ];

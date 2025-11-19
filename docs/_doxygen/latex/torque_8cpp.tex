@@ -1,0 +1,372 @@
+\doxysection{QT\+\_\+function\+\_\+other/torque.cpp File Reference}
+\hypertarget{torque_8cpp}{}\label{torque_8cpp}\index{QT\_function\_other/torque.cpp@{QT\_function\_other/torque.cpp}}
+
+
+绕线盘与丝杆系统扭矩计算类  
+
+
+{\ttfamily \#include $<$torque.\+h$>$}\newline
+{\ttfamily \#include $<$QDebug$>$}\newline
+{\ttfamily \#include $<$qmath.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+Include dependency graph for torque.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{torque_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{torque_8cpp_a598a3330b3c21701223ee0ca14316eca}{PI}}~3.\+14159265358979323846
+\item 
+\#define \mbox{\hyperlink{torque_8cpp_ad91129aeadd7d76e6d3ac94a9e4312bb}{l1}}~0.\+18
+\begin{DoxyCompactList}\small\item\em 绕线盘与编码器中心的水平距离 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a1ce864b284ac751ffd8a0d98d5ccab55}{L1}}~0.\+2
+\begin{DoxyCompactList}\small\item\em 旋转轮中心与地面的垂直距离 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a9dab8aab6ec1023e189b7a11c7500dd7}{l3}}~0.\+2
+\begin{DoxyCompactList}\small\item\em 编码器中心与滚轮中心水平距离 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a1fe17aa2ff1722c937379044a27da68a}{d1}}~0.\+02
+\begin{DoxyCompactList}\small\item\em 绕线盘与编码器中心的垂直距离 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_ae285311ed52dd83bff9d175ded67efb3}{d2}}~0.\+21
+\begin{DoxyCompactList}\small\item\em 绕线盘中心与地面的距离 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a7acd2af28e07089bfd7c09fb0292c0db}{d3}}~0.\+1
+\begin{DoxyCompactList}\small\item\em 编码器中心与滚轮上侧的垂直距离 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_ab89a77e63a7226fffaecb2e2c2ab5219}{a1}}~5
+\begin{DoxyCompactList}\small\item\em 绳子绕满一圈所需长度 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a307fa7a9ebf3c98ea1ee9815f096ef0f}{d4}}~0.\+17
+\begin{DoxyCompactList}\small\item\em 车身上电缆连接的垂直距离 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a76f03c748e228fa6e50eb0a5f08d817c}{LLA}}~100
+\begin{DoxyCompactList}\small\item\em 绳子的总长度 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a955f504eccf76b4eb2489c0adab03121}{A}}~215/8.\+5
+\begin{DoxyCompactList}\small\item\em 绳子绕满一圈所需圈数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_ac597abe7cf610f262f7aaec53ed1d413}{M1}}~3
+\begin{DoxyCompactList}\small\item\em 绕线盘质量 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_ad801d72bd01ef1ac9b86dbf4de0d355d}{M3}}~1
+\begin{DoxyCompactList}\small\item\em 丝杠上方矫正器质量 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a167d2c0ec9b943d55f2124f7442b2f6d}{g}}~9.\+81
+\begin{DoxyCompactList}\small\item\em 重力加速度 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a64f8055b64cf2a4c299c841130c5c938}{u1}}~0.\+1
+\begin{DoxyCompactList}\small\item\em 绕线盘摩擦力系数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a55ef8d87fd202b8417704c089899c5b9}{u2}}~0.\+2
+\begin{DoxyCompactList}\small\item\em 绳子与地面摩擦系数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_ad3a63ae99a964cd86585b7feaf2be9e2}{u3}}~0.\+2
+\begin{DoxyCompactList}\small\item\em 丝杠摩擦系数 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a88b795c26c0900ddc7c68576a872ef87}{R\+\_\+1}}~0.\+035
+\begin{DoxyCompactList}\small\item\em 绕线盘内径，用于自身重量力矩计算 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_acc55daa58d88a3612f2ef74a6abbe97f}{LB}}~2
+\begin{DoxyCompactList}\small\item\em 线缆悬空长度 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a7cbbe2d9e20a97058cad5b7c91115a76}{Fa\+\_\+1}}~5
+\begin{DoxyCompactList}\small\item\em 推力补偿 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{torque_8cpp_a2748566f4c443ee77aa831e63dbb5ebe}{P}}~0.\+02
+\begin{DoxyCompactList}\small\item\em 丝杠螺距，单位 m \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+绕线盘与丝杆系统扭矩计算类 
+
+功能：
+\begin{DoxyItemize}
+\item 根据绳索长度计算绕线盘半径
+\item 计算绕线盘与丝杆的总质量
+\item 计算推力、摩擦力
+\item 根据几何关系计算总转矩
+\item 输出百分比形式的扭矩 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{torque_8cpp_a955f504eccf76b4eb2489c0adab03121}\label{torque_8cpp_a955f504eccf76b4eb2489c0adab03121} 
+\index{torque.cpp@{torque.cpp}!A@{A}}
+\index{A@{A}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{A}{A}}
+{\footnotesize\ttfamily \#define A~215/8.\+5}
+
+
+
+绳子绕满一圈所需圈数 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_ab89a77e63a7226fffaecb2e2c2ab5219}\label{torque_8cpp_ab89a77e63a7226fffaecb2e2c2ab5219} 
+\index{torque.cpp@{torque.cpp}!a1@{a1}}
+\index{a1@{a1}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{a1}{a1}}
+{\footnotesize\ttfamily \#define a1~5}
+
+
+
+绳子绕满一圈所需长度 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a1fe17aa2ff1722c937379044a27da68a}\label{torque_8cpp_a1fe17aa2ff1722c937379044a27da68a} 
+\index{torque.cpp@{torque.cpp}!d1@{d1}}
+\index{d1@{d1}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{d1}{d1}}
+{\footnotesize\ttfamily \#define d1~0.\+02}
+
+
+
+绕线盘与编码器中心的垂直距离 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_ae285311ed52dd83bff9d175ded67efb3}\label{torque_8cpp_ae285311ed52dd83bff9d175ded67efb3} 
+\index{torque.cpp@{torque.cpp}!d2@{d2}}
+\index{d2@{d2}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{d2}{d2}}
+{\footnotesize\ttfamily \#define d2~0.\+21}
+
+
+
+绕线盘中心与地面的距离 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a7acd2af28e07089bfd7c09fb0292c0db}\label{torque_8cpp_a7acd2af28e07089bfd7c09fb0292c0db} 
+\index{torque.cpp@{torque.cpp}!d3@{d3}}
+\index{d3@{d3}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{d3}{d3}}
+{\footnotesize\ttfamily \#define d3~0.\+1}
+
+
+
+编码器中心与滚轮上侧的垂直距离 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a307fa7a9ebf3c98ea1ee9815f096ef0f}\label{torque_8cpp_a307fa7a9ebf3c98ea1ee9815f096ef0f} 
+\index{torque.cpp@{torque.cpp}!d4@{d4}}
+\index{d4@{d4}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{d4}{d4}}
+{\footnotesize\ttfamily \#define d4~0.\+17}
+
+
+
+车身上电缆连接的垂直距离 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a7cbbe2d9e20a97058cad5b7c91115a76}\label{torque_8cpp_a7cbbe2d9e20a97058cad5b7c91115a76} 
+\index{torque.cpp@{torque.cpp}!Fa\_1@{Fa\_1}}
+\index{Fa\_1@{Fa\_1}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{Fa\_1}{Fa\_1}}
+{\footnotesize\ttfamily \#define Fa\+\_\+1~5}
+
+
+
+推力补偿 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a167d2c0ec9b943d55f2124f7442b2f6d}\label{torque_8cpp_a167d2c0ec9b943d55f2124f7442b2f6d} 
+\index{torque.cpp@{torque.cpp}!g@{g}}
+\index{g@{g}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily \#define g~9.\+81}
+
+
+
+重力加速度 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_ad91129aeadd7d76e6d3ac94a9e4312bb}\label{torque_8cpp_ad91129aeadd7d76e6d3ac94a9e4312bb} 
+\index{torque.cpp@{torque.cpp}!l1@{l1}}
+\index{l1@{l1}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{l1}{l1}}
+{\footnotesize\ttfamily \#define l1~0.\+18}
+
+
+
+绕线盘与编码器中心的水平距离 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a1ce864b284ac751ffd8a0d98d5ccab55}\label{torque_8cpp_a1ce864b284ac751ffd8a0d98d5ccab55} 
+\index{torque.cpp@{torque.cpp}!L1@{L1}}
+\index{L1@{L1}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{L1}{L1}}
+{\footnotesize\ttfamily \#define L1~0.\+2}
+
+
+
+旋转轮中心与地面的垂直距离 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a9dab8aab6ec1023e189b7a11c7500dd7}\label{torque_8cpp_a9dab8aab6ec1023e189b7a11c7500dd7} 
+\index{torque.cpp@{torque.cpp}!l3@{l3}}
+\index{l3@{l3}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{l3}{l3}}
+{\footnotesize\ttfamily \#define l3~0.\+2}
+
+
+
+编码器中心与滚轮中心水平距离 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_acc55daa58d88a3612f2ef74a6abbe97f}\label{torque_8cpp_acc55daa58d88a3612f2ef74a6abbe97f} 
+\index{torque.cpp@{torque.cpp}!LB@{LB}}
+\index{LB@{LB}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{LB}{LB}}
+{\footnotesize\ttfamily \#define LB~2}
+
+
+
+线缆悬空长度 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a76f03c748e228fa6e50eb0a5f08d817c}\label{torque_8cpp_a76f03c748e228fa6e50eb0a5f08d817c} 
+\index{torque.cpp@{torque.cpp}!LLA@{LLA}}
+\index{LLA@{LLA}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{LLA}{LLA}}
+{\footnotesize\ttfamily \#define LLA~100}
+
+
+
+绳子的总长度 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_ac597abe7cf610f262f7aaec53ed1d413}\label{torque_8cpp_ac597abe7cf610f262f7aaec53ed1d413} 
+\index{torque.cpp@{torque.cpp}!M1@{M1}}
+\index{M1@{M1}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{M1}{M1}}
+{\footnotesize\ttfamily \#define M1~3}
+
+
+
+绕线盘质量 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_ad801d72bd01ef1ac9b86dbf4de0d355d}\label{torque_8cpp_ad801d72bd01ef1ac9b86dbf4de0d355d} 
+\index{torque.cpp@{torque.cpp}!M3@{M3}}
+\index{M3@{M3}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{M3}{M3}}
+{\footnotesize\ttfamily \#define M3~1}
+
+
+
+丝杠上方矫正器质量 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a2748566f4c443ee77aa831e63dbb5ebe}\label{torque_8cpp_a2748566f4c443ee77aa831e63dbb5ebe} 
+\index{torque.cpp@{torque.cpp}!P@{P}}
+\index{P@{P}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{P}{P}}
+{\footnotesize\ttfamily \#define P~0.\+02}
+
+
+
+丝杠螺距，单位 m 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a598a3330b3c21701223ee0ca14316eca}\label{torque_8cpp_a598a3330b3c21701223ee0ca14316eca} 
+\index{torque.cpp@{torque.cpp}!PI@{PI}}
+\index{PI@{PI}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{PI}{PI}}
+{\footnotesize\ttfamily \#define PI~3.\+14159265358979323846}
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a88b795c26c0900ddc7c68576a872ef87}\label{torque_8cpp_a88b795c26c0900ddc7c68576a872ef87} 
+\index{torque.cpp@{torque.cpp}!R\_1@{R\_1}}
+\index{R\_1@{R\_1}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{R\_1}{R\_1}}
+{\footnotesize\ttfamily \#define R\+\_\+1~0.\+035}
+
+
+
+绕线盘内径，用于自身重量力矩计算 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a64f8055b64cf2a4c299c841130c5c938}\label{torque_8cpp_a64f8055b64cf2a4c299c841130c5c938} 
+\index{torque.cpp@{torque.cpp}!u1@{u1}}
+\index{u1@{u1}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{u1}{u1}}
+{\footnotesize\ttfamily \#define u1~0.\+1}
+
+
+
+绕线盘摩擦力系数 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_a55ef8d87fd202b8417704c089899c5b9}\label{torque_8cpp_a55ef8d87fd202b8417704c089899c5b9} 
+\index{torque.cpp@{torque.cpp}!u2@{u2}}
+\index{u2@{u2}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{u2}{u2}}
+{\footnotesize\ttfamily \#define u2~0.\+2}
+
+
+
+绳子与地面摩擦系数 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+
+\Hypertarget{torque_8cpp_ad3a63ae99a964cd86585b7feaf2be9e2}\label{torque_8cpp_ad3a63ae99a964cd86585b7feaf2be9e2} 
+\index{torque.cpp@{torque.cpp}!u3@{u3}}
+\index{u3@{u3}!torque.cpp@{torque.cpp}}
+\doxysubsubsection{\texorpdfstring{u3}{u3}}
+{\footnotesize\ttfamily \#define u3~0.\+2}
+
+
+
+丝杠摩擦系数 
+
+
+
+Definition at line \mbox{\hyperlink{torque_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{torque_8cpp_source}{torque.\+cpp}}.
+

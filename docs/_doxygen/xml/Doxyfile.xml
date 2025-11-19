@@ -126,6 +126,8 @@
     <value><![CDATA[/workspaces/Pipeline-robot-vscode/3D_mapping]]></value>
     <value><![CDATA[/workspaces/Pipeline-robot-vscode/cable_read]]></value>
     <value><![CDATA[/workspaces/Pipeline-robot-vscode/Motherboard_data_process]]></value>
+    <value><![CDATA[/workspaces/Pipeline-robot-vscode/function_key]]></value>
+    <value><![CDATA[/workspaces/Pipeline-robot-vscode/QT_function_other]]></value>
   </option>
   <option  id='INPUT_ENCODING' default='yes' type='string'><value><![CDATA[UTF-8]]></value></option>
   <option  id='INPUT_FILE_ENCODING' default='yes' type='stringlist'>
@@ -210,7 +212,7 @@
   <option  id='INLINE_SOURCES' default='no' type='bool'><value>YES</value></option>
   <option  id='STRIP_CODE_COMMENTS' default='yes' type='bool'><value>YES</value></option>
   <option  id='REFERENCED_BY_RELATION' default='yes' type='bool'><value>NO</value></option>
-  <option  id='REFERENCES_RELATION' default='yes' type='bool'><value>NO</value></option>
+  <option  id='REFERENCES_RELATION' default='no' type='bool'><value>YES</value></option>
   <option  id='REFERENCES_LINK_SOURCE' default='yes' type='bool'><value>YES</value></option>
   <option  id='SOURCE_TOOLTIPS' default='yes' type='bool'><value>YES</value></option>
   <option  id='USE_HTAGS' default='yes' type='bool'><value>NO</value></option>
@@ -338,13 +340,15 @@
   <option  id='PERLMOD_MAKEVAR_PREFIX' default='yes' type='string'><value><![CDATA[]]></value></option>
   <option  id='ENABLE_PREPROCESSING' default='yes' type='bool'><value>YES</value></option>
   <option  id='MACRO_EXPANSION' default='no' type='bool'><value>YES</value></option>
-  <option  id='EXPAND_ONLY_PREDEF' default='no' type='bool'><value>YES</value></option>
+  <option  id='EXPAND_ONLY_PREDEF' default='yes' type='bool'><value>NO</value></option>
   <option  id='SEARCH_INCLUDES' default='yes' type='bool'><value>YES</value></option>
   <option  id='INCLUDE_PATH' default='yes' type='stringlist'>
   </option>
   <option  id='INCLUDE_FILE_PATTERNS' default='yes' type='stringlist'>
   </option>
-  <option  id='PREDEFINED' default='yes' type='stringlist'>
+  <option  id='PREDEFINED' default='no' type='stringlist'>
+    <value><![CDATA[Q_SLOTS=]]></value>
+    <value><![CDATA[public]]></value>
   </option>
   <option  id='EXPAND_AS_DEFINED' default='yes' type='stringlist'>
   </option>

@@ -1,0 +1,90 @@
+\doxysection{QT\+\_\+function\+\_\+other/jiantuwidget.cpp File Reference}
+\hypertarget{jiantuwidget_8cpp}{}\label{jiantuwidget_8cpp}\index{QT\_function\_other/jiantuwidget.cpp@{QT\_function\_other/jiantuwidget.cpp}}
+
+
+Jian\+Tu\+Widget 类的实现文件，包含 UI 初始化、布局设置及 ROS 节点初始化  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{jiantuwidget_8cpp_a84704c7f6cf268592f712b0257ba486e}{Jian\+Tu\+Widget}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv, QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em 构造函数，初始化 Jian\+Tu\+Widget 对象 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{jiantuwidget_8cpp_a18b1055925877999caeaff38882d2009}{\texorpdfstring{$\sim$}{\string~}\+Jian\+Tu\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em 析构函数，释放 Jian\+Tu\+Widget 资源 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Jian\+Tu\+Widget 类的实现文件，包含 UI 初始化、布局设置及 ROS 节点初始化 
+
+
+
+Definition in file \mbox{\hyperlink{jiantuwidget_8cpp_source}{jiantuwidget.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{jiantuwidget_8cpp_a84704c7f6cf268592f712b0257ba486e}\label{jiantuwidget_8cpp_a84704c7f6cf268592f712b0257ba486e} 
+\index{jiantuwidget.cpp@{jiantuwidget.cpp}!JianTuWidget@{JianTuWidget}}
+\index{JianTuWidget@{JianTuWidget}!jiantuwidget.cpp@{jiantuwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{JianTuWidget()}{JianTuWidget()}}
+{\footnotesize\ttfamily Jian\+Tu\+Widget (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv,  }\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+构造函数，初始化 Jian\+Tu\+Widget 对象 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & 命令行参数数量，用于 ROS 节点初始化 \\
+\hline
+{\em argv} & 命令行参数数组，用于 ROS 节点初始化 \\
+\hline
+{\em parent} & 父 QWidget 指针，默认为 nullptr\\
+\hline
+\end{DoxyParams}
+构造函数主要功能：
+\begin{DoxyItemize}
+\item 初始化 UI 界面
+\item 创建并设置 Vertical\+Layout 为主布局
+\item 使用 argc 和 argv 初始化 ROS 节点 node 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{jiantuwidget_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{jiantuwidget_8cpp_source}{jiantuwidget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018\ \ \ \ \ :\ QWidget(parent),}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ node(argc,\ argv,\ \textcolor{stringliteral}{"{}node\_jiantu"{}}),\ \ \textcolor{comment}{//\ 使用参数初始化\ node}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ ui(\textcolor{keyword}{new}\ Ui::JianTuWidget)}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ ui-\/>setupUi(\textcolor{keyword}{this});}
+\DoxyCodeLine{00023\ \ \ \ \ VerticalLayout\ =\ \textcolor{keyword}{new}\ QVBoxLayout(\textcolor{keyword}{this});\ \textcolor{comment}{//\ 初始化\ VerticalLayout}}
+\DoxyCodeLine{00024\ \ \ \ \ setLayout(VerticalLayout);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置为主布局}}
+\DoxyCodeLine{00025\ \}}
+
+\end{DoxyCode}
+\Hypertarget{jiantuwidget_8cpp_a18b1055925877999caeaff38882d2009}\label{jiantuwidget_8cpp_a18b1055925877999caeaff38882d2009} 
+\index{jiantuwidget.cpp@{jiantuwidget.cpp}!````~JianTuWidget@{\texorpdfstring{$\sim$}{\string~}JianTuWidget}}
+\index{````~JianTuWidget@{\texorpdfstring{$\sim$}{\string~}JianTuWidget}!jiantuwidget.cpp@{jiantuwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}JianTuWidget()}{\string~JianTuWidget()}}
+{\footnotesize\ttfamily \texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{jiantuwidget_8cpp_a84704c7f6cf268592f712b0257ba486e}{Jian\+Tu\+Widget}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+析构函数，释放 Jian\+Tu\+Widget 资源 
+
+析构函数主要功能：
+\begin{DoxyItemize}
+\item 删除 UI 对象，释放资源 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{jiantuwidget_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{jiantuwidget_8cpp_source}{jiantuwidget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{delete}\ ui;}
+\DoxyCodeLine{00036\ \}}
+
+\end{DoxyCode}

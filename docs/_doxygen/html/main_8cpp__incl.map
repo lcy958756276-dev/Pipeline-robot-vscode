@@ -1,0 +1,27 @@
+<map id="QT_function_other/main.cpp" name="QT_function_other/main.cpp">
+<area shape="rect" id="Node000001" title="程序入口文件，初始化 Qt 应用、启动 ROS 脚本、创建主窗口 Widget 并执行应用循环" alt="" coords="503,5,709,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,86,111,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="504,30,325,49,223,63,123,81,107,85,106,80,121,76,222,58,324,43,503,24"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="135,86,213,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="504,33,371,52,227,81,217,84,215,79,225,76,370,46,503,27"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="238,86,305,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="532,33,429,53,317,81,311,83,309,78,316,76,428,48,531,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="329,86,411,111"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="571,33,424,81,416,84,414,79,422,76,569,28"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="435,86,494,111"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="586,33,499,82,496,77,584,29"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="518,86,595,111"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="601,32,573,76,569,73,596,29"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="619,86,694,111"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="616,29,644,73,639,76,611,32"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="719,86,797,111"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="630,28,725,77,722,82,627,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="822,86,875,111"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="654,28,728,49,811,76,815,78,813,83,809,81,727,54,653,33"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="900,86,965,111"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="678,28,778,48,888,76,895,78,893,83,887,81,777,53,677,33"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="990,86,1113,111"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="692,28,827,48,979,76,997,80,995,85,977,81,826,54,691,33"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1137,79,1315,119"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="709,26,898,47,1124,76,1123,81,897,52,709,32"/>
+</map>

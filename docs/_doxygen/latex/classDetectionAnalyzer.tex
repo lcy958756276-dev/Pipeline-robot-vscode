@@ -5,11 +5,9 @@
 分析检测点并生成 midgoal 点  
 
 
-\doxysubsubsection*{Public Member Functions}
+\doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classDetectionAnalyzer_ac225923772770c2ca24586696310065a}{Detection\+Analyzer}} ()
-\begin{DoxyCompactList}\small\item\em 构造函数，初始化 ROS 订阅者与发布者 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDetectionAnalyzer_abb1da63aefde85e3e8ff8e452e518ecd}{odom\+Callback}} (const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)
 \begin{DoxyCompactList}\small\item\em 更新机器人当前位置 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDetectionAnalyzer_a6d547bc01c1d8a7852bcd39a62cf829a}{finalgoal\+Callback}} (const geometry\+\_\+msgs\+::\+Pose\+Stamped\+::\+Const\+Ptr \&msg)
@@ -17,16 +15,15 @@ void \mbox{\hyperlink{classDetectionAnalyzer_a6d547bc01c1d8a7852bcd39a62cf829a}{
 void \mbox{\hyperlink{classDetectionAnalyzer_acdf4deceaaab4a087f8fa510069f756d}{detection\+Callback}} (const pipeline\+\_\+robot\+::detection\+::\+Const\+Ptr \&msg)
 \begin{DoxyCompactList}\small\item\em 接收并缓存检测点 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDetectionAnalyzer_aaaba5d735107e6bb589e7937b6a2bc61}{publish\+Mid\+Goal}} ()
-\begin{DoxyCompactList}\small\item\em 从缓存检测点中选择最小 x 坐标生成 midgoal 点并发布 \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
+\begin{DoxyCompactList}\small\item\em 从缓存检测点中选择最小 x 坐标生成 midgoal 点并发布 \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classDetectionAnalyzer_a590d7176d4a52897510ff0867cc8655a}{is\+Similar}} (float new\+\_\+detection\+\_\+x)
 \begin{DoxyCompactList}\small\item\em 判断检测点是否已存在缓存中 \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classDetectionAnalyzer_abc065c153de6540f4b4f32bda30b2507}{is\+Similar\+Published}} (float \mbox{\hyperlink{odom__pub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}})
 \begin{DoxyCompactList}\small\item\em 判断 midgoal 是否已发布 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
+\item 
+\+: \mbox{\hyperlink{classDetectionAnalyzer}{Detection\+Analyzer}}()
 \item 
 ros\+::\+Node\+Handle \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}}
 \begin{DoxyCompactList}\small\item\em ROS 节点句柄 \end{DoxyCompactList}\item 
@@ -62,46 +59,12 @@ Definition at line \mbox{\hyperlink{detectionPointPub_8cpp_source_l00031}{31}} o
 
 
 
-\doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classDetectionAnalyzer_ac225923772770c2ca24586696310065a}\label{classDetectionAnalyzer_ac225923772770c2ca24586696310065a} 
-\index{DetectionAnalyzer@{DetectionAnalyzer}!DetectionAnalyzer@{DetectionAnalyzer}}
-\index{DetectionAnalyzer@{DetectionAnalyzer}!DetectionAnalyzer@{DetectionAnalyzer}}
-\doxysubsubsection{\texorpdfstring{DetectionAnalyzer()}{DetectionAnalyzer()}}
-{\footnotesize\ttfamily Detection\+Analyzer\+::\+Detection\+Analyzer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-构造函数，初始化 ROS 订阅者与发布者 
-
-初始化以下订阅者：
-\begin{DoxyItemize}
-\item /cable/odom：机器人位姿
-\item /transformed\+\_\+detection\+\_\+info：检测点信息
-\item finalgoal：最终目标点 初始化发布者：
-\item midgoal：中间目标点 
-\end{DoxyItemize}
-
-Definition at line \mbox{\hyperlink{detectionPointPub_8cpp_source_l00118}{118}} of file \mbox{\hyperlink{detectionPointPub_8cpp_source}{detection\+Point\+Pub.\+cpp}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00119\ \{}
-\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_abb1eca5770c41109df5688bcecc48c84}{odom\_sub}}\ =\ \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}}.subscribe(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 10,\ \&\mbox{\hyperlink{classDetectionAnalyzer_abb1da63aefde85e3e8ff8e452e518ecd}{DetectionAnalyzer::odomCallback}},\ \textcolor{keyword}{this});}
-\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a8ef40feef50fb30ffbbbc51e69c8188e}{detection\_sub}}\ =\ \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}}.subscribe(\textcolor{stringliteral}{"{}/transformed\_detection\_info"{}},\ 10,\ \&\mbox{\hyperlink{classDetectionAnalyzer_acdf4deceaaab4a087f8fa510069f756d}{DetectionAnalyzer::detectionCallback}},\ \textcolor{keyword}{this});}
-\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a21f29bbee9e78f3123b82d49f65e6c08}{finalgoal\_sub}}\ =\ \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}}.subscribe(\textcolor{stringliteral}{"{}finalgoal"{}},\ 10,\ \&\mbox{\hyperlink{classDetectionAnalyzer_a6d547bc01c1d8a7852bcd39a62cf829a}{DetectionAnalyzer::finalgoalCallback}},\ \textcolor{keyword}{this});}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{classDetectionAnalyzer_a45860f4a2da2f3df0c5f3244d555f3b8}{midgoal\_pub}}\ =\ \mbox{\hyperlink{classDetectionAnalyzer_a02fc6744acfe3aaeab6498dfd1846365}{nh}}.advertise<geometry\_msgs::PoseStamped>(\textcolor{stringliteral}{"{}midgoal"{}},\ 10);}
-\DoxyCodeLine{00125\ \}}
-
-\end{DoxyCode}
-
-
 \doxysubsection{Member Function Documentation}
 \Hypertarget{classDetectionAnalyzer_acdf4deceaaab4a087f8fa510069f756d}\label{classDetectionAnalyzer_acdf4deceaaab4a087f8fa510069f756d} 
 \index{DetectionAnalyzer@{DetectionAnalyzer}!detectionCallback@{detectionCallback}}
 \index{detectionCallback@{detectionCallback}!DetectionAnalyzer@{DetectionAnalyzer}}
 \doxysubsubsection{\texorpdfstring{detectionCallback()}{detectionCallback()}}
-{\footnotesize\ttfamily void Detection\+Analyzer\+::detection\+Callback (\begin{DoxyParamCaption}\item[{const pipeline\+\_\+robot\+::detection\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Detection\+Analyzer\+::detection\+Callback (\begin{DoxyParamCaption}\item[{const pipeline\+\_\+robot\+::detection\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -136,11 +99,15 @@ Definition at line \mbox{\hyperlink{detectionPointPub_8cpp_source_l00137}{137}} 
 \DoxyCodeLine{00148\ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{detectionPointPub_8cpp_source_l00092}{current\+\_\+position\+\_\+x}}, \mbox{\hyperlink{detectionPointPub_8cpp_source_l00090}{detections}}, \mbox{\hyperlink{detectionPointPub_8cpp_source_l00093}{final\+\_\+position\+\_\+x}}, and \mbox{\hyperlink{detectionPointPub_8cpp_source_l00172}{is\+Similar()}}.
+
 \Hypertarget{classDetectionAnalyzer_a6d547bc01c1d8a7852bcd39a62cf829a}\label{classDetectionAnalyzer_a6d547bc01c1d8a7852bcd39a62cf829a} 
 \index{DetectionAnalyzer@{DetectionAnalyzer}!finalgoalCallback@{finalgoalCallback}}
 \index{finalgoalCallback@{finalgoalCallback}!DetectionAnalyzer@{DetectionAnalyzer}}
 \doxysubsubsection{\texorpdfstring{finalgoalCallback()}{finalgoalCallback()}}
-{\footnotesize\ttfamily void Detection\+Analyzer\+::finalgoal\+Callback (\begin{DoxyParamCaption}\item[{const geometry\+\_\+msgs\+::\+Pose\+Stamped\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Detection\+Analyzer\+::finalgoal\+Callback (\begin{DoxyParamCaption}\item[{const geometry\+\_\+msgs\+::\+Pose\+Stamped\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -162,6 +129,10 @@ Definition at line \mbox{\hyperlink{detectionPointPub_8cpp_source_l00132}{132}} 
 \DoxyCodeLine{00135\ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{detectionPointPub_8cpp_source_l00093}{final\+\_\+position\+\_\+x}}.
+
 \Hypertarget{classDetectionAnalyzer_a590d7176d4a52897510ff0867cc8655a}\label{classDetectionAnalyzer_a590d7176d4a52897510ff0867cc8655a} 
 \index{DetectionAnalyzer@{DetectionAnalyzer}!isSimilar@{isSimilar}}
 \index{isSimilar@{isSimilar}!DetectionAnalyzer@{DetectionAnalyzer}}
@@ -199,6 +170,10 @@ Definition at line \mbox{\hyperlink{detectionPointPub_8cpp_source_l00172}{172}} 
 \DoxyCodeLine{00180\ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{detectionPointPub_8cpp_source_l00090}{detections}}, and \mbox{\hyperlink{odom__pub_8cpp_source_l00035}{x}}.
+
 \Hypertarget{classDetectionAnalyzer_abc065c153de6540f4b4f32bda30b2507}\label{classDetectionAnalyzer_abc065c153de6540f4b4f32bda30b2507} 
 \index{DetectionAnalyzer@{DetectionAnalyzer}!isSimilarPublished@{isSimilarPublished}}
 \index{isSimilarPublished@{isSimilarPublished}!DetectionAnalyzer@{DetectionAnalyzer}}
@@ -236,11 +211,15 @@ Definition at line \mbox{\hyperlink{detectionPointPub_8cpp_source_l00182}{182}} 
 \DoxyCodeLine{00190\ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{detectionPointPub_8cpp_source_l00091}{published\+\_\+positions}}, and \mbox{\hyperlink{odom__pub_8cpp_source_l00035}{x}}.
+
 \Hypertarget{classDetectionAnalyzer_abb1da63aefde85e3e8ff8e452e518ecd}\label{classDetectionAnalyzer_abb1da63aefde85e3e8ff8e452e518ecd} 
 \index{DetectionAnalyzer@{DetectionAnalyzer}!odomCallback@{odomCallback}}
 \index{odomCallback@{odomCallback}!DetectionAnalyzer@{DetectionAnalyzer}}
 \doxysubsubsection{\texorpdfstring{odomCallback()}{odomCallback()}}
-{\footnotesize\ttfamily void Detection\+Analyzer\+::odom\+Callback (\begin{DoxyParamCaption}\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Detection\+Analyzer\+::odom\+Callback (\begin{DoxyParamCaption}\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -262,11 +241,15 @@ Definition at line \mbox{\hyperlink{detectionPointPub_8cpp_source_l00127}{127}} 
 \DoxyCodeLine{00130\ \}}
 
 \end{DoxyCode}
+
+
+References \mbox{\hyperlink{detectionPointPub_8cpp_source_l00092}{current\+\_\+position\+\_\+x}}.
+
 \Hypertarget{classDetectionAnalyzer_aaaba5d735107e6bb589e7937b6a2bc61}\label{classDetectionAnalyzer_aaaba5d735107e6bb589e7937b6a2bc61} 
 \index{DetectionAnalyzer@{DetectionAnalyzer}!publishMidGoal@{publishMidGoal}}
 \index{publishMidGoal@{publishMidGoal}!DetectionAnalyzer@{DetectionAnalyzer}}
 \doxysubsubsection{\texorpdfstring{publishMidGoal()}{publishMidGoal()}}
-{\footnotesize\ttfamily void Detection\+Analyzer\+::publish\+Mid\+Goal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Detection\+Analyzer\+::publish\+Mid\+Goal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -307,7 +290,21 @@ Definition at line \mbox{\hyperlink{detectionPointPub_8cpp_source_l00150}{150}} 
 \end{DoxyCode}
 
 
+References \mbox{\hyperlink{detectionPointPub_8cpp_source_l00090}{detections}}, \mbox{\hyperlink{detectionPointPub_8cpp_source_l00182}{is\+Similar\+Published()}}, \mbox{\hyperlink{detectionPointPub_8cpp_source_l00088}{midgoal\+\_\+pub}}, and \mbox{\hyperlink{detectionPointPub_8cpp_source_l00091}{published\+\_\+positions}}.
+
+
+
 \doxysubsection{Member Data Documentation}
+\Hypertarget{classDetectionAnalyzer_a66bf832eda7e55e9fad72f725bc38d72}\label{classDetectionAnalyzer_a66bf832eda7e55e9fad72f725bc38d72} 
+\index{DetectionAnalyzer@{DetectionAnalyzer}!\_\_pad0\_\_@{\_\_pad0\_\_}}
+\index{\_\_pad0\_\_@{\_\_pad0\_\_}!DetectionAnalyzer@{DetectionAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_\_pad0\_\_}{\_\_pad0\_\_}}
+{\footnotesize\ttfamily Detection\+Analyzer\+::\+\_\+\+\_\+pad0\+\_\+\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{detectionPointPub_8cpp_source_l00203}{203}} of file \mbox{\hyperlink{detectionPointPub_8cpp_source}{detection\+Point\+Pub.\+cpp}}.
+
 \Hypertarget{classDetectionAnalyzer_a5f50ef9dab802e3ac84304b6911d61a5}\label{classDetectionAnalyzer_a5f50ef9dab802e3ac84304b6911d61a5} 
 \index{DetectionAnalyzer@{DetectionAnalyzer}!current\_position\_x@{current\_position\_x}}
 \index{current\_position\_x@{current\_position\_x}!DetectionAnalyzer@{DetectionAnalyzer}}

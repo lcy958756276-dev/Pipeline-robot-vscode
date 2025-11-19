@@ -217,6 +217,8 @@ Variables</h2></td></tr>
 <div class="ttc" id="aoverall__map_8cpp_html_a8bbc76585965c3f3c1067d4e2b8e4635"><div class="ttname"><a href="overall__map_8cpp.html#a8bbc76585965c3f3c1067d4e2b8e4635">currentPosition</a></div><div class="ttdeci">Eigen::Vector3d currentPosition</div><div class="ttdoc">当前机器人位置</div><div class="ttdef"><b>Definition</b> <a href="overall__map_8cpp_source.html#l00037">overall_map.cpp:37</a></div></div>
 <div class="ttc" id="aoverall__map_8cpp_html_a941d8397015c32731d1f8b1bd52b2ba1"><div class="ttname"><a href="overall__map_8cpp.html#a941d8397015c32731d1f8b1bd52b2ba1">octree</a></div><div class="ttdeci">pcl::octree::OctreePointCloudVoxelCentroid&lt; pcl::PointXYZ &gt; octree(resolution)</div><div class="ttdoc">八叉树对象，用于存储体素中心点</div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="overall__map_8cpp_source.html#l00034">cumulativePoints</a>, <a class="el" href="overall__map_8cpp_source.html#l00037">currentPosition</a>, <a class="el" href="overall__map_8cpp_source.html#l00036">lastPosition</a>, <a class="el" href="overall__map_8cpp.html#a941d8397015c32731d1f8b1bd52b2ba1">octree()</a>, and <a class="el" href="overall__map_8cpp_source.html#l00031">tfListener</a>.</p>
+
 </div>
 </div>
 <a id="a3c04138a5bfe5d72780bb7e82a18e627" name="a3c04138a5bfe5d72780bb7e82a18e627"></a>
@@ -305,6 +307,8 @@ Variables</h2></td></tr>
 <div class="ttc" id="aoverall__map_8cpp_html_ae555b00aee41d288cfc286fe5fdd2f61"><div class="ttname"><a href="overall__map_8cpp.html#ae555b00aee41d288cfc286fe5fdd2f61">cloudCallback</a></div><div class="ttdeci">void cloudCallback(const sensor_msgs::PointCloud2::ConstPtr &amp;cloudMsg)</div><div class="ttdoc">点云回调函数，将接收到的点云变换到 odom 坐标系并更新八叉树</div><div class="ttdef"><b>Definition</b> <a href="overall__map_8cpp_source.html#l00065">overall_map.cpp:65</a></div></div>
 <div class="ttc" id="aoverall__map_8cpp_html_ae77e5d68ff0f4892f5154064e8b5e21c"><div class="ttname"><a href="overall__map_8cpp.html#ae77e5d68ff0f4892f5154064e8b5e21c">odomCallback</a></div><div class="ttdeci">void odomCallback(const nav_msgs::Odometry::ConstPtr &amp;msg)</div><div class="ttdoc">odometry 回调函数，更新机器人当前位置</div><div class="ttdef"><b>Definition</b> <a href="overall__map_8cpp_source.html#l00046">overall_map.cpp:46</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="overall__map_8cpp_source.html#l00065">cloudCallback()</a>, <a class="el" href="overall__map_8cpp_source.html#l00034">cumulativePoints</a>, <a class="el" href="overall__map_8cpp_source.html#l00035">currentVoxels</a>, <a class="el" href="overall__map_8cpp.html#a941d8397015c32731d1f8b1bd52b2ba1">octree()</a>, <a class="el" href="overall__map_8cpp_source.html#l00046">odomCallback()</a>, and <a class="el" href="overall__map_8cpp_source.html#l00031">tfListener</a>.</p>
+
 </div>
 </div>
 <a id="a941d8397015c32731d1f8b1bd52b2ba1" name="a941d8397015c32731d1f8b1bd52b2ba1"></a>
@@ -366,6 +370,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   57</span>}</div>
 <div class="ttc" id="aoverall__map_8cpp_html_a699159ca5d125cf65d82bbeaefc750dd"><div class="ttname"><a href="overall__map_8cpp.html#a699159ca5d125cf65d82bbeaefc750dd">positionInitialized</a></div><div class="ttdeci">bool positionInitialized</div><div class="ttdoc">位置是否初始化标志</div><div class="ttdef"><b>Definition</b> <a href="overall__map_8cpp_source.html#l00038">overall_map.cpp:38</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="overall__map_8cpp_source.html#l00037">currentPosition</a>, <a class="el" href="overall__map_8cpp_source.html#l00036">lastPosition</a>, and <a class="el" href="overall__map_8cpp_source.html#l00038">positionInitialized</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>

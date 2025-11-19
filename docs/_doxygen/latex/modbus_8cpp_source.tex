@@ -1,0 +1,125 @@
+\doxysection{modbus.\+cpp}
+\hypertarget{modbus_8cpp_source}{}\label{modbus_8cpp_source}\index{QT\_function\_other/modbus.cpp@{QT\_function\_other/modbus.cpp}}
+\mbox{\hyperlink{modbus_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}modbus.h"{}}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00017}00017\ modbus::modbus()\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00018}00018\ \ \ \ \ serialPort.setPortName(\textcolor{stringliteral}{"{}/dev/ttyTHS0"{}});}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00019}00019\ \ \ \ \ serialPort.setBaudRate(QSerialPort::Baud19200);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00020}00020\ \ \ \ \ serialPort.setDataBits(QSerialPort::Data8);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00021}00021\ \ \ \ \ serialPort.setParity(QSerialPort::NoParity);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00022}00022\ \ \ \ \ serialPort.setStopBits(QSerialPort::OneStop);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00023}00023\ \ \ \ \ serialPort.setFlowControl(QSerialPort::NoFlowControl);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00024}00024\ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00029}\mbox{\hyperlink{modbus_8cpp_abf734b4d0e6b40314eb71b66181c0943}{00029}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{modbus_8cpp_abf734b4d0e6b40314eb71b66181c0943}{mod\_init}}()}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00030}00030\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00031}00031\ \ \ \ \ serialPort.setPortName(\textcolor{stringliteral}{"{}/dev/ttyTHS0"{}});}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00032}00032\ \ \ \ \ serialPort.setBaudRate(QSerialPort::Baud19200);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00033}00033\ \ \ \ \ serialPort.setDataBits(QSerialPort::Data8);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00034}00034\ \ \ \ \ serialPort.setParity(QSerialPort::NoParity);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00035}00035\ \ \ \ \ serialPort.setStopBits(QSerialPort::OneStop);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00036}00036\ \ \ \ \ serialPort.setFlowControl(QSerialPort::NoFlowControl);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{if}(serialPort.open(QIODevice::ReadWrite))}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00038}00038\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}串口打开成功"{}};}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00042}00042\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}串口打开异常:"{}}\ <<\ serialPort.errorString();}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00050}00050\ modbus::\string~modbus()}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00051}00051\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{if}(serialPort.isOpen())\{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ serialPort.close();}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00055}00055\ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00062}\mbox{\hyperlink{modbus_8cpp_a895e2bc72c83669f6b2c7b75c042bc37}{00062}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{modbus_8cpp_a895e2bc72c83669f6b2c7b75c042bc37}{Modbus\_Send}}(uint8\_t\ *frame,\ uint16\_t\ length)}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00063}00063\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{keywordflow}{if}(serialPort.isOpen()\ \&\&\ serialPort.isWritable())\{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ length;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \textcolor{keywordtype}{byte}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}\textcolor{keyword}{>}(frame[i]);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ serialPort.write(\&\textcolor{keywordtype}{byte},\ 1);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ serialPort.flush();}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00070}00070\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Modbus\ 发送错误"{}};}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00073}00073\ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00081}\mbox{\hyperlink{modbus_8cpp_aadf14a1ba9d2a399bf147512f0ef8ca5}{00081}}\ uint16\_t\ \mbox{\hyperlink{modbus_8cpp_aadf14a1ba9d2a399bf147512f0ef8ca5}{Modbus\_CRC16}}(uint8\_t\ *data,\ uint16\_t\ length)}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00082}00082\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00083}00083\ \ \ \ \ uint16\_t\ crc\ =\ 0xFFFF;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ pos\ =\ 0;\ pos\ <\ length;\ pos++)\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ crc\ \string^=\ \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(data[pos]);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 8;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((crc\ \&\ 0x0001)\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ crc\ >>=\ 1;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ crc\ \string^=\ 0xA001;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ crc\ >>=\ 1;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00094}00094\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{return}\ crc;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00096}00096\ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00101}\mbox{\hyperlink{modbus_8cpp_a7b7a7eafc102f43c0d0110e00530208a}{00101}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{modbus_8cpp_a7b7a7eafc102f43c0d0110e00530208a}{Modbus\_Poll\_6}}()}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00102}00102\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00103}00103\ \ \ \ \ uint8\_t\ request[8];}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00104}00104\ \ \ \ \ uint16\_t\ crc;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00105}00105\ \ \ \ \ request[0]\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00106}00106\ \ \ \ \ request[1]\ =\ 0x06;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00107}00107\ \ \ \ \ request[2]\ =\ TX\_data[0];}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00108}00108\ \ \ \ \ request[3]\ =\ TX\_data[1];}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00109}00109\ \ \ \ \ request[4]\ =\ TX\_data[2];}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00110}00110\ \ \ \ \ request[5]\ =\ TX\_data[3];}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00112}00112\ \ \ \ \ crc\ =\ \mbox{\hyperlink{modbus_8cpp_aadf14a1ba9d2a399bf147512f0ef8ca5}{Modbus\_CRC16}}(request,\ 6);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00113}00113\ \ \ \ \ request[6]\ =\ crc\ \&\ 0xFF;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00114}00114\ \ \ \ \ request[7]\ =\ (crc\ >>\ 8)\ \&\ 0xFF;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00116}00116\ \ \ \ \ \mbox{\hyperlink{modbus_8cpp_a895e2bc72c83669f6b2c7b75c042bc37}{Modbus\_Send}}(request,\ 8);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00117}00117\ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00123}\mbox{\hyperlink{modbus_8cpp_a6038b3fc91c61785c1b0e71a1f70d50e}{00123}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{modbus_8cpp_a6038b3fc91c61785c1b0e71a1f70d50e}{autoLineBack}}(\textcolor{keywordtype}{int}\ speed)\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00124}00124\ \ \ \ \ \textcolor{keywordtype}{int}\ speed\_temp\ =\ -\/speed;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00125}00125\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}启动后退"{}};}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00126}00126\ \ \ \ \ TX\_data[0]=0x05;\ TX\_data[1]=0x14;\ TX\_data[2]=0x00;\ TX\_data[3]=0x10;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00127}00127\ \ \ \ \ \mbox{\hyperlink{modbus_8cpp_a7b7a7eafc102f43c0d0110e00530208a}{Modbus\_Poll\_6}}();}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00128}00128\ \ \ \ \ QThread::msleep(500);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00129}00129\ \ \ \ \ TX\_data[0]=0x03;\ TX\_data[1]=0x21;\ TX\_data[2]=(speed\_temp\ >>\ 8)\ \&\ 0xFF;\ TX\_data[3]=speed\_temp\ \&\ 0xFF;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00130}00130\ \ \ \ \ \mbox{\hyperlink{modbus_8cpp_a7b7a7eafc102f43c0d0110e00530208a}{Modbus\_Poll\_6}}();}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00131}00131\ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00137}\mbox{\hyperlink{modbus_8cpp_a78ea7935a1234bb65299dfcc8bc57cfe}{00137}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{modbus_8cpp_a78ea7935a1234bb65299dfcc8bc57cfe}{autoLineForward}}(\textcolor{keywordtype}{int}\ speed)\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00138}00138\ \ \ \ \ \textcolor{keywordtype}{int}\ speed\_temp\ =\ speed;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00139}00139\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}启动前进"{}};}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00140}00140\ \ \ \ \ TX\_data[0]=0x05;\ TX\_data[1]=0x14;\ TX\_data[2]=0x00;\ TX\_data[3]=0x10;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00141}00141\ \ \ \ \ \mbox{\hyperlink{modbus_8cpp_a7b7a7eafc102f43c0d0110e00530208a}{Modbus\_Poll\_6}}();}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00142}00142\ \ \ \ \ QThread::msleep(500);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00143}00143\ \ \ \ \ TX\_data[0]=0x03;\ TX\_data[1]=0x21;\ TX\_data[2]=(speed\_temp\ >>\ 8)\ \&\ 0xFF;\ TX\_data[3]=speed\_temp\ \&\ 0xFF;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00144}00144\ \ \ \ \ \mbox{\hyperlink{modbus_8cpp_a7b7a7eafc102f43c0d0110e00530208a}{Modbus\_Poll\_6}}();}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00145}00145\ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00150}\mbox{\hyperlink{modbus_8cpp_a3ec0663c830825d138e32f37d1cd55be}{00150}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{modbus_8cpp_a3ec0663c830825d138e32f37d1cd55be}{stopLine}}()\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00151}00151\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}停止电机"{}};}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00152}00152\ \ \ \ \ TX\_data[0]=0x03;\ TX\_data[1]=0x21;\ TX\_data[2]=0x00;\ TX\_data[3]=0x00;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00153}00153\ \ \ \ \ \mbox{\hyperlink{modbus_8cpp_a7b7a7eafc102f43c0d0110e00530208a}{Modbus\_Poll\_6}}();}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00154}00154\ \ \ \ \ QThread::msleep(500);}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00155}00155\ \ \ \ \ TX\_data[0]=0x05;\ TX\_data[1]=0x14;\ TX\_data[2]=0x00;\ TX\_data[3]=0x00;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00156}00156\ \ \ \ \ \mbox{\hyperlink{modbus_8cpp_a7b7a7eafc102f43c0d0110e00530208a}{Modbus\_Poll\_6}}();}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00157}00157\ \}}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00162}\mbox{\hyperlink{modbus_8cpp_a4635142492519174d5739be07d5bb276}{00162}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{modbus_8cpp_a4635142492519174d5739be07d5bb276}{disableLine}}()\ \{}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00163}00163\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}禁用电机"{}};}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00164}00164\ \ \ \ \ TX\_data[0]=0x05;\ TX\_data[1]=0x14;\ TX\_data[2]=0x00;\ TX\_data[3]=0x00;}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00165}00165\ \ \ \ \ \mbox{\hyperlink{modbus_8cpp_a7b7a7eafc102f43c0d0110e00530208a}{Modbus\_Poll\_6}}();}
+\DoxyCodeLine{\Hypertarget{modbus_8cpp_source_l00166}00166\ \}}
+
+\end{DoxyCode}

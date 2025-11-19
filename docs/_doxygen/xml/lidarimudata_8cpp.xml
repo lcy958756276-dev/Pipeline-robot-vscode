@@ -203,6 +203,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/lidarimudata.cpp" line="118" column="6" bodyfile="Motherboard_data_process/lidarimudata.cpp" bodystart="118" bodyend="144" declfile="Motherboard_data_process/lidarimudata.cpp" declline="37" declcolumn="6"/>
+        <references refid="lidarimudata_8cpp_1af4be04c36baee6cbd619f7f248678c2b" compoundref="lidarimudata_8cpp" startline="26">g_conn_mutex</references>
+        <references refid="lidarimudata_8cpp_1a8667af10789ec10299828b588f33fa66" compoundref="lidarimudata_8cpp" startline="27">g_sockfd</references>
+        <references refid="lidarimudata_8cpp_1a55b66494816d709ecd0c243845ada46c" compoundref="lidarimudata_8cpp" startline="151" endline="156">publishStatus</references>
       </memberdef>
       <memberdef kind="function" id="lidarimudata_8cpp_1a55b66494816d709ecd0c243845ada46c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -240,6 +243,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/lidarimudata.cpp" line="151" column="6" bodyfile="Motherboard_data_process/lidarimudata.cpp" bodystart="151" bodyend="156" declfile="Motherboard_data_process/lidarimudata.cpp" declline="42" declcolumn="6"/>
+        <references refid="lidarimudata_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" compoundref="lidarimudata_8cpp" startline="28">g_ip</references>
+        <references refid="lidarimudata_8cpp_1a06c5aa7b1310b56852b7df4784c70ba8" compoundref="lidarimudata_8cpp" startline="30">g_status_pub</references>
       </memberdef>
       <memberdef kind="function" id="lidarimudata_8cpp_1a1b31693e822f01154ca4c6c8482c5288" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -358,6 +363,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/lidarimudata.cpp" line="265" column="6" bodyfile="Motherboard_data_process/lidarimudata.cpp" bodystart="265" bodyend="279" declfile="Motherboard_data_process/lidarimudata.cpp" declline="57" declcolumn="6"/>
+        <references refid="lidarimudata_8cpp_1af4be04c36baee6cbd619f7f248678c2b" compoundref="lidarimudata_8cpp" startline="26">g_conn_mutex</references>
+        <references refid="lidarimudata_8cpp_1a8667af10789ec10299828b588f33fa66" compoundref="lidarimudata_8cpp" startline="27">g_sockfd</references>
+        <references refid="lidarimudata_8cpp_1a55b66494816d709ecd0c243845ada46c" compoundref="lidarimudata_8cpp" startline="151" endline="156">publishStatus</references>
       </memberdef>
       <memberdef kind="function" id="lidarimudata_8cpp_1a7ee213d0ef876d9aeb03815d68d708ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -434,6 +442,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/lidarimudata.cpp" line="165" column="6" bodyfile="Motherboard_data_process/lidarimudata.cpp" bodystart="165" bodyend="197" declfile="Motherboard_data_process/lidarimudata.cpp" declline="65" declcolumn="6"/>
+        <references refid="lidarimudata_8cpp_1a8667af10789ec10299828b588f33fa66" compoundref="lidarimudata_8cpp" startline="27">g_sockfd</references>
+        <references refid="lidarimudata_8cpp_1a1b31693e822f01154ca4c6c8482c5288" compoundref="lidarimudata_8cpp" startline="206" endline="257">parseAndPublishData</references>
       </memberdef>
       <memberdef kind="function" id="lidarimudata_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -456,6 +466,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="Motherboard_data_process/lidarimudata.cpp" line="73" column="5" bodyfile="Motherboard_data_process/lidarimudata.cpp" bodystart="73" bodyend="109"/>
+        <references refid="lidarimudata_8cpp_1a222c71617a07df6b5e5dedd3df7159c8" compoundref="lidarimudata_8cpp" startline="118" endline="144">connectToServer</references>
+        <references refid="lidarimudata_8cpp_1a1e3eec5d094a88a8cfa16aeb59e7ce45" compoundref="lidarimudata_8cpp" startline="28">g_ip</references>
+        <references refid="lidarimudata_8cpp_1a6701847851618f32d00a154d16f7f187" compoundref="lidarimudata_8cpp" startline="29">g_port</references>
+        <references refid="lidarimudata_8cpp_1a8667af10789ec10299828b588f33fa66" compoundref="lidarimudata_8cpp" startline="27">g_sockfd</references>
+        <references refid="lidarimudata_8cpp_1a06c5aa7b1310b56852b7df4784c70ba8" compoundref="lidarimudata_8cpp" startline="30">g_status_pub</references>
+        <references refid="lidarimudata_8cpp_1ac17b993e3645f9b9a7f96e87fdd5bf62" compoundref="lidarimudata_8cpp" startline="265" endline="279">handleDisconnection</references>
+        <references refid="lidarimudata_8cpp_1a7ee213d0ef876d9aeb03815d68d708ab" compoundref="lidarimudata_8cpp" startline="165" endline="197">tcpDataLoop</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

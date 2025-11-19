@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
   <compound refid="classDA__Octree__Node" kind="class"><name>DA_Octree_Node</name>
+    <member refid="classDA__Octree__Node_1ae1f18f5aaa8e7c4467d1421411751649" kind="variable"><name>__pad0__</name></member>
     <member refid="classDA__Octree__Node_1ac9e99724363e8816834a603e56250462" kind="variable"><name>da_sub_</name></member>
     <member refid="classDA__Octree__Node_1a89264bb14609035442fb21d826a7bb71" kind="variable"><name>odom_sub_</name></member>
     <member refid="classDA__Octree__Node_1a302c05b9f02186592a77d55372927df9" kind="variable"><name>cloud_pub_</name></member>
@@ -8,11 +9,12 @@
     <member refid="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec" kind="variable"><name>octree_</name></member>
     <member refid="classDA__Octree__Node_1a4b7666d696a436fb6c444de982b46c04" kind="variable"><name>current_pose_</name></member>
     <member refid="classDA__Octree__Node_1a788e3a9b1a9378469f0dff71be998020" kind="variable"><name>odom_received_</name></member>
-    <member refid="classDA__Octree__Node_1affd4d94f5e93e83256aa82725fd79509" kind="function"><name>DA_Octree_Node</name></member>
+    <member refid="classDA__Octree__Node_1a396facad7b9857957299b0eeb6f86b3d" kind="function"><name>odom_received_</name></member>
     <member refid="classDA__Octree__Node_1a5cb1a998850bddf23da20ae4f49119af" kind="function"><name>odomCallback</name></member>
     <member refid="classDA__Octree__Node_1a2cb85a99abd9811255ef21bf99110a6c" kind="function"><name>daCallback</name></member>
   </compound>
   <compound refid="classDetectionAnalyzer" kind="class"><name>DetectionAnalyzer</name>
+    <member refid="classDetectionAnalyzer_1a66bf832eda7e55e9fad72f725bc38d72" kind="variable"><name>__pad0__</name></member>
     <member refid="classDetectionAnalyzer_1a02fc6744acfe3aaeab6498dfd1846365" kind="variable"><name>nh</name></member>
     <member refid="classDetectionAnalyzer_1abb1eca5770c41109df5688bcecc48c84" kind="variable"><name>odom_sub</name></member>
     <member refid="classDetectionAnalyzer_1a8ef40feef50fb30ffbbbc51e69c8188e" kind="variable"><name>detection_sub</name></member>
@@ -22,7 +24,6 @@
     <member refid="classDetectionAnalyzer_1a6f19f803d3707ca4bf3999a907d5b3c8" kind="variable"><name>published_positions</name></member>
     <member refid="classDetectionAnalyzer_1a5f50ef9dab802e3ac84304b6911d61a5" kind="variable"><name>current_position_x</name></member>
     <member refid="classDetectionAnalyzer_1ae2b299f48c872f25afffbb68df9739d8" kind="variable"><name>final_position_x</name></member>
-    <member refid="classDetectionAnalyzer_1ac225923772770c2ca24586696310065a" kind="function"><name>DetectionAnalyzer</name></member>
     <member refid="classDetectionAnalyzer_1abb1da63aefde85e3e8ff8e452e518ecd" kind="function"><name>odomCallback</name></member>
     <member refid="classDetectionAnalyzer_1a6d547bc01c1d8a7852bcd39a62cf829a" kind="function"><name>finalgoalCallback</name></member>
     <member refid="classDetectionAnalyzer_1acdf4deceaaab4a087f8fa510069f756d" kind="function"><name>detectionCallback</name></member>
@@ -38,7 +39,15 @@
     <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1aaedaeb390c4431789c5f13c4e4cac25a" kind="function"><name>__init__</name></member>
     <member refid="classauto__navigation_1_1point__transform_1_1PointTransformer_1a49a89da8b3e38167ecf4afd22339f0b9" kind="function"><name>detection_callback</name></member>
   </compound>
+  <compound refid="classQNode" kind="class"><name>QNode</name>
+  </compound>
   <compound refid="classWaypointFollower" kind="class"><name>WaypointFollower</name>
+    <member refid="classWaypointFollower_1a68ec92fa7adea5b2d5f3786b3aa57ac0" kind="variable"><name>__pad0__</name></member>
+    <member refid="classWaypointFollower_1a4150806658f06faa7b766ffcaa6950c3" kind="variable"><name>this</name></member>
+    <member refid="classWaypointFollower_1ab324b18d122d2103a1f6d0cb1549be98" kind="variable"><name>odom_sub</name></member>
+    <member refid="classWaypointFollower_1aba6130482571adb505d754c296484d3c" kind="variable"><name>stop_sub</name></member>
+    <member refid="classWaypointFollower_1a6d1edecb98a76d8b74c3b03f047000d7" kind="variable"><name>status_pub</name></member>
+    <member refid="classWaypointFollower_1a1a201b8ae9618d3e5ba75c46a8239501" kind="variable"><name>control_pub</name></member>
     <member refid="classWaypointFollower_1a72cb1a8e64c3cc38b8940803cd7037cc" kind="variable"><name>nh</name></member>
     <member refid="classWaypointFollower_1a4a1443a0114401ae0b78a81c0c3cf58a" kind="variable"><name>waypoint_sub</name></member>
     <member refid="classWaypointFollower_1a3b9942db7b168597201c4ad6b0f9ac7b" kind="variable"><name>odom_sub</name></member>
@@ -51,15 +60,22 @@
     <member refid="classWaypointFollower_1a81cfefd2cf42de846f636aed4b8cf932" kind="variable"><name>is_target_reached</name></member>
     <member refid="classWaypointFollower_1a6c1c10423b227c062f44c62ce6ef32b3" kind="variable"><name>stop</name></member>
     <member refid="classWaypointFollower_1a6af39c0afc8b0370618dc947d7152d7a" kind="variable"><name>tolerance</name></member>
-    <member refid="classWaypointFollower_1a56e663bb36f1fe73cf6162225b893931" kind="function"><name>WaypointFollower</name></member>
     <member refid="classWaypointFollower_1a04b6d9d584f72a3bb5236c387beba11a" kind="function"><name>~WaypointFollower</name></member>
-    <member refid="classWaypointFollower_1a60c2276b9fc46718bac2856ab386f4a7" kind="function"><name>waypointCallback</name></member>
+    <member refid="classWaypointFollower_1a5c0017261c119c75a282734229e44f11" kind="function"><name>waypointCallback</name></member>
     <member refid="classWaypointFollower_1ad6da0db3e82faa5c29c4c4d742e9357f" kind="function"><name>stopCallback</name></member>
     <member refid="classWaypointFollower_1ae4775ce77917cc3056ce2de4e3d38d16" kind="function"><name>correctYPosition</name></member>
     <member refid="classWaypointFollower_1acf8f1df597d3fb75adf335c046c3a407" kind="function"><name>odomCallback</name></member>
     <member refid="classWaypointFollower_1a4fe8fa93ac086ef4411c120e7cca67d8" kind="function"><name>checkTargetReached</name></member>
   </compound>
   <compound refid="classWaypointPublisher" kind="class"><name>WaypointPublisher</name>
+    <member refid="classWaypointPublisher_1a2af5b0979da3f3ed7013aba811223e1c" kind="variable"><name>__pad0__</name></member>
+    <member refid="classWaypointPublisher_1ad62c3addd5585528b07fd761142c8360" kind="variable"><name>auto_navigation_stop_pub</name></member>
+    <member refid="classWaypointPublisher_1a03e20938b3b219530b49c63fb71e939b" kind="variable"><name>midgoal_sub</name></member>
+    <member refid="classWaypointPublisher_1ad483c835343654e16ce8b9a9d57f72ce" kind="variable"><name>finalgoal_sub</name></member>
+    <member refid="classWaypointPublisher_1a1819f810216c3af4d386e07e228134f6" kind="variable"><name>status_sub</name></member>
+    <member refid="classWaypointPublisher_1a37c2c975803810d0955fd832c45af1a1" kind="variable"><name>odom_sub</name></member>
+    <member refid="classWaypointPublisher_1abcb50173101ebc84dafd76a7fe1da2d9" kind="variable"><name>x</name></member>
+    <member refid="classWaypointPublisher_1aaa4bd2bfba1f5417fffb5c78acacffaa" kind="variable"><name>x</name></member>
     <member refid="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" kind="variable"><name>nh</name></member>
     <member refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" kind="variable"><name>waypoint_pub</name></member>
     <member refid="classWaypointPublisher_1a47885b59e7318b53b3b2082654e90560" kind="variable"><name>auto_navigation_stop_pub</name></member>
@@ -78,13 +94,14 @@
     <member refid="classWaypointPublisher_1a0888ce7b8f0cfa2ccc6fd51ec65f49e6" kind="variable"><name>finalgoal_reached</name></member>
     <member refid="classWaypointPublisher_1aba3de5d71ffcac47e4461bae72d4ec65" kind="variable"><name>midinital</name></member>
     <member refid="classWaypointPublisher_1afa16a43e6d8b4c306089109bf71715a0" kind="variable"><name>finalinital</name></member>
-    <member refid="classWaypointPublisher_1aade0e35d7818b8890d3d3035beef3fb2" kind="function"><name>WaypointPublisher</name></member>
     <member refid="classWaypointPublisher_1a2176c42b0a87e9144ea84e334f1b655a" kind="function"><name>midgoalCallback</name></member>
     <member refid="classWaypointPublisher_1ae281f0d4ec699816476b4ffc860a81ca" kind="function"><name>queueSort</name></member>
     <member refid="classWaypointPublisher_1ab3ecb848d99f9b4b35bc37f7f5cba622" kind="function"><name>odomCallback</name></member>
     <member refid="classWaypointPublisher_1acd043704f75fb8f8eb57826c7a3251ff" kind="function"><name>finalgoalCallback</name></member>
     <member refid="classWaypointPublisher_1adf1c93f6db23215a13c59819a1b3dbc6" kind="function"><name>processGoals</name></member>
     <member refid="classWaypointPublisher_1abeaceaac34b26aff80888ef49c470404" kind="function"><name>statusCallback</name></member>
+  </compound>
+  <compound refid="classWidget" kind="class"><name>Widget</name>
   </compound>
   <compound refid="namespaceauto__navigation" kind="namespace"><name>auto_navigation</name>
   </compound>
@@ -146,6 +163,148 @@
   </compound>
   <compound refid="testcam_8cpp" kind="file"><name>testcam.cpp</name>
   </compound>
+  <compound refid="qnode_8cpp" kind="file"><name>qnode.cpp</name>
+    <member refid="qnode_8cpp_1adf916204820072417ed73a32de1cefcf" kind="variable"><name>flag</name></member>
+    <member refid="qnode_8cpp_1ac4ba270cc7bf5e19ebfbebcbc6b7fd9a" kind="variable"><name>current_video_topic</name></member>
+    <member refid="qnode_8cpp_1a0acbfdfac02bb5a765d2447f794ecbe4" kind="function"><name>QNode</name></member>
+    <member refid="qnode_8cpp_1ab67a83db86e20b83f8ba0492d6dc75eb" kind="function"><name>~QNode</name></member>
+    <member refid="qnode_8cpp_1aee8048628ff2b5c026c9e15acdcaacb8" kind="function"><name>init</name></member>
+    <member refid="qnode_8cpp_1a13a43e6d814de94978c515cb084873b1" kind="function"><name>run</name></member>
+    <member refid="qnode_8cpp_1a41c9f100c603d297d9cb0e3ae316acba" kind="function"><name>callbackPub2stm</name></member>
+    <member refid="qnode_8cpp_1a0d7dfd9133ce1e6b48bfdc8249db33d1" kind="function"><name>imageCallback</name></member>
+    <member refid="qnode_8cpp_1a0c64987a15b5d83e876dbc8dbbb4e39e" kind="function"><name>Mat2QImage</name></member>
+    <member refid="qnode_8cpp_1aec3b5210af99a83e3a2cd3c37de6dfa6" kind="function"><name>odetoggleVideoSource</name></member>
+    <member refid="qnode_8cpp_1a855c4c0b048d710a48ef278e61f1765d" kind="function"><name>myCallback_backimage</name></member>
+    <member refid="qnode_8cpp_1ae6699c4dc53afed92e401a014a526731" kind="function"><name>myCallback_img</name></member>
+    <member refid="qnode_8cpp_1a3df8dd3c339b80b79030fda2e1ca062e" kind="function"><name>myCallback_imu</name></member>
+    <member refid="qnode_8cpp_1adb2aed4dd096ba5611bb424fa207cca1" kind="function"><name>myCallback_odom</name></member>
+    <member refid="qnode_8cpp_1aaeb56f05ad952f500ac626d9987a397f" kind="function"><name>myCallback_pre</name></member>
+    <member refid="qnode_8cpp_1a89301eeb1d8058636d04a80f9c905c41" kind="function"><name>myCallback_current1</name></member>
+    <member refid="qnode_8cpp_1ac97671280340d73f28708641e7fe4db0" kind="function"><name>myCallback_current2</name></member>
+    <member refid="qnode_8cpp_1af7dabc6ef8af62a891fc3c65f645d581" kind="function"><name>myCallback_current3</name></member>
+    <member refid="qnode_8cpp_1a4689547d1c0042ac997ddc526d73a5b0" kind="function"><name>myCallback_current4</name></member>
+    <member refid="qnode_8cpp_1a09d70b20585e957c2063a88460dbfbc1" kind="function"><name>myCallback_current5</name></member>
+    <member refid="qnode_8cpp_1afd7f20bc249158ebe1ca28a6526fe0f4" kind="function"><name>myCallback_temperature</name></member>
+    <member refid="qnode_8cpp_1aa4c78e90d9f893cfc63b5ee053d7aec3" kind="function"><name>myCallback_press</name></member>
+    <member refid="qnode_8cpp_1af2831a739e57abfc29f6231436c9feab" kind="function"><name>myCallback_encodeVal</name></member>
+    <member refid="qnode_8cpp_1a8b31629c866ae3db64f7e399d416e438" kind="function"><name>myCallback_angle0</name></member>
+    <member refid="qnode_8cpp_1ae4ff203d72bce085fb5e144f6940eefb" kind="function"><name>myCallback_angle1</name></member>
+    <member refid="qnode_8cpp_1a0f50071ce0ffc57d2b76b3926bfa840c" kind="function"><name>myCallback_leftLimit</name></member>
+    <member refid="qnode_8cpp_1a0f01e12373802ccb070db232f18e4972" kind="function"><name>myCallback_rightLimit</name></member>
+    <member refid="qnode_8cpp_1a9f6ab99d070a5acc644e5bfafa2b1954" kind="function"><name>myCallback_orin_cpu_temp</name></member>
+    <member refid="qnode_8cpp_1a38270ebfd641dbac569e27febaa9c441" kind="function"><name>myCallback_orin_gpu_temp</name></member>
+    <member refid="qnode_8cpp_1ae86abc9dd0741d2acc385f29572a9c86" kind="function"><name>myCallback_rx_motor_tq</name></member>
+    <member refid="qnode_8cpp_1a0b13cedebba3173303c9caf8dd458ef4" kind="function"><name>myCallback_rx_motor_speed</name></member>
+    <member refid="qnode_8cpp_1a85fc564b736ac2b2a35722ffeaf8d240" kind="function"><name>myCallback_laser_scan</name></member>
+    <member refid="qnode_8cpp_1a6b2dc894a7e16dfd10b6235e3c2118fc" kind="function"><name>publishMessage</name></member>
+    <member refid="qnode_8cpp_1a7967495bbd1f3bc0b3e83ef70a187788" kind="function"><name>publishPianTou</name></member>
+    <member refid="qnode_8cpp_1a89068b8a7fed63d822050a8c7a097b16" kind="function"><name>publishAutonomousNavigation</name></member>
+    <member refid="qnode_8cpp_1a8a32b66beffdb4a2ed66fcc6c7b0739c" kind="function"><name>publishAutomaticRecycle</name></member>
+    <member refid="qnode_8cpp_1ae1b288c8f80f61dfa526dd885f02962e" kind="function"><name>publishResetMeter</name></member>
+    <member refid="qnode_8cpp_1ac1bd480e69700e4e41545cdab1c71989" kind="function"><name>publishStop</name></member>
+    <member refid="qnode_8cpp_1a424aae07eabbcc7263cda7e171be1cbf" kind="function"><name>publish_cable</name></member>
+    <member refid="qnode_8cpp_1ac9d8e1e36dd9845af6e9f68fe2541950" kind="function"><name>publish_report_generate</name></member>
+    <member refid="qnode_8cpp_1aafdf780e43504aadfb3d4d2c4e72120b" kind="function"><name>publish_cloudmodel_pub</name></member>
+  </compound>
+  <compound refid="widget_8cpp" kind="file"><name>widget.cpp</name>
+    <member refid="widget_8cpp_1adf916204820072417ed73a32de1cefcf" kind="variable"><name>flag</name></member>
+    <member refid="widget_8cpp_1a03dd8def03190553a1559b0151327105" kind="variable"><name>currentR_limit_flag</name></member>
+    <member refid="widget_8cpp_1aea821c00f026ff864e42b6346cd3c7f7" kind="variable"><name>currentsj_limit_flag</name></member>
+    <member refid="widget_8cpp_1af7273f322abca46101f0b7d85eab01d3" kind="variable"><name>currentfy_limit_flag</name></member>
+    <member refid="widget_8cpp_1a3bfa1006325e5a8eed4c4f94ae0644cf" kind="variable"><name>currentxz_limit_flag</name></member>
+    <member refid="widget_8cpp_1ae13f42ff7ec9fbdcc7c913a72197232d" kind="variable"><name>top_laser_auto_stop</name></member>
+    <member refid="widget_8cpp_1ad2c80288834ae64cf7ecd1768e65e4d2" kind="variable"><name>first_top_laser</name></member>
+    <member refid="widget_8cpp_1af783e425d2e2f49754bb1b4efa872571" kind="variable"><name>last_top_data</name></member>
+    <member refid="widget_8cpp_1ad342601a6feed02a4789dabf71521222" kind="variable"><name>time_laser_scan</name></member>
+    <member refid="widget_8cpp_1aeeafe7e9eebbd2a45ce4fa2ae0d96c51" kind="variable"><name>sum</name></member>
+    <member refid="widget_8cpp_1a4ca834506ea57a28fa4831e076264b8c" kind="variable"><name>flag_laser_measure</name></member>
+    <member refid="widget_8cpp_1ad77c55775639306203aeb855b17a9294" kind="variable"><name>odom_data</name></member>
+    <member refid="widget_8cpp_1a7abc164494ec132dc9f3699b9f21bacb" kind="function"><name>Widget</name></member>
+    <member refid="widget_8cpp_1a4aecdb998b8b28b278843eaa1644998b" kind="function"><name>Widget</name></member>
+    <member refid="widget_8cpp_1a28690a37682df78fb34a06a4793a4740" kind="function"><name>onFrameDecoded</name></member>
+    <member refid="widget_8cpp_1a05b0cc1ae7d49b1c3ae47c038109bbb5" kind="function"><name>onFrameDecoded1</name></member>
+    <member refid="widget_8cpp_1a5de2bd09256045c0b96e5a0be780fa85" kind="function"><name>closeEvent</name></member>
+    <member refid="widget_8cpp_1a42119c4ca6c0a4460440f8f8067e7b6a" kind="function"><name>rxTimerSlot</name></member>
+    <member refid="widget_8cpp_1a902b480e34ce30a340d2baa78ca82e1a" kind="function"><name>on_pushButton_4_clicked</name></member>
+    <member refid="widget_8cpp_1a6244b5d36de0e994b92f5c42a7bbc9b1" kind="function"><name>slot_show_imu</name></member>
+    <member refid="widget_8cpp_1a10d281e5e2ade8b5c1e9040d1714e0a1" kind="function"><name>displayCurrentLeftMotor</name></member>
+    <member refid="widget_8cpp_1a631f867c242d0d1326409bac3e047d1a" kind="function"><name>displayCurrentRightMotor</name></member>
+    <member refid="widget_8cpp_1a80a2ef35f64b6af487d94ef52c59f83a" kind="function"><name>displayCurrentLiftMotor</name></member>
+    <member refid="widget_8cpp_1a13da26a33fc84b2fec9332cd0e80c010" kind="function"><name>displayCurrentPitchMotor</name></member>
+    <member refid="widget_8cpp_1a75f7392fe31cf988ad2ec04f1ffea499" kind="function"><name>displayCurrentRotationMotor</name></member>
+    <member refid="widget_8cpp_1a5623166a2c903d0ad41cda9bd6f15459" kind="function"><name>update_encodeVal</name></member>
+    <member refid="widget_8cpp_1ad96f13ee907d060783d1e8238aaba1a7" kind="function"><name>angle0_SSZ</name></member>
+    <member refid="widget_8cpp_1a1ff212362b1885beff8b9fe9755d5cbe" kind="function"><name>angle0_NSZ</name></member>
+    <member refid="widget_8cpp_1a33add4720b08f7729b14a787215f0b36" kind="function"><name>angle1_up</name></member>
+    <member refid="widget_8cpp_1a6665df6f5f68a4459cca87df9c025c72" kind="function"><name>angle1_down</name></member>
+    <member refid="widget_8cpp_1ac7142ee2baa705d2dd402769467d5a4e" kind="function"><name>saveSettings</name></member>
+    <member refid="widget_8cpp_1a1165e1d4439a045e94970c9fbc73bb3c" kind="function"><name>loadSettings</name></member>
+    <member refid="widget_8cpp_1a98466931787e33ff26d9b03c3f09c746" kind="function"><name>rotateToTargetAngle</name></member>
+    <member refid="widget_8cpp_1a30072d610b34aad6aa00a3d1d1e34281" kind="function"><name>update_angle0</name></member>
+    <member refid="widget_8cpp_1a53f9170763ac401174788783e7b05c88" kind="function"><name>update_angle1</name></member>
+    <member refid="widget_8cpp_1aa9491fc5a1718173e248e887c5cb928c" kind="function"><name>update_leftLimit</name></member>
+    <member refid="widget_8cpp_1ae4c154d8b92360aaab5cdbb52f93f8a4" kind="function"><name>update_rightLimit</name></member>
+    <member refid="widget_8cpp_1ab94efd7cf5aba85e8215fed366bec901" kind="function"><name>update_rx_motor_tq</name></member>
+    <member refid="widget_8cpp_1ad1adf23b78c414c003ea6595056b2f7d" kind="function"><name>update_rx_motor_speed</name></member>
+    <member refid="widget_8cpp_1a08367007928a16fe33195bcacda22d03" kind="function"><name>update_top_laser</name></member>
+    <member refid="widget_8cpp_1a3a49f463b5b244e34d67e4c53c333fc7" kind="function"><name>update_down_laser</name></member>
+    <member refid="widget_8cpp_1a5bc68801c8da5c06acb771c7009d3a7b" kind="function"><name>checkLeftLimit</name></member>
+    <member refid="widget_8cpp_1a09fb370968540bf0ccc1bfbd6f28173d" kind="function"><name>checkRightLimit</name></member>
+    <member refid="widget_8cpp_1ac6cb48261b2055e553b6efbafed4197b" kind="function"><name>resetAll</name></member>
+    <member refid="widget_8cpp_1abe2850c65efb8b97ca5e3d01648c8d0d" kind="function"><name>rotateTimerSlot</name></member>
+    <member refid="widget_8cpp_1a0c57db83f38d71a70d8dccd09a6de80f" kind="function"><name>updateOdomLabels</name></member>
+    <member refid="widget_8cpp_1afadad875c2955cd6161d9dda7b20a020" kind="function"><name>on_Button_Stop_clicked</name></member>
+    <member refid="widget_8cpp_1a6f48fec09173c062314c23813616d176" kind="function"><name>Speed_Up</name></member>
+    <member refid="widget_8cpp_1a88ffa98c2b7297cef493e63a1bbe06df" kind="function"><name>Speed_Down</name></member>
+    <member refid="widget_8cpp_1aba1a76122e3e41b22f161ad1952994eb" kind="function"><name>onNSZPressed</name></member>
+    <member refid="widget_8cpp_1aca799bcd9814c813340142158b123b1b" kind="function"><name>onSSZPressed</name></member>
+    <member refid="widget_8cpp_1ad667e83cfcfc3df95ab4b222aaee87cc" kind="function"><name>ondropPressed</name></member>
+    <member refid="widget_8cpp_1adf17307e99cfe9ac7c95fda1b688bb8a" kind="function"><name>onliftPressed</name></member>
+    <member refid="widget_8cpp_1a0787778f20a57060ef32a922dbadf080" kind="function"><name>yuntai_liftPressed</name></member>
+    <member refid="widget_8cpp_1a8837a6c242d1627020ca3f3893ae402a" kind="function"><name>yuntai_downPressed</name></member>
+    <member refid="widget_8cpp_1ac592b21305bd2eee7a1cf6f82b588ebb" kind="function"><name>yuntai_Reset</name></member>
+    <member refid="widget_8cpp_1aa38c8ae3924fcbe576f48844eb6ace8f" kind="function"><name>downButtonReleased</name></member>
+    <member refid="widget_8cpp_1af120943b9db7b2f26204bccf7edf76a8" kind="function"><name>cameraButtonReleased</name></member>
+    <member refid="widget_8cpp_1a10477ac52dbfc16c2c074475b3448ad7" kind="function"><name>FLED_On_Clicked</name></member>
+    <member refid="widget_8cpp_1a2c5cc8a5e2c49aa2358ca91a9c46712b" kind="function"><name>FLED_Off_Clicked</name></member>
+    <member refid="widget_8cpp_1adba26a24828f6a305c4e104ab52f3f10" kind="function"><name>WBLED_On_Clicked</name></member>
+    <member refid="widget_8cpp_1ad8488e7ff4f1d660d5cd5d33d9703c22" kind="function"><name>BLED_Off_Clicked</name></member>
+    <member refid="widget_8cpp_1af175cf3f7948ac944834cad09819b753" kind="function"><name>on_pushButton_clicked</name></member>
+    <member refid="widget_8cpp_1a34b820e5222a61cc20d043bcbd27d283" kind="function"><name>on_Button_JianTu_clicked</name></member>
+    <member refid="widget_8cpp_1aea81de06a5eeeb40fa62167d4e249d8b" kind="function"><name>on_Button_distance_clicked</name></member>
+    <member refid="widget_8cpp_1a750998e0a93752c3573bd8e734f938a0" kind="function"><name>on_Button_report_finish_clicked</name></member>
+    <member refid="widget_8cpp_1ae175cac75dd163c27be6887a4feb6035" kind="function"><name>on_Button_ResetMeter_clicked</name></member>
+    <member refid="widget_8cpp_1aafe556e0712c77175e1b46904570221c" kind="function"><name>update_auto_navigation</name></member>
+    <member refid="widget_8cpp_1af99fc29bf936ce8bf46829452c8808b1" kind="function"><name>on_checkParamButton_clicked</name></member>
+    <member refid="widget_8cpp_1a96bfc28d8a1b6496b014bb48933521ff" kind="function"><name>on_stopResetButton_clicked</name></member>
+    <member refid="widget_8cpp_1a5700355f7234d5894a0024dd8cea43a4" kind="function"><name>on_rotate360Button_clicked</name></member>
+    <member refid="widget_8cpp_1ac571fe629cef6b28d5f066d5d1d986e5" kind="function"><name>on_rotate90Button_clicked</name></member>
+    <member refid="widget_8cpp_1afd495e249ed1bec6d93ec6db7037f716" kind="function"><name>on_rxpushButton_2_clicked</name></member>
+    <member refid="widget_8cpp_1a977d3a05eed506c3e76a8a4ef3b2c136" kind="function"><name>on_pushButton_8_clicked</name></member>
+    <member refid="widget_8cpp_1aecf488478d8ffdd0af69d8a78ecac2b3" kind="function"><name>slotFOTriggered</name></member>
+    <member refid="widget_8cpp_1a16760f15b2cb5ea428bf80b0dbc164c2" kind="function"><name>slotBATriggered</name></member>
+    <member refid="widget_8cpp_1a8e1c8366503c244e7b7e341006d4148f" kind="function"><name>slotSTTriggered</name></member>
+    <member refid="widget_8cpp_1a1f374a128317ab653c2d32ede371e4a3" kind="function"><name>on_Button_FO_clicked</name></member>
+    <member refid="widget_8cpp_1a87384c9aa721183899e6a4d5a6a762ce" kind="function"><name>on_Button_BA_clicked</name></member>
+    <member refid="widget_8cpp_1a5a13ef0e37d074c91bf4cacd17fd0d98" kind="function"><name>on_Button_LF_clicked</name></member>
+    <member refid="widget_8cpp_1a3fdfe3bac08a96f3626db3f6bbd80691" kind="function"><name>on_Button_RT_clicked</name></member>
+    <member refid="widget_8cpp_1ad9cbdc26e3e9860b10676afb1e5511c3" kind="function"><name>on_pushButton_2_clicked</name></member>
+    <member refid="widget_8cpp_1a19d42b4098e3b50ecc8b87237093387a" kind="function"><name>onLonRecived</name></member>
+    <member refid="widget_8cpp_1a3bc457ab7dc7c6778e1158a9f3069ea7" kind="function"><name>onLatRecived</name></member>
+    <member refid="widget_8cpp_1ac4590ccabe0aaded73b3956123dc77cd" kind="function"><name>on_snapshot_button_clicked</name></member>
+    <member refid="widget_8cpp_1a1387b738523063a463928d5d1f41cc6d" kind="function"><name>on_motor_speed_test_button_clicked</name></member>
+    <member refid="widget_8cpp_1a75dbf6414035c0585fef49cda78a8097" kind="function"><name>on_start_robot_button_clicked</name></member>
+    <member refid="widget_8cpp_1a589e62bdba599a4cee2559e636e099be" kind="function"><name>on_quit_robot_button_clicked</name></member>
+    <member refid="widget_8cpp_1a102d75b14dd4e042fed267d3a9594332" kind="function"><name>on_start_record_button_clicked</name></member>
+    <member refid="widget_8cpp_1a9653aa7161b1013b2a4166f9091ef25e" kind="function"><name>onRecordingFinished</name></member>
+    <member refid="widget_8cpp_1a224f31dc97ce32b3bad5bcba9262d832" kind="function"><name>updateImage</name></member>
+    <member refid="widget_8cpp_1aa964d8309c89d16a4db776ac8d7fb467" kind="function"><name>on_reset_robot_button_2_clicked</name></member>
+    <member refid="widget_8cpp_1ae1dcd246ec2c60ce2965326c752fd7e2" kind="function"><name>on_laser_deep_measure_button_clicked</name></member>
+    <member refid="widget_8cpp_1a7de22ab8b1dc865bb9591264a2464b26" kind="function"><name>on_line_deep_measure_button_clicked</name></member>
+    <member refid="widget_8cpp_1ad414e9eaef2cf2ae2c6d8239fde2eaa1" kind="function"><name>onLatencyUpdated</name></member>
+    <member refid="widget_8cpp_1a0a3810d20c1a2eb80fe2a6b2e4df1164" kind="function"><name>on_pushButton_3_clicked</name></member>
+    <member refid="widget_8cpp_1a299553a6ef0130887c0771b2c342d969" kind="function"><name>on_pushButton_5_clicked</name></member>
+  </compound>
   <compound refid="dianliu_8cpp" kind="file"><name>dianliu.cpp</name>
     <member refid="dianliu_8cpp_1af00966f1f0d0decfe11c8aad5eb96d06" kind="variable"><name>pub_c0</name></member>
     <member refid="dianliu_8cpp_1a2d6c8cd934f13b8a852b4c8a9d4902e3" kind="variable"><name>pub_c1</name></member>
@@ -195,6 +354,82 @@
     <member refid="three__yuannumber_8cpp_1ac17b993e3645f9b9a7f96e87fdd5bf62" kind="function"><name>handleDisconnection</name></member>
     <member refid="three__yuannumber_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
   </compound>
+  <compound refid="jiantuwidget_8cpp" kind="file"><name>jiantuwidget.cpp</name>
+    <member refid="jiantuwidget_8cpp_1a84704c7f6cf268592f712b0257ba486e" kind="function"><name>JianTuWidget</name></member>
+    <member refid="jiantuwidget_8cpp_1a18b1055925877999caeaff38882d2009" kind="function"><name>~JianTuWidget</name></member>
+  </compound>
+  <compound refid="main_8cpp" kind="file"><name>main.cpp</name>
+    <member refid="main_8cpp_1a0ddf1224851353fc92bfbff6f499fa97" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="modbus_8cpp" kind="file"><name>modbus.cpp</name>
+    <member refid="modbus_8cpp_1abf734b4d0e6b40314eb71b66181c0943" kind="function"><name>mod_init</name></member>
+    <member refid="modbus_8cpp_1a895e2bc72c83669f6b2c7b75c042bc37" kind="function"><name>Modbus_Send</name></member>
+    <member refid="modbus_8cpp_1aadf14a1ba9d2a399bf147512f0ef8ca5" kind="function"><name>Modbus_CRC16</name></member>
+    <member refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" kind="function"><name>Modbus_Poll_6</name></member>
+    <member refid="modbus_8cpp_1a6038b3fc91c61785c1b0e71a1f70d50e" kind="function"><name>autoLineBack</name></member>
+    <member refid="modbus_8cpp_1a78ea7935a1234bb65299dfcc8bc57cfe" kind="function"><name>autoLineForward</name></member>
+    <member refid="modbus_8cpp_1a3ec0663c830825d138e32f37d1cd55be" kind="function"><name>stopLine</name></member>
+    <member refid="modbus_8cpp_1a4635142492519174d5739be07d5bb276" kind="function"><name>disableLine</name></member>
+  </compound>
+  <compound refid="qrviz_8cpp" kind="file"><name>qrviz.cpp</name>
+    <member refid="qrviz_8cpp_1a310c5b1a9731b4b64600ed2c73311b0b" kind="function"><name>Qrviz</name></member>
+  </compound>
+  <compound refid="ros__tcp__sender_8cpp" kind="file"><name>ros_tcp_sender.cpp</name>
+    <member refid="ros__tcp__sender_8cpp_1a5e8da266cec1f747a58cef6bf225d1c7" kind="function"><name>RosTcpSender</name></member>
+    <member refid="ros__tcp__sender_8cpp_1a0dc99ae7a20c637feaca72c4b4a3a75c" kind="function"><name>sendCommand</name></member>
+    <member refid="ros__tcp__sender_8cpp_1a99bc86ae9f1041f3053cf1bbbdbb6e5f" kind="function"><name>onTcpError</name></member>
+  </compound>
+  <compound refid="rtspdecoder_8cpp" kind="file"><name>rtspdecoder.cpp</name>
+    <member refid="rtspdecoder_8cpp_1ac47d701a82f51b95eda1062eff0c0711" kind="function"><name>RtspDecoder</name></member>
+    <member refid="rtspdecoder_8cpp_1a6532ae7e840a3ff2b350ed939342f1fc" kind="function"><name>~RtspDecoder</name></member>
+    <member refid="rtspdecoder_8cpp_1a623ed2d0fdb8f1dfbabe8e890143868b" kind="function"><name>setUrl</name></member>
+    <member refid="rtspdecoder_8cpp_1a13a43e6d814de94978c515cb084873b1" kind="function"><name>run</name></member>
+    <member refid="rtspdecoder_8cpp_1a6a0a80084c1b994a7bba6c8c37b95400" kind="function"><name>initFFmpeg</name></member>
+    <member refid="rtspdecoder_8cpp_1a4b66d5e31b5dc18b314c8a68163263bd" kind="function"><name>cleanup</name></member>
+  </compound>
+  <compound refid="settingwidget_8cpp" kind="file"><name>settingwidget.cpp</name>
+    <member refid="settingwidget_8cpp_1a8b1953256a61c736ad79424a6dc429bc" kind="function"><name>SettingWidget</name></member>
+    <member refid="settingwidget_8cpp_1a14ed5fc42b52c0ce3daf892cdfef0bc6" kind="function"><name>~SettingWidget</name></member>
+    <member refid="settingwidget_8cpp_1a509447921b14094295e6a82b93e6c39e" kind="function"><name>onPushButtonClicked</name></member>
+    <member refid="settingwidget_8cpp_1a6abea0a92fbcad04f22f95b80daece40" kind="function"><name>on_addButton_clicked</name></member>
+    <member refid="settingwidget_8cpp_1afa249ebf98de8e53a0aa9d1c080f3d5d" kind="function"><name>slotUpdateTableWidget</name></member>
+    <member refid="settingwidget_8cpp_1a833917a8e76fe990ede52c223b806e89" kind="function"><name>on_delButton_clicked</name></member>
+    <member refid="settingwidget_8cpp_1a090b612fcfff6e44016e4b00e3f3eef4" kind="function"><name>on_changeButton_clicked</name></member>
+    <member refid="settingwidget_8cpp_1a750245a2880656959b5cec63e72a495d" kind="function"><name>on_pianTouButton_clicked</name></member>
+    <member refid="settingwidget_8cpp_1ad9cbdc26e3e9860b10676afb1e5511c3" kind="function"><name>on_pushButton_2_clicked</name></member>
+  </compound>
+  <compound refid="torque_8cpp" kind="file"><name>torque.cpp</name>
+    <member refid="torque_8cpp_1a598a3330b3c21701223ee0ca14316eca" kind="define"><name>PI</name></member>
+    <member refid="torque_8cpp_1ad91129aeadd7d76e6d3ac94a9e4312bb" kind="define"><name>l1</name></member>
+    <member refid="torque_8cpp_1a1ce864b284ac751ffd8a0d98d5ccab55" kind="define"><name>L1</name></member>
+    <member refid="torque_8cpp_1a9dab8aab6ec1023e189b7a11c7500dd7" kind="define"><name>l3</name></member>
+    <member refid="torque_8cpp_1a1fe17aa2ff1722c937379044a27da68a" kind="define"><name>d1</name></member>
+    <member refid="torque_8cpp_1ae285311ed52dd83bff9d175ded67efb3" kind="define"><name>d2</name></member>
+    <member refid="torque_8cpp_1a7acd2af28e07089bfd7c09fb0292c0db" kind="define"><name>d3</name></member>
+    <member refid="torque_8cpp_1ab89a77e63a7226fffaecb2e2c2ab5219" kind="define"><name>a1</name></member>
+    <member refid="torque_8cpp_1a307fa7a9ebf3c98ea1ee9815f096ef0f" kind="define"><name>d4</name></member>
+    <member refid="torque_8cpp_1a76f03c748e228fa6e50eb0a5f08d817c" kind="define"><name>LLA</name></member>
+    <member refid="torque_8cpp_1a955f504eccf76b4eb2489c0adab03121" kind="define"><name>A</name></member>
+    <member refid="torque_8cpp_1ac597abe7cf610f262f7aaec53ed1d413" kind="define"><name>M1</name></member>
+    <member refid="torque_8cpp_1ad801d72bd01ef1ac9b86dbf4de0d355d" kind="define"><name>M3</name></member>
+    <member refid="torque_8cpp_1a167d2c0ec9b943d55f2124f7442b2f6d" kind="define"><name>g</name></member>
+    <member refid="torque_8cpp_1a64f8055b64cf2a4c299c841130c5c938" kind="define"><name>u1</name></member>
+    <member refid="torque_8cpp_1a55ef8d87fd202b8417704c089899c5b9" kind="define"><name>u2</name></member>
+    <member refid="torque_8cpp_1ad3a63ae99a964cd86585b7feaf2be9e2" kind="define"><name>u3</name></member>
+    <member refid="torque_8cpp_1a88b795c26c0900ddc7c68576a872ef87" kind="define"><name>R_1</name></member>
+    <member refid="torque_8cpp_1acc55daa58d88a3612f2ef74a6abbe97f" kind="define"><name>LB</name></member>
+    <member refid="torque_8cpp_1a7cbbe2d9e20a97058cad5b7c91115a76" kind="define"><name>Fa_1</name></member>
+    <member refid="torque_8cpp_1a2748566f4c443ee77aa831e63dbb5ebe" kind="define"><name>P</name></member>
+  </compound>
+  <compound refid="videorecorder_8cpp" kind="file"><name>videorecorder.cpp</name>
+    <member refid="videorecorder_8cpp_1a2e0a9c267b6801cddb3cb0f19f89923b" kind="function"><name>VideoRecorder</name></member>
+    <member refid="videorecorder_8cpp_1a44753334f0982377391bee79812ddfba" kind="function"><name>~VideoRecorder</name></member>
+    <member refid="videorecorder_8cpp_1a7fd387dc9710f2115a838751a8c8cf2f" kind="function"><name>startRecording</name></member>
+    <member refid="videorecorder_8cpp_1a25e0e98dd4519eaaa6b258f0dcb91ac7" kind="function"><name>stopRecording</name></member>
+    <member refid="videorecorder_8cpp_1a48e89040ea7f761c864c507f9a58be96" kind="function"><name>addFrame</name></member>
+    <member refid="videorecorder_8cpp_1a5191d39ffb83928d29dbe1bc3a8aa6da" kind="function"><name>isRecording</name></member>
+    <member refid="videorecorder_8cpp_1a2be6aef7e803ed23b3cdf91c637e9156" kind="function"><name>recordingThread</name></member>
+  </compound>
   <compound refid="dir_a2794b1d7be6989d30674203e9569ab9" kind="dir"><name>3D_mapping</name>
   </compound>
   <compound refid="dir_b831a6d9de3f2f91c7f2e3c5094606b4" kind="dir"><name>auto_navigation</name>
@@ -203,6 +438,10 @@
   </compound>
   <compound refid="dir_d79eecd18aa11c1aeb114a23ed426d6f" kind="dir"><name>cameralcapture</name>
   </compound>
+  <compound refid="dir_173b2ef0144609891fcd8b4895a30fa1" kind="dir"><name>function_key</name>
+  </compound>
   <compound refid="dir_baa7334b549432b23df2b0f18fb5210d" kind="dir"><name>Motherboard_data_process</name>
+  </compound>
+  <compound refid="dir_4beabf8ff9cc7748d3a5d5a19191e2c8" kind="dir"><name>QT_function_other</name>
   </compound>
 </doxygenindex>

@@ -1,0 +1,57 @@
+\doxysection{qrviz.\+cpp}
+\hypertarget{qrviz_8cpp_source}{}\label{qrviz_8cpp_source}\index{QT\_function\_other/qrviz.cpp@{QT\_function\_other/qrviz.cpp}}
+\mbox{\hyperlink{qrviz_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}qrviz.h"{}}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00018}\mbox{\hyperlink{qrviz_8cpp_a310c5b1a9731b4b64600ed2c73311b0b}{00018}}\ \mbox{\hyperlink{qrviz_8cpp_a310c5b1a9731b4b64600ed2c73311b0b}{Qrviz}}(QVBoxLayout\ *layout)}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00019}00019\ \{}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{comment}{//\ 创建渲染面板并加入父布局}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00021}00021\ \ \ \ \ render\_panel\_\ =\ \textcolor{keyword}{new}\ rviz::RenderPanel();}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00022}00022\ \ \ \ \ layout-\/>addWidget(render\_panel\_);}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{comment}{//\ 初始化\ VisualizationManager}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00025}00025\ \ \ \ \ manager\_\ =\ \textcolor{keyword}{new}\ rviz::VisualizationManager(render\_panel\_);}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00026}00026\ \ \ \ \ ROS\_ASSERT(manager\_\ !=\ NULL);}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00027}00027\ \ \ \ \ render\_panel\_-\/>initialize(manager\_-\/>getSceneManager(),\ manager\_);}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00028}00028\ \ \ \ \ manager\_-\/>initialize();\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 初始化\ manager}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00029}00029\ \ \ \ \ manager\_-\/>removeAllDisplays();\ \ \ \textcolor{comment}{//\ 删除已有所有图层}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00030}00030\ \ \ \ \ manager\_-\/>startUpdate();\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 启动图层更新}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00031}00031\ \ \ \ \ manager\_-\/>setFixedFrame(\textcolor{stringliteral}{"{}odom"{}});\ \textcolor{comment}{//\ 设置\ Fixed\ Frame}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ 添加网格显示}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00034}00034\ \ \ \ \ rviz::Display\ *grid\_\ =\ manager\_-\/>createDisplay(\textcolor{stringliteral}{"{}rviz/Grid"{}},\ \textcolor{stringliteral}{"{}adjustable\ grid"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00035}00035\ \ \ \ \ ROS\_ASSERT(grid\_\ !=\ NULL);}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00036}00036\ \ \ \ \ grid\_-\/>subProp(\textcolor{stringliteral}{"{}Line\ Style"{}})-\/>setValue(\textcolor{stringliteral}{"{}Billboards"{}});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00037}00037\ \ \ \ \ grid\_-\/>subProp(\textcolor{stringliteral}{"{}Color"{}})-\/>setValue(QColor(125,\ 125,\ 125));}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{comment}{//\ 添加地图显示}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00040}00040\ \ \ \ \ rviz::Display\ *map\_\ =\ manager\_-\/>createDisplay(\textcolor{stringliteral}{"{}rviz/Map"{}},\ \textcolor{stringliteral}{"{}adjustable\ map"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00041}00041\ \ \ \ \ map\_-\/>subProp(\textcolor{stringliteral}{"{}Topic"{}})-\/>setValue(\textcolor{stringliteral}{"{}/map"{}});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00042}00042\ \ \ \ \ map\_-\/>subProp(\textcolor{stringliteral}{"{}Alpha"{}})-\/>setValue(\textcolor{stringliteral}{"{}0.7"{}});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00043}00043\ \ \ \ \ map\_-\/>subProp(\textcolor{stringliteral}{"{}Color\ Scheme"{}})-\/>setValue(\textcolor{stringliteral}{"{}map"{}});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ 添加激光扫描显示}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00046}00046\ \ \ \ \ rviz::Display\ *laser\_\ =\ manager\_-\/>createDisplay(\textcolor{stringliteral}{"{}rviz/LaserScan"{}},\ \textcolor{stringliteral}{"{}QLaser"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00047}00047\ \ \ \ \ laser\_-\/>subProp(\textcolor{stringliteral}{"{}Topic"{}})-\/>setValue(\textcolor{stringliteral}{"{}/scan"{}});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ 添加机器人模型显示}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00050}00050\ \ \ \ \ rviz::Display\ *rot\ =\ manager\_-\/>createDisplay(\textcolor{stringliteral}{"{}rviz/RobotModel"{}},\ \textcolor{stringliteral}{"{}cobot"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00051}00051\ \ \ \ \ rot-\/>subProp(\textcolor{stringliteral}{"{}Visual\ Enabled"{}})-\/>setValue(\textcolor{stringliteral}{"{}true"{}});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00052}00052\ \ \ \ \ rot-\/>subProp(\textcolor{stringliteral}{"{}Collision\ Enabled"{}})-\/>setValue(\textcolor{stringliteral}{"{}false"{}});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00053}00053\ \ \ \ \ rot-\/>subProp(\textcolor{stringliteral}{"{}Robot\ Description"{}})-\/>setValue(\textcolor{stringliteral}{"{}robot\_description"{}});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00054}00054\ \ \ \ \ rot-\/>subProp(\textcolor{stringliteral}{"{}Alpha"{}})-\/>setValue(\textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{comment}{//\ 添加点云显示}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00057}00057\ \ \ \ \ rviz::Display\ *point\_cloud\_\ =\ manager\_-\/>createDisplay(\textcolor{stringliteral}{"{}rviz/PointCloud2"{}},\ \textcolor{stringliteral}{"{}PointCloud2"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00058}00058\ \ \ \ \ ROS\_ASSERT(point\_cloud\_\ !=\ NULL);}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00059}00059\ \ \ \ \ point\_cloud\_-\/>subProp(\textcolor{stringliteral}{"{}Topic"{}})-\/>setValue(\textcolor{stringliteral}{"{}/overall\_map\_cloud"{}});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00060}00060\ \ \ \ \ point\_cloud\_-\/>subProp(\textcolor{stringliteral}{"{}Color\ Transformer"{}})-\/>setValue(\textcolor{stringliteral}{"{}Intensity"{}});}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00061}00061\ \ \ \ \ point\_cloud\_-\/>subProp(\textcolor{stringliteral}{"{}Size\ (Pixels)"{}})-\/>setValue(3);}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ 启动显示更新}}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00064}00064\ \ \ \ \ manager\_-\/>startUpdate();}
+\DoxyCodeLine{\Hypertarget{qrviz_8cpp_source_l00065}00065\ \}}
+
+\end{DoxyCode}

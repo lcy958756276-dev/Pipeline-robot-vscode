@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="jiantuwidget_8cpp" kind="file" language="C++">
+    <compoundname>jiantuwidget.cpp</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="jiantuwidget_8cpp_1a84704c7f6cf268592f712b0257ba486e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>JianTuWidget</definition>
+        <argsstring>(int argc, char **argv, QWidget *parent=nullptr)</argsstring>
+        <name>JianTuWidget</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <param>
+          <type>QWidget *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>构造函数，初始化 JianTuWidget 对象 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数数量，用于 ROS 节点初始化 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数数组，用于 ROS 节点初始化 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>父 QWidget 指针，默认为 nullptr</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+构造函数主要功能：<itemizedlist>
+<listitem><para>初始化 UI 界面</para>
+</listitem><listitem><para>创建并设置 VerticalLayout 为主布局</para>
+</listitem><listitem><para>使用 argc 和 argv 初始化 ROS 节点 node </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/jiantuwidget.cpp" line="17" column="1" bodyfile="QT_function_other/jiantuwidget.cpp" bodystart="17" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="jiantuwidget_8cpp_1a18b1055925877999caeaff38882d2009" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~JianTuWidget</definition>
+        <argsstring>()</argsstring>
+        <name>~JianTuWidget</name>
+        <briefdescription>
+<para>析构函数，释放 JianTuWidget 资源 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>析构函数主要功能：<itemizedlist>
+<listitem><para>删除 UI 对象，释放资源 </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/jiantuwidget.cpp" line="33" column="1" bodyfile="QT_function_other/jiantuwidget.cpp" bodystart="33" bodyend="36"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>JianTuWidget 类的实现文件，包含 UI 初始化、布局设置及 ROS 节点初始化 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="17" refid="jiantuwidget_8cpp_1a84704c7f6cf268592f712b0257ba486e" refkind="member"><highlight class="normal"><ref refid="jiantuwidget_8cpp_1a84704c7f6cf268592f712b0257ba486e" kindref="member">JianTuWidget</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**argv,<sp/>QWidget<sp/>*parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>QWidget(parent),</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>node(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;node_jiantu&quot;</highlight><highlight class="normal">),<sp/><sp/></highlight><highlight class="comment">//<sp/>使用参数初始化<sp/>node</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ui(new<sp/>Ui::<ref refid="jiantuwidget_8cpp_1a84704c7f6cf268592f712b0257ba486e" kindref="member">JianTuWidget</ref>)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>ui-&gt;setupUi(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>VerticalLayout<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QVBoxLayout(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight><highlight class="comment">//<sp/>初始化<sp/>VerticalLayout</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>setLayout(VerticalLayout);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>设置为主布局</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="jiantuwidget_8cpp_1a18b1055925877999caeaff38882d2009" refkind="member"><highlight class="normal"><ref refid="jiantuwidget_8cpp_1a18b1055925877999caeaff38882d2009" kindref="member">~JianTuWidget</ref>()</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>ui;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="QT_function_other/jiantuwidget.cpp"/>
+  </compounddef>
+</doxygen>

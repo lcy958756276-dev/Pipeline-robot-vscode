@@ -1,0 +1,1425 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="qnode_8cpp" kind="file" language="C++">
+    <compoundname>qnode.cpp</compoundname>
+    <includes local="yes">qnode.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>function_key/qnode.cpp</label>
+        <link refid="qnode_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>qnode.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="qnode_8cpp_1adf916204820072417ed73a32de1cefcf" prot="public" static="no" extern="yes" mutable="no">
+        <type>int</type>
+        <definition>int flag</definition>
+        <argsstring></argsstring>
+        <name>flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="15" column="12" bodyfile="function_key/widget.cpp" bodystart="59" bodyend="-1" declfile="function_key/qnode.cpp" declline="15" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="qnode_8cpp_1ac4ba270cc7bf5e19ebfbebcbc6b7fd9a" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool current_video_topic</definition>
+        <argsstring></argsstring>
+        <name>current_video_topic</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>视频切换标志符 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="16" column="6" bodyfile="function_key/qnode.cpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="qnode_8cpp_1a0acbfdfac02bb5a765d2447f794ecbe4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QNode</definition>
+        <argsstring>(int argc, char **argv, char *node_name)</argsstring>
+        <name>QNode</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>node_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>构造函数，保存节点初始化参数并调用init()进行节点初始化 <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数个数 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>命令行参数数组 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>node_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ROS节点名称</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="22" column="1" bodyfile="function_key/qnode.cpp" bodystart="22" bodyend="34"/>
+        <references refid="qnode_8cpp_1aee8048628ff2b5c026c9e15acdcaacb8" compoundref="qnode_8cpp" startline="51" endline="107">init</references>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1ab67a83db86e20b83f8ba0492d6dc75eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~QNode</definition>
+        <argsstring>()</argsstring>
+        <name>~QNode</name>
+        <briefdescription>
+<para>析构函数，关闭ROS节点并等待线程结束 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="39" column="1" bodyfile="function_key/qnode.cpp" bodystart="39" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1aee8048628ff2b5c026c9e15acdcaacb8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+<para>初始化ROS节点、发布器、订阅器并启动线程 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>初始化成功返回true，失败返回false </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="51" column="6" bodyfile="function_key/qnode.cpp" bodystart="51" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a13a43e6d814de94978c515cb084873b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void run</definition>
+        <argsstring>()</argsstring>
+        <name>run</name>
+        <briefdescription>
+<para>QNode线程主循环，处理ROS回调 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="112" column="6" bodyfile="function_key/qnode.cpp" bodystart="112" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a41c9f100c603d297d9cb0e3ae316acba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void callbackPub2stm</definition>
+        <argsstring>(const std_msgs::String::ConstPtr &amp;msg)</argsstring>
+        <name>callbackPub2stm</name>
+        <param>
+          <type>const std_msgs::String::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>处理来自Pub2stm话题的字符串消息，并根据内容发射不同Qt信号 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的字符串消息指针 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="126" column="6" bodyfile="function_key/qnode.cpp" bodystart="126" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a0d7dfd9133ce1e6b48bfdc8249db33d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void imageCallback</definition>
+        <argsstring>(const sensor_msgs::ImageConstPtr &amp;msg)</argsstring>
+        <name>imageCallback</name>
+        <param>
+          <type>const sensor_msgs::ImageConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>处理yolov8检测图像回调，将ROS图像转为QImage并发射信号 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的图像消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="142" column="6" bodyfile="function_key/qnode.cpp" bodystart="142" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a0c64987a15b5d83e876dbc8dbbb4e39e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QImage</type>
+        <definition>QImage Mat2QImage</definition>
+        <argsstring>(cv::Mat const &amp;src)</argsstring>
+        <name>Mat2QImage</name>
+        <param>
+          <type>cv::Mat const &amp;</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+<para>将cv::Mat转换为QImage </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>输入的cv::Mat图像 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>转换后的QImage </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="167" column="8" bodyfile="function_key/qnode.cpp" bodystart="167" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1aec3b5210af99a83e3a2cd3c37de6dfa6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void odetoggleVideoSource</definition>
+        <argsstring>()</argsstring>
+        <name>odetoggleVideoSource</name>
+        <briefdescription>
+<para>切换当前视频源，前置/后置摄像头 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="205" column="6" bodyfile="function_key/qnode.cpp" bodystart="205" bodyend="207"/>
+        <references refid="qnode_8cpp_1ac4ba270cc7bf5e19ebfbebcbc6b7fd9a" compoundref="qnode_8cpp" startline="16">current_video_topic</references>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a855c4c0b048d710a48ef278e61f1765d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_backimage</definition>
+        <argsstring>(const sensor_msgs::ImageConstPtr &amp;msg)</argsstring>
+        <name>myCallback_backimage</name>
+        <param>
+          <type>const sensor_msgs::ImageConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>处理后置摄像头图像回调，仅在current_video_topic为false时处理 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的图像消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="213" column="6" bodyfile="function_key/qnode.cpp" bodystart="213" bodyend="226"/>
+        <references refid="qnode_8cpp_1ac4ba270cc7bf5e19ebfbebcbc6b7fd9a" compoundref="qnode_8cpp" startline="16">current_video_topic</references>
+        <references refid="qnode_8cpp_1a0c64987a15b5d83e876dbc8dbbb4e39e" compoundref="qnode_8cpp" startline="167" endline="200">Mat2QImage</references>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1ae6699c4dc53afed92e401a014a526731" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_img</definition>
+        <argsstring>(const sensor_msgs::ImageConstPtr &amp;msg)</argsstring>
+        <name>myCallback_img</name>
+        <param>
+          <type>const sensor_msgs::ImageConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>处理前置摄像头图像回调，仅在current_video_topic为true时处理 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的图像消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="232" column="6" bodyfile="function_key/qnode.cpp" bodystart="232" bodyend="245"/>
+        <references refid="qnode_8cpp_1ac4ba270cc7bf5e19ebfbebcbc6b7fd9a" compoundref="qnode_8cpp" startline="16">current_video_topic</references>
+        <references refid="qnode_8cpp_1a0c64987a15b5d83e876dbc8dbbb4e39e" compoundref="qnode_8cpp" startline="167" endline="200">Mat2QImage</references>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a3df8dd3c339b80b79030fda2e1ca062e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_imu</definition>
+        <argsstring>(const sensor_msgs::Imu &amp;msg)</argsstring>
+        <name>myCallback_imu</name>
+        <param>
+          <type>const sensor_msgs::Imu &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>IMU数据回调函数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的IMU消息</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+将IMU姿态四元数转换为滚转角、俯仰角、偏航角，并通过Qt信号发射到界面。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="252" column="6" bodyfile="function_key/qnode.cpp" bodystart="252" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1adb2aed4dd096ba5611bb424fa207cca1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_odom</definition>
+        <argsstring>(const nav_msgs::Odometry::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_odom</name>
+        <param>
+          <type>const nav_msgs::Odometry::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>odom数据回调函数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Odometry消息</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+提取机器人速度和位置，并通过Qt信号发射。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="266" column="6" bodyfile="function_key/qnode.cpp" bodystart="266" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1aaeb56f05ad952f500ac626d9987a397f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_pre</definition>
+        <argsstring>(const sensor_msgs::FluidPressureConstPtr &amp;msg)</argsstring>
+        <name>myCallback_pre</name>
+        <param>
+          <type>const sensor_msgs::FluidPressureConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>气压传感器数据回调函数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的FluidPressure消息</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+发射Qt信号更新界面气压显示。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="279" column="6" bodyfile="function_key/qnode.cpp" bodystart="279" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a89301eeb1d8058636d04a80f9c905c41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_current1</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_current1</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>电流传感器数据回调函数1 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Float32消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="288" column="6" bodyfile="function_key/qnode.cpp" bodystart="288" bodyend="291"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1ac97671280340d73f28708641e7fe4db0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_current2</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_current2</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="292" column="6" bodyfile="function_key/qnode.cpp" bodystart="292" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1af7dabc6ef8af62a891fc3c65f645d581" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_current3</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_current3</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="295" column="6" bodyfile="function_key/qnode.cpp" bodystart="295" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a4689547d1c0042ac997ddc526d73a5b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_current4</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_current4</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="298" column="6" bodyfile="function_key/qnode.cpp" bodystart="298" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a09d70b20585e957c2063a88460dbfbc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_current5</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_current5</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="301" column="6" bodyfile="function_key/qnode.cpp" bodystart="301" bodyend="303"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1afd7f20bc249158ebe1ca28a6526fe0f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_temperature</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_temperature</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>温度传感器数据回调函数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Float32消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="309" column="6" bodyfile="function_key/qnode.cpp" bodystart="309" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1aa4c78e90d9f893cfc63b5ee053d7aec3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_press</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_press</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>气压传感器数值回调函数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Float32消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="318" column="6" bodyfile="function_key/qnode.cpp" bodystart="318" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1af2831a739e57abfc29f6231436c9feab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_encodeVal</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_encodeVal</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>俯仰角编码值回调 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Float32消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="327" column="6" bodyfile="function_key/qnode.cpp" bodystart="327" bodyend="330"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a8b31629c866ae3db64f7e399d416e438" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_angle0</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_angle0</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>云台角度0回调 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Float32消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="336" column="6" bodyfile="function_key/qnode.cpp" bodystart="336" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1ae4ff203d72bce085fb5e144f6940eefb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_angle1</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_angle1</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>云台角度1回调 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Float32消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="345" column="6" bodyfile="function_key/qnode.cpp" bodystart="345" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a0f50071ce0ffc57d2b76b3926bfa840c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_leftLimit</definition>
+        <argsstring>(const std_msgs::Bool &amp;msg)</argsstring>
+        <name>myCallback_leftLimit</name>
+        <param>
+          <type>const std_msgs::Bool &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>左限制开关回调 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Bool消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="354" column="6" bodyfile="function_key/qnode.cpp" bodystart="354" bodyend="357"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a0f01e12373802ccb070db232f18e4972" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_rightLimit</definition>
+        <argsstring>(const std_msgs::Bool &amp;msg)</argsstring>
+        <name>myCallback_rightLimit</name>
+        <param>
+          <type>const std_msgs::Bool &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>右限制开关回调 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Bool消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="363" column="6" bodyfile="function_key/qnode.cpp" bodystart="363" bodyend="366"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a9f6ab99d070a5acc644e5bfafa2b1954" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_orin_cpu_temp</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_orin_cpu_temp</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>ORIN CPU温度回调 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Float32消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="372" column="6" bodyfile="function_key/qnode.cpp" bodystart="372" bodyend="374"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a38270ebfd641dbac569e27febaa9c441" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_orin_gpu_temp</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_orin_gpu_temp</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>ORIN GPU温度回调 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Float32消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="380" column="6" bodyfile="function_key/qnode.cpp" bodystart="380" bodyend="382"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1ae86abc9dd0741d2acc385f29572a9c86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_rx_motor_tq</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_rx_motor_tq</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>绕线盘电机力矩回调 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Float32消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="388" column="6" bodyfile="function_key/qnode.cpp" bodystart="388" bodyend="390"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a0b13cedebba3173303c9caf8dd458ef4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_rx_motor_speed</definition>
+        <argsstring>(const std_msgs::Float32::ConstPtr &amp;msg)</argsstring>
+        <name>myCallback_rx_motor_speed</name>
+        <param>
+          <type>const std_msgs::Float32::ConstPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>绕线盘电机速度回调 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的Float32消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="396" column="6" bodyfile="function_key/qnode.cpp" bodystart="396" bodyend="398"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a85fc564b736ac2b2a35722ffeaf8d240" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void myCallback_laser_scan</definition>
+        <argsstring>(const sensor_msgs::LaserScan::ConstPtr &amp;scan)</argsstring>
+        <name>myCallback_laser_scan</name>
+        <param>
+          <type>const sensor_msgs::LaserScan::ConstPtr &amp;</type>
+          <declname>scan</declname>
+        </param>
+        <briefdescription>
+<para>LaserScan数据回调函数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scan</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>接收到的LaserScan消息</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+提取指定角度范围内的平均距离，并发射Qt信号。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="406" column="6" bodyfile="function_key/qnode.cpp" bodystart="406" bodyend="408"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a6b2dc894a7e16dfd10b6235e3c2118fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publishMessage</definition>
+        <argsstring>(const std::string &amp;msg)</argsstring>
+        <name>publishMessage</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>发布普通字符串消息 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>要发布的字符串 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="414" column="6" bodyfile="function_key/qnode.cpp" bodystart="414" bodyend="418"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a7967495bbd1f3bc0b3e83ef70a187788" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publishPianTou</definition>
+        <argsstring>(const pipeline::HeaderInfo &amp;msg)</argsstring>
+        <name>publishPianTou</name>
+        <param>
+          <type>const pipeline::HeaderInfo &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>发布片头信息 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pipeline::HeaderInfo结构体消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="424" column="6" bodyfile="function_key/qnode.cpp" bodystart="424" bodyend="426"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a89068b8a7fed63d822050a8c7a097b16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publishAutonomousNavigation</definition>
+        <argsstring>(const geometry_msgs::PoseStamped &amp;msg2)</argsstring>
+        <name>publishAutonomousNavigation</name>
+        <param>
+          <type>const geometry_msgs::PoseStamped &amp;</type>
+          <declname>msg2</declname>
+        </param>
+        <briefdescription>
+<para>发布自主导航指令 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最终目标PoseStamped </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="432" column="6" bodyfile="function_key/qnode.cpp" bodystart="432" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a8a32b66beffdb4a2ed66fcc6c7b0739c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publishAutomaticRecycle</definition>
+        <argsstring>(double distance)</argsstring>
+        <name>publishAutomaticRecycle</name>
+        <param>
+          <type>double</type>
+          <declname>distance</declname>
+        </param>
+        <briefdescription>
+<para>发布自动回收指令 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>distance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>回收距离 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="454" column="6" bodyfile="function_key/qnode.cpp" bodystart="454" bodyend="463"/>
+        <references refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" compoundref="odom__pub_8cpp" startline="31">distance</references>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1ae1b288c8f80f61dfa526dd885f02962e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publishResetMeter</definition>
+        <argsstring>()</argsstring>
+        <name>publishResetMeter</name>
+        <briefdescription>
+<para>发布计米器归零指令 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="468" column="6" bodyfile="function_key/qnode.cpp" bodystart="468" bodyend="473"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1ac1bd480e69700e4e41545cdab1c71989" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publishStop</definition>
+        <argsstring>()</argsstring>
+        <name>publishStop</name>
+        <briefdescription>
+<para>发布急停指令 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="478" column="6" bodyfile="function_key/qnode.cpp" bodystart="478" bodyend="492"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1a424aae07eabbcc7263cda7e171be1cbf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publish_cable</definition>
+        <argsstring>(const std::string &amp;msg)</argsstring>
+        <name>publish_cable</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>发布cable消息 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>字符串消息 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="498" column="6" bodyfile="function_key/qnode.cpp" bodystart="498" bodyend="503"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1ac9d8e1e36dd9845af6e9f68fe2541950" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publish_report_generate</definition>
+        <argsstring>(const std_msgs::Bool msg)</argsstring>
+        <name>publish_report_generate</name>
+        <param>
+          <type>const std_msgs::Bool</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>发布自动报告生成指令 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bool消息，true表示开启 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="509" column="6" bodyfile="function_key/qnode.cpp" bodystart="509" bodyend="512"/>
+      </memberdef>
+      <memberdef kind="function" id="qnode_8cpp_1aafdf780e43504aadfb3d4d2c4e72120b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void publish_cloudmodel_pub</definition>
+        <argsstring>(const std_msgs::Bool msg)</argsstring>
+        <name>publish_cloudmodel_pub</name>
+        <param>
+          <type>const std_msgs::Bool</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>发布点云模型生成指令 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bool消息，true表示生成 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="function_key/qnode.cpp" line="518" column="6" bodyfile="function_key/qnode.cpp" bodystart="518" bodyend="521"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>QNode类实现，用于ROS节点初始化、消息订阅/发布以及与Qt界面的交互。 </para>
+    </briefdescription>
+    <detaileddescription>
+<para>该文件包含：<itemizedlist>
+<listitem><para>ROS节点初始化与启动</para>
+</listitem><listitem><para>图像、IMU、odom、激光雷达、传感器等数据的订阅回调</para>
+</listitem><listitem><para>各种控制命令和状态信息的发布</para>
+</listitem><listitem><para>将ROS数据转换为Qt可显示的格式（如QImage）</para>
+</listitem><listitem><para>Qt信号发射，用于更新界面 </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;qnode.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1adf916204820072417ed73a32de1cefcf" kindref="member">flag</ref>;</highlight></codeline>
+<codeline lineno="16" refid="qnode_8cpp_1ac4ba270cc7bf5e19ebfbebcbc6b7fd9a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1ac4ba270cc7bf5e19ebfbebcbc6b7fd9a" kindref="member">current_video_topic</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="qnode_8cpp_1a0acbfdfac02bb5a765d2447f794ecbe4" refkind="member"><highlight class="normal"><ref refid="classQNode" kindref="compound">QNode</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>argv,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>node_name<sp/>)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>init_argc<sp/>=<sp/>argc;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>init_argv<sp/>=<sp/>argv;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>init_node_name<sp/>=<sp/>node_name;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="qnode_8cpp_1aee8048628ff2b5c026c9e15acdcaacb8" kindref="member">init</ref>();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="qnode_8cpp_1ab67a83db86e20b83f8ba0492d6dc75eb" refkind="member"><highlight class="normal"><ref refid="qnode_8cpp_1ab67a83db86e20b83f8ba0492d6dc75eb" kindref="member">~QNode</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ros::isStarted())<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::shutdown();<sp/></highlight><highlight class="comment">//<sp/>显式关闭ROS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::waitForShutdown();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>wait();<sp/></highlight><highlight class="comment">//<sp/>线程等待</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="qnode_8cpp_1aee8048628ff2b5c026c9e15acdcaacb8" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1aee8048628ff2b5c026c9e15acdcaacb8" kindref="member">init</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::init(init_argc,init_argv,init_node_name);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>!<sp/>ros::master::check()<sp/>)<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::start();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::NodeHandle<sp/>n;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>======================<sp/>ROS发布器<sp/>======================<sp/>//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher1<sp/>=<sp/>n.advertise&lt;std_msgs::String&gt;(</highlight><highlight class="stringliteral">&quot;Pub2stm&quot;</highlight><highlight class="normal">,<sp/>1000);<sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher2<sp/>=<sp/>n.advertise&lt;pipeline::HeaderInfo&gt;(</highlight><highlight class="stringliteral">&quot;piantou&quot;</highlight><highlight class="normal">,<sp/>1000);<sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher3<sp/>=<sp/>n.advertise&lt;geometry_msgs::PoseStamped&gt;(</highlight><highlight class="stringliteral">&quot;finalgoal&quot;</highlight><highlight class="normal">,<sp/>1000);<sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher4<sp/>=<sp/>n.advertise&lt;std_msgs::Bool&gt;(</highlight><highlight class="stringliteral">&quot;whether_auto_navigation&quot;</highlight><highlight class="normal">,<sp/>1000);<sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher5<sp/>=<sp/>n.advertise&lt;std_msgs::Bool&gt;(</highlight><highlight class="stringliteral">&quot;whether_stop&quot;</highlight><highlight class="normal">,<sp/>1000);<sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher6<sp/>=<sp/>n.advertise&lt;geometry_msgs::PoseStamped&gt;(</highlight><highlight class="stringliteral">&quot;waypoint&quot;</highlight><highlight class="normal">,<sp/>1000);<sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher7<sp/>=<sp/>n.advertise&lt;std_msgs::Bool&gt;(</highlight><highlight class="stringliteral">&quot;reset_odom&quot;</highlight><highlight class="normal">,<sp/>1000);<sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher8<sp/>=<sp/>n.advertise&lt;std_msgs::String&gt;(</highlight><highlight class="stringliteral">&quot;cable&quot;</highlight><highlight class="normal">,<sp/>1000);<sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher9<sp/>=<sp/>n.advertise&lt;std_msgs::Bool&gt;(</highlight><highlight class="stringliteral">&quot;whether_report_generate&quot;</highlight><highlight class="normal">,<sp/>1000);<sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher10<sp/>=<sp/>n.advertise&lt;std_msgs::Bool&gt;(</highlight><highlight class="stringliteral">&quot;cloudmodel_pub&quot;</highlight><highlight class="normal">,<sp/>1000);<sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>======================<sp/>ROS订阅器<sp/>======================<sp/>//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber1<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/yolov8_detection&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>&amp;QNode::imageCallback,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber2<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;wit/imu&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_imu,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber3<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;pressure&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_pre,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber4<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/cable/odom&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_odom,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber5<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/camera/image_raw&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>&amp;QNode::myCallback_backimage,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber6<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/whether_auto_navigation&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_auto_navigation,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber7<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/current_data_cs0&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_current1,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber8<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/current_data_cs1&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_current2,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber9<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/current_data_cs2&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_current3,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber10<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/current_data_cs3&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_current4,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber11<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/current_data_cs4&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_current5,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber12<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/temperature_data&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_temperature,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber13<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/pressVal&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_press,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber14<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/encodeVal&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_encodeVal,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber15<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/angle0&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_angle0,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber16<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/angle1&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_angle1,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber17<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/leftLimit&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_leftLimit,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber18<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/rightLimit&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_rightLimit,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber19<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/orin_cpu_temp&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_orin_cpu_temp,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber20<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/orin_gpu_temp&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_orin_gpu_temp,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber21<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/rx_motor/tq&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_rx_motor_tq,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber22<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/rx_motor/speed&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_rx_motor_speed,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber23<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/laser_scan&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::myCallback_laser_scan,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber24<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/roll&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::rollCallback,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber25<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/pitch&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::pitchCallback,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber27<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/heading&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::headingCallback,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber26<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;/overall_map_cloud&quot;</highlight><highlight class="normal">,<sp/>1000,<sp/>&amp;QNode::cloudcallback,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_subscriber28<sp/>=<sp/>n.subscribe(</highlight><highlight class="stringliteral">&quot;Pub2stm&quot;</highlight><highlight class="normal">,<sp/>100,<sp/>&amp;QNode::callbackPub2stm,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>start();<sp/></highlight><highlight class="comment">//<sp/>启动线程</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="qnode_8cpp_1a13a43e6d814de94978c515cb084873b1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a13a43e6d814de94978c515cb084873b1" kindref="member">run</ref>()</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Rate<sp/>loop_rate(10);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(ros::ok())</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loop_rate.sleep();</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="qnode_8cpp_1a41c9f100c603d297d9cb0e3ae316acba" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a41c9f100c603d297d9cb0e3ae316acba" kindref="member">callbackPub2stm</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::String::ConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/>data<sp/>=<sp/>QString::fromStdString(msg-&gt;data);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;FO&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emit<sp/>signalFO();</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(data<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;BA&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emit<sp/>signalBA();</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emit<sp/>signalST();</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="qnode_8cpp_1a0d7dfd9133ce1e6b48bfdc8249db33d1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a0d7dfd9133ce1e6b48bfdc8249db33d1" kindref="member">imageCallback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::ImageConstPtr&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>cv_bridge::CvImagePtr<sp/>cv_ptr;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv_ptr<sp/>=<sp/>cv_bridge::toCvCopy(msg,<sp/>sensor_msgs::image_encodings::BGR8);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(cv_bridge::Exception&amp;<sp/>e)<sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR(</highlight><highlight class="stringliteral">&quot;cv_bridge<sp/>exception:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>e.what());</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>cv::Mat<sp/>mat<sp/>=<sp/>cv_ptr-&gt;image;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mat.empty())<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>cv::Mat<sp/>mat_rgb;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>cv::cvtColor(mat,<sp/>mat_rgb,<sp/>cv::COLOR_BGR2RGB);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>QImage<sp/>img(mat_rgb.data,<sp/>mat_rgb.cols,<sp/>mat_rgb.rows,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(mat_rgb.step),<sp/>QImage::Format_RGB888);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>imageReceived(img.copy());</highlight></codeline>
+<codeline lineno="160"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="qnode_8cpp_1a0c64987a15b5d83e876dbc8dbbb4e39e" refkind="member"><highlight class="normal">QImage<sp/><ref refid="qnode_8cpp_1a0c64987a15b5d83e876dbc8dbbb4e39e" kindref="member">Mat2QImage</ref>(cv::Mat<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>src)</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>QImage<sp/>dest(src.cols,<sp/>src.rows,<sp/>QImage::Format_ARGB32);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>scale<sp/>=<sp/>255.0;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src.depth()<sp/>==<sp/>CV_8U)<sp/>{</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src.channels()<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>src.rows;<sp/>++i)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>src.cols;<sp/>++j)</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest.setPixel(j,<sp/>i,<sp/>qRgb(src.at&lt;quint8&gt;(i,<sp/>j),<sp/>src.at&lt;quint8&gt;(i,<sp/>j),<sp/>src.at&lt;quint8&gt;(i,<sp/>j)));</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src.channels()<sp/>==<sp/>3)<sp/>{</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>src.rows;<sp/>++i)</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>src.cols;<sp/>++j)<sp/>{</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::Vec3b<sp/>bgr<sp/>=<sp/>src.at&lt;cv::Vec3b&gt;(i,<sp/>j);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest.setPixel(j,<sp/>i,<sp/>qRgb(bgr[2],<sp/>bgr[1],<sp/>bgr[0]));</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src.depth()<sp/>==<sp/>CV_32F)<sp/>{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src.channels()<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>src.rows;<sp/>++i)</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>src.cols;<sp/>++j)<sp/>{</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>level<sp/>=<sp/>scale<sp/>*<sp/>src.at&lt;</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">&gt;(i,<sp/>j);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest.setPixel(j,<sp/>i,<sp/>qRgb(level,<sp/>level,<sp/>level));</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src.channels()<sp/>==<sp/>3)<sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>src.rows;<sp/>++i)</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>src.cols;<sp/>++j)<sp/>{</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv::Vec3f<sp/>bgr<sp/>=<sp/>scale<sp/>*<sp/>src.at&lt;cv::Vec3f&gt;(i,<sp/>j);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest.setPixel(j,<sp/>i,<sp/>qRgb(bgr[2],<sp/>bgr[1],<sp/>bgr[0]));</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>dest;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205" refid="qnode_8cpp_1aec3b5210af99a83e3a2cd3c37de6dfa6" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1aec3b5210af99a83e3a2cd3c37de6dfa6" kindref="member">odetoggleVideoSource</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="qnode_8cpp_1ac4ba270cc7bf5e19ebfbebcbc6b7fd9a" kindref="member">current_video_topic</ref><sp/>=<sp/>!<ref refid="qnode_8cpp_1ac4ba270cc7bf5e19ebfbebcbc6b7fd9a" kindref="member">current_video_topic</ref>;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213" refid="qnode_8cpp_1a855c4c0b048d710a48ef278e61f1765d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a855c4c0b048d710a48ef278e61f1765d" kindref="member">myCallback_backimage</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::ImageConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="214"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="qnode_8cpp_1ac4ba270cc7bf5e19ebfbebcbc6b7fd9a" kindref="member">current_video_topic</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv_bridge::CvImagePtr<sp/>cv_ptr;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv_ptr<sp/>=<sp/>cv_bridge::toCvCopy(msg,<sp/>msg-&gt;encoding);</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QImage<sp/>im<sp/>=<sp/><ref refid="qnode_8cpp_1a0c64987a15b5d83e876dbc8dbbb4e39e" kindref="member">Mat2QImage</ref>(cv_ptr-&gt;image);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emit<sp/>Show_image(1,<sp/>im);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(cv_bridge::Exception&amp;<sp/>e)<sp/>{</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR(</highlight><highlight class="stringliteral">&quot;Could<sp/>not<sp/>convert<sp/>from<sp/>&apos;%s&apos;<sp/>to<sp/>&apos;bgr8&apos;:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>msg-&gt;encoding.c_str(),<sp/>e.what());</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232" refid="qnode_8cpp_1ae6699c4dc53afed92e401a014a526731" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1ae6699c4dc53afed92e401a014a526731" kindref="member">myCallback_img</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::ImageConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="233"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="qnode_8cpp_1ac4ba270cc7bf5e19ebfbebcbc6b7fd9a" kindref="member">current_video_topic</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv_bridge::CvImagePtr<sp/>cv_ptr;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cv_ptr<sp/>=<sp/>cv_bridge::toCvCopy(msg,<sp/>msg-&gt;encoding);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QImage<sp/>im<sp/>=<sp/><ref refid="qnode_8cpp_1a0c64987a15b5d83e876dbc8dbbb4e39e" kindref="member">Mat2QImage</ref>(cv_ptr-&gt;image);</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emit<sp/>Show_image(0,<sp/>im);</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(cv_bridge::Exception&amp;<sp/>e)<sp/>{</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_ERROR(</highlight><highlight class="stringliteral">&quot;Could<sp/>not<sp/>convert<sp/>from<sp/>&apos;%s&apos;<sp/>to<sp/>&apos;bgr8&apos;:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>msg-&gt;encoding.c_str(),<sp/>e.what());</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="245"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="252" refid="qnode_8cpp_1a3df8dd3c339b80b79030fda2e1ca062e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a3df8dd3c339b80b79030fda2e1ca062e" kindref="member">myCallback_imu</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::Imu&amp;<sp/>msg){</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Quaternion<sp/>q(msg.orientation.x,<sp/>msg.orientation.y,<sp/>msg.orientation.z,<sp/>msg.orientation.w);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>tf::Matrix3x3<sp/>m(q);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>roll,pitch,yaw;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>m.getRPY(roll,pitch,yaw);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>Show_imu(pitch,roll,<sp/>yaw);</highlight></codeline>
+<codeline lineno="258"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight></codeline>
+<codeline lineno="266" refid="qnode_8cpp_1adb2aed4dd096ba5611bb424fa207cca1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1adb2aed4dd096ba5611bb424fa207cca1" kindref="member">myCallback_odom</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nav_msgs::Odometry::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>speed<sp/>=<sp/>msg-&gt;twist.twist.linear.x;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>position<sp/>=<sp/>msg-&gt;pose.pose.position.x;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>odomDataReceived(speed,<sp/>position);</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>odomReceived(msg-&gt;pose.pose);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"></highlight></codeline>
+<codeline lineno="279" refid="qnode_8cpp_1aaeb56f05ad952f500ac626d9987a397f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1aaeb56f05ad952f500ac626d9987a397f" kindref="member">myCallback_pre</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::FluidPressureConstPtr<sp/>&amp;msg){</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pressure<sp/>=<sp/>msg-&gt;fluid_pressure;</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>Show_pressure(pressure);</highlight></codeline>
+<codeline lineno="282"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288" refid="qnode_8cpp_1a89301eeb1d8058636d04a80f9c905c41" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a89301eeb1d8058636d04a80f9c905c41" kindref="member">myCallback_current1</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="289"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updateCurrent1(msg-&gt;data);</highlight></codeline>
+<codeline lineno="291"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="292" refid="qnode_8cpp_1ac97671280340d73f28708641e7fe4db0" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1ac97671280340d73f28708641e7fe4db0" kindref="member">myCallback_current2</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updateCurrent2(msg-&gt;data);</highlight></codeline>
+<codeline lineno="294"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="295" refid="qnode_8cpp_1af7dabc6ef8af62a891fc3c65f645d581" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1af7dabc6ef8af62a891fc3c65f645d581" kindref="member">myCallback_current3</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updateCurrent3(msg-&gt;data);</highlight></codeline>
+<codeline lineno="297"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="298" refid="qnode_8cpp_1a4689547d1c0042ac997ddc526d73a5b0" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a4689547d1c0042ac997ddc526d73a5b0" kindref="member">myCallback_current4</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updateCurrent4(msg-&gt;data);</highlight></codeline>
+<codeline lineno="300"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="301" refid="qnode_8cpp_1a09d70b20585e957c2063a88460dbfbc1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a09d70b20585e957c2063a88460dbfbc1" kindref="member">myCallback_current5</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updateCurrent5(msg-&gt;data);</highlight></codeline>
+<codeline lineno="303"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309" refid="qnode_8cpp_1afd7f20bc249158ebe1ca28a6526fe0f4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1afd7f20bc249158ebe1ca28a6526fe0f4" kindref="member">myCallback_temperature</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="310"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updateTemp(msg-&gt;data);</highlight></codeline>
+<codeline lineno="312"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="318" refid="qnode_8cpp_1aa4c78e90d9f893cfc63b5ee053d7aec3" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1aa4c78e90d9f893cfc63b5ee053d7aec3" kindref="member">myCallback_press</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="319"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updatePress(msg-&gt;data);</highlight></codeline>
+<codeline lineno="321"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327" refid="qnode_8cpp_1af2831a739e57abfc29f6231436c9feab" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1af2831a739e57abfc29f6231436c9feab" kindref="member">myCallback_encodeVal</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="328"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updateEncodeVal(msg-&gt;data);</highlight></codeline>
+<codeline lineno="330"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336" refid="qnode_8cpp_1a8b31629c866ae3db64f7e399d416e438" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a8b31629c866ae3db64f7e399d416e438" kindref="member">myCallback_angle0</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="337"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updateAngle0(msg-&gt;data);</highlight></codeline>
+<codeline lineno="339"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight></codeline>
+<codeline lineno="345" refid="qnode_8cpp_1ae4ff203d72bce085fb5e144f6940eefb" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1ae4ff203d72bce085fb5e144f6940eefb" kindref="member">myCallback_angle1</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="346"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updateAngle1(msg-&gt;data);</highlight></codeline>
+<codeline lineno="348"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354" refid="qnode_8cpp_1a0f50071ce0ffc57d2b76b3926bfa840c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a0f50071ce0ffc57d2b76b3926bfa840c" kindref="member">myCallback_leftLimit</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Bool&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="355"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updateLeftLimit(msg.data);</highlight></codeline>
+<codeline lineno="357"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"></highlight></codeline>
+<codeline lineno="363" refid="qnode_8cpp_1a0f01e12373802ccb070db232f18e4972" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a0f01e12373802ccb070db232f18e4972" kindref="member">myCallback_rightLimit</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Bool&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="364"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/>emit<sp/>updateRightLimit(msg.data);</highlight></codeline>
+<codeline lineno="366"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"></highlight></codeline>
+<codeline lineno="372" refid="qnode_8cpp_1a9f6ab99d070a5acc644e5bfafa2b1954" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a9f6ab99d070a5acc644e5bfafa2b1954" kindref="member">myCallback_orin_cpu_temp</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/>emit<sp/>updateCpuTemp(msg-&gt;data);</highlight></codeline>
+<codeline lineno="374"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"></highlight></codeline>
+<codeline lineno="380" refid="qnode_8cpp_1a38270ebfd641dbac569e27febaa9c441" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a38270ebfd641dbac569e27febaa9c441" kindref="member">myCallback_orin_gpu_temp</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/>emit<sp/>updateGpuTemp(msg-&gt;data);</highlight></codeline>
+<codeline lineno="382"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"></highlight></codeline>
+<codeline lineno="388" refid="qnode_8cpp_1ae86abc9dd0741d2acc385f29572a9c86" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1ae86abc9dd0741d2acc385f29572a9c86" kindref="member">myCallback_rx_motor_tq</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/>emit<sp/>updateRxMotorTq(msg-&gt;data);</highlight></codeline>
+<codeline lineno="390"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"></highlight></codeline>
+<codeline lineno="396" refid="qnode_8cpp_1a0b13cedebba3173303c9caf8dd458ef4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a0b13cedebba3173303c9caf8dd458ef4" kindref="member">myCallback_rx_motor_speed</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Float32::ConstPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/>emit<sp/>updateRxMotorSpeed(msg-&gt;data);</highlight></codeline>
+<codeline lineno="398"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"></highlight></codeline>
+<codeline lineno="406" refid="qnode_8cpp_1a85fc564b736ac2b2a35722ffeaf8d240" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a85fc564b736ac2b2a35722ffeaf8d240" kindref="member">myCallback_laser_scan</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::LaserScan::ConstPtr&amp;<sp/>scan)<sp/>{</highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>...<sp/>保持原逻辑</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="408"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"></highlight></codeline>
+<codeline lineno="414" refid="qnode_8cpp_1a6b2dc894a7e16dfd10b6235e3c2118fc" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a6b2dc894a7e16dfd10b6235e3c2118fc" kindref="member">publishMessage</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;msg)<sp/>{</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::String<sp/>message;</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/>message.data<sp/>=<sp/>msg;</highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher1.publish(message);</highlight></codeline>
+<codeline lineno="418"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"></highlight></codeline>
+<codeline lineno="424" refid="qnode_8cpp_1a7967495bbd1f3bc0b3e83ef70a187788" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a7967495bbd1f3bc0b3e83ef70a187788" kindref="member">publishPianTou</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>pipeline::HeaderInfo<sp/>&amp;msg)<sp/>{</highlight></codeline>
+<codeline lineno="425"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher2.publish(msg);</highlight></codeline>
+<codeline lineno="426"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"></highlight></codeline>
+<codeline lineno="432" refid="qnode_8cpp_1a89068b8a7fed63d822050a8c7a097b16" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a89068b8a7fed63d822050a8c7a097b16" kindref="member">publishAutonomousNavigation</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::PoseStamped<sp/>&amp;msg2)</highlight></codeline>
+<codeline lineno="433"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::Bool<sp/>msg;</highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.data<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher4.publish(msg);</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/>QThread::msleep(100);</highlight></codeline>
+<codeline lineno="438"><highlight class="normal"></highlight></codeline>
+<codeline lineno="439"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::Bool<sp/>msg1;</highlight></codeline>
+<codeline lineno="440"><highlight class="normal"><sp/><sp/><sp/><sp/>msg1.data<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher3.publish(msg2);</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"><sp/><sp/><sp/><sp/>QThread::msleep(100);</highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher3.publish(msg2);</highlight></codeline>
+<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/>QThread::msleep(100);</highlight></codeline>
+<codeline lineno="445"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher3.publish(msg2);</highlight></codeline>
+<codeline lineno="446"><highlight class="normal"><sp/><sp/><sp/><sp/>QThread::msleep(100);</highlight></codeline>
+<codeline lineno="447"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher5.publish(msg1);</highlight></codeline>
+<codeline lineno="448"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="449"><highlight class="normal"></highlight></codeline>
+<codeline lineno="454" refid="qnode_8cpp_1a8a32b66beffdb4a2ed66fcc6c7b0739c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a8a32b66beffdb4a2ed66fcc6c7b0739c" kindref="member">publishAutomaticRecycle</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" kindref="member">distance</ref>)</highlight></codeline>
+<codeline lineno="455"><highlight class="normal">{<sp/><sp/></highlight></codeline>
+<codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::Bool<sp/>msg;</highlight></codeline>
+<codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.data<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/>geometry_msgs::PoseStamped<sp/>waypoint;</highlight></codeline>
+<codeline lineno="459"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" kindref="member">distance</ref><sp/>&gt;<sp/>0)<sp/>waypoint.pose.position.x<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="460"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>waypoint.pose.position.x<sp/>=<sp/><ref refid="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43" kindref="member">distance</ref>;</highlight></codeline>
+<codeline lineno="461"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher6.publish(waypoint);</highlight></codeline>
+<codeline lineno="462"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher5.publish(msg);</highlight></codeline>
+<codeline lineno="463"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="464"><highlight class="normal"></highlight></codeline>
+<codeline lineno="468" refid="qnode_8cpp_1ae1b288c8f80f61dfa526dd885f02962e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1ae1b288c8f80f61dfa526dd885f02962e" kindref="member">publishResetMeter</ref>()</highlight></codeline>
+<codeline lineno="469"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="470"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::Bool<sp/>msg;</highlight></codeline>
+<codeline lineno="471"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.data<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="472"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher7.publish(msg);</highlight></codeline>
+<codeline lineno="473"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="474"><highlight class="normal"></highlight></codeline>
+<codeline lineno="478" refid="qnode_8cpp_1ac1bd480e69700e4e41545cdab1c71989" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1ac1bd480e69700e4e41545cdab1c71989" kindref="member">publishStop</ref>()</highlight></codeline>
+<codeline lineno="479"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="480"><highlight class="normal"><sp/><sp/><sp/><sp/>QByteArray<sp/>command;</highlight></codeline>
+<codeline lineno="481"><highlight class="normal"><sp/><sp/><sp/><sp/>command.append(</highlight><highlight class="stringliteral">&apos;\x53&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="482"><highlight class="normal"><sp/><sp/><sp/><sp/>command.append(</highlight><highlight class="stringliteral">&apos;\x44&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/>rosSender-&gt;sendCommand(command);</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/>rosSender-&gt;sendCommand(command);</highlight></codeline>
+<codeline lineno="485"><highlight class="normal"><sp/><sp/><sp/><sp/>rosSender-&gt;sendCommand(command);</highlight></codeline>
+<codeline lineno="486"><highlight class="normal"></highlight></codeline>
+<codeline lineno="487"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::Bool<sp/>msg1,<sp/>msg2;</highlight></codeline>
+<codeline lineno="488"><highlight class="normal"><sp/><sp/><sp/><sp/>msg1.data<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="489"><highlight class="normal"><sp/><sp/><sp/><sp/>msg2.data<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="490"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher5.publish(msg1);</highlight></codeline>
+<codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher4.publish(msg2);</highlight></codeline>
+<codeline lineno="492"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="493"><highlight class="normal"></highlight></codeline>
+<codeline lineno="498" refid="qnode_8cpp_1a424aae07eabbcc7263cda7e171be1cbf" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1a424aae07eabbcc7263cda7e171be1cbf" kindref="member">publish_cable</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;msg)</highlight></codeline>
+<codeline lineno="499"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="500"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::String<sp/>message;</highlight></codeline>
+<codeline lineno="501"><highlight class="normal"><sp/><sp/><sp/><sp/>message.data<sp/>=<sp/>msg;</highlight></codeline>
+<codeline lineno="502"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher8.publish(message);</highlight></codeline>
+<codeline lineno="503"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="504"><highlight class="normal"></highlight></codeline>
+<codeline lineno="509" refid="qnode_8cpp_1ac9d8e1e36dd9845af6e9f68fe2541950" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1ac9d8e1e36dd9845af6e9f68fe2541950" kindref="member">publish_report_generate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Bool<sp/>msg)</highlight></codeline>
+<codeline lineno="510"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="511"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher9.publish(msg);</highlight></codeline>
+<codeline lineno="512"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="513"><highlight class="normal"></highlight></codeline>
+<codeline lineno="518" refid="qnode_8cpp_1aafdf780e43504aadfb3d4d2c4e72120b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="qnode_8cpp_1aafdf780e43504aadfb3d4d2c4e72120b" kindref="member">publish_cloudmodel_pub</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std_msgs::Bool<sp/>msg)</highlight></codeline>
+<codeline lineno="519"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="520"><highlight class="normal"><sp/><sp/><sp/><sp/>chatter_publisher10.publish(msg);</highlight></codeline>
+<codeline lineno="521"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="function_key/qnode.cpp"/>
+  </compounddef>
+</doxygen>

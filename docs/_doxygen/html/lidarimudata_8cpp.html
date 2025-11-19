@@ -233,6 +233,8 @@ Variables</h2></td></tr>
 <div class="ttc" id="alidarimudata_8cpp_html_a8667af10789ec10299828b588f33fa66"><div class="ttname"><a href="lidarimudata_8cpp.html#a8667af10789ec10299828b588f33fa66">g_sockfd</a></div><div class="ttdeci">int g_sockfd</div><div class="ttdef"><b>Definition</b> <a href="lidarimudata_8cpp_source.html#l00027">lidarimudata.cpp:27</a></div></div>
 <div class="ttc" id="alidarimudata_8cpp_html_af4be04c36baee6cbd619f7f248678c2b"><div class="ttname"><a href="lidarimudata_8cpp.html#af4be04c36baee6cbd619f7f248678c2b">g_conn_mutex</a></div><div class="ttdeci">std::mutex g_conn_mutex</div><div class="ttdoc">全局变量，线程安全保护 TCP 连接</div><div class="ttdef"><b>Definition</b> <a href="lidarimudata_8cpp_source.html#l00026">lidarimudata.cpp:26</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="lidarimudata_8cpp_source.html#l00026">g_conn_mutex</a>, <a class="el" href="lidarimudata_8cpp_source.html#l00027">g_sockfd</a>, and <a class="el" href="lidarimudata_8cpp_source.html#l00151">publishStatus()</a>.</p>
+
 </div>
 </div>
 <a id="ac17b993e3645f9b9a7f96e87fdd5bf62" name="ac17b993e3645f9b9a7f96e87fdd5bf62"></a>
@@ -288,6 +290,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  278</span>    }</div>
 <div class="line"><span class="lineno">  279</span>}</div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="lidarimudata_8cpp_source.html#l00026">g_conn_mutex</a>, <a class="el" href="lidarimudata_8cpp_source.html#l00027">g_sockfd</a>, and <a class="el" href="lidarimudata_8cpp_source.html#l00151">publishStatus()</a>.</p>
+
 </div>
 </div>
 <a id="a3c04138a5bfe5d72780bb7e82a18e627" name="a3c04138a5bfe5d72780bb7e82a18e627"></a>
@@ -363,6 +367,8 @@ Variables</h2></td></tr>
 <div class="ttc" id="alidarimudata_8cpp_html_a7ee213d0ef876d9aeb03815d68d708ab"><div class="ttname"><a href="lidarimudata_8cpp.html#a7ee213d0ef876d9aeb03815d68d708ab">tcpDataLoop</a></div><div class="ttdeci">void tcpDataLoop(ros::Publisher &amp;raw_pub, ros::Publisher &amp;point_pub, ros::Publisher &amp;da_pub)</div><div class="ttdoc">TCP 数据接收循环 从 TCP 套接字接收数据，处理缓存，发布原始数据，同时调用解析函数</div><div class="ttdef"><b>Definition</b> <a href="lidarimudata_8cpp_source.html#l00165">lidarimudata.cpp:165</a></div></div>
 <div class="ttc" id="alidarimudata_8cpp_html_ac17b993e3645f9b9a7f96e87fdd5bf62"><div class="ttname"><a href="lidarimudata_8cpp.html#ac17b993e3645f9b9a7f96e87fdd5bf62">handleDisconnection</a></div><div class="ttdeci">void handleDisconnection(int max_reconnect, float interval)</div><div class="ttdoc">处理 TCP 断开连接，并根据最大重连次数尝试重新连接</div><div class="ttdef"><b>Definition</b> <a href="lidarimudata_8cpp_source.html#l00265">lidarimudata.cpp:265</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="lidarimudata_8cpp_source.html#l00118">connectToServer()</a>, <a class="el" href="lidarimudata_8cpp_source.html#l00028">g_ip</a>, <a class="el" href="lidarimudata_8cpp_source.html#l00029">g_port</a>, <a class="el" href="lidarimudata_8cpp_source.html#l00027">g_sockfd</a>, <a class="el" href="lidarimudata_8cpp_source.html#l00030">g_status_pub</a>, <a class="el" href="lidarimudata_8cpp_source.html#l00265">handleDisconnection()</a>, and <a class="el" href="lidarimudata_8cpp_source.html#l00165">tcpDataLoop()</a>.</p>
+
 </div>
 </div>
 <a id="a1b31693e822f01154ca4c6c8482c5288" name="a1b31693e822f01154ca4c6c8482c5288"></a>
@@ -499,6 +505,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  155</span>    ROS_DEBUG_STREAM(<span class="stringliteral">&quot;Status published: &quot;</span> &lt;&lt; msg.data);</div>
 <div class="line"><span class="lineno">  156</span>}</div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="lidarimudata_8cpp_source.html#l00028">g_ip</a>, and <a class="el" href="lidarimudata_8cpp_source.html#l00030">g_status_pub</a>.</p>
+
 </div>
 </div>
 <a id="a7ee213d0ef876d9aeb03815d68d708ab" name="a7ee213d0ef876d9aeb03815d68d708ab"></a>
@@ -580,6 +588,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  197</span>}</div>
 <div class="ttc" id="alidarimudata_8cpp_html_a1b31693e822f01154ca4c6c8482c5288"><div class="ttname"><a href="lidarimudata_8cpp.html#a1b31693e822f01154ca4c6c8482c5288">parseAndPublishData</a></div><div class="ttdeci">void parseAndPublishData(const std::string &amp;data, ros::Publisher &amp;point_pub, ros::Publisher &amp;da_pub)</div><div class="ttdoc">解析原始数据并发布坐标点和距离角度信息</div><div class="ttdef"><b>Definition</b> <a href="lidarimudata_8cpp_source.html#l00206">lidarimudata.cpp:206</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="lidarimudata_8cpp_source.html#l00027">g_sockfd</a>, and <a class="el" href="lidarimudata_8cpp_source.html#l00206">parseAndPublishData()</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>

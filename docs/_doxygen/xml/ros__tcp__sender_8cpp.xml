@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ros__tcp__sender_8cpp" kind="file" language="C++">
+    <compoundname>ros_tcp_sender.cpp</compoundname>
+    <includes local="yes">ros_tcp_sender.h</includes>
+    <includes local="yes">ros/ros.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>QT_function_other/ros_tcp_sender.cpp</label>
+        <link refid="ros__tcp__sender_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="2">
+        <label>ros_tcp_sender.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ros__tcp__sender_8cpp_1a5e8da266cec1f747a58cef6bf225d1c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RosTcpSender</definition>
+        <argsstring>(QObject *parent)</argsstring>
+        <name>RosTcpSender</name>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>构造函数，初始化 TCP Socket 并连接错误信号 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>QObject 父对象 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/ros_tcp_sender.cpp" line="18" column="1" bodyfile="QT_function_other/ros_tcp_sender.cpp" bodystart="18" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="ros__tcp__sender_8cpp_1a0dc99ae7a20c637feaca72c4b4a3a75c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sendCommand</definition>
+        <argsstring>(const QByteArray &amp;data)</argsstring>
+        <name>sendCommand</name>
+        <param>
+          <type>const QByteArray &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>发送 ROS 指令数据 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>要发送的 QByteArray 数据</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+如果当前 TCP Socket 未连接，会尝试连接到 192.168.8.11:12345。 连接成功后写入数据并等待写入完成。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/ros_tcp_sender.cpp" line="31" column="6" bodyfile="QT_function_other/ros_tcp_sender.cpp" bodystart="31" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="ros__tcp__sender_8cpp_1a99bc86ae9f1041f3053cf1bbbdbb6e5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void onTcpError</definition>
+        <argsstring>(QAbstractSocket::SocketError error)</argsstring>
+        <name>onTcpError</name>
+        <param>
+          <type>QAbstractSocket::SocketError</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+<para>TCP 错误处理槽函数 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>QAbstractSocket::SocketError 错误类型</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+当 TCP 出现错误时打印错误信息到控制台。 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/ros_tcp_sender.cpp" line="50" column="6" bodyfile="QT_function_other/ros_tcp_sender.cpp" bodystart="50" bodyend="52"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>封装 TCP Socket 与 ROS 通信发送功能 </para>
+    </briefdescription>
+    <detaileddescription>
+<para>功能：<itemizedlist>
+<listitem><para>使用 Qt QTcpSocket 建立 TCP 连接</para>
+</listitem><listitem><para>向指定 IP/端口发送 ROS 指令数据</para>
+</listitem><listitem><para>处理 TCP 错误 </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;ros_tcp_sender.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;ros/ros.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="ros__tcp__sender_8cpp_1a5e8da266cec1f747a58cef6bf225d1c7" refkind="member"><highlight class="normal"><ref refid="ros__tcp__sender_8cpp_1a5e8da266cec1f747a58cef6bf225d1c7" kindref="member">RosTcpSender</ref>(QObject<sp/>*parent)<sp/>:<sp/>QObject(parent),<sp/>tcpSocket_(new<sp/>QTcpSocket(this))<sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Qt<sp/>5.12<sp/>兼容的连接方式</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>connect(tcpSocket_,<sp/>QOverload&lt;QAbstractSocket::SocketError&gt;::of(&amp;QTcpSocket::error),</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>&amp;RosTcpSender::onTcpError);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="ros__tcp__sender_8cpp_1a0dc99ae7a20c637feaca72c4b4a3a75c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ros__tcp__sender_8cpp_1a0dc99ae7a20c637feaca72c4b4a3a75c" kindref="member">sendCommand</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QByteArray<sp/>&amp;data)<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tcpSocket_-&gt;state()<sp/>==<sp/>QAbstractSocket::UnconnectedState)<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tcpSocket_-&gt;connectToHost(</highlight><highlight class="stringliteral">&quot;192.168.8.11&quot;</highlight><highlight class="normal">,<sp/>12345);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;88&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tcpSocket_-&gt;waitForConnected(3000))<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tcpSocket_-&gt;write(data);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;99&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tcpSocket_-&gt;waitForBytesWritten(1000);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="ros__tcp__sender_8cpp_1a99bc86ae9f1041f3053cf1bbbdbb6e5f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ros__tcp__sender_8cpp_1a99bc86ae9f1041f3053cf1bbbdbb6e5f" kindref="member">onTcpError</ref>(QAbstractSocket::SocketError<sp/>error)<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>qDebug()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;TCP<sp/>Error:&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>tcpSocket_-&gt;errorString();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="QT_function_other/ros_tcp_sender.cpp"/>
+  </compounddef>
+</doxygen>

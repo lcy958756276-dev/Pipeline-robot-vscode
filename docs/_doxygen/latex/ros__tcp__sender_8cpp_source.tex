@@ -1,0 +1,32 @@
+\doxysection{ros\+\_\+tcp\+\_\+sender.\+cpp}
+\hypertarget{ros__tcp__sender_8cpp_source}{}\label{ros__tcp__sender_8cpp_source}\index{QT\_function\_other/ros\_tcp\_sender.cpp@{QT\_function\_other/ros\_tcp\_sender.cpp}}
+\mbox{\hyperlink{ros__tcp__sender_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}ros\_tcp\_sender.h"{}}}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}ros/ros.h"{}}}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00018}\mbox{\hyperlink{ros__tcp__sender_8cpp_a5e8da266cec1f747a58cef6bf225d1c7}{00018}}\ \mbox{\hyperlink{ros__tcp__sender_8cpp_a5e8da266cec1f747a58cef6bf225d1c7}{RosTcpSender}}(QObject\ *parent)\ :\ QObject(parent),\ tcpSocket\_(new\ QTcpSocket(this))\ \{}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{comment}{//\ Qt\ 5.12\ 兼容的连接方式}}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00020}00020\ \ \ \ \ connect(tcpSocket\_,\ QOverload<QAbstractSocket::SocketError>::of(\&QTcpSocket::error),}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},\ \&RosTcpSender::onTcpError);}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00022}00022\ \}}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00031}\mbox{\hyperlink{ros__tcp__sender_8cpp_a0dc99ae7a20c637feaca72c4b4a3a75c}{00031}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ros__tcp__sender_8cpp_a0dc99ae7a20c637feaca72c4b4a3a75c}{sendCommand}}(\textcolor{keyword}{const}\ QByteArray\ \&data)\ \{}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (tcpSocket\_-\/>state()\ ==\ QAbstractSocket::UnconnectedState)\ \{}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ tcpSocket\_-\/>connectToHost(\textcolor{stringliteral}{"{}192.168.8.11"{}},\ 12345);}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}88"{}});}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00035}00035\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tcpSocket\_-\/>waitForConnected(3000))\ \{}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ tcpSocket\_-\/>write(data);}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}99"{}});}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ tcpSocket\_-\/>waitForBytesWritten(1000);}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00041}00041\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00042}00042\ \}}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00050}\mbox{\hyperlink{ros__tcp__sender_8cpp_a99bc86ae9f1041f3053cf1bbbdbb6e5f}{00050}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ros__tcp__sender_8cpp_a99bc86ae9f1041f3053cf1bbbdbb6e5f}{onTcpError}}(QAbstractSocket::SocketError\ error)\ \{}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00051}00051\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}TCP\ Error:"{}}\ <<\ tcpSocket\_-\/>errorString();}
+\DoxyCodeLine{\Hypertarget{ros__tcp__sender_8cpp_source_l00052}00052\ \}}
+
+\end{DoxyCode}

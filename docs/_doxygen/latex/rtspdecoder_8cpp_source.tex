@@ -1,0 +1,166 @@
+\doxysection{rtspdecoder.\+cpp}
+\hypertarget{rtspdecoder_8cpp_source}{}\label{rtspdecoder_8cpp_source}\index{QT\_function\_other/rtspdecoder.cpp@{QT\_function\_other/rtspdecoder.cpp}}
+\mbox{\hyperlink{rtspdecoder_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}rtspdecoder.h"{}}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <QDebug>}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00014}00014\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <libavcodec/avcodec.h>}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <libavformat/avformat.h>}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <libavutil/imgutils.h>}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <libswscale/swscale.h>}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00025}\mbox{\hyperlink{rtspdecoder_8cpp_ac47d701a82f51b95eda1062eff0c0711}{00025}}\ \mbox{\hyperlink{rtspdecoder_8cpp_ac47d701a82f51b95eda1062eff0c0711}{RtspDecoder}}(QObject\ *parent)\ :\ QThread(parent)\ \{\}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00030}\mbox{\hyperlink{rtspdecoder_8cpp_a6532ae7e840a3ff2b350ed939342f1fc}{00030}}\ \mbox{\hyperlink{rtspdecoder_8cpp_a6532ae7e840a3ff2b350ed939342f1fc}{\string~RtspDecoder}}()\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00031}00031\ \ \ \ \ requestInterruption();}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00032}00032\ \ \ \ \ wait();}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{rtspdecoder_8cpp_a4b66d5e31b5dc18b314c8a68163263bd}{cleanup}}();}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00042}\mbox{\hyperlink{rtspdecoder_8cpp_a623ed2d0fdb8f1dfbabe8e890143868b}{00042}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtspdecoder_8cpp_a623ed2d0fdb8f1dfbabe8e890143868b}{setUrl}}(\textcolor{keyword}{const}\ QString\ \&url)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00043}00043\ \ \ \ \ QMutexLocker\ locker(\&mutex\_);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00044}00044\ \ \ \ \ rtsp\_url\_\ =\ url;}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00053}\mbox{\hyperlink{rtspdecoder_8cpp_a13a43e6d814de94978c515cb084873b1}{00053}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtspdecoder_8cpp_a13a43e6d814de94978c515cb084873b1}{run}}()\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{while}(!isInterruptionRequested())\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{rtspdecoder_8cpp_a6a0a80084c1b994a7bba6c8c37b95400}{initFFmpeg}}())\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}初始化失败"{}});}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ AVFrame\ *frame\ =\ av\_frame\_alloc();}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ connection\_ok\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(connection\_ok\ \&\&\ !isInterruptionRequested())\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ AVPacket\ pkt;}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ret\ =\ av\_read\_frame(fmt\_ctx\_,\ \&pkt);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ret\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ret\ ==\ AVERROR\_EOF\ ||\ avio\_feof(fmt\_ctx\_-\/>pb))\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}RTSP连接中断"{}};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emit\ connectionLost();}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection\_ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pkt.stream\_index\ ==\ video\_stream\_index\_)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(avcodec\_send\_packet(codec\_ctx\_,\ \&pkt)\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ av\_packet\_unref(\&pkt);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AVFrame\ *rgb\_frame\ =\ av\_frame\_alloc();}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ *buffer\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_bytes\ =\ av\_image\_get\_buffer\_size(AV\_PIX\_FMT\_RGB32,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>width,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>height,\ 1);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer\ =\ (uint8\_t\ *)av\_malloc(num\_bytes\ *\ \textcolor{keyword}{sizeof}(uint8\_t));}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ av\_image\_fill\_arrays(rgb\_frame-\/>data,\ rgb\_frame-\/>linesize,\ buffer,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AV\_PIX\_FMT\_RGB32,\ codec\_ctx\_-\/>width,\ codec\_ctx\_-\/>height,\ 1);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(avcodec\_receive\_frame(codec\_ctx\_,\ frame)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sws\_scale(sws\_ctx\_,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t\ \textcolor{keyword}{const}\ *\ \textcolor{keyword}{const}\ *)frame-\/>data,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frame-\/>linesize,\ 0,\ codec\_ctx\_-\/>height,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rgb\_frame-\/>data,\ rgb\_frame-\/>linesize);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QImage\ img(rgb\_frame-\/>data[0],}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>width,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>height,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rgb\_frame-\/>linesize[0],}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QImage::Format\_RGB32);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emit\ frameDecoded(img.copy());}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ av\_free(buffer);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ av\_frame\_free(\&rgb\_frame);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ av\_packet\_unref(\&pkt);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ av\_frame\_free(\&frame);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{rtspdecoder_8cpp_a4b66d5e31b5dc18b314c8a68163263bd}{cleanup}}();}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(need\_reconnect\_\ \&\&\ reconnect\_attempts\_++\ <\ max\_reconnect\_attempts\_)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ QThread::msleep(2000);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00120}00120\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00121}00121\ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00127}\mbox{\hyperlink{rtspdecoder_8cpp_a6a0a80084c1b994a7bba6c8c37b95400}{00127}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{rtspdecoder_8cpp_a6a0a80084c1b994a7bba6c8c37b95400}{initFFmpeg}}()\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00128}00128\ \ \ \ \ \mbox{\hyperlink{rtspdecoder_8cpp_a4b66d5e31b5dc18b314c8a68163263bd}{cleanup}}();}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00129}00129\ \ \ \ \ avformat\_network\_init();}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00131}00131\ \ \ \ \ AVDictionary\ *opts\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00132}00132\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}stimeout"{}},\ \textcolor{stringliteral}{"{}5000000"{}},\ 0);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00133}00133\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}max\_delay"{}},\ \textcolor{stringliteral}{"{}500000"{}},\ 0);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00134}00134\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}rtsp\_transport"{}},\ \textcolor{stringliteral}{"{}tcp"{}},\ 0);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00135}00135\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}fflags"{}},\ \textcolor{stringliteral}{"{}nobuffer"{}},\ 0);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00136}00136\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}flags"{}},\ \textcolor{stringliteral}{"{}low\_delay"{}},\ 0);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00137}00137\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}analyzeduration"{}},\ \textcolor{stringliteral}{"{}450000"{}},\ 0);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00138}00138\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}probesize"{}},\ \textcolor{stringliteral}{"{}96"{}},\ 0);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00139}00139\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}infbuf"{}},\ \textcolor{stringliteral}{"{}1"{}},\ 0);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00141}00141\ \ \ \ \ \textcolor{keywordflow}{if}(avformat\_open\_input(\&fmt\_ctx\_,\ rtsp\_url\_.toUtf8().constData(),\ \textcolor{keyword}{nullptr},\ \&opts)\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ av\_dict\_free(\&opts);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00144}00144\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00145}00145\ \ \ \ \ av\_dict\_free(\&opts);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{if}(avformat\_find\_stream\_info(fmt\_ctx\_,\ \textcolor{keyword}{nullptr})\ <\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00149}00149\ \ \ \ \ video\_stream\_index\_\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00150}00150\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ fmt\_ctx\_-\/>nb\_streams;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(fmt\_ctx\_-\/>streams[i]-\/>codecpar-\/>codec\_type\ ==\ AVMEDIA\_TYPE\_VIDEO)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ video\_stream\_index\_\ =\ i;}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00155}00155\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00156}00156\ \ \ \ \ \textcolor{keywordflow}{if}(video\_stream\_index\_\ ==\ -\/1)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00158}00158\ \ \ \ \ AVCodecParameters\ *codecpar\ =\ fmt\_ctx\_-\/>streams[video\_stream\_index\_]-\/>codecpar;}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00159}00159\ \ \ \ \ AVCodec\ *codec\ =\ avcodec\_find\_decoder(codecpar-\/>codec\_id);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00160}00160\ \ \ \ \ \textcolor{keywordflow}{if}(!codec)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00162}00162\ \ \ \ \ codec\_ctx\_\ =\ avcodec\_alloc\_context3(codec);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00163}00163\ \ \ \ \ \textcolor{keywordflow}{if}(avcodec\_parameters\_to\_context(codec\_ctx\_,\ codecpar)\ <\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00165}00165\ \ \ \ \ \textcolor{keywordflow}{if}(avcodec\_open2(codec\_ctx\_,\ codec,\ \textcolor{keyword}{nullptr})\ <\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00167}00167\ \ \ \ \ sws\_ctx\_\ =\ sws\_getContext(codec\_ctx\_-\/>width,\ codec\_ctx\_-\/>height,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>pix\_fmt,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>width,\ codec\_ctx\_-\/>height,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AV\_PIX\_FMT\_RGB32,}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SWS\_BILINEAR,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00172}00172\ \ \ \ \ \textcolor{keywordflow}{return}\ sws\_ctx\_\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00173}00173\ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00180}\mbox{\hyperlink{rtspdecoder_8cpp_a4b66d5e31b5dc18b314c8a68163263bd}{00180}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{rtspdecoder_8cpp_a4b66d5e31b5dc18b314c8a68163263bd}{cleanup}}()\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00181}00181\ \ \ \ \ \textcolor{keywordflow}{if}(sws\_ctx\_)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ sws\_freeContext(sws\_ctx\_);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ sws\_ctx\_\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00184}00184\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00186}00186\ \ \ \ \ \textcolor{keywordflow}{if}(codec\_ctx\_)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ avcodec\_close(codec\_ctx\_);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ avcodec\_free\_context(\&codec\_ctx\_);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ codec\_ctx\_\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00190}00190\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00192}00192\ \ \ \ \ \textcolor{keywordflow}{if}(fmt\_ctx\_)\ \{}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ avformat\_close\_input(\&fmt\_ctx\_);}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ fmt\_ctx\_\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00195}00195\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00197}00197\ \ \ \ \ avformat\_network\_deinit();}
+\DoxyCodeLine{\Hypertarget{rtspdecoder_8cpp_source_l00198}00198\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQNode" kind="class" language="C++" prot="public">
+    <compoundname>QNode</compoundname>
+    <briefdescription>
+<para>QNode类封装了ROS节点与Qt的交互，包括消息发布、订阅及数据处理。 </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="function_key/qnode.cpp" line="19" column="1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

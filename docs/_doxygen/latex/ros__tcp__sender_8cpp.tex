@@ -1,0 +1,131 @@
+\doxysection{QT\+\_\+function\+\_\+other/ros\+\_\+tcp\+\_\+sender.cpp File Reference}
+\hypertarget{ros__tcp__sender_8cpp}{}\label{ros__tcp__sender_8cpp}\index{QT\_function\_other/ros\_tcp\_sender.cpp@{QT\_function\_other/ros\_tcp\_sender.cpp}}
+
+
+封装 TCP Socket 与 ROS 通信发送功能  
+
+
+{\ttfamily \#include "{}ros\+\_\+tcp\+\_\+sender.\+h"{}}\newline
+{\ttfamily \#include "{}ros/ros.\+h"{}}\newline
+Include dependency graph for ros\+\_\+tcp\+\_\+sender.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{ros__tcp__sender_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ros__tcp__sender_8cpp_a5e8da266cec1f747a58cef6bf225d1c7}{Ros\+Tcp\+Sender}} (QObject \texorpdfstring{$\ast$}{*}parent)
+\begin{DoxyCompactList}\small\item\em 构造函数，初始化 TCP Socket 并连接错误信号 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ros__tcp__sender_8cpp_a0dc99ae7a20c637feaca72c4b4a3a75c}{send\+Command}} (const QByte\+Array \&data)
+\begin{DoxyCompactList}\small\item\em 发送 ROS 指令数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ros__tcp__sender_8cpp_a99bc86ae9f1041f3053cf1bbbdbb6e5f}{on\+Tcp\+Error}} (QAbstract\+Socket\+::\+Socket\+Error error)
+\begin{DoxyCompactList}\small\item\em TCP 错误处理槽函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+封装 TCP Socket 与 ROS 通信发送功能 
+
+功能：
+\begin{DoxyItemize}
+\item 使用 Qt QTcp\+Socket 建立 TCP 连接
+\item 向指定 IP/端口发送 ROS 指令数据
+\item 处理 TCP 错误 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{ros__tcp__sender_8cpp_source}{ros\+\_\+tcp\+\_\+sender.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ros__tcp__sender_8cpp_a99bc86ae9f1041f3053cf1bbbdbb6e5f}\label{ros__tcp__sender_8cpp_a99bc86ae9f1041f3053cf1bbbdbb6e5f} 
+\index{ros\_tcp\_sender.cpp@{ros\_tcp\_sender.cpp}!onTcpError@{onTcpError}}
+\index{onTcpError@{onTcpError}!ros\_tcp\_sender.cpp@{ros\_tcp\_sender.cpp}}
+\doxysubsubsection{\texorpdfstring{onTcpError()}{onTcpError()}}
+{\footnotesize\ttfamily void on\+Tcp\+Error (\begin{DoxyParamCaption}\item[{QAbstract\+Socket\+::\+Socket\+Error}]{error }\end{DoxyParamCaption})}
+
+
+
+TCP 错误处理槽函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & QAbstract\+Socket\+::\+Socket\+Error 错误类型\\
+\hline
+\end{DoxyParams}
+当 TCP 出现错误时打印错误信息到控制台。 
+
+Definition at line \mbox{\hyperlink{ros__tcp__sender_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{ros__tcp__sender_8cpp_source}{ros\+\_\+tcp\+\_\+sender.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}TCP\ Error:"{}}\ <<\ tcpSocket\_-\/>errorString();}
+\DoxyCodeLine{00052\ \}}
+
+\end{DoxyCode}
+\Hypertarget{ros__tcp__sender_8cpp_a5e8da266cec1f747a58cef6bf225d1c7}\label{ros__tcp__sender_8cpp_a5e8da266cec1f747a58cef6bf225d1c7} 
+\index{ros\_tcp\_sender.cpp@{ros\_tcp\_sender.cpp}!RosTcpSender@{RosTcpSender}}
+\index{RosTcpSender@{RosTcpSender}!ros\_tcp\_sender.cpp@{ros\_tcp\_sender.cpp}}
+\doxysubsubsection{\texorpdfstring{RosTcpSender()}{RosTcpSender()}}
+{\footnotesize\ttfamily Ros\+Tcp\+Sender (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent }\end{DoxyParamCaption})}
+
+
+
+构造函数，初始化 TCP Socket 并连接错误信号 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & QObject 父对象 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{ros__tcp__sender_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{ros__tcp__sender_8cpp_source}{ros\+\_\+tcp\+\_\+sender.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ QObject(parent),\ tcpSocket\_(\textcolor{keyword}{new}\ QTcpSocket(\textcolor{keyword}{this}))\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Qt\ 5.12\ 兼容的连接方式}}
+\DoxyCodeLine{00020\ \ \ \ \ connect(tcpSocket\_,\ QOverload<QAbstractSocket::SocketError>::of(\&QTcpSocket::error),}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},\ \&RosTcpSender::onTcpError);}
+\DoxyCodeLine{00022\ \}}
+
+\end{DoxyCode}
+\Hypertarget{ros__tcp__sender_8cpp_a0dc99ae7a20c637feaca72c4b4a3a75c}\label{ros__tcp__sender_8cpp_a0dc99ae7a20c637feaca72c4b4a3a75c} 
+\index{ros\_tcp\_sender.cpp@{ros\_tcp\_sender.cpp}!sendCommand@{sendCommand}}
+\index{sendCommand@{sendCommand}!ros\_tcp\_sender.cpp@{ros\_tcp\_sender.cpp}}
+\doxysubsubsection{\texorpdfstring{sendCommand()}{sendCommand()}}
+{\footnotesize\ttfamily void send\+Command (\begin{DoxyParamCaption}\item[{const QByte\+Array \&}]{data }\end{DoxyParamCaption})}
+
+
+
+发送 ROS 指令数据 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & 要发送的 QByte\+Array 数据\\
+\hline
+\end{DoxyParams}
+如果当前 TCP Socket 未连接，会尝试连接到 192.\+168.\+8.\+11\+:12345。 连接成功后写入数据并等待写入完成。 
+
+Definition at line \mbox{\hyperlink{ros__tcp__sender_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{ros__tcp__sender_8cpp_source}{ros\+\_\+tcp\+\_\+sender.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (tcpSocket\_-\/>state()\ ==\ QAbstractSocket::UnconnectedState)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ tcpSocket\_-\/>connectToHost(\textcolor{stringliteral}{"{}192.168.8.11"{}},\ 12345);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}88"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tcpSocket\_-\/>waitForConnected(3000))\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ tcpSocket\_-\/>write(data);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}99"{}});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ tcpSocket\_-\/>waitForBytesWritten(1000);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \}}
+
+\end{DoxyCode}

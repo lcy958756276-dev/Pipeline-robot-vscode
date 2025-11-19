@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_4beabf8ff9cc7748d3a5d5a19191e2c8" kind="dir">
+    <compoundname>QT_function_other</compoundname>
+    <innerfile refid="jiantuwidget_8cpp">jiantuwidget.cpp</innerfile>
+    <innerfile refid="main_8cpp">main.cpp</innerfile>
+    <innerfile refid="modbus_8cpp">modbus.cpp</innerfile>
+    <innerfile refid="qrviz_8cpp">qrviz.cpp</innerfile>
+    <innerfile refid="ros__tcp__sender_8cpp">ros_tcp_sender.cpp</innerfile>
+    <innerfile refid="rtspdecoder_8cpp">rtspdecoder.cpp</innerfile>
+    <innerfile refid="settingwidget_8cpp">settingwidget.cpp</innerfile>
+    <innerfile refid="torque_8cpp">torque.cpp</innerfile>
+    <innerfile refid="videorecorder_8cpp">videorecorder.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QT_function_other/"/>
+  </compounddef>
+</doxygen>

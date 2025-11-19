@@ -1,0 +1,166 @@
+\doxysection{QT\+\_\+function\+\_\+other/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{QT\_function\_other/main.cpp@{QT\_function\_other/main.cpp}}
+
+
+程序入口文件，初始化 Qt 应用、启动 ROS 脚本、创建主窗口 \doxylink{classWidget}{Widget} 并执行应用循环  
+
+
+{\ttfamily \#include $<$QApplication$>$}\newline
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include "{}qrviz.\+h"{}}\newline
+{\ttfamily \#include $<$QProcess$>$}\newline
+{\ttfamily \#include $<$Qt\+Gui$>$}\newline
+{\ttfamily \#include $<$QThread$>$}\newline
+{\ttfamily \#include "{}qnode.\+h"{}}\newline
+{\ttfamily \#include "{}widget.\+h"{}}\newline
+{\ttfamily \#include "{}sql.\+h"{}}\newline
+{\ttfamily \#include "{}form.\+h"{}}\newline
+{\ttfamily \#include "{}settingwidget.\+h"{}}\newline
+{\ttfamily \#include $<$catkin\+\_\+ws/devel/include/pipeline/\+Header\+Info.\+h$>$}\newline
+Include dependency graph for main.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 程序主入口 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+程序入口文件，初始化 Qt 应用、启动 ROS 脚本、创建主窗口 \doxylink{classWidget}{Widget} 并执行应用循环 
+
+功能说明：
+\begin{DoxyItemize}
+\item 初始化 QApplication
+\item 启动 ROS 节点和相关 shell 脚本
+\item 设置 QSS 样式表
+\item 创建 \doxylink{classWidget}{Widget} 主窗口并显示
+\item 注册程序退出时终止 ROS 脚本进程的回调 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+程序主入口 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & 命令行参数个数 \\
+\hline
+{\em argv} & 命令行参数数组 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 返回程序执行状态，0 表示正常退出
+\end{DoxyReturn}
+主函数主要功能：
+\begin{DoxyItemize}
+\item 创建 QApplication 对象
+\item 启动 ROS 脚本 run\+\_\+topnx.\+sh，并输出日志到控制台
+\item 注册应用退出时终止 ROS 脚本进程的回调
+\item 初始化 ROS 节点
+\item 创建 \doxylink{classWidget}{Widget} 主窗口对象
+\item 设置应用样式表（\+QSS）
+\item 显示主窗口并进入事件循环 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ QApplication\ app(argc,\ argv);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ 启动\ ROS\ 脚本}}
+\DoxyCodeLine{00046\ \ \ \ \ QProcess\ process;}
+\DoxyCodeLine{00047\ \ \ \ \ QString\ scriptPath\ =\ \textcolor{stringliteral}{"{}/home/ralab/Pipelineqt/Pipeline/mySrc/run\_topnx.sh"{}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ 连接标准输出和错误输出}}
+\DoxyCodeLine{00050\ \ \ \ \ QObject::connect(\&process,\ \&QProcess::readyReadStandardOutput,\ [\&]()\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}脚本输出："{}}\ <<\ process.readAllStandardOutput();}
+\DoxyCodeLine{00052\ \ \ \ \ \});}
+\DoxyCodeLine{00053\ \ \ \ \ QObject::connect(\&process,\ \&QProcess::readyReadStandardError,\ [\&]()\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}脚本错误："{}}\ <<\ process.readAllStandardError();}
+\DoxyCodeLine{00055\ \ \ \ \ \});}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ process.start(\textcolor{stringliteral}{"{}sh"{}},\ QStringList()\ <<\ scriptPath);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ 程序退出时终止\ ROS\ 脚本进程}}
+\DoxyCodeLine{00060\ \ \ \ \ QObject::connect(\&app,\ \&QCoreApplication::aboutToQuit,\ [\&]()\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ QFile\ file(\textcolor{stringliteral}{"{}/tmp/roslaunch.pid"{}});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.open(QIODevice::ReadOnly\ |\ QIODevice::Text))\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ qWarning()\ <<\ \textcolor{stringliteral}{"{}无法打开PID文件"{}};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ QTextStream\ in(\&file);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ QString\ pidStr\ =\ in.readLine().trimmed();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ ok;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ pid\ =\ pidStr.toInt(\&ok);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ok)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ qWarning()\ <<\ \textcolor{stringliteral}{"{}PID无效"{}};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ QProcess\ killProcess;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ QStringList\ args;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ args\ <<\ QString::number(pid);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ killProcess.start(\textcolor{stringliteral}{"{}kill"{}},\ args);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!killProcess.waitForFinished(5000))\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ qWarning()\ <<\ \textcolor{stringliteral}{"{}终止进程超时或出错"{}};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (killProcess.exitCode()\ !=\ 0)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ qWarning()\ <<\ \textcolor{stringliteral}{"{}终止进程失败，错误码:"{}}\ <<\ killProcess.exitCode();}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ args.prepend(\textcolor{stringliteral}{"{}-\/9"{}});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ killProcess.start(\textcolor{stringliteral}{"{}kill"{}},\ args);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ killProcess.waitForFinished();}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}进程终止成功"{}};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \});}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}wait\ to\ start..................."{}};}
+\DoxyCodeLine{00099\ \ \ \ \ QThread::sleep(6);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ 初始化\ ROS\ 节点}}
+\DoxyCodeLine{00102\ \ \ \ \ ros::init(argc,\ argv,\textcolor{stringliteral}{"{}test\_rviz"{}});}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ 创建\ Widget\ 主窗口}}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{classWidget}{Widget}}\ *monitorWindow\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classWidget}{Widget}}(argc,\ argv);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ 加载\ QSS\ 样式表}}
+\DoxyCodeLine{00108\ \ \ \ \ QFile\ file(\textcolor{stringliteral}{"{}:/mySrc/c.css"{}});}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}(file.open(QFile::ReadOnly))\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ QString\ styleSheet\ =\ QLatin1String(file.readAll());}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ app.setStyleSheet(styleSheet);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00113\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Cannot\ open\ QSS\ file:"{}}\ <<\ file.errorString();}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ monitorWindow-\/>show();}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ app.exec();}
+\DoxyCodeLine{00120\ \}}
+
+\end{DoxyCode}

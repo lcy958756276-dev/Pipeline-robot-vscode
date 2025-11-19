@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['waypointfollower_0',['WaypointFollower',['../classWaypointFollower.html',1,'']]],
-  ['waypointpublisher_1',['WaypointPublisher',['../classWaypointPublisher.html',1,'']]]
+  ['qnode_0',['QNode',['../classQNode.html',1,'']]]
 ];

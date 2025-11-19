@@ -116,6 +116,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="cable_read/stm32.cpp" line="33" column="6" bodyfile="cable_read/stm32.cpp" bodystart="33" bodyend="54"/>
+        <references refid="stm32_8cpp_1a448b5187ce5b494da4cf14cea184169b" compoundref="stm32_8cpp" startline="23">ser</references>
       </memberdef>
       <memberdef kind="function" id="stm32_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -165,6 +166,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="cable_read/stm32.cpp" line="69" column="5" bodyfile="cable_read/stm32.cpp" bodystart="69" bodyend="151"/>
+        <references refid="stm32_8cpp_1aa53aae2dcc352535349deb3a56abdfc4" compoundref="stm32_8cpp" startline="33" endline="54">datasend_callback</references>
+        <references refid="stm32_8cpp_1a448b5187ce5b494da4cf14cea184169b" compoundref="stm32_8cpp" startline="23">ser</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="qrviz_8cpp" kind="file" language="C++">
+    <compoundname>qrviz.cpp</compoundname>
+    <includes local="yes">qrviz.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>QT_function_other/qrviz.cpp</label>
+        <link refid="qrviz_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>qrviz.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="qrviz_8cpp_1a310c5b1a9731b4b64600ed2c73311b0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Qrviz</definition>
+        <argsstring>(QVBoxLayout *layout)</argsstring>
+        <name>Qrviz</name>
+        <param>
+          <type>QVBoxLayout *</type>
+          <declname>layout</declname>
+        </param>
+        <briefdescription>
+<para>构造函数，初始化 RViz 渲染面板及显示层 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>layout</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>父布局，用于嵌入渲染面板 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/qrviz.cpp" line="18" column="1" bodyfile="QT_function_other/qrviz.cpp" bodystart="18" bodyend="65"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>RViz 可视化封装类，用于在 Qt 界面中显示机器人、激光、地图和点云 </para>
+    </briefdescription>
+    <detaileddescription>
+<para>功能：<itemizedlist>
+<listitem><para>在 Qt 的 QVBoxLayout 中嵌入 RViz 渲染面板</para>
+</listitem><listitem><para>初始化 RViz VisualizationManager</para>
+</listitem><listitem><para>添加基础显示层：网格、地图、激光扫描、机器人模型、点云</para>
+</listitem><listitem><para>设置 Fixed Frame 为 odom </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;qrviz.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="qrviz_8cpp_1a310c5b1a9731b4b64600ed2c73311b0b" refkind="member"><highlight class="normal"><ref refid="qrviz_8cpp_1a310c5b1a9731b4b64600ed2c73311b0b" kindref="member">Qrviz</ref>(QVBoxLayout<sp/>*layout)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>创建渲染面板并加入父布局</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>render_panel_<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>rviz::RenderPanel();</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>layout-&gt;addWidget(render_panel_);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>初始化<sp/>VisualizationManager</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>manager_<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>rviz::VisualizationManager(render_panel_);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_ASSERT(manager_<sp/>!=<sp/>NULL);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>render_panel_-&gt;initialize(manager_-&gt;getSceneManager(),<sp/>manager_);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>manager_-&gt;initialize();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>初始化<sp/>manager</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>manager_-&gt;removeAllDisplays();<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>删除已有所有图层</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>manager_-&gt;startUpdate();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>启动图层更新</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>manager_-&gt;setFixedFrame(</highlight><highlight class="stringliteral">&quot;odom&quot;</highlight><highlight class="normal">);<sp/></highlight><highlight class="comment">//<sp/>设置<sp/>Fixed<sp/>Frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>添加网格显示</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>rviz::Display<sp/>*grid_<sp/>=<sp/>manager_-&gt;createDisplay(</highlight><highlight class="stringliteral">&quot;rviz/Grid&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;adjustable<sp/>grid&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_ASSERT(grid_<sp/>!=<sp/>NULL);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>grid_-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Line<sp/>Style&quot;</highlight><highlight class="normal">)-&gt;setValue(</highlight><highlight class="stringliteral">&quot;Billboards&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>grid_-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Color&quot;</highlight><highlight class="normal">)-&gt;setValue(QColor(125,<sp/>125,<sp/>125));</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>添加地图显示</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>rviz::Display<sp/>*map_<sp/>=<sp/>manager_-&gt;createDisplay(</highlight><highlight class="stringliteral">&quot;rviz/Map&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;adjustable<sp/>map&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>map_-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Topic&quot;</highlight><highlight class="normal">)-&gt;setValue(</highlight><highlight class="stringliteral">&quot;/map&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>map_-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Alpha&quot;</highlight><highlight class="normal">)-&gt;setValue(</highlight><highlight class="stringliteral">&quot;0.7&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>map_-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Color<sp/>Scheme&quot;</highlight><highlight class="normal">)-&gt;setValue(</highlight><highlight class="stringliteral">&quot;map&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>添加激光扫描显示</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>rviz::Display<sp/>*laser_<sp/>=<sp/>manager_-&gt;createDisplay(</highlight><highlight class="stringliteral">&quot;rviz/LaserScan&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;QLaser&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>laser_-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Topic&quot;</highlight><highlight class="normal">)-&gt;setValue(</highlight><highlight class="stringliteral">&quot;/scan&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>添加机器人模型显示</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>rviz::Display<sp/>*rot<sp/>=<sp/>manager_-&gt;createDisplay(</highlight><highlight class="stringliteral">&quot;rviz/RobotModel&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;cobot&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>rot-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Visual<sp/>Enabled&quot;</highlight><highlight class="normal">)-&gt;setValue(</highlight><highlight class="stringliteral">&quot;true&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>rot-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Collision<sp/>Enabled&quot;</highlight><highlight class="normal">)-&gt;setValue(</highlight><highlight class="stringliteral">&quot;false&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>rot-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Robot<sp/>Description&quot;</highlight><highlight class="normal">)-&gt;setValue(</highlight><highlight class="stringliteral">&quot;robot_description&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>rot-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Alpha&quot;</highlight><highlight class="normal">)-&gt;setValue(</highlight><highlight class="stringliteral">&quot;1&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>添加点云显示</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>rviz::Display<sp/>*point_cloud_<sp/>=<sp/>manager_-&gt;createDisplay(</highlight><highlight class="stringliteral">&quot;rviz/PointCloud2&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;PointCloud2&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_ASSERT(point_cloud_<sp/>!=<sp/>NULL);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>point_cloud_-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Topic&quot;</highlight><highlight class="normal">)-&gt;setValue(</highlight><highlight class="stringliteral">&quot;/overall_map_cloud&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>point_cloud_-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Color<sp/>Transformer&quot;</highlight><highlight class="normal">)-&gt;setValue(</highlight><highlight class="stringliteral">&quot;Intensity&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>point_cloud_-&gt;subProp(</highlight><highlight class="stringliteral">&quot;Size<sp/>(Pixels)&quot;</highlight><highlight class="normal">)-&gt;setValue(3);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>启动显示更新</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>manager_-&gt;startUpdate();</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="QT_function_other/qrviz.cpp"/>
+  </compounddef>
+</doxygen>

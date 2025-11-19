@@ -1,0 +1,100 @@
+\doxysection{main.\+cpp}
+\hypertarget{main_8cpp_source}{}\label{main_8cpp_source}\index{QT\_function\_other/main.cpp@{QT\_function\_other/main.cpp}}
+\mbox{\hyperlink{main_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <QApplication>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}qrviz.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <QProcess>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <QtGui>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <QThread>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}qnode.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}widget.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}sql.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}form.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}settingwidget.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <catkin\_ws/devel/include/pipeline/HeaderInfo.h>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00041}\mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{00041}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[])}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00042}00042\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00043}00043\ \ \ \ \ QApplication\ app(argc,\ argv);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ 启动\ ROS\ 脚本}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00046}00046\ \ \ \ \ QProcess\ process;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00047}00047\ \ \ \ \ QString\ scriptPath\ =\ \textcolor{stringliteral}{"{}/home/ralab/Pipelineqt/Pipeline/mySrc/run\_topnx.sh"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ 连接标准输出和错误输出}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00050}00050\ \ \ \ \ QObject::connect(\&process,\ \&QProcess::readyReadStandardOutput,\ [\&]()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}脚本输出："{}}\ <<\ process.readAllStandardOutput();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00052}00052\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00053}00053\ \ \ \ \ QObject::connect(\&process,\ \&QProcess::readyReadStandardError,\ [\&]()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}脚本错误："{}}\ <<\ process.readAllStandardError();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00055}00055\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00057}00057\ \ \ \ \ process.start(\textcolor{stringliteral}{"{}sh"{}},\ QStringList()\ <<\ scriptPath);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{comment}{//\ 程序退出时终止\ ROS\ 脚本进程}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00060}00060\ \ \ \ \ QObject::connect(\&app,\ \&QCoreApplication::aboutToQuit,\ [\&]()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ QFile\ file(\textcolor{stringliteral}{"{}/tmp/roslaunch.pid"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.open(QIODevice::ReadOnly\ |\ QIODevice::Text))\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ qWarning()\ <<\ \textcolor{stringliteral}{"{}无法打开PID文件"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ QTextStream\ in(\&file);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ QString\ pidStr\ =\ in.readLine().trimmed();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ ok;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ pid\ =\ pidStr.toInt(\&ok);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ok)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ qWarning()\ <<\ \textcolor{stringliteral}{"{}PID无效"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ QProcess\ killProcess;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ QStringList\ args;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ args\ <<\ QString::number(pid);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ killProcess.start(\textcolor{stringliteral}{"{}kill"{}},\ args);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!killProcess.waitForFinished(5000))\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ qWarning()\ <<\ \textcolor{stringliteral}{"{}终止进程超时或出错"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (killProcess.exitCode()\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ qWarning()\ <<\ \textcolor{stringliteral}{"{}终止进程失败，错误码:"{}}\ <<\ killProcess.exitCode();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ args.prepend(\textcolor{stringliteral}{"{}-\/9"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ killProcess.start(\textcolor{stringliteral}{"{}kill"{}},\ args);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ killProcess.waitForFinished();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}进程终止成功"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00096}00096\ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00098}00098\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}wait\ to\ start..................."{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00099}00099\ \ \ \ \ QThread::sleep(6);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{comment}{//\ 初始化\ ROS\ 节点}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00102}00102\ \ \ \ \ ros::init(argc,\ argv,\textcolor{stringliteral}{"{}test\_rviz"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{comment}{//\ 创建\ Widget\ 主窗口}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00105}00105\ \ \ \ \ \mbox{\hyperlink{classWidget}{Widget}}\ *monitorWindow\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classWidget}{Widget}}(argc,\ argv);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{comment}{//\ 加载\ QSS\ 样式表}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00108}00108\ \ \ \ \ QFile\ file(\textcolor{stringliteral}{"{}:/mySrc/c.css"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{if}(file.open(QFile::ReadOnly))\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ QString\ styleSheet\ =\ QLatin1String(file.readAll());}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ app.setStyleSheet(styleSheet);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00113}00113\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Cannot\ open\ QSS\ file:"{}}\ <<\ file.errorString();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00115}00115\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00117}00117\ \ \ \ \ monitorWindow-\/>show();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00119}00119\ \ \ \ \ \textcolor{keywordflow}{return}\ app.exec();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00120}00120\ \}}
+
+\end{DoxyCode}

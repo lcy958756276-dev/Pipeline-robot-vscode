@@ -1,0 +1,354 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="modbus_8cpp" kind="file" language="C++">
+    <compoundname>modbus.cpp</compoundname>
+    <includes local="yes">modbus.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>QT_function_other/modbus.cpp</label>
+        <link refid="modbus_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>modbus.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="modbus_8cpp_1abf734b4d0e6b40314eb71b66181c0943" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void mod_init</definition>
+        <argsstring>()</argsstring>
+        <name>mod_init</name>
+        <briefdescription>
+<para>初始化 Modbus 串口并打开 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/modbus.cpp" line="29" column="6" bodyfile="QT_function_other/modbus.cpp" bodystart="29" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="modbus_8cpp_1a895e2bc72c83669f6b2c7b75c042bc37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Modbus_Send</definition>
+        <argsstring>(uint8_t *frame, uint16_t length)</argsstring>
+        <name>Modbus_Send</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>frame</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>发送 Modbus 指令帧 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>指令帧数据 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>指令长度 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/modbus.cpp" line="62" column="6" bodyfile="QT_function_other/modbus.cpp" bodystart="62" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="modbus_8cpp_1aadf14a1ba9d2a399bf147512f0ef8ca5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t Modbus_CRC16</definition>
+        <argsstring>(uint8_t *data, uint16_t length)</argsstring>
+        <name>Modbus_CRC16</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>计算 Modbus CRC16 校验 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>数据缓冲区 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>数据长度 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>uint16_t CRC16 校验值 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/modbus.cpp" line="81" column="10" bodyfile="QT_function_other/modbus.cpp" bodystart="81" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Modbus_Poll_6</definition>
+        <argsstring>()</argsstring>
+        <name>Modbus_Poll_6</name>
+        <briefdescription>
+<para>发送写单个寄存器的 Modbus 指令（功能码 0x06） </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/modbus.cpp" line="101" column="6" bodyfile="QT_function_other/modbus.cpp" bodystart="101" bodyend="117"/>
+        <references refid="modbus_8cpp_1aadf14a1ba9d2a399bf147512f0ef8ca5" compoundref="modbus_8cpp" startline="81" endline="96">Modbus_CRC16</references>
+        <references refid="modbus_8cpp_1a895e2bc72c83669f6b2c7b75c042bc37" compoundref="modbus_8cpp" startline="62" endline="73">Modbus_Send</references>
+      </memberdef>
+      <memberdef kind="function" id="modbus_8cpp_1a6038b3fc91c61785c1b0e71a1f70d50e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void autoLineBack</definition>
+        <argsstring>(int speed)</argsstring>
+        <name>autoLineBack</name>
+        <param>
+          <type>int</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+<para>自动后退指定扭矩 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>speed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>后退扭矩 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/modbus.cpp" line="123" column="6" bodyfile="QT_function_other/modbus.cpp" bodystart="123" bodyend="131"/>
+        <references refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" compoundref="modbus_8cpp" startline="101" endline="117">Modbus_Poll_6</references>
+      </memberdef>
+      <memberdef kind="function" id="modbus_8cpp_1a78ea7935a1234bb65299dfcc8bc57cfe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void autoLineForward</definition>
+        <argsstring>(int speed)</argsstring>
+        <name>autoLineForward</name>
+        <param>
+          <type>int</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+<para>自动前进指定扭矩 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>speed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>前进扭矩 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/modbus.cpp" line="137" column="6" bodyfile="QT_function_other/modbus.cpp" bodystart="137" bodyend="145"/>
+        <references refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" compoundref="modbus_8cpp" startline="101" endline="117">Modbus_Poll_6</references>
+      </memberdef>
+      <memberdef kind="function" id="modbus_8cpp_1a3ec0663c830825d138e32f37d1cd55be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void stopLine</definition>
+        <argsstring>()</argsstring>
+        <name>stopLine</name>
+        <briefdescription>
+<para>停止电机 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/modbus.cpp" line="150" column="6" bodyfile="QT_function_other/modbus.cpp" bodystart="150" bodyend="157"/>
+        <references refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" compoundref="modbus_8cpp" startline="101" endline="117">Modbus_Poll_6</references>
+      </memberdef>
+      <memberdef kind="function" id="modbus_8cpp_1a4635142492519174d5739be07d5bb276" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void disableLine</definition>
+        <argsstring>()</argsstring>
+        <name>disableLine</name>
+        <briefdescription>
+<para>禁用电机线路 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QT_function_other/modbus.cpp" line="162" column="6" bodyfile="QT_function_other/modbus.cpp" bodystart="162" bodyend="166"/>
+        <references refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" compoundref="modbus_8cpp" startline="101" endline="117">Modbus_Poll_6</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Modbus 通信类实现，用于通过串口控制下位机电机 </para>
+    </briefdescription>
+    <detaileddescription>
+<para>功能：<itemizedlist>
+<listitem><para>初始化串口参数</para>
+</listitem><listitem><para>发送 Modbus 指令（写单个寄存器、控制电机前进/后退/停止）</para>
+</listitem><listitem><para>计算 CRC16 校验</para>
+</listitem><listitem><para>提供自动前进、自动后退、停止和禁用线路功能 </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;modbus.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">modbus::modbus()<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setPortName(</highlight><highlight class="stringliteral">&quot;/dev/ttyTHS0&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setBaudRate(QSerialPort::Baud19200);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setDataBits(QSerialPort::Data8);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setParity(QSerialPort::NoParity);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setStopBits(QSerialPort::OneStop);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setFlowControl(QSerialPort::NoFlowControl);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="modbus_8cpp_1abf734b4d0e6b40314eb71b66181c0943" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="modbus_8cpp_1abf734b4d0e6b40314eb71b66181c0943" kindref="member">mod_init</ref>()</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setPortName(</highlight><highlight class="stringliteral">&quot;/dev/ttyTHS0&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setBaudRate(QSerialPort::Baud19200);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setDataBits(QSerialPort::Data8);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setParity(QSerialPort::NoParity);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setStopBits(QSerialPort::OneStop);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>serialPort.setFlowControl(QSerialPort::NoFlowControl);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(serialPort.open(QIODevice::ReadWrite))</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qDebug()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;串口打开成功&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qDebug()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;串口打开异常:&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>serialPort.errorString();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">modbus::~modbus()</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(serialPort.isOpen()){</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>serialPort.close();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="modbus_8cpp_1a895e2bc72c83669f6b2c7b75c042bc37" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="modbus_8cpp_1a895e2bc72c83669f6b2c7b75c042bc37" kindref="member">Modbus_Send</ref>(uint8_t<sp/>*frame,<sp/>uint16_t<sp/>length)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(serialPort.isOpen()<sp/>&amp;&amp;<sp/>serialPort.isWritable()){</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>length;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">char</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(frame[i]);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>serialPort.write(&amp;</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">,<sp/>1);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>serialPort.flush();</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qDebug()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Modbus<sp/>发送错误&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="modbus_8cpp_1aadf14a1ba9d2a399bf147512f0ef8ca5" refkind="member"><highlight class="normal">uint16_t<sp/><ref refid="modbus_8cpp_1aadf14a1ba9d2a399bf147512f0ef8ca5" kindref="member">Modbus_CRC16</ref>(uint8_t<sp/>*data,<sp/>uint16_t<sp/>length)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>crc<sp/>=<sp/>0xFFFF;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pos<sp/>=<sp/>0;<sp/>pos<sp/>&lt;<sp/>length;<sp/>pos++)<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>crc<sp/>^=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">uint16_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(data[pos]);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>8;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((crc<sp/>&amp;<sp/>0x0001)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>crc<sp/>&gt;&gt;=<sp/>1;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>crc<sp/>^=<sp/>0xA001;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>crc<sp/>&gt;&gt;=<sp/>1;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>crc;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" kindref="member">Modbus_Poll_6</ref>()</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>request[8];</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>crc;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>request[0]<sp/>=<sp/>0x01;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>request[1]<sp/>=<sp/>0x06;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>request[2]<sp/>=<sp/>TX_data[0];</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>request[3]<sp/>=<sp/>TX_data[1];</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>request[4]<sp/>=<sp/>TX_data[2];</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>request[5]<sp/>=<sp/>TX_data[3];</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>crc<sp/>=<sp/><ref refid="modbus_8cpp_1aadf14a1ba9d2a399bf147512f0ef8ca5" kindref="member">Modbus_CRC16</ref>(request,<sp/>6);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>request[6]<sp/>=<sp/>crc<sp/>&amp;<sp/>0xFF;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>request[7]<sp/>=<sp/>(crc<sp/>&gt;&gt;<sp/>8)<sp/>&amp;<sp/>0xFF;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="modbus_8cpp_1a895e2bc72c83669f6b2c7b75c042bc37" kindref="member">Modbus_Send</ref>(request,<sp/>8);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="modbus_8cpp_1a6038b3fc91c61785c1b0e71a1f70d50e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="modbus_8cpp_1a6038b3fc91c61785c1b0e71a1f70d50e" kindref="member">autoLineBack</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>speed)<sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>speed_temp<sp/>=<sp/>-speed;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>qDebug()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;启动后退&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>TX_data[0]=0x05;<sp/>TX_data[1]=0x14;<sp/>TX_data[2]=0x00;<sp/>TX_data[3]=0x10;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" kindref="member">Modbus_Poll_6</ref>();</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>QThread::msleep(500);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>TX_data[0]=0x03;<sp/>TX_data[1]=0x21;<sp/>TX_data[2]=(speed_temp<sp/>&gt;&gt;<sp/>8)<sp/>&amp;<sp/>0xFF;<sp/>TX_data[3]=speed_temp<sp/>&amp;<sp/>0xFF;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" kindref="member">Modbus_Poll_6</ref>();</highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137" refid="modbus_8cpp_1a78ea7935a1234bb65299dfcc8bc57cfe" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="modbus_8cpp_1a78ea7935a1234bb65299dfcc8bc57cfe" kindref="member">autoLineForward</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>speed)<sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>speed_temp<sp/>=<sp/>speed;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>qDebug()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;启动前进&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>TX_data[0]=0x05;<sp/>TX_data[1]=0x14;<sp/>TX_data[2]=0x00;<sp/>TX_data[3]=0x10;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" kindref="member">Modbus_Poll_6</ref>();</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>QThread::msleep(500);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>TX_data[0]=0x03;<sp/>TX_data[1]=0x21;<sp/>TX_data[2]=(speed_temp<sp/>&gt;&gt;<sp/>8)<sp/>&amp;<sp/>0xFF;<sp/>TX_data[3]=speed_temp<sp/>&amp;<sp/>0xFF;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" kindref="member">Modbus_Poll_6</ref>();</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="modbus_8cpp_1a3ec0663c830825d138e32f37d1cd55be" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="modbus_8cpp_1a3ec0663c830825d138e32f37d1cd55be" kindref="member">stopLine</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>qDebug()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;停止电机&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>TX_data[0]=0x03;<sp/>TX_data[1]=0x21;<sp/>TX_data[2]=0x00;<sp/>TX_data[3]=0x00;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" kindref="member">Modbus_Poll_6</ref>();</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>QThread::msleep(500);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>TX_data[0]=0x05;<sp/>TX_data[1]=0x14;<sp/>TX_data[2]=0x00;<sp/>TX_data[3]=0x00;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" kindref="member">Modbus_Poll_6</ref>();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="modbus_8cpp_1a4635142492519174d5739be07d5bb276" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="modbus_8cpp_1a4635142492519174d5739be07d5bb276" kindref="member">disableLine</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>qDebug()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;禁用电机&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>TX_data[0]=0x05;<sp/>TX_data[1]=0x14;<sp/>TX_data[2]=0x00;<sp/>TX_data[3]=0x00;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="modbus_8cpp_1a7b7a7eafc102f43c0d0110e00530208a" kindref="member">Modbus_Poll_6</ref>();</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="QT_function_other/modbus.cpp"/>
+  </compounddef>
+</doxygen>

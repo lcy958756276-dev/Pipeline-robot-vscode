@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['checktargetreached_0',['checkTargetReached',['../classWaypointFollower.html#a4fe8fa93ac086ef4411c120e7cca67d8',1,'WaypointFollower']]],
-  ['cloudcallback_1',['cloudCallback',['../overall__map_8cpp.html#ae555b00aee41d288cfc286fe5fdd2f61',1,'overall_map.cpp']]],
-  ['connecttoserver_2',['connecttoserver',['../lidarimudata_8cpp.html#a222c71617a07df6b5e5dedd3df7159c8',1,'connectToServer(const std::string &amp;ip, int port):&#160;lidarimudata.cpp'],['../three__yuannumber_8cpp.html#a222c71617a07df6b5e5dedd3df7159c8',1,'connectToServer(const std::string &amp;ip, int port):&#160;three_yuannumber.cpp']]],
-  ['correctyposition_3',['correctYPosition',['../classWaypointFollower.html#ae4775ce77917cc3056ce2de4e3d38d16',1,'WaypointFollower']]]
+  ['addframe_0',['addFrame',['../videorecorder_8cpp.html#a48e89040ea7f761c864c507f9a58be96',1,'videorecorder.cpp']]],
+  ['angle0_5fnsz_1',['angle0_NSZ',['../widget_8cpp.html#a1ff212362b1885beff8b9fe9755d5cbe',1,'widget.cpp']]],
+  ['angle0_5fssz_2',['angle0_SSZ',['../widget_8cpp.html#ad96f13ee907d060783d1e8238aaba1a7',1,'widget.cpp']]],
+  ['angle1_5fdown_3',['angle1_down',['../widget_8cpp.html#a6665df6f5f68a4459cca87df9c025c72',1,'widget.cpp']]],
+  ['angle1_5fup_4',['angle1_up',['../widget_8cpp.html#a33add4720b08f7729b14a787215f0b36',1,'widget.cpp']]],
+  ['autolineback_5',['autoLineBack',['../modbus_8cpp.html#a6038b3fc91c61785c1b0e71a1f70d50e',1,'modbus.cpp']]],
+  ['autolineforward_6',['autoLineForward',['../modbus_8cpp.html#a78ea7935a1234bb65299dfcc8bc57cfe',1,'modbus.cpp']]]
 ];

@@ -70,7 +70,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classWaypointPublisher-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">WaypointPublisher Class Reference</div></div>
@@ -80,11 +80,8 @@ $(function() {
 <p>中途目标点与最终目标点发布器  
  <a href="classWaypointPublisher.html#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:aade0e35d7818b8890d3d3035beef3fb2" id="r_aade0e35d7818b8890d3d3035beef3fb2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWaypointPublisher.html#aade0e35d7818b8890d3d3035beef3fb2">WaypointPublisher</a> ()</td></tr>
-<tr class="memdesc:aade0e35d7818b8890d3d3035beef3fb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数，初始化订阅者和发布者  <br /></td></tr>
-<tr class="separator:aade0e35d7818b8890d3d3035beef3fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
 <tr class="memitem:a2176c42b0a87e9144ea84e334f1b655a" id="r_a2176c42b0a87e9144ea84e334f1b655a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWaypointPublisher.html#a2176c42b0a87e9144ea84e334f1b655a">midgoalCallback</a> (const geometry_msgs::PoseStamped::ConstPtr &amp;msg)</td></tr>
 <tr class="memdesc:a2176c42b0a87e9144ea84e334f1b655a"><td class="mdescLeft">&#160;</td><td class="mdescRight">midgoal 回调函数  <br /></td></tr>
 <tr class="separator:a2176c42b0a87e9144ea84e334f1b655a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,6 +103,22 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:a2af5b0979da3f3ed7013aba811223e1c" id="r_a2af5b0979da3f3ed7013aba811223e1c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom">: <a class="el" href="classWaypointPublisher.html">WaypointPublisher</a>() { <a class="el" href="classWaypointPublisher.html#ad6b13041c5db15b9c98907f9b4ba3c20">waypoint_pub</a> = nh.advertise&lt;geometry_msgs::PoseStamped&gt;(&quot;waypoint&quot;</td></tr>
+<tr class="separator:a2af5b0979da3f3ed7013aba811223e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad62c3addd5585528b07fd761142c8360" id="r_ad62c3addd5585528b07fd761142c8360"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWaypointPublisher.html#ad62c3addd5585528b07fd761142c8360">auto_navigation_stop_pub</a> = nh.advertise&lt;std_msgs::Bool&gt;(&quot;/whether_auto_navigation&quot;, 10)</td></tr>
+<tr class="separator:ad62c3addd5585528b07fd761142c8360"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03e20938b3b219530b49c63fb71e939b" id="r_a03e20938b3b219530b49c63fb71e939b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWaypointPublisher.html#a03e20938b3b219530b49c63fb71e939b">midgoal_sub</a> = nh.subscribe(&quot;midgoal&quot;, 10, &amp;<a class="el" href="classWaypointPublisher.html#a2176c42b0a87e9144ea84e334f1b655a">WaypointPublisher::midgoalCallback</a>, this)</td></tr>
+<tr class="separator:a03e20938b3b219530b49c63fb71e939b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad483c835343654e16ce8b9a9d57f72ce" id="r_ad483c835343654e16ce8b9a9d57f72ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWaypointPublisher.html#ad483c835343654e16ce8b9a9d57f72ce">finalgoal_sub</a> = nh.subscribe(&quot;finalgoal&quot;, 10, &amp;<a class="el" href="classWaypointPublisher.html#acd043704f75fb8f8eb57826c7a3251ff">WaypointPublisher::finalgoalCallback</a>, this)</td></tr>
+<tr class="separator:ad483c835343654e16ce8b9a9d57f72ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1819f810216c3af4d386e07e228134f6" id="r_a1819f810216c3af4d386e07e228134f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWaypointPublisher.html#a1819f810216c3af4d386e07e228134f6">status_sub</a> = nh.subscribe(&quot;robot_status&quot;, 10, &amp;<a class="el" href="classWaypointPublisher.html#abeaceaac34b26aff80888ef49c470404">WaypointPublisher::statusCallback</a>, this)</td></tr>
+<tr class="separator:a1819f810216c3af4d386e07e228134f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37c2c975803810d0955fd832c45af1a1" id="r_a37c2c975803810d0955fd832c45af1a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWaypointPublisher.html#a37c2c975803810d0955fd832c45af1a1">odom_sub</a> = nh.subscribe(&quot;/cable/odom&quot;, 10, &amp;<a class="el" href="classWaypointPublisher.html#ab3ecb848d99f9b4b35bc37f7f5cba622">WaypointPublisher::odomCallback</a>, this)</td></tr>
+<tr class="separator:a37c2c975803810d0955fd832c45af1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcb50173101ebc84dafd76a7fe1da2d9" id="r_abcb50173101ebc84dafd76a7fe1da2d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classWaypointPublisher.html#a0019654df7d05ce712095254bb75c1ff">finalgoal</a> pose position&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWaypointPublisher.html#abcb50173101ebc84dafd76a7fe1da2d9">x</a> = std::numeric_limits&lt;float&gt;::max()</td></tr>
+<tr class="separator:abcb50173101ebc84dafd76a7fe1da2d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa4bd2bfba1f5417fffb5c78acacffaa" id="r_aaa4bd2bfba1f5417fffb5c78acacffaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classWaypointPublisher.html#aba542ec35b2b4bd320b7cde69080c3d9">pre_goal</a> pose position&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWaypointPublisher.html#aaa4bd2bfba1f5417fffb5c78acacffaa">x</a> = -1</td></tr>
+<tr class="separator:aaa4bd2bfba1f5417fffb5c78acacffaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61018f919145d4211b71cd6a5cb1ba8a" id="r_a61018f919145d4211b71cd6a5cb1ba8a"><td class="memItemLeft" align="right" valign="top">ros::NodeHandle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWaypointPublisher.html#a61018f919145d4211b71cd6a5cb1ba8a">nh</a></td></tr>
 <tr class="memdesc:a61018f919145d4211b71cd6a5cb1ba8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS 节点句柄  <br /></td></tr>
 <tr class="separator:a61018f919145d4211b71cd6a5cb1ba8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,70 +180,7 @@ Private Attributes</h2></td></tr>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="WaypointPublisher_8cpp_source.html#l00030">30</a> of file <a class="el" href="WaypointPublisher_8cpp_source.html">WaypointPublisher.cpp</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aade0e35d7818b8890d3d3035beef3fb2" name="aade0e35d7818b8890d3d3035beef3fb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aade0e35d7818b8890d3d3035beef3fb2">&#9670;&#160;</a></span>WaypointPublisher()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">WaypointPublisher::WaypointPublisher </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>构造函数，初始化订阅者和发布者 </p>
-<p>初始化发布者：</p><ul>
-<li>waypoint: 发布机器人当前目标点</li>
-<li>/whether_auto_navigation: 发布自动导航停止信号</li>
-</ul>
-<p>初始化订阅者：</p><ul>
-<li>midgoal: 中途目标点</li>
-<li>finalgoal: 最终目标点</li>
-<li>robot_status: 机器人是否到达目标点</li>
-<li>/cable/odom: 获取机器人当前位置 </li>
-</ul>
-
-<p class="definition">Definition at line <a class="el" href="WaypointPublisher_8cpp_source.html#l00046">46</a> of file <a class="el" href="WaypointPublisher_8cpp_source.html">WaypointPublisher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   47</span>    {</div>
-<div class="line"><span class="lineno">   48</span>        <a class="code hl_variable" href="classWaypointPublisher.html#ad6b13041c5db15b9c98907f9b4ba3c20">waypoint_pub</a> = <a class="code hl_variable" href="classWaypointPublisher.html#a61018f919145d4211b71cd6a5cb1ba8a">nh</a>.advertise&lt;geometry_msgs::PoseStamped&gt;(<span class="stringliteral">&quot;waypoint&quot;</span>, 10);</div>
-<div class="line"><span class="lineno">   49</span>        <a class="code hl_variable" href="classWaypointPublisher.html#a47885b59e7318b53b3b2082654e90560">auto_navigation_stop_pub</a> = <a class="code hl_variable" href="classWaypointPublisher.html#a61018f919145d4211b71cd6a5cb1ba8a">nh</a>.advertise&lt;std_msgs::Bool&gt;(<span class="stringliteral">&quot;/whether_auto_navigation&quot;</span>, 10);</div>
-<div class="line"><span class="lineno">   50</span>        <a class="code hl_variable" href="classWaypointPublisher.html#a087009cba8fbe8e994931e282008b4a2">midgoal_sub</a> = <a class="code hl_variable" href="classWaypointPublisher.html#a61018f919145d4211b71cd6a5cb1ba8a">nh</a>.subscribe(<span class="stringliteral">&quot;midgoal&quot;</span>, 10, &amp;<a class="code hl_function" href="classWaypointPublisher.html#a2176c42b0a87e9144ea84e334f1b655a">WaypointPublisher::midgoalCallback</a>, <span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   51</span>        <a class="code hl_variable" href="classWaypointPublisher.html#aaf87298f88a3ecbc9a913c07bac58b54">finalgoal_sub</a> = <a class="code hl_variable" href="classWaypointPublisher.html#a61018f919145d4211b71cd6a5cb1ba8a">nh</a>.subscribe(<span class="stringliteral">&quot;finalgoal&quot;</span>, 10, &amp;<a class="code hl_function" href="classWaypointPublisher.html#acd043704f75fb8f8eb57826c7a3251ff">WaypointPublisher::finalgoalCallback</a>, <span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   52</span>        <a class="code hl_variable" href="classWaypointPublisher.html#ae607b30dfd6060d57255e9b4ef780a0b">status_sub</a> = <a class="code hl_variable" href="classWaypointPublisher.html#a61018f919145d4211b71cd6a5cb1ba8a">nh</a>.subscribe(<span class="stringliteral">&quot;robot_status&quot;</span>, 10, &amp;<a class="code hl_function" href="classWaypointPublisher.html#abeaceaac34b26aff80888ef49c470404">WaypointPublisher::statusCallback</a>, <span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   53</span>        <a class="code hl_variable" href="classWaypointPublisher.html#a024fcc12ff98892facd5e28c5ca703f9">odom_sub</a> = <a class="code hl_variable" href="classWaypointPublisher.html#a61018f919145d4211b71cd6a5cb1ba8a">nh</a>.subscribe(<span class="stringliteral">&quot;/cable/odom&quot;</span>, 10, &amp;<a class="code hl_function" href="classWaypointPublisher.html#ab3ecb848d99f9b4b35bc37f7f5cba622">WaypointPublisher::odomCallback</a>, <span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   54</span>        <a class="code hl_variable" href="classWaypointPublisher.html#a0019654df7d05ce712095254bb75c1ff">finalgoal</a>.pose.position.x = std::numeric_limits&lt;float&gt;::max();</div>
-<div class="line"><span class="lineno">   55</span>        <a class="code hl_variable" href="classWaypointPublisher.html#aba542ec35b2b4bd320b7cde69080c3d9">pre_goal</a>.pose.position.x = -1;</div>
-<div class="line"><span class="lineno">   56</span>    }</div>
-<div class="ttc" id="aclassWaypointPublisher_html_a0019654df7d05ce712095254bb75c1ff"><div class="ttname"><a href="classWaypointPublisher.html#a0019654df7d05ce712095254bb75c1ff">WaypointPublisher::finalgoal</a></div><div class="ttdeci">geometry_msgs::PoseStamped finalgoal</div><div class="ttdoc">最终目标点</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00261">WaypointPublisher.cpp:261</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_a024fcc12ff98892facd5e28c5ca703f9"><div class="ttname"><a href="classWaypointPublisher.html#a024fcc12ff98892facd5e28c5ca703f9">WaypointPublisher::odom_sub</a></div><div class="ttdeci">ros::Subscriber odom_sub</div><div class="ttdoc">订阅中途目标、最终目标和 odom</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00257">WaypointPublisher.cpp:257</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_a087009cba8fbe8e994931e282008b4a2"><div class="ttname"><a href="classWaypointPublisher.html#a087009cba8fbe8e994931e282008b4a2">WaypointPublisher::midgoal_sub</a></div><div class="ttdeci">ros::Subscriber midgoal_sub</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00257">WaypointPublisher.cpp:257</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_a2176c42b0a87e9144ea84e334f1b655a"><div class="ttname"><a href="classWaypointPublisher.html#a2176c42b0a87e9144ea84e334f1b655a">WaypointPublisher::midgoalCallback</a></div><div class="ttdeci">void midgoalCallback(const geometry_msgs::PoseStamped::ConstPtr &amp;msg)</div><div class="ttdoc">midgoal 回调函数</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00066">WaypointPublisher.cpp:66</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_a47885b59e7318b53b3b2082654e90560"><div class="ttname"><a href="classWaypointPublisher.html#a47885b59e7318b53b3b2082654e90560">WaypointPublisher::auto_navigation_stop_pub</a></div><div class="ttdeci">ros::Publisher auto_navigation_stop_pub</div><div class="ttdoc">发布 waypoint 和自动导航停止信号</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00256">WaypointPublisher.cpp:256</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_a61018f919145d4211b71cd6a5cb1ba8a"><div class="ttname"><a href="classWaypointPublisher.html#a61018f919145d4211b71cd6a5cb1ba8a">WaypointPublisher::nh</a></div><div class="ttdeci">ros::NodeHandle nh</div><div class="ttdoc">ROS 节点句柄</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00255">WaypointPublisher.cpp:255</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_aaf87298f88a3ecbc9a913c07bac58b54"><div class="ttname"><a href="classWaypointPublisher.html#aaf87298f88a3ecbc9a913c07bac58b54">WaypointPublisher::finalgoal_sub</a></div><div class="ttdeci">ros::Subscriber finalgoal_sub</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00257">WaypointPublisher.cpp:257</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_ab3ecb848d99f9b4b35bc37f7f5cba622"><div class="ttname"><a href="classWaypointPublisher.html#ab3ecb848d99f9b4b35bc37f7f5cba622">WaypointPublisher::odomCallback</a></div><div class="ttdeci">void odomCallback(const nav_msgs::Odometry::ConstPtr &amp;msg)</div><div class="ttdoc">odom 回调函数</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00109">WaypointPublisher.cpp:109</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_aba542ec35b2b4bd320b7cde69080c3d9"><div class="ttname"><a href="classWaypointPublisher.html#aba542ec35b2b4bd320b7cde69080c3d9">WaypointPublisher::pre_goal</a></div><div class="ttdeci">geometry_msgs::PoseStamped pre_goal</div><div class="ttdoc">上一个目标点</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00262">WaypointPublisher.cpp:262</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_abeaceaac34b26aff80888ef49c470404"><div class="ttname"><a href="classWaypointPublisher.html#abeaceaac34b26aff80888ef49c470404">WaypointPublisher::statusCallback</a></div><div class="ttdeci">void statusCallback(const std_msgs::Bool::ConstPtr &amp;msg)</div><div class="ttdoc">状态回调函数</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00242">WaypointPublisher.cpp:242</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_acd043704f75fb8f8eb57826c7a3251ff"><div class="ttname"><a href="classWaypointPublisher.html#acd043704f75fb8f8eb57826c7a3251ff">WaypointPublisher::finalgoalCallback</a></div><div class="ttdeci">void finalgoalCallback(const geometry_msgs::PoseStamped::ConstPtr &amp;msg)</div><div class="ttdoc">finalgoal 回调函数</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00136">WaypointPublisher.cpp:136</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_ad6b13041c5db15b9c98907f9b4ba3c20"><div class="ttname"><a href="classWaypointPublisher.html#ad6b13041c5db15b9c98907f9b4ba3c20">WaypointPublisher::waypoint_pub</a></div><div class="ttdeci">ros::Publisher waypoint_pub</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00256">WaypointPublisher.cpp:256</a></div></div>
-<div class="ttc" id="aclassWaypointPublisher_html_ae607b30dfd6060d57255e9b4ef780a0b"><div class="ttname"><a href="classWaypointPublisher.html#ae607b30dfd6060d57255e9b4ef780a0b">WaypointPublisher::status_sub</a></div><div class="ttdeci">ros::Subscriber status_sub</div><div class="ttdoc">订阅机器人状态</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00258">WaypointPublisher.cpp:258</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="acd043704f75fb8f8eb57826c7a3251ff" name="acd043704f75fb8f8eb57826c7a3251ff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd043704f75fb8f8eb57826c7a3251ff">&#9670;&#160;</a></span>finalgoalCallback()</h2>
 
@@ -250,7 +200,7 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -284,9 +234,14 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  149</span>        }</div>
 <div class="line"><span class="lineno">  150</span>        <a class="code hl_variable" href="classWaypointPublisher.html#afa16a43e6d8b4c306089109bf71715a0">finalinital</a> = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  151</span>    }</div>
+<div class="ttc" id="aclassWaypointPublisher_html_a0019654df7d05ce712095254bb75c1ff"><div class="ttname"><a href="classWaypointPublisher.html#a0019654df7d05ce712095254bb75c1ff">WaypointPublisher::finalgoal</a></div><div class="ttdeci">geometry_msgs::PoseStamped finalgoal</div><div class="ttdoc">最终目标点</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00261">WaypointPublisher.cpp:261</a></div></div>
 <div class="ttc" id="aclassWaypointPublisher_html_a73056696f4260f559e796ea1ec11806d"><div class="ttname"><a href="classWaypointPublisher.html#a73056696f4260f559e796ea1ec11806d">WaypointPublisher::finalgoal_received</a></div><div class="ttdeci">bool finalgoal_received</div><div class="ttdoc">是否接收到最终目标</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00265">WaypointPublisher.cpp:265</a></div></div>
+<div class="ttc" id="aclassWaypointPublisher_html_aba542ec35b2b4bd320b7cde69080c3d9"><div class="ttname"><a href="classWaypointPublisher.html#aba542ec35b2b4bd320b7cde69080c3d9">WaypointPublisher::pre_goal</a></div><div class="ttdeci">geometry_msgs::PoseStamped pre_goal</div><div class="ttdoc">上一个目标点</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00262">WaypointPublisher.cpp:262</a></div></div>
+<div class="ttc" id="aclassWaypointPublisher_html_ad6b13041c5db15b9c98907f9b4ba3c20"><div class="ttname"><a href="classWaypointPublisher.html#ad6b13041c5db15b9c98907f9b4ba3c20">WaypointPublisher::waypoint_pub</a></div><div class="ttdeci">ros::Publisher waypoint_pub</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00256">WaypointPublisher.cpp:256</a></div></div>
 <div class="ttc" id="aclassWaypointPublisher_html_afa16a43e6d8b4c306089109bf71715a0"><div class="ttname"><a href="classWaypointPublisher.html#afa16a43e6d8b4c306089109bf71715a0">WaypointPublisher::finalinital</a></div><div class="ttdeci">bool finalinital</div><div class="ttdoc">是否最终目标初始化</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00269">WaypointPublisher.cpp:269</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="WaypointPublisher_8cpp_source.html#l00261">finalgoal</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00265">finalgoal_received</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00269">finalinital</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00262">pre_goal</a>, and <a class="el" href="WaypointPublisher_8cpp_source.html#l00256">waypoint_pub</a>.</p>
+
 </div>
 </div>
 <a id="a2176c42b0a87e9144ea84e334f1b655a" name="a2176c42b0a87e9144ea84e334f1b655a"></a>
@@ -308,7 +263,7 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -332,6 +287,8 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   70</span>    }</div>
 <div class="ttc" id="aclassWaypointPublisher_html_ae986643ecd10fa38723e962950d48e96"><div class="ttname"><a href="classWaypointPublisher.html#ae986643ecd10fa38723e962950d48e96">WaypointPublisher::midgoals</a></div><div class="ttdeci">std::queue&lt; geometry_msgs::PoseStamped &gt; midgoals</div><div class="ttdoc">中途目标队列</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00259">WaypointPublisher.cpp:259</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="WaypointPublisher_8cpp_source.html#l00259">midgoals</a>.</p>
+
 </div>
 </div>
 <a id="ab3ecb848d99f9b4b35bc37f7f5cba622" name="ab3ecb848d99f9b4b35bc37f7f5cba622"></a>
@@ -353,7 +310,7 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -380,7 +337,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  115</span>            std_msgs::Bool msg;</div>
 <div class="line"><span class="lineno">  116</span>            msg.data = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  117</span>            <a class="code hl_variable" href="classWaypointPublisher.html#afa16a43e6d8b4c306089109bf71715a0">finalinital</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  118</span>            <a class="code hl_variable" href="classWaypointPublisher.html#a47885b59e7318b53b3b2082654e90560">auto_navigation_stop_pub</a>.publish(msg);</div>
+<div class="line"><span class="lineno">  118</span>            <a class="code hl_variable" href="classWaypointPublisher.html#ad62c3addd5585528b07fd761142c8360">auto_navigation_stop_pub</a>.publish(msg);</div>
 <div class="line"><span class="lineno">  119</span>            <a class="code hl_variable" href="classWaypointPublisher.html#a0888ce7b8f0cfa2ccc6fd51ec65f49e6">finalgoal_reached</a> = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  120</span>        }</div>
 <div class="line"><span class="lineno">  121</span>        <span class="keywordflow">else</span></div>
@@ -391,7 +348,10 @@ Private Attributes</h2></td></tr>
 <div class="ttc" id="aclassWaypointPublisher_html_a0888ce7b8f0cfa2ccc6fd51ec65f49e6"><div class="ttname"><a href="classWaypointPublisher.html#a0888ce7b8f0cfa2ccc6fd51ec65f49e6">WaypointPublisher::finalgoal_reached</a></div><div class="ttdeci">bool finalgoal_reached</div><div class="ttdoc">是否到达最终目标</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00267">WaypointPublisher.cpp:267</a></div></div>
 <div class="ttc" id="aclassWaypointPublisher_html_a0b4c87fc988b12c3bb480b9898916394"><div class="ttname"><a href="classWaypointPublisher.html#a0b4c87fc988b12c3bb480b9898916394">WaypointPublisher::current_status</a></div><div class="ttdeci">double current_status</div><div class="ttdoc">当前机器人位置和速度</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00264">WaypointPublisher.cpp:264</a></div></div>
 <div class="ttc" id="aclassWaypointPublisher_html_a2edee68f60a0e465b7646f95ced1d121"><div class="ttname"><a href="classWaypointPublisher.html#a2edee68f60a0e465b7646f95ced1d121">WaypointPublisher::current_position</a></div><div class="ttdeci">double current_position</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00264">WaypointPublisher.cpp:264</a></div></div>
+<div class="ttc" id="aclassWaypointPublisher_html_ad62c3addd5585528b07fd761142c8360"><div class="ttname"><a href="classWaypointPublisher.html#ad62c3addd5585528b07fd761142c8360">WaypointPublisher::auto_navigation_stop_pub</a></div><div class="ttdeci">auto_navigation_stop_pub</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00049">WaypointPublisher.cpp:49</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="WaypointPublisher_8cpp_source.html#l00049">auto_navigation_stop_pub</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00264">current_position</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00264">current_status</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00261">finalgoal</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00267">finalgoal_reached</a>, and <a class="el" href="WaypointPublisher_8cpp_source.html#l00269">finalinital</a>.</p>
+
 </div>
 </div>
 <a id="adf1c93f6db23215a13c59819a1b3dbc6" name="adf1c93f6db23215a13c59819a1b3dbc6"></a>
@@ -412,7 +372,7 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -502,6 +462,8 @@ Private Attributes</h2></td></tr>
 <div class="ttc" id="aclassWaypointPublisher_html_ae281f0d4ec699816476b4ffc860a81ca"><div class="ttname"><a href="classWaypointPublisher.html#ae281f0d4ec699816476b4ffc860a81ca">WaypointPublisher::queueSort</a></div><div class="ttdeci">std::queue&lt; geometry_msgs::PoseStamped &gt; queueSort(std::queue&lt; geometry_msgs::PoseStamped &gt; &amp;msgQueue)</div><div class="ttdoc">将队列中的 PoseStamped 按 X 坐标升序排序</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00077">WaypointPublisher.cpp:77</a></div></div>
 <div class="ttc" id="aclassWaypointPublisher_html_af737270bf8d77a1a7d822efd81fb1ea1"><div class="ttname"><a href="classWaypointPublisher.html#af737270bf8d77a1a7d822efd81fb1ea1">WaypointPublisher::current_goal</a></div><div class="ttdeci">geometry_msgs::PoseStamped current_goal</div><div class="ttdoc">当前目标点</div><div class="ttdef"><b>Definition</b> <a href="WaypointPublisher_8cpp_source.html#l00260">WaypointPublisher.cpp:260</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="WaypointPublisher_8cpp_source.html#l00260">current_goal</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00264">current_position</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00261">finalgoal</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00265">finalgoal_received</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00266">goal_reached</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00259">midgoals</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00268">midinital</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00262">pre_goal</a>, <a class="el" href="WaypointPublisher_8cpp_source.html#l00077">queueSort()</a>, and <a class="el" href="WaypointPublisher_8cpp_source.html#l00256">waypoint_pub</a>.</p>
+
 </div>
 </div>
 <a id="ae281f0d4ec699816476b4ffc860a81ca" name="ae281f0d4ec699816476b4ffc860a81ca"></a>
@@ -523,7 +485,7 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -581,7 +543,7 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -609,11 +571,61 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  251</span>        }</div>
 <div class="line"><span class="lineno">  252</span>    }</div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="WaypointPublisher_8cpp_source.html#l00266">goal_reached</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a2af5b0979da3f3ed7013aba811223e1c" name="a2af5b0979da3f3ed7013aba811223e1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af5b0979da3f3ed7013aba811223e1c">&#9670;&#160;</a></span>__pad0__</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WaypointPublisher::__pad0__</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="WaypointPublisher_8cpp_source.html#l00283">283</a> of file <a class="el" href="WaypointPublisher_8cpp_source.html">WaypointPublisher.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad62c3addd5585528b07fd761142c8360" name="ad62c3addd5585528b07fd761142c8360"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad62c3addd5585528b07fd761142c8360">&#9670;&#160;</a></span>auto_navigation_stop_pub <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WaypointPublisher::auto_navigation_stop_pub = nh.advertise&lt;std_msgs::Bool&gt;(&quot;/whether_auto_navigation&quot;, 10)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="WaypointPublisher_8cpp_source.html#l00049">49</a> of file <a class="el" href="WaypointPublisher_8cpp_source.html">WaypointPublisher.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a47885b59e7318b53b3b2082654e90560" name="a47885b59e7318b53b3b2082654e90560"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47885b59e7318b53b3b2082654e90560">&#9670;&#160;</a></span>auto_navigation_stop_pub</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a47885b59e7318b53b3b2082654e90560">&#9670;&#160;</a></span>auto_navigation_stop_pub <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -792,8 +804,32 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ad483c835343654e16ce8b9a9d57f72ce" name="ad483c835343654e16ce8b9a9d57f72ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad483c835343654e16ce8b9a9d57f72ce">&#9670;&#160;</a></span>finalgoal_sub <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WaypointPublisher::finalgoal_sub = nh.subscribe(&quot;finalgoal&quot;, 10, &amp;<a class="el" href="classWaypointPublisher.html#acd043704f75fb8f8eb57826c7a3251ff">WaypointPublisher::finalgoalCallback</a>, this)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="WaypointPublisher_8cpp_source.html#l00051">51</a> of file <a class="el" href="WaypointPublisher_8cpp_source.html">WaypointPublisher.cpp</a>.</p>
+
+</div>
+</div>
 <a id="aaf87298f88a3ecbc9a913c07bac58b54" name="aaf87298f88a3ecbc9a913c07bac58b54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf87298f88a3ecbc9a913c07bac58b54">&#9670;&#160;</a></span>finalgoal_sub</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf87298f88a3ecbc9a913c07bac58b54">&#9670;&#160;</a></span>finalgoal_sub <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -868,8 +904,32 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a03e20938b3b219530b49c63fb71e939b" name="a03e20938b3b219530b49c63fb71e939b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03e20938b3b219530b49c63fb71e939b">&#9670;&#160;</a></span>midgoal_sub <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WaypointPublisher::midgoal_sub = nh.subscribe(&quot;midgoal&quot;, 10, &amp;<a class="el" href="classWaypointPublisher.html#a2176c42b0a87e9144ea84e334f1b655a">WaypointPublisher::midgoalCallback</a>, this)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="WaypointPublisher_8cpp_source.html#l00050">50</a> of file <a class="el" href="WaypointPublisher_8cpp_source.html">WaypointPublisher.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a087009cba8fbe8e994931e282008b4a2" name="a087009cba8fbe8e994931e282008b4a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a087009cba8fbe8e994931e282008b4a2">&#9670;&#160;</a></span>midgoal_sub</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a087009cba8fbe8e994931e282008b4a2">&#9670;&#160;</a></span>midgoal_sub <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -970,8 +1030,32 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a37c2c975803810d0955fd832c45af1a1" name="a37c2c975803810d0955fd832c45af1a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37c2c975803810d0955fd832c45af1a1">&#9670;&#160;</a></span>odom_sub <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WaypointPublisher::odom_sub = nh.subscribe(&quot;/cable/odom&quot;, 10, &amp;<a class="el" href="classWaypointPublisher.html#ab3ecb848d99f9b4b35bc37f7f5cba622">WaypointPublisher::odomCallback</a>, this)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="WaypointPublisher_8cpp_source.html#l00053">53</a> of file <a class="el" href="WaypointPublisher_8cpp_source.html">WaypointPublisher.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a024fcc12ff98892facd5e28c5ca703f9" name="a024fcc12ff98892facd5e28c5ca703f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a024fcc12ff98892facd5e28c5ca703f9">&#9670;&#160;</a></span>odom_sub</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a024fcc12ff98892facd5e28c5ca703f9">&#9670;&#160;</a></span>odom_sub <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1022,8 +1106,32 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a1819f810216c3af4d386e07e228134f6" name="a1819f810216c3af4d386e07e228134f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1819f810216c3af4d386e07e228134f6">&#9670;&#160;</a></span>status_sub <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WaypointPublisher::status_sub = nh.subscribe(&quot;robot_status&quot;, 10, &amp;<a class="el" href="classWaypointPublisher.html#abeaceaac34b26aff80888ef49c470404">WaypointPublisher::statusCallback</a>, this)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="WaypointPublisher_8cpp_source.html#l00052">52</a> of file <a class="el" href="WaypointPublisher_8cpp_source.html">WaypointPublisher.cpp</a>.</p>
+
+</div>
+</div>
 <a id="ae607b30dfd6060d57255e9b4ef780a0b" name="ae607b30dfd6060d57255e9b4ef780a0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae607b30dfd6060d57255e9b4ef780a0b">&#9670;&#160;</a></span>status_sub</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae607b30dfd6060d57255e9b4ef780a0b">&#9670;&#160;</a></span>status_sub <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1069,6 +1177,54 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="WaypointPublisher_8cpp_source.html#l00256">256</a> of file <a class="el" href="WaypointPublisher_8cpp_source.html">WaypointPublisher.cpp</a>.</p>
+
+</div>
+</div>
+<a id="abcb50173101ebc84dafd76a7fe1da2d9" name="abcb50173101ebc84dafd76a7fe1da2d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcb50173101ebc84dafd76a7fe1da2d9">&#9670;&#160;</a></span>x <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classWaypointPublisher.html#a0019654df7d05ce712095254bb75c1ff">finalgoal</a> pose position WaypointPublisher::x = std::numeric_limits&lt;float&gt;::max()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="WaypointPublisher_8cpp_source.html#l00054">54</a> of file <a class="el" href="WaypointPublisher_8cpp_source.html">WaypointPublisher.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aaa4bd2bfba1f5417fffb5c78acacffaa" name="aaa4bd2bfba1f5417fffb5c78acacffaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa4bd2bfba1f5417fffb5c78acacffaa">&#9670;&#160;</a></span>x <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classWaypointPublisher.html#aba542ec35b2b4bd320b7cde69080c3d9">pre_goal</a> pose position WaypointPublisher::x = -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="WaypointPublisher_8cpp_source.html#l00055">55</a> of file <a class="el" href="WaypointPublisher_8cpp_source.html">WaypointPublisher.cpp</a>.</p>
 
 </div>
 </div>

@@ -1,0 +1,331 @@
+\doxysection{QT\+\_\+function\+\_\+other/rtspdecoder.cpp File Reference}
+\hypertarget{rtspdecoder_8cpp}{}\label{rtspdecoder_8cpp}\index{QT\_function\_other/rtspdecoder.cpp@{QT\_function\_other/rtspdecoder.cpp}}
+
+
+RTSP 视频流解码类，基于 FFmpeg，实现 QThread 异步解码  
+
+
+{\ttfamily \#include "{}rtspdecoder.\+h"{}}\newline
+{\ttfamily \#include $<$QDebug$>$}\newline
+{\ttfamily \#include $<$libavcodec/avcodec.\+h$>$}\newline
+{\ttfamily \#include $<$libavformat/avformat.\+h$>$}\newline
+{\ttfamily \#include $<$libavutil/imgutils.\+h$>$}\newline
+{\ttfamily \#include $<$libswscale/swscale.\+h$>$}\newline
+Include dependency graph for rtspdecoder.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rtspdecoder_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{rtspdecoder_8cpp_ac47d701a82f51b95eda1062eff0c0711}{Rtsp\+Decoder}} (QObject \texorpdfstring{$\ast$}{*}parent)
+\begin{DoxyCompactList}\small\item\em 构造函数，初始化线程对象 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{rtspdecoder_8cpp_a6532ae7e840a3ff2b350ed939342f1fc}{\texorpdfstring{$\sim$}{\string~}\+Rtsp\+Decoder}} ()
+\begin{DoxyCompactList}\small\item\em 析构函数，安全停止线程并释放资源 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtspdecoder_8cpp_a623ed2d0fdb8f1dfbabe8e890143868b}{set\+Url}} (const QString \&url)
+\begin{DoxyCompactList}\small\item\em 设置 RTSP URL \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtspdecoder_8cpp_a13a43e6d814de94978c515cb084873b1}{run}} ()
+\begin{DoxyCompactList}\small\item\em QThread 线程入口函数 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{rtspdecoder_8cpp_a6a0a80084c1b994a7bba6c8c37b95400}{init\+FFmpeg}} ()
+\begin{DoxyCompactList}\small\item\em 初始化 FFmpeg，打开 RTSP 流并准备解码器 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtspdecoder_8cpp_a4b66d5e31b5dc18b314c8a68163263bd}{cleanup}} ()
+\begin{DoxyCompactList}\small\item\em 释放 FFmpeg 相关资源 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RTSP 视频流解码类，基于 FFmpeg，实现 QThread 异步解码 
+
+功能：
+\begin{DoxyItemize}
+\item 连接 RTSP 视频流
+\item 使用 FFmpeg 解码 H.\+264/H.265 视频
+\item 转换为 QImage 并通过信号发送到 UI
+\item 自动重连功能 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{rtspdecoder_8cpp_source}{rtspdecoder.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{rtspdecoder_8cpp_a4b66d5e31b5dc18b314c8a68163263bd}\label{rtspdecoder_8cpp_a4b66d5e31b5dc18b314c8a68163263bd} 
+\index{rtspdecoder.cpp@{rtspdecoder.cpp}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!rtspdecoder.cpp@{rtspdecoder.cpp}}
+\doxysubsubsection{\texorpdfstring{cleanup()}{cleanup()}}
+{\footnotesize\ttfamily void cleanup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+释放 FFmpeg 相关资源 
+
+包括 SWS 转换器、解码器上下文和输入流。 
+
+Definition at line \mbox{\hyperlink{rtspdecoder_8cpp_source_l00180}{180}} of file \mbox{\hyperlink{rtspdecoder_8cpp_source}{rtspdecoder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordflow}{if}(sws\_ctx\_)\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ sws\_freeContext(sws\_ctx\_);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ sws\_ctx\_\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{if}(codec\_ctx\_)\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ avcodec\_close(codec\_ctx\_);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ avcodec\_free\_context(\&codec\_ctx\_);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ codec\_ctx\_\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{if}(fmt\_ctx\_)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ avformat\_close\_input(\&fmt\_ctx\_);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ fmt\_ctx\_\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ avformat\_network\_deinit();}
+\DoxyCodeLine{00198\ \}}
+
+\end{DoxyCode}
+\Hypertarget{rtspdecoder_8cpp_a6a0a80084c1b994a7bba6c8c37b95400}\label{rtspdecoder_8cpp_a6a0a80084c1b994a7bba6c8c37b95400} 
+\index{rtspdecoder.cpp@{rtspdecoder.cpp}!initFFmpeg@{initFFmpeg}}
+\index{initFFmpeg@{initFFmpeg}!rtspdecoder.cpp@{rtspdecoder.cpp}}
+\doxysubsubsection{\texorpdfstring{initFFmpeg()}{initFFmpeg()}}
+{\footnotesize\ttfamily bool init\+FFmpeg (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+初始化 FFmpeg，打开 RTSP 流并准备解码器 
+
+\begin{DoxyReturn}{Returns}
+成功返回 true，失败返回 false 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{rtspdecoder_8cpp_source_l00127}{127}} of file \mbox{\hyperlink{rtspdecoder_8cpp_source}{rtspdecoder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{rtspdecoder_8cpp_a4b66d5e31b5dc18b314c8a68163263bd}{cleanup}}();}
+\DoxyCodeLine{00129\ \ \ \ \ avformat\_network\_init();}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ AVDictionary\ *opts\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00132\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}stimeout"{}},\ \textcolor{stringliteral}{"{}5000000"{}},\ 0);}
+\DoxyCodeLine{00133\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}max\_delay"{}},\ \textcolor{stringliteral}{"{}500000"{}},\ 0);}
+\DoxyCodeLine{00134\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}rtsp\_transport"{}},\ \textcolor{stringliteral}{"{}tcp"{}},\ 0);}
+\DoxyCodeLine{00135\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}fflags"{}},\ \textcolor{stringliteral}{"{}nobuffer"{}},\ 0);}
+\DoxyCodeLine{00136\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}flags"{}},\ \textcolor{stringliteral}{"{}low\_delay"{}},\ 0);}
+\DoxyCodeLine{00137\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}analyzeduration"{}},\ \textcolor{stringliteral}{"{}450000"{}},\ 0);}
+\DoxyCodeLine{00138\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}probesize"{}},\ \textcolor{stringliteral}{"{}96"{}},\ 0);}
+\DoxyCodeLine{00139\ \ \ \ \ av\_dict\_set(\&opts,\ \textcolor{stringliteral}{"{}infbuf"{}},\ \textcolor{stringliteral}{"{}1"{}},\ 0);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{if}(avformat\_open\_input(\&fmt\_ctx\_,\ rtsp\_url\_.toUtf8().constData(),\ \textcolor{keyword}{nullptr},\ \&opts)\ !=\ 0)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ av\_dict\_free(\&opts);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ av\_dict\_free(\&opts);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{if}(avformat\_find\_stream\_info(fmt\_ctx\_,\ \textcolor{keyword}{nullptr})\ <\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ video\_stream\_index\_\ =\ -\/1;}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ fmt\_ctx\_-\/>nb\_streams;\ i++)\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(fmt\_ctx\_-\/>streams[i]-\/>codecpar-\/>codec\_type\ ==\ AVMEDIA\_TYPE\_VIDEO)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ video\_stream\_index\_\ =\ i;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{if}(video\_stream\_index\_\ ==\ -\/1)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ AVCodecParameters\ *codecpar\ =\ fmt\_ctx\_-\/>streams[video\_stream\_index\_]-\/>codecpar;}
+\DoxyCodeLine{00159\ \ \ \ \ AVCodec\ *codec\ =\ avcodec\_find\_decoder(codecpar-\/>codec\_id);}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{if}(!codec)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ codec\_ctx\_\ =\ avcodec\_alloc\_context3(codec);}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{if}(avcodec\_parameters\_to\_context(codec\_ctx\_,\ codecpar)\ <\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{if}(avcodec\_open2(codec\_ctx\_,\ codec,\ \textcolor{keyword}{nullptr})\ <\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ sws\_ctx\_\ =\ sws\_getContext(codec\_ctx\_-\/>width,\ codec\_ctx\_-\/>height,}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>pix\_fmt,}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>width,\ codec\_ctx\_-\/>height,}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AV\_PIX\_FMT\_RGB32,}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SWS\_BILINEAR,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{return}\ sws\_ctx\_\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00173\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{rtspdecoder_8cpp_source_l00180}{cleanup()}}.
+
+\Hypertarget{rtspdecoder_8cpp_ac47d701a82f51b95eda1062eff0c0711}\label{rtspdecoder_8cpp_ac47d701a82f51b95eda1062eff0c0711} 
+\index{rtspdecoder.cpp@{rtspdecoder.cpp}!RtspDecoder@{RtspDecoder}}
+\index{RtspDecoder@{RtspDecoder}!rtspdecoder.cpp@{rtspdecoder.cpp}}
+\doxysubsubsection{\texorpdfstring{RtspDecoder()}{RtspDecoder()}}
+{\footnotesize\ttfamily Rtsp\+Decoder (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent }\end{DoxyParamCaption})}
+
+
+
+构造函数，初始化线程对象 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & 父对象指针 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{rtspdecoder_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{rtspdecoder_8cpp_source}{rtspdecoder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025\ :\ QThread(parent)\ \{\}}
+
+\end{DoxyCode}
+\Hypertarget{rtspdecoder_8cpp_a13a43e6d814de94978c515cb084873b1}\label{rtspdecoder_8cpp_a13a43e6d814de94978c515cb084873b1} 
+\index{rtspdecoder.cpp@{rtspdecoder.cpp}!run@{run}}
+\index{run@{run}!rtspdecoder.cpp@{rtspdecoder.cpp}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+QThread 线程入口函数 
+
+持续解码 RTSP 流，转换为 QImage 并发送 frame\+Decoded 信号。 断开连接时触发 connection\+Lost 信号，可实现自动重连。 
+
+Definition at line \mbox{\hyperlink{rtspdecoder_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{rtspdecoder_8cpp_source}{rtspdecoder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{while}(!isInterruptionRequested())\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{rtspdecoder_8cpp_a6a0a80084c1b994a7bba6c8c37b95400}{initFFmpeg}}())\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}初始化失败"{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ AVFrame\ *frame\ =\ av\_frame\_alloc();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ connection\_ok\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(connection\_ok\ \&\&\ !isInterruptionRequested())\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ AVPacket\ pkt;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ret\ =\ av\_read\_frame(fmt\_ctx\_,\ \&pkt);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ret\ <\ 0)\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ret\ ==\ AVERROR\_EOF\ ||\ avio\_feof(fmt\_ctx\_-\/>pb))\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}RTSP连接中断"{}};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emit\ connectionLost();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection\_ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pkt.stream\_index\ ==\ video\_stream\_index\_)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(avcodec\_send\_packet(codec\_ctx\_,\ \&pkt)\ <\ 0)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ av\_packet\_unref(\&pkt);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AVFrame\ *rgb\_frame\ =\ av\_frame\_alloc();}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ *buffer\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_bytes\ =\ av\_image\_get\_buffer\_size(AV\_PIX\_FMT\_RGB32,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>width,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>height,\ 1);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer\ =\ (uint8\_t\ *)av\_malloc(num\_bytes\ *\ \textcolor{keyword}{sizeof}(uint8\_t));}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ av\_image\_fill\_arrays(rgb\_frame-\/>data,\ rgb\_frame-\/>linesize,\ buffer,}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AV\_PIX\_FMT\_RGB32,\ codec\_ctx\_-\/>width,\ codec\_ctx\_-\/>height,\ 1);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(avcodec\_receive\_frame(codec\_ctx\_,\ frame)\ ==\ 0)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sws\_scale(sws\_ctx\_,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t\ \textcolor{keyword}{const}\ *\ \textcolor{keyword}{const}\ *)frame-\/>data,}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frame-\/>linesize,\ 0,\ codec\_ctx\_-\/>height,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rgb\_frame-\/>data,\ rgb\_frame-\/>linesize);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QImage\ img(rgb\_frame-\/>data[0],}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>width,}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ codec\_ctx\_-\/>height,}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rgb\_frame-\/>linesize[0],}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QImage::Format\_RGB32);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emit\ frameDecoded(img.copy());}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ av\_free(buffer);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ av\_frame\_free(\&rgb\_frame);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ av\_packet\_unref(\&pkt);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ av\_frame\_free(\&frame);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{rtspdecoder_8cpp_a4b66d5e31b5dc18b314c8a68163263bd}{cleanup}}();}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(need\_reconnect\_\ \&\&\ reconnect\_attempts\_++\ <\ max\_reconnect\_attempts\_)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ QThread::msleep(2000);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{rtspdecoder_8cpp_source_l00180}{cleanup()}}, and \mbox{\hyperlink{rtspdecoder_8cpp_source_l00127}{init\+FFmpeg()}}.
+
+\Hypertarget{rtspdecoder_8cpp_a623ed2d0fdb8f1dfbabe8e890143868b}\label{rtspdecoder_8cpp_a623ed2d0fdb8f1dfbabe8e890143868b} 
+\index{rtspdecoder.cpp@{rtspdecoder.cpp}!setUrl@{setUrl}}
+\index{setUrl@{setUrl}!rtspdecoder.cpp@{rtspdecoder.cpp}}
+\doxysubsubsection{\texorpdfstring{setUrl()}{setUrl()}}
+{\footnotesize\ttfamily void set\+Url (\begin{DoxyParamCaption}\item[{const QString \&}]{url }\end{DoxyParamCaption})}
+
+
+
+设置 RTSP URL 
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & RTSP 流地址\\
+\hline
+\end{DoxyParams}
+线程安全，使用 QMutex\+Locker 锁保护成员变量 
+
+Definition at line \mbox{\hyperlink{rtspdecoder_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{rtspdecoder_8cpp_source}{rtspdecoder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ QMutexLocker\ locker(\&mutex\_);}
+\DoxyCodeLine{00044\ \ \ \ \ rtsp\_url\_\ =\ url;}
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}
+\Hypertarget{rtspdecoder_8cpp_a6532ae7e840a3ff2b350ed939342f1fc}\label{rtspdecoder_8cpp_a6532ae7e840a3ff2b350ed939342f1fc} 
+\index{rtspdecoder.cpp@{rtspdecoder.cpp}!````~RtspDecoder@{\texorpdfstring{$\sim$}{\string~}RtspDecoder}}
+\index{````~RtspDecoder@{\texorpdfstring{$\sim$}{\string~}RtspDecoder}!rtspdecoder.cpp@{rtspdecoder.cpp}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}RtspDecoder()}{\string~RtspDecoder()}}
+{\footnotesize\ttfamily \texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{rtspdecoder_8cpp_ac47d701a82f51b95eda1062eff0c0711}{Rtsp\+Decoder}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+析构函数，安全停止线程并释放资源 
+
+
+
+Definition at line \mbox{\hyperlink{rtspdecoder_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{rtspdecoder_8cpp_source}{rtspdecoder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ requestInterruption();}
+\DoxyCodeLine{00032\ \ \ \ \ wait();}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{rtspdecoder_8cpp_a4b66d5e31b5dc18b314c8a68163263bd}{cleanup}}();}
+\DoxyCodeLine{00034\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{rtspdecoder_8cpp_source_l00180}{cleanup()}}.
+

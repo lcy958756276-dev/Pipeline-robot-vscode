@@ -1,0 +1,446 @@
+\doxysection{QT\+\_\+function\+\_\+other/videorecorder.cpp File Reference}
+\hypertarget{videorecorder_8cpp}{}\label{videorecorder_8cpp}\index{QT\_function\_other/videorecorder.cpp@{QT\_function\_other/videorecorder.cpp}}
+
+
+使用 FFmpeg 将 QImage 视频帧录制为 H.\+264 视频文件  
+
+
+{\ttfamily \#include "{}videorecorder.\+h"{}}\newline
+{\ttfamily \#include $<$QDebug$>$}\newline
+{\ttfamily \#include $<$QDate\+Time$>$}\newline
+Include dependency graph for videorecorder.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{videorecorder_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{videorecorder_8cpp_a2e0a9c267b6801cddb3cb0f19f89923b}{Video\+Recorder}} (QObject \texorpdfstring{$\ast$}{*}parent)
+\item 
+\mbox{\hyperlink{videorecorder_8cpp_a44753334f0982377391bee79812ddfba}{\texorpdfstring{$\sim$}{\string~}\+Video\+Recorder}} ()
+\item 
+bool \mbox{\hyperlink{videorecorder_8cpp_a7fd387dc9710f2115a838751a8c8cf2f}{start\+Recording}} (const QString \&filename, int width, int height, int fps)
+\begin{DoxyCompactList}\small\item\em 启动视频录制 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{videorecorder_8cpp_a25e0e98dd4519eaaa6b258f0dcb91ac7}{stop\+Recording}} ()
+\begin{DoxyCompactList}\small\item\em 停止视频录制 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{videorecorder_8cpp_a48e89040ea7f761c864c507f9a58be96}{add\+Frame}} (const QImage \&frame)
+\begin{DoxyCompactList}\small\item\em 添加帧到录制队列 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{videorecorder_8cpp_a5191d39ffb83928d29dbe1bc3a8aa6da}{is\+Recording}} () const
+\begin{DoxyCompactList}\small\item\em 是否正在录制 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{videorecorder_8cpp_a2be6aef7e803ed23b3cdf91c637e9156}{recording\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em 录制线程函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+使用 FFmpeg 将 QImage 视频帧录制为 H.\+264 视频文件 
+
+功能：
+\begin{DoxyItemize}
+\item 支持 RGB32 图像转 YUV420P
+\item 多线程录制，使用队列缓存帧
+\item 自动处理编码器缓冲区，保证零延迟
+\item 支持 start/stop 控制 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{videorecorder_8cpp_source}{videorecorder.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{videorecorder_8cpp_a48e89040ea7f761c864c507f9a58be96}\label{videorecorder_8cpp_a48e89040ea7f761c864c507f9a58be96} 
+\index{videorecorder.cpp@{videorecorder.cpp}!addFrame@{addFrame}}
+\index{addFrame@{addFrame}!videorecorder.cpp@{videorecorder.cpp}}
+\doxysubsubsection{\texorpdfstring{addFrame()}{addFrame()}}
+{\footnotesize\ttfamily void add\+Frame (\begin{DoxyParamCaption}\item[{const QImage \&}]{frame }\end{DoxyParamCaption})}
+
+
+
+添加帧到录制队列 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & QImage 图像 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{videorecorder_8cpp_source_l00172}{172}} of file \mbox{\hyperlink{videorecorder_8cpp_source}{videorecorder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00173\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_recording)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ QImage\ local\ =\ frame;}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{if}\ (local.format()\ !=\ QImage::Format\_RGB32)\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ local\ =\ local.convertToFormat(QImage::Format\_RGB32);}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ QMutexLocker\ locker(\&m\_mutex);}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_frameQueue.size()\ >=\ MAX\_QUEUE\_SIZE)\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ m\_frameQueue.takeFirst();\ \textcolor{comment}{//\ 队列满则丢弃最早帧}}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ m\_frameQueue.append(local.copy());}
+\DoxyCodeLine{00186\ \ \ \ \ m\_condition.wakeOne();}
+\DoxyCodeLine{00187\ \}}
+
+\end{DoxyCode}
+\Hypertarget{videorecorder_8cpp_a5191d39ffb83928d29dbe1bc3a8aa6da}\label{videorecorder_8cpp_a5191d39ffb83928d29dbe1bc3a8aa6da} 
+\index{videorecorder.cpp@{videorecorder.cpp}!isRecording@{isRecording}}
+\index{isRecording@{isRecording}!videorecorder.cpp@{videorecorder.cpp}}
+\doxysubsubsection{\texorpdfstring{isRecording()}{isRecording()}}
+{\footnotesize\ttfamily bool is\+Recording (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+是否正在录制 
+
+\begin{DoxyReturn}{Returns}
+true/false 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{videorecorder_8cpp_source_l00193}{193}} of file \mbox{\hyperlink{videorecorder_8cpp_source}{videorecorder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00194\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_recording;}
+\DoxyCodeLine{00196\ \}}
+
+\end{DoxyCode}
+\Hypertarget{videorecorder_8cpp_a2be6aef7e803ed23b3cdf91c637e9156}\label{videorecorder_8cpp_a2be6aef7e803ed23b3cdf91c637e9156} 
+\index{videorecorder.cpp@{videorecorder.cpp}!recordingThread@{recordingThread}}
+\index{recordingThread@{recordingThread}!videorecorder.cpp@{videorecorder.cpp}}
+\doxysubsubsection{\texorpdfstring{recordingThread()}{recordingThread()}}
+{\footnotesize\ttfamily void recording\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+录制线程函数 
+
+功能：
+\begin{DoxyItemize}
+\item 从队列取帧
+\item RGB-\/\texorpdfstring{$>$}{>}YUV420P 转换
+\item 发送给 H.\+264 编码器
+\item 写入输出文件
+\item 结束时 flush 编码器并写 trailer 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{videorecorder_8cpp_source_l00208}{208}} of file \mbox{\hyperlink{videorecorder_8cpp_source}{videorecorder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00209\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ AVFrame\ *yuvFrame\ =\ av\_frame\_alloc();}
+\DoxyCodeLine{00211\ \ \ \ \ yuvFrame-\/>format\ =\ AV\_PIX\_FMT\_YUV420P;}
+\DoxyCodeLine{00212\ \ \ \ \ yuvFrame-\/>width\ =\ m\_width;}
+\DoxyCodeLine{00213\ \ \ \ \ yuvFrame-\/>height\ =\ m\_height;}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordflow}{if}\ (av\_frame\_get\_buffer(yuvFrame,\ 32)\ <\ 0)\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ qWarning()\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ alloc\ yuv\ buffer"{}};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ av\_frame\_free(\&yuvFrame);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ AVPacket\ *packet\ =\ av\_packet\_alloc();}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{if}\ (!packet)\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ av\_frame\_free(\&yuvFrame);}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00224\ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{while}\ (!m\_stopRequested)\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ QImage\ frame;}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ QMutexLocker\ locker(\&m\_mutex);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_frameQueue.isEmpty())\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_condition.wait(\&m\_mutex,\ 200);\ \textcolor{comment}{//\ 队列为空则等待}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ frame\ =\ m\_frameQueue.takeFirst();}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (frame.isNull())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ uint8\_t\ *srcData[4]\ =\ \{\ \textcolor{keyword}{const\_cast<}uint8\_t*\textcolor{keyword}{>}(frame.bits()),\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr}\ \};}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ srcLinesize[4]\ =\ \{\ frame.bytesPerLine(),\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ sws\_scale(m\_swsContext,\ srcData,\ srcLinesize,\ 0,\ m\_height,}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ yuvFrame-\/>data,\ yuvFrame-\/>linesize);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ yuvFrame-\/>pts\ =\ m\_frameCount++;}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (avcodec\_send\_frame(m\_codecContext,\ yuvFrame)\ <\ 0)\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Error\ sending\ frame\ to\ encoder"{}};}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (avcodec\_receive\_packet(m\_codecContext,\ packet)\ ==\ 0)\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ av\_packet\_rescale\_ts(packet,\ m\_codecContext-\/>time\_base,\ m\_videoStream-\/>time\_base);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ packet-\/>stream\_index\ =\ m\_videoStream-\/>index;}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ av\_interleaved\_write\_frame(m\_formatContext,\ packet);}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ av\_packet\_unref(packet);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{comment}{//\ flush\ encoder}}
+\DoxyCodeLine{00262\ \ \ \ \ avcodec\_send\_frame(m\_codecContext,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordflow}{while}\ (avcodec\_receive\_packet(m\_codecContext,\ packet)\ ==\ 0)\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ av\_packet\_rescale\_ts(packet,\ m\_codecContext-\/>time\_base,\ m\_videoStream-\/>time\_base);}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ packet-\/>stream\_index\ =\ m\_videoStream-\/>index;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ av\_interleaved\_write\_frame(m\_formatContext,\ packet);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ av\_packet\_unref(packet);}
+\DoxyCodeLine{00268\ \ \ \ \ \}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ av\_write\_trailer(m\_formatContext);}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ av\_frame\_free(\&yuvFrame);}
+\DoxyCodeLine{00273\ \ \ \ \ av\_packet\_free(\&packet);}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_swsContext)\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ sws\_freeContext(m\_swsContext);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ m\_swsContext\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_codecContext)\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ avcodec\_close(m\_codecContext);}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ avcodec\_free\_context(\&m\_codecContext);}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ m\_codecContext\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_formatContext\ \&\&\ !(m\_formatContext-\/>oformat-\/>flags\ \&\ AVFMT\_NOFILE))\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ avio\_closep(\&m\_formatContext-\/>pb);}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_formatContext)\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ avformat\_free\_context(m\_formatContext);}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ m\_formatContext\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00293\ \ \ \ \ \}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{comment}{//\ 清空帧队列}}
+\DoxyCodeLine{00296\ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ QMutexLocker\ locker(\&m\_mutex);}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ m\_frameQueue.clear();}
+\DoxyCodeLine{00299\ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \}}
+
+\end{DoxyCode}
+\Hypertarget{videorecorder_8cpp_a7fd387dc9710f2115a838751a8c8cf2f}\label{videorecorder_8cpp_a7fd387dc9710f2115a838751a8c8cf2f} 
+\index{videorecorder.cpp@{videorecorder.cpp}!startRecording@{startRecording}}
+\index{startRecording@{startRecording}!videorecorder.cpp@{videorecorder.cpp}}
+\doxysubsubsection{\texorpdfstring{startRecording()}{startRecording()}}
+{\footnotesize\ttfamily bool start\+Recording (\begin{DoxyParamCaption}\item[{const QString \&}]{filename,  }\item[{int}]{width,  }\item[{int}]{height,  }\item[{int}]{fps }\end{DoxyParamCaption})}
+
+
+
+启动视频录制 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & 输出文件名 \\
+\hline
+{\em width} & 视频宽度 \\
+\hline
+{\em height} & 视频高度 \\
+\hline
+{\em fps} & 帧率 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+是否成功启动 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{videorecorder_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{videorecorder_8cpp_source}{videorecorder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_recording)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}Already\ recording"{}});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ m\_frameCount\ =\ 0;\ }
+\DoxyCodeLine{00052\ \ \ \ \ m\_width\ =\ width;}
+\DoxyCodeLine{00053\ \ \ \ \ m\_height\ =\ height;}
+\DoxyCodeLine{00054\ \ \ \ \ m\_fps\ =\ fps;}
+\DoxyCodeLine{00055\ \ \ \ \ m\_filename\ =\ filename;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ 清空队列}}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ QMutexLocker\ locker(\&m\_mutex);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ m\_frameQueue.clear();}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ 初始化输出格式}}
+\DoxyCodeLine{00064\ \ \ \ \ avformat\_alloc\_output\_context2(\&m\_formatContext,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ filename.toUtf8().constData());}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_formatContext)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}Could\ not\ create\ output\ context"{}});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ AVCodec\ *codec\ =\ avcodec\_find\_encoder(AV\_CODEC\_ID\_H264);}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (!codec)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}H.264\ codec\ not\ found"{}});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ m\_videoStream\ =\ avformat\_new\_stream(m\_formatContext,\ codec);}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_videoStream)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}Could\ not\ create\ video\ stream"{}});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ m\_codecContext\ =\ avcodec\_alloc\_context3(codec);}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_codecContext)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}Could\ not\ alloc\ codec\ context"{}});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ 设置编码器参数}}
+\DoxyCodeLine{00089\ \ \ \ \ m\_codecContext-\/>width\ =\ width;}
+\DoxyCodeLine{00090\ \ \ \ \ m\_codecContext-\/>height\ =\ height;}
+\DoxyCodeLine{00091\ \ \ \ \ m\_codecContext-\/>time\_base\ =\ \{1,\ fps\};}
+\DoxyCodeLine{00092\ \ \ \ \ m\_codecContext-\/>framerate\ =\ \{fps,\ 1\};}
+\DoxyCodeLine{00093\ \ \ \ \ m\_codecContext-\/>pix\_fmt\ =\ AV\_PIX\_FMT\_YUV420P;}
+\DoxyCodeLine{00094\ \ \ \ \ m\_codecContext-\/>bit\_rate\ =\ 4000000;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ av\_opt\_set(m\_codecContext-\/>priv\_data,\ \textcolor{stringliteral}{"{}preset"{}},\ \textcolor{stringliteral}{"{}fast"{}},\ 0);}
+\DoxyCodeLine{00097\ \ \ \ \ av\_opt\_set(m\_codecContext-\/>priv\_data,\ \textcolor{stringliteral}{"{}tune"{}},\ \textcolor{stringliteral}{"{}zerolatency"{}},\ 0);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (avcodec\_open2(m\_codecContext,\ codec,\ \textcolor{keyword}{nullptr})\ <\ 0)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}Could\ not\ open\ codec"{}});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ avcodec\_free\_context(\&m\_codecContext);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{if}\ (avcodec\_parameters\_from\_context(m\_videoStream-\/>codecpar,\ m\_codecContext)\ <\ 0)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}Could\ not\ copy\ codec\ parameters"{}});}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ avcodec\_free\_context(\&m\_codecContext);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(m\_formatContext-\/>oformat-\/>flags\ \&\ AVFMT\_NOFILE))\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (avio\_open(\&m\_formatContext-\/>pb,\ filename.toUtf8().constData(),\ AVIO\_FLAG\_WRITE)\ <\ 0)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}Could\ not\ open\ output\ file"{}});}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ avcodec\_free\_context(\&m\_codecContext);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ avformat\_free\_context(m\_formatContext);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{if}\ (avformat\_write\_header(m\_formatContext,\ \textcolor{keyword}{nullptr})\ <\ 0)\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}Could\ not\ write\ header"{}});}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_formatContext\ \&\&\ !(m\_formatContext-\/>oformat-\/>flags\ \&\ AVFMT\_NOFILE))}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ avio\_closep(\&m\_formatContext-\/>pb);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ avcodec\_free\_context(\&m\_codecContext);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ avformat\_free\_context(m\_formatContext);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//\ 初始化\ RGB-\/>YUV\ 转换}}
+\DoxyCodeLine{00130\ \ \ \ \ m\_swsContext\ =\ sws\_getContext(width,\ height,\ AV\_PIX\_FMT\_RGB32,}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ width,\ height,\ AV\_PIX\_FMT\_YUV420P,}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SWS\_BILINEAR,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_swsContext)\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ emit\ errorOccurred(\textcolor{stringliteral}{"{}Could\ not\ create\ SWS\ context"{}});}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_formatContext\ \&\&\ !(m\_formatContext-\/>oformat-\/>flags\ \&\ AVFMT\_NOFILE))}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ avio\_closep(\&m\_formatContext-\/>pb);}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ avcodec\_free\_context(\&m\_codecContext);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ avformat\_free\_context(m\_formatContext);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ m\_stopRequested\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00143\ \ \ \ \ m\_recording\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00144\ \ \ \ \ m\_thread\ =\ std::thread(\&VideoRecorder::recordingThread,\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ emit\ recordingStarted();}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00148\ \}}
+
+\end{DoxyCode}
+\Hypertarget{videorecorder_8cpp_a25e0e98dd4519eaaa6b258f0dcb91ac7}\label{videorecorder_8cpp_a25e0e98dd4519eaaa6b258f0dcb91ac7} 
+\index{videorecorder.cpp@{videorecorder.cpp}!stopRecording@{stopRecording}}
+\index{stopRecording@{stopRecording}!videorecorder.cpp@{videorecorder.cpp}}
+\doxysubsubsection{\texorpdfstring{stopRecording()}{stopRecording()}}
+{\footnotesize\ttfamily void stop\+Recording (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+停止视频录制 
+
+
+
+Definition at line \mbox{\hyperlink{videorecorder_8cpp_source_l00153}{153}} of file \mbox{\hyperlink{videorecorder_8cpp_source}{videorecorder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00154\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_recording)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ m\_stopRequested\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00158\ \ \ \ \ m\_condition.wakeAll();}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_thread.joinable())\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ m\_thread.join();}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ m\_recording\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00165\ \ \ \ \ emit\ recordingFinished(m\_filename);}
+\DoxyCodeLine{00166\ \}}
+
+\end{DoxyCode}
+\Hypertarget{videorecorder_8cpp_a2e0a9c267b6801cddb3cb0f19f89923b}\label{videorecorder_8cpp_a2e0a9c267b6801cddb3cb0f19f89923b} 
+\index{videorecorder.cpp@{videorecorder.cpp}!VideoRecorder@{VideoRecorder}}
+\index{VideoRecorder@{VideoRecorder}!videorecorder.cpp@{videorecorder.cpp}}
+\doxysubsubsection{\texorpdfstring{VideoRecorder()}{VideoRecorder()}}
+{\footnotesize\ttfamily Video\+Recorder (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{videorecorder_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{videorecorder_8cpp_source}{videorecorder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017\ \ \ \ \ :\ QObject(parent),}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ m\_formatContext(\textcolor{keyword}{nullptr}),}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ m\_codecContext(\textcolor{keyword}{nullptr}),}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ m\_videoStream(\textcolor{keyword}{nullptr}),}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ m\_swsContext(\textcolor{keyword}{nullptr}),}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ m\_recording(\textcolor{keyword}{false}),}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ m\_stopRequested(\textcolor{keyword}{false}),}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ m\_width(0),}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ m\_height(0),}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ m\_fps(25),}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ m\_frameCount(0)}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \}}
+
+\end{DoxyCode}
+\Hypertarget{videorecorder_8cpp_a44753334f0982377391bee79812ddfba}\label{videorecorder_8cpp_a44753334f0982377391bee79812ddfba} 
+\index{videorecorder.cpp@{videorecorder.cpp}!````~VideoRecorder@{\texorpdfstring{$\sim$}{\string~}VideoRecorder}}
+\index{````~VideoRecorder@{\texorpdfstring{$\sim$}{\string~}VideoRecorder}!videorecorder.cpp@{videorecorder.cpp}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}VideoRecorder()}{\string~VideoRecorder()}}
+{\footnotesize\ttfamily \texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{videorecorder_8cpp_a2e0a9c267b6801cddb3cb0f19f89923b}{Video\+Recorder}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{videorecorder_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{videorecorder_8cpp_source}{videorecorder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{videorecorder_8cpp_a25e0e98dd4519eaaa6b258f0dcb91ac7}{stopRecording}}();}
+\DoxyCodeLine{00034\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{videorecorder_8cpp_source_l00153}{stop\+Recording()}}.
+

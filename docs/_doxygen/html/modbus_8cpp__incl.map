@@ -1,0 +1,5 @@
+<map id="QT_function_other/modbus.cpp" name="QT_function_other/modbus.cpp">
+<area shape="rect" id="Node000001" title="Modbus 通信类实现，用于通过串口控制下位机电机" alt="" coords="5,5,229,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="74,79,161,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,31,120,65,115,65,115,31"/>
+</map>

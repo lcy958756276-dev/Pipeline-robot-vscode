@@ -221,6 +221,8 @@ false 连接失败 </dd></dl>
 <div class="ttc" id="athree__yuannumber_8cpp_html_a8667af10789ec10299828b588f33fa66"><div class="ttname"><a href="three__yuannumber_8cpp.html#a8667af10789ec10299828b588f33fa66">g_sockfd</a></div><div class="ttdeci">int g_sockfd</div><div class="ttdef"><b>Definition</b> <a href="three__yuannumber_8cpp_source.html#l00024">three_yuannumber.cpp:24</a></div></div>
 <div class="ttc" id="athree__yuannumber_8cpp_html_af4be04c36baee6cbd619f7f248678c2b"><div class="ttname"><a href="three__yuannumber_8cpp.html#af4be04c36baee6cbd619f7f248678c2b">g_conn_mutex</a></div><div class="ttdeci">std::mutex g_conn_mutex</div><div class="ttdef"><b>Definition</b> <a href="three__yuannumber_8cpp_source.html#l00023">three_yuannumber.cpp:23</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="three__yuannumber_8cpp_source.html#l00023">g_conn_mutex</a>, <a class="el" href="three__yuannumber_8cpp_source.html#l00024">g_sockfd</a>, and <a class="el" href="three__yuannumber_8cpp_source.html#l00161">publishStatus()</a>.</p>
+
 </div>
 </div>
 <a id="ac17b993e3645f9b9a7f96e87fdd5bf62" name="ac17b993e3645f9b9a7f96e87fdd5bf62"></a>
@@ -276,6 +278,8 @@ false 连接失败 </dd></dl>
 <div class="line"><span class="lineno">  262</span>    }</div>
 <div class="line"><span class="lineno">  263</span>}</div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="three__yuannumber_8cpp_source.html#l00023">g_conn_mutex</a>, <a class="el" href="three__yuannumber_8cpp_source.html#l00024">g_sockfd</a>, and <a class="el" href="three__yuannumber_8cpp_source.html#l00161">publishStatus()</a>.</p>
+
 </div>
 </div>
 <a id="a3c04138a5bfe5d72780bb7e82a18e627" name="a3c04138a5bfe5d72780bb7e82a18e627"></a>
@@ -350,6 +354,8 @@ false 连接失败 </dd></dl>
 <div class="ttc" id="athree__yuannumber_8cpp_html_a6701847851618f32d00a154d16f7f187"><div class="ttname"><a href="three__yuannumber_8cpp.html#a6701847851618f32d00a154d16f7f187">g_port</a></div><div class="ttdeci">int g_port</div><div class="ttdef"><b>Definition</b> <a href="three__yuannumber_8cpp_source.html#l00026">three_yuannumber.cpp:26</a></div></div>
 <div class="ttc" id="athree__yuannumber_8cpp_html_ac17b993e3645f9b9a7f96e87fdd5bf62"><div class="ttname"><a href="three__yuannumber_8cpp.html#ac17b993e3645f9b9a7f96e87fdd5bf62">handleDisconnection</a></div><div class="ttdeci">void handleDisconnection(int max_reconnect, float interval)</div><div class="ttdoc">处理 TCP 断开连接</div><div class="ttdef"><b>Definition</b> <a href="three__yuannumber_8cpp_source.html#l00249">three_yuannumber.cpp:249</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="three__yuannumber_8cpp_source.html#l00133">connectToServer()</a>, <a class="el" href="three__yuannumber_8cpp_source.html#l00025">g_ip</a>, <a class="el" href="three__yuannumber_8cpp_source.html#l00026">g_port</a>, <a class="el" href="three__yuannumber_8cpp_source.html#l00024">g_sockfd</a>, <a class="el" href="three__yuannumber_8cpp_source.html#l00027">g_status_pub</a>, <a class="el" href="three__yuannumber_8cpp_source.html#l00249">handleDisconnection()</a>, and <a class="el" href="three__yuannumber_8cpp_source.html#l00168">tcpDataLoop()</a>.</p>
+
 </div>
 </div>
 <a id="a0a0119bf5ad744347f1530557e24c987" name="a0a0119bf5ad744347f1530557e24c987"></a>
@@ -484,6 +490,8 @@ false 连接失败 </dd></dl>
 <div class="line"><span class="lineno">  165</span>    ROS_DEBUG_STREAM(<span class="stringliteral">&quot;Status published: &quot;</span> &lt;&lt; msg.data);</div>
 <div class="line"><span class="lineno">  166</span>}</div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="three__yuannumber_8cpp_source.html#l00025">g_ip</a>, and <a class="el" href="three__yuannumber_8cpp_source.html#l00027">g_status_pub</a>.</p>
+
 </div>
 </div>
 <a id="a1633fa75ac3410de6330ee6b803787b1" name="a1633fa75ac3410de6330ee6b803787b1"></a>
@@ -570,6 +578,8 @@ false 连接失败 </dd></dl>
 <div class="line"><span class="lineno">  201</span>}</div>
 <div class="ttc" id="athree__yuannumber_8cpp_html_a0a0119bf5ad744347f1530557e24c987"><div class="ttname"><a href="three__yuannumber_8cpp.html#a0a0119bf5ad744347f1530557e24c987">parseAndPublishData</a></div><div class="ttdeci">void parseAndPublishData(const std::string &amp;data, ros::Publisher &amp;roll_pub, ros::Publisher &amp;pitch_pub, ros::Publisher &amp;heading_pub)</div><div class="ttdoc">解析 RPH 数据并发布到对应 ROS 话题</div><div class="ttdef"><b>Definition</b> <a href="three__yuannumber_8cpp_source.html#l00203">three_yuannumber.cpp:203</a></div></div>
 </div><!-- fragment -->
+<p class="reference">References <a class="el" href="three__yuannumber_8cpp_source.html#l00024">g_sockfd</a>, and <a class="el" href="three__yuannumber_8cpp_source.html#l00203">parseAndPublishData()</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>

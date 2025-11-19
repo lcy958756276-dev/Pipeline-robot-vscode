@@ -3,6 +3,126 @@
   <compounddef id="classWaypointPublisher" kind="class" language="C++" prot="public">
     <compoundname>WaypointPublisher</compoundname>
     <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classWaypointPublisher_1a2af5b0979da3f3ed7013aba811223e1c" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointPublisher::__pad0__</definition>
+        <argsstring></argsstring>
+        <name>__pad0__</name>
+        <qualifiedname>WaypointPublisher::__pad0__</qualifiedname>
+        <bitfield> WaypointPublisher() { waypoint_pub = nh.advertise&lt;geometry_msgs::PoseStamped&gt;(&quot;waypoint&quot;</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointPublisher.cpp" line="283" column="5" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointPublisher_1ad62c3addd5585528b07fd761142c8360" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointPublisher::auto_navigation_stop_pub</definition>
+        <argsstring></argsstring>
+        <name>auto_navigation_stop_pub</name>
+        <qualifiedname>WaypointPublisher::auto_navigation_stop_pub</qualifiedname>
+        <initializer>= nh.advertise&lt;std_msgs::Bool&gt;(&quot;/whether_auto_navigation&quot;, 10)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointPublisher.cpp" line="49" column="9" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointPublisher_1a03e20938b3b219530b49c63fb71e939b" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointPublisher::midgoal_sub</definition>
+        <argsstring></argsstring>
+        <name>midgoal_sub</name>
+        <qualifiedname>WaypointPublisher::midgoal_sub</qualifiedname>
+        <initializer>= nh.subscribe(&quot;midgoal&quot;, 10, &amp;<ref refid="classWaypointPublisher_1a2176c42b0a87e9144ea84e334f1b655a" kindref="member">WaypointPublisher::midgoalCallback</ref>, this)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointPublisher.cpp" line="50" column="9" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointPublisher_1ad483c835343654e16ce8b9a9d57f72ce" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointPublisher::finalgoal_sub</definition>
+        <argsstring></argsstring>
+        <name>finalgoal_sub</name>
+        <qualifiedname>WaypointPublisher::finalgoal_sub</qualifiedname>
+        <initializer>= nh.subscribe(&quot;finalgoal&quot;, 10, &amp;<ref refid="classWaypointPublisher_1acd043704f75fb8f8eb57826c7a3251ff" kindref="member">WaypointPublisher::finalgoalCallback</ref>, this)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointPublisher.cpp" line="51" column="9" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointPublisher_1a1819f810216c3af4d386e07e228134f6" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointPublisher::status_sub</definition>
+        <argsstring></argsstring>
+        <name>status_sub</name>
+        <qualifiedname>WaypointPublisher::status_sub</qualifiedname>
+        <initializer>= nh.subscribe(&quot;robot_status&quot;, 10, &amp;<ref refid="classWaypointPublisher_1abeaceaac34b26aff80888ef49c470404" kindref="member">WaypointPublisher::statusCallback</ref>, this)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointPublisher.cpp" line="52" column="9" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointPublisher_1a37c2c975803810d0955fd832c45af1a1" prot="private" static="no" mutable="no">
+        <type></type>
+        <definition>WaypointPublisher::odom_sub</definition>
+        <argsstring></argsstring>
+        <name>odom_sub</name>
+        <qualifiedname>WaypointPublisher::odom_sub</qualifiedname>
+        <initializer>= nh.subscribe(&quot;/cable/odom&quot;, 10, &amp;<ref refid="classWaypointPublisher_1ab3ecb848d99f9b4b35bc37f7f5cba622" kindref="member">WaypointPublisher::odomCallback</ref>, this)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointPublisher.cpp" line="53" column="9" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointPublisher_1abcb50173101ebc84dafd76a7fe1da2d9" prot="private" static="no" mutable="no">
+        <type><ref refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" kindref="member">finalgoal</ref> pose position</type>
+        <definition>finalgoal pose position WaypointPublisher::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>WaypointPublisher::x</qualifiedname>
+        <initializer>= std::numeric_limits&lt;float&gt;::max()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointPublisher.cpp" line="54" column="30" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classWaypointPublisher_1aaa4bd2bfba1f5417fffb5c78acacffaa" prot="private" static="no" mutable="no">
+        <type><ref refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" kindref="member">pre_goal</ref> pose position</type>
+        <definition>pre_goal pose position WaypointPublisher::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>WaypointPublisher::x</qualifiedname>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="auto_navigation/WaypointPublisher.cpp" line="55" column="29" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" prot="private" static="no" mutable="no">
         <type>ros::NodeHandle</type>
         <definition>ros::NodeHandle WaypointPublisher::nh</definition>
@@ -275,35 +395,8 @@
         <location file="auto_navigation/WaypointPublisher.cpp" line="269" column="10" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="269" bodyend="-1"/>
       </memberdef>
     </sectiondef>
-    <sectiondef kind="public-func">
-      <memberdef kind="function" id="classWaypointPublisher_1aade0e35d7818b8890d3d3035beef3fb2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>WaypointPublisher::WaypointPublisher</definition>
-        <argsstring>()</argsstring>
-        <name>WaypointPublisher</name>
-        <qualifiedname>WaypointPublisher::WaypointPublisher</qualifiedname>
-        <briefdescription>
-<para>构造函数，初始化订阅者和发布者 </para>
-        </briefdescription>
-        <detaileddescription>
-<para>初始化发布者：<itemizedlist>
-<listitem><para>waypoint: 发布机器人当前目标点</para>
-</listitem><listitem><para>/whether_auto_navigation: 发布自动导航停止信号</para>
-</listitem></itemizedlist>
-</para>
-<para>初始化订阅者：<itemizedlist>
-<listitem><para>midgoal: 中途目标点</para>
-</listitem><listitem><para>finalgoal: 最终目标点</para>
-</listitem><listitem><para>robot_status: 机器人是否到达目标点</para>
-</listitem><listitem><para>/cable/odom: 获取机器人当前位置 </para>
-</listitem></itemizedlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="auto_navigation/WaypointPublisher.cpp" line="46" column="5" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="46" bodyend="56"/>
-      </memberdef>
-      <memberdef kind="function" id="classWaypointPublisher_1a2176c42b0a87e9144ea84e334f1b655a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classWaypointPublisher_1a2176c42b0a87e9144ea84e334f1b655a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void WaypointPublisher::midgoalCallback</definition>
         <argsstring>(const geometry_msgs::PoseStamped::ConstPtr &amp;msg)</argsstring>
@@ -335,8 +428,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/WaypointPublisher.cpp" line="66" column="10" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="66" bodyend="70"/>
+        <references refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" compoundref="WaypointPublisher_8cpp" startline="259">midgoals</references>
       </memberdef>
-      <memberdef kind="function" id="classWaypointPublisher_1ae281f0d4ec699816476b4ffc860a81ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classWaypointPublisher_1ae281f0d4ec699816476b4ffc860a81ca" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::queue&lt; geometry_msgs::PoseStamped &gt;</type>
         <definition>std::queue&lt; geometry_msgs::PoseStamped &gt; WaypointPublisher::queueSort</definition>
         <argsstring>(std::queue&lt; geometry_msgs::PoseStamped &gt; &amp;msgQueue)</argsstring>
@@ -367,7 +461,7 @@
         </inbodydescription>
         <location file="auto_navigation/WaypointPublisher.cpp" line="77" column="16" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="77" bodyend="98"/>
       </memberdef>
-      <memberdef kind="function" id="classWaypointPublisher_1ab3ecb848d99f9b4b35bc37f7f5cba622" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classWaypointPublisher_1ab3ecb848d99f9b4b35bc37f7f5cba622" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void WaypointPublisher::odomCallback</definition>
         <argsstring>(const nav_msgs::Odometry::ConstPtr &amp;msg)</argsstring>
@@ -400,8 +494,14 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/WaypointPublisher.cpp" line="109" column="10" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="109" bodyend="125"/>
+        <references refid="classWaypointPublisher_1ad62c3addd5585528b07fd761142c8360" compoundref="WaypointPublisher_8cpp" startline="49">auto_navigation_stop_pub</references>
+        <references refid="classWaypointPublisher_1a2edee68f60a0e465b7646f95ced1d121" compoundref="WaypointPublisher_8cpp" startline="264">current_position</references>
+        <references refid="classWaypointPublisher_1a0b4c87fc988b12c3bb480b9898916394" compoundref="WaypointPublisher_8cpp" startline="264">current_status</references>
+        <references refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" compoundref="WaypointPublisher_8cpp" startline="261">finalgoal</references>
+        <references refid="classWaypointPublisher_1a0888ce7b8f0cfa2ccc6fd51ec65f49e6" compoundref="WaypointPublisher_8cpp" startline="267">finalgoal_reached</references>
+        <references refid="classWaypointPublisher_1afa16a43e6d8b4c306089109bf71715a0" compoundref="WaypointPublisher_8cpp" startline="269">finalinital</references>
       </memberdef>
-      <memberdef kind="function" id="classWaypointPublisher_1acd043704f75fb8f8eb57826c7a3251ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classWaypointPublisher_1acd043704f75fb8f8eb57826c7a3251ff" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void WaypointPublisher::finalgoalCallback</definition>
         <argsstring>(const geometry_msgs::PoseStamped::ConstPtr &amp;msg)</argsstring>
@@ -434,8 +534,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/WaypointPublisher.cpp" line="136" column="10" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="136" bodyend="151"/>
+        <references refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" compoundref="WaypointPublisher_8cpp" startline="261">finalgoal</references>
+        <references refid="classWaypointPublisher_1a73056696f4260f559e796ea1ec11806d" compoundref="WaypointPublisher_8cpp" startline="265">finalgoal_received</references>
+        <references refid="classWaypointPublisher_1afa16a43e6d8b4c306089109bf71715a0" compoundref="WaypointPublisher_8cpp" startline="269">finalinital</references>
+        <references refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" compoundref="WaypointPublisher_8cpp" startline="262">pre_goal</references>
+        <references refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" compoundref="WaypointPublisher_8cpp" startline="256">waypoint_pub</references>
       </memberdef>
-      <memberdef kind="function" id="classWaypointPublisher_1adf1c93f6db23215a13c59819a1b3dbc6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classWaypointPublisher_1adf1c93f6db23215a13c59819a1b3dbc6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void WaypointPublisher::processGoals</definition>
         <argsstring>()</argsstring>
@@ -456,8 +561,18 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/WaypointPublisher.cpp" line="162" column="10" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="162" bodyend="233"/>
+        <references refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" compoundref="WaypointPublisher_8cpp" startline="260">current_goal</references>
+        <references refid="classWaypointPublisher_1a2edee68f60a0e465b7646f95ced1d121" compoundref="WaypointPublisher_8cpp" startline="264">current_position</references>
+        <references refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" compoundref="WaypointPublisher_8cpp" startline="261">finalgoal</references>
+        <references refid="classWaypointPublisher_1a73056696f4260f559e796ea1ec11806d" compoundref="WaypointPublisher_8cpp" startline="265">finalgoal_received</references>
+        <references refid="classWaypointPublisher_1a29cc7107bfbf6d425275a99e95caf53e" compoundref="WaypointPublisher_8cpp" startline="266">goal_reached</references>
+        <references refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" compoundref="WaypointPublisher_8cpp" startline="259">midgoals</references>
+        <references refid="classWaypointPublisher_1aba3de5d71ffcac47e4461bae72d4ec65" compoundref="WaypointPublisher_8cpp" startline="268">midinital</references>
+        <references refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" compoundref="WaypointPublisher_8cpp" startline="262">pre_goal</references>
+        <references refid="classWaypointPublisher_1ae281f0d4ec699816476b4ffc860a81ca" compoundref="WaypointPublisher_8cpp" startline="77" endline="98">queueSort</references>
+        <references refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" compoundref="WaypointPublisher_8cpp" startline="256">waypoint_pub</references>
       </memberdef>
-      <memberdef kind="function" id="classWaypointPublisher_1abeaceaac34b26aff80888ef49c470404" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classWaypointPublisher_1abeaceaac34b26aff80888ef49c470404" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void WaypointPublisher::statusCallback</definition>
         <argsstring>(const std_msgs::Bool::ConstPtr &amp;msg)</argsstring>
@@ -488,6 +603,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="auto_navigation/WaypointPublisher.cpp" line="242" column="10" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="242" bodyend="252"/>
+        <references refid="classWaypointPublisher_1a29cc7107bfbf6d425275a99e95caf53e" compoundref="WaypointPublisher_8cpp" startline="266">goal_reached</references>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -504,6 +620,8 @@
     </detaileddescription>
     <location file="auto_navigation/WaypointPublisher.cpp" line="30" column="1" bodyfile="auto_navigation/WaypointPublisher.cpp" bodystart="31" bodyend="270"/>
     <listofallmembers>
+      <member refid="classWaypointPublisher_1a2af5b0979da3f3ed7013aba811223e1c" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>__pad0__</name></member>
+      <member refid="classWaypointPublisher_1ad62c3addd5585528b07fd761142c8360" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>auto_navigation_stop_pub</name></member>
       <member refid="classWaypointPublisher_1a47885b59e7318b53b3b2082654e90560" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>auto_navigation_stop_pub</name></member>
       <member refid="classWaypointPublisher_1af737270bf8d77a1a7d822efd81fb1ea1" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>current_goal</name></member>
       <member refid="classWaypointPublisher_1a2edee68f60a0e465b7646f95ced1d121" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>current_position</name></member>
@@ -511,24 +629,29 @@
       <member refid="classWaypointPublisher_1a0019654df7d05ce712095254bb75c1ff" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>finalgoal</name></member>
       <member refid="classWaypointPublisher_1a0888ce7b8f0cfa2ccc6fd51ec65f49e6" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>finalgoal_reached</name></member>
       <member refid="classWaypointPublisher_1a73056696f4260f559e796ea1ec11806d" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>finalgoal_received</name></member>
+      <member refid="classWaypointPublisher_1ad483c835343654e16ce8b9a9d57f72ce" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>finalgoal_sub</name></member>
       <member refid="classWaypointPublisher_1aaf87298f88a3ecbc9a913c07bac58b54" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>finalgoal_sub</name></member>
-      <member refid="classWaypointPublisher_1acd043704f75fb8f8eb57826c7a3251ff" prot="public" virt="non-virtual"><scope>WaypointPublisher</scope><name>finalgoalCallback</name></member>
+      <member refid="classWaypointPublisher_1acd043704f75fb8f8eb57826c7a3251ff" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>finalgoalCallback</name></member>
       <member refid="classWaypointPublisher_1afa16a43e6d8b4c306089109bf71715a0" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>finalinital</name></member>
       <member refid="classWaypointPublisher_1a29cc7107bfbf6d425275a99e95caf53e" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>goal_reached</name></member>
+      <member refid="classWaypointPublisher_1a03e20938b3b219530b49c63fb71e939b" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>midgoal_sub</name></member>
       <member refid="classWaypointPublisher_1a087009cba8fbe8e994931e282008b4a2" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>midgoal_sub</name></member>
-      <member refid="classWaypointPublisher_1a2176c42b0a87e9144ea84e334f1b655a" prot="public" virt="non-virtual"><scope>WaypointPublisher</scope><name>midgoalCallback</name></member>
+      <member refid="classWaypointPublisher_1a2176c42b0a87e9144ea84e334f1b655a" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>midgoalCallback</name></member>
       <member refid="classWaypointPublisher_1ae986643ecd10fa38723e962950d48e96" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>midgoals</name></member>
       <member refid="classWaypointPublisher_1aba3de5d71ffcac47e4461bae72d4ec65" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>midinital</name></member>
       <member refid="classWaypointPublisher_1a61018f919145d4211b71cd6a5cb1ba8a" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>nh</name></member>
+      <member refid="classWaypointPublisher_1a37c2c975803810d0955fd832c45af1a1" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>odom_sub</name></member>
       <member refid="classWaypointPublisher_1a024fcc12ff98892facd5e28c5ca703f9" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>odom_sub</name></member>
-      <member refid="classWaypointPublisher_1ab3ecb848d99f9b4b35bc37f7f5cba622" prot="public" virt="non-virtual"><scope>WaypointPublisher</scope><name>odomCallback</name></member>
+      <member refid="classWaypointPublisher_1ab3ecb848d99f9b4b35bc37f7f5cba622" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>odomCallback</name></member>
       <member refid="classWaypointPublisher_1aba542ec35b2b4bd320b7cde69080c3d9" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>pre_goal</name></member>
-      <member refid="classWaypointPublisher_1adf1c93f6db23215a13c59819a1b3dbc6" prot="public" virt="non-virtual"><scope>WaypointPublisher</scope><name>processGoals</name></member>
-      <member refid="classWaypointPublisher_1ae281f0d4ec699816476b4ffc860a81ca" prot="public" virt="non-virtual"><scope>WaypointPublisher</scope><name>queueSort</name></member>
+      <member refid="classWaypointPublisher_1adf1c93f6db23215a13c59819a1b3dbc6" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>processGoals</name></member>
+      <member refid="classWaypointPublisher_1ae281f0d4ec699816476b4ffc860a81ca" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>queueSort</name></member>
+      <member refid="classWaypointPublisher_1a1819f810216c3af4d386e07e228134f6" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>status_sub</name></member>
       <member refid="classWaypointPublisher_1ae607b30dfd6060d57255e9b4ef780a0b" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>status_sub</name></member>
-      <member refid="classWaypointPublisher_1abeaceaac34b26aff80888ef49c470404" prot="public" virt="non-virtual"><scope>WaypointPublisher</scope><name>statusCallback</name></member>
+      <member refid="classWaypointPublisher_1abeaceaac34b26aff80888ef49c470404" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>statusCallback</name></member>
       <member refid="classWaypointPublisher_1ad6b13041c5db15b9c98907f9b4ba3c20" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>waypoint_pub</name></member>
-      <member refid="classWaypointPublisher_1aade0e35d7818b8890d3d3035beef3fb2" prot="public" virt="non-virtual"><scope>WaypointPublisher</scope><name>WaypointPublisher</name></member>
+      <member refid="classWaypointPublisher_1abcb50173101ebc84dafd76a7fe1da2d9" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>x</name></member>
+      <member refid="classWaypointPublisher_1aaa4bd2bfba1f5417fffb5c78acacffaa" prot="private" virt="non-virtual"><scope>WaypointPublisher</scope><name>x</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

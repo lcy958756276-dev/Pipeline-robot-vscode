@@ -16,14 +16,14 @@
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00033}\mbox{\hyperlink{classWaypointFollower}{00033}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classWaypointFollower}{WaypointFollower}}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00034}00034\ \{}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00035}00035\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00039}\mbox{\hyperlink{classWaypointFollower_a56e663bb36f1fe73cf6162225b893931}{00039}}\ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a56e663bb36f1fe73cf6162225b893931}{WaypointFollower}}()}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00039}00039\ \ \ \ \ \mbox{\hyperlink{classWaypointFollower}{WaypointFollower}}()}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00040}00040\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a4a1443a0114401ae0b78a81c0c3cf58a}{waypoint\_sub}}\ =\ \mbox{\hyperlink{classWaypointFollower_a72cb1a8e64c3cc38b8940803cd7037cc}{nh}}.subscribe(\textcolor{stringliteral}{"{}waypoint"{}},\ 10,\ \&\mbox{\hyperlink{classWaypointFollower_a60c2276b9fc46718bac2856ab386f4a7}{WaypointFollower::waypointCallback}},\ \textcolor{keyword}{this});}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a3b9942db7b168597201c4ad6b0f9ac7b}{odom\_sub}}\ =\ \mbox{\hyperlink{classWaypointFollower_a72cb1a8e64c3cc38b8940803cd7037cc}{nh}}.subscribe(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 10,\ \&\mbox{\hyperlink{classWaypointFollower_acf8f1df597d3fb75adf335c046c3a407}{WaypointFollower::odomCallback}},\ \textcolor{keyword}{this});}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_ad0f58349481e6b336f8a00aa541e6f90}{stop\_sub}}\ =\ \mbox{\hyperlink{classWaypointFollower_a72cb1a8e64c3cc38b8940803cd7037cc}{nh}}.subscribe(\textcolor{stringliteral}{"{}whether\_stop"{}},\ 10,\ \&\mbox{\hyperlink{classWaypointFollower_ad6da0db3e82faa5c29c4c4d742e9357f}{WaypointFollower::stopCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00041}\mbox{\hyperlink{classWaypointFollower_a4150806658f06faa7b766ffcaa6950c3}{00041}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a4a1443a0114401ae0b78a81c0c3cf58a}{waypoint\_sub}}\ =\ \mbox{\hyperlink{classWaypointFollower_a72cb1a8e64c3cc38b8940803cd7037cc}{nh}}.subscribe(\textcolor{stringliteral}{"{}waypoint"{}},\ 10,\ \&\mbox{\hyperlink{classWaypointFollower_a5c0017261c119c75a282734229e44f11}{WaypointFollower::waypointCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00042}\mbox{\hyperlink{classWaypointFollower_ab324b18d122d2103a1f6d0cb1549be98}{00042}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_ab324b18d122d2103a1f6d0cb1549be98}{odom\_sub}}\ =\ \mbox{\hyperlink{classWaypointFollower_a72cb1a8e64c3cc38b8940803cd7037cc}{nh}}.subscribe(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 10,\ \&\mbox{\hyperlink{classWaypointFollower_acf8f1df597d3fb75adf335c046c3a407}{WaypointFollower::odomCallback}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00043}\mbox{\hyperlink{classWaypointFollower_aba6130482571adb505d754c296484d3c}{00043}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_aba6130482571adb505d754c296484d3c}{stop\_sub}}\ =\ \mbox{\hyperlink{classWaypointFollower_a72cb1a8e64c3cc38b8940803cd7037cc}{nh}}.subscribe(\textcolor{stringliteral}{"{}whether\_stop"{}},\ 10,\ \&\mbox{\hyperlink{classWaypointFollower_ad6da0db3e82faa5c29c4c4d742e9357f}{WaypointFollower::stopCallback}},\ \textcolor{keyword}{this});}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cmd\_vel\_pub\ =\ nh.advertise<geometry\_msgs::Twist>("{}cmd\_vel"{},\ 10);}}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a2bd72689fcdaad74fc86d775ed0c8a83}{status\_pub}}\ =\ \mbox{\hyperlink{classWaypointFollower_a72cb1a8e64c3cc38b8940803cd7037cc}{nh}}.advertise<std\_msgs::Bool>(\textcolor{stringliteral}{"{}robot\_status"{}},\ 10);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}\ =\ \mbox{\hyperlink{classWaypointFollower_a72cb1a8e64c3cc38b8940803cd7037cc}{nh}}.advertise<std\_msgs::String>(\textcolor{stringliteral}{"{}Pub2stm"{}},\ 10);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00045}\mbox{\hyperlink{classWaypointFollower_a6d1edecb98a76d8b74c3b03f047000d7}{00045}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a6d1edecb98a76d8b74c3b03f047000d7}{status\_pub}}\ =\ \mbox{\hyperlink{classWaypointFollower_a72cb1a8e64c3cc38b8940803cd7037cc}{nh}}.advertise<std\_msgs::Bool>(\textcolor{stringliteral}{"{}robot\_status"{}},\ 10);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00046}\mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{00046}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}\ =\ \mbox{\hyperlink{classWaypointFollower_a72cb1a8e64c3cc38b8940803cd7037cc}{nh}}.advertise<std\_msgs::String>(\textcolor{stringliteral}{"{}Pub2stm"{}},\ 10);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00047}00047\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00048}00048\ }
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00052}\mbox{\hyperlink{classWaypointFollower_a04b6d9d584f72a3bb5236c387beba11a}{00052}}\ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a04b6d9d584f72a3bb5236c387beba11a}{\string~WaypointFollower}}()}
@@ -31,13 +31,13 @@
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 析构函数中发布ST消息}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ std\_msgs::String\ msg;}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ msg.data\ =\ \textcolor{stringliteral}{"{}ST"{}};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(200));}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00061}00061\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00062}00062\ }
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00072}\mbox{\hyperlink{classWaypointFollower_a60c2276b9fc46718bac2856ab386f4a7}{00072}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classWaypointFollower_a60c2276b9fc46718bac2856ab386f4a7}{waypointCallback}}(\textcolor{keyword}{const}\ geometry\_msgs::PoseStamped::ConstPtr\ \&msg)}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00072}\mbox{\hyperlink{classWaypointFollower_a5c0017261c119c75a282734229e44f11}{00072}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classWaypointFollower_a5c0017261c119c75a282734229e44f11}{waypointCallback}}(\textcolor{keyword}{const}\ geometry\_msgs::PoseStamped::ConstPtr\ \&msg)}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00073}00073\ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a45515f08d85d4c17f9781f5f459d95e6}{target\_position}}\ =\ msg-\/>pose.position.x;}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a81cfefd2cf42de846f636aed4b8cf932}{is\_target\_reached}}\ =\ \textcolor{keyword}{false};}
@@ -60,55 +60,55 @@
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ std\_msgs::String\ msg;}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ msg.data=\textcolor{stringliteral}{"{}LE"{}};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(1000));}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ msg.data=\textcolor{stringliteral}{"{}FO"{}};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(500));}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ msg.data=\textcolor{stringliteral}{"{}RI"{}};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(1000));}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ msg.data=\textcolor{stringliteral}{"{}ST"{}};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(500));}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(y\_error\ >0.05)}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ std\_msgs::String\ msg;}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ msg.data=\textcolor{stringliteral}{"{}RI"{}};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(1000));}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ msg.data=\textcolor{stringliteral}{"{}FO"{}};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(500));}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ msg.data=\textcolor{stringliteral}{"{}LE"{}};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(1000));}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ msg.data=\textcolor{stringliteral}{"{}ST"{}};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::milliseconds(200));}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00160}00160\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00161}00161\ }
@@ -130,13 +130,13 @@
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msg.data\ =\ \textcolor{stringliteral}{"{}FO"{}};}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}send\ \ \ \ \ \ \ \ \ fo\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}vel=\%f"{}},abs(vel));}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (error\ <\ -\/0.20\ \&\&\ abs(vel)\ <\ 0.01)}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msg.data\ =\ \textcolor{stringliteral}{"{}BA"{}};}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}send\ BA"{}});}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a4fe8fa93ac086ef4411c120e7cca67d8}{checkTargetReached}}(error,\ vel);}
@@ -150,16 +150,16 @@
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a81cfefd2cf42de846f636aed4b8cf932}{is\_target\_reached}}\ =\ \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ status\_msg.data\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a2bd72689fcdaad74fc86d775ed0c8a83}{status\_pub}}.publish(status\_msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a6d1edecb98a76d8b74c3b03f047000d7}{status\_pub}}.publish(status\_msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ std\_msgs::String\ msg;}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ msg.data\ =\ \textcolor{stringliteral}{"{}ST"{}};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a51d836104234c50dbd26d381510cc86b}{control\_pub}}.publish(msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a1a201b8ae9618d3e5ba75c46a8239501}{control\_pub}}.publish(msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_INFO(\textcolor{stringliteral}{"{}已到达目标点"{}});}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ status\_msg.data\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a2bd72689fcdaad74fc86d775ed0c8a83}{status\_pub}}.publish(status\_msg);}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWaypointFollower_a6d1edecb98a76d8b74c3b03f047000d7}{status\_pub}}.publish(status\_msg);}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00230}00230\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00231}00231\ }
@@ -179,7 +179,7 @@
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00245}\mbox{\hyperlink{classWaypointFollower_a6af39c0afc8b0370618dc947d7152d7a}{00245}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classWaypointFollower_a6af39c0afc8b0370618dc947d7152d7a}{tolerance}}\ =\ 0.2;\ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00246}00246\ \};}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00247}00247\ }
-\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00259}\mbox{\hyperlink{WaypointFollower_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{00259}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{WaypointFollower_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00259}\mbox{\hyperlink{classWaypointFollower_a68ec92fa7adea5b2d5f3786b3aa57ac0}{00259}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{WaypointFollower_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00260}00260\ \{}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00261}00261\ \ \ \ \ ros::init(argc,\ argv,\ \textcolor{stringliteral}{"{}waypoint\_follower"{}});}
 \DoxyCodeLine{\Hypertarget{WaypointFollower_8cpp_source_l00262}00262\ \ \ \ \ setlocale(LC\_ALL,\ \textcolor{stringliteral}{"{}"{}});}

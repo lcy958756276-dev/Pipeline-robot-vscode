@@ -1,0 +1,1305 @@
+\doxysection{function\+\_\+key/qnode.cpp File Reference}
+\hypertarget{qnode_8cpp}{}\label{qnode_8cpp}\index{function\_key/qnode.cpp@{function\_key/qnode.cpp}}
+
+
+QNode类实现，用于\+ROS节点初始化、消息订阅/发布以及与\+Qt界面的交互。  
+
+
+{\ttfamily \#include "{}qnode.\+h"{}}\newline
+Include dependency graph for qnode.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{qnode_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{qnode_8cpp_a0acbfdfac02bb5a765d2447f794ecbe4}{QNode}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv, char \texorpdfstring{$\ast$}{*}node\+\_\+name)
+\item 
+\mbox{\hyperlink{qnode_8cpp_ab67a83db86e20b83f8ba0492d6dc75eb}{\texorpdfstring{$\sim$}{\string~}\+QNode}} ()
+\begin{DoxyCompactList}\small\item\em 析构函数，关闭\+ROS节点并等待线程结束 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{qnode_8cpp_aee8048628ff2b5c026c9e15acdcaacb8}{init}} ()
+\begin{DoxyCompactList}\small\item\em 初始化\+ROS节点、发布器、订阅器并启动线程 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a13a43e6d814de94978c515cb084873b1}{run}} ()
+\begin{DoxyCompactList}\small\item\em QNode线程主循环，处理\+ROS回调 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a41c9f100c603d297d9cb0e3ae316acba}{callback\+Pub2stm}} (const std\+\_\+msgs\+::\+String\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 处理来自\+Pub2stm话题的字符串消息，并根据内容发射不同\+Qt信号 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a0d7dfd9133ce1e6b48bfdc8249db33d1}{image\+Callback}} (const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 处理yolov8检测图像回调，将\+ROS图像转为\+QImage并发射信号 \end{DoxyCompactList}\item 
+QImage \mbox{\hyperlink{qnode_8cpp_a0c64987a15b5d83e876dbc8dbbb4e39e}{Mat2\+QImage}} (cv\+::\+Mat const \&src)
+\begin{DoxyCompactList}\small\item\em 将cv\+::\+Mat转换为\+QImage \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_aec3b5210af99a83e3a2cd3c37de6dfa6}{odetoggle\+Video\+Source}} ()
+\begin{DoxyCompactList}\small\item\em 切换当前视频源，前置/后置摄像头 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a855c4c0b048d710a48ef278e61f1765d}{my\+Callback\+\_\+backimage}} (const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 处理后置摄像头图像回调，仅在current\+\_\+video\+\_\+topic为false时处理 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_ae6699c4dc53afed92e401a014a526731}{my\+Callback\+\_\+img}} (const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 处理前置摄像头图像回调，仅在current\+\_\+video\+\_\+topic为true时处理 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a3df8dd3c339b80b79030fda2e1ca062e}{my\+Callback\+\_\+imu}} (const sensor\+\_\+msgs\+::\+Imu \&msg)
+\begin{DoxyCompactList}\small\item\em IMU数据回调函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_adb2aed4dd096ba5611bb424fa207cca1}{my\+Callback\+\_\+odom}} (const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em odom数据回调函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_aaeb56f05ad952f500ac626d9987a397f}{my\+Callback\+\_\+pre}} (const sensor\+\_\+msgs\+::\+Fluid\+Pressure\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 气压传感器数据回调函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a89301eeb1d8058636d04a80f9c905c41}{my\+Callback\+\_\+current1}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 电流传感器数据回调函数1 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_ac97671280340d73f28708641e7fe4db0}{my\+Callback\+\_\+current2}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\item 
+void \mbox{\hyperlink{qnode_8cpp_af7dabc6ef8af62a891fc3c65f645d581}{my\+Callback\+\_\+current3}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\item 
+void \mbox{\hyperlink{qnode_8cpp_a4689547d1c0042ac997ddc526d73a5b0}{my\+Callback\+\_\+current4}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\item 
+void \mbox{\hyperlink{qnode_8cpp_a09d70b20585e957c2063a88460dbfbc1}{my\+Callback\+\_\+current5}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\item 
+void \mbox{\hyperlink{qnode_8cpp_afd7f20bc249158ebe1ca28a6526fe0f4}{my\+Callback\+\_\+temperature}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 温度传感器数据回调函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_aa4c78e90d9f893cfc63b5ee053d7aec3}{my\+Callback\+\_\+press}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 气压传感器数值回调函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_af2831a739e57abfc29f6231436c9feab}{my\+Callback\+\_\+encode\+Val}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 俯仰角编码值回调 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a8b31629c866ae3db64f7e399d416e438}{my\+Callback\+\_\+angle0}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 云台角度0回调 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_ae4ff203d72bce085fb5e144f6940eefb}{my\+Callback\+\_\+angle1}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 云台角度1回调 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a0f50071ce0ffc57d2b76b3926bfa840c}{my\+Callback\+\_\+left\+Limit}} (const std\+\_\+msgs\+::\+Bool \&msg)
+\begin{DoxyCompactList}\small\item\em 左限制开关回调 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a0f01e12373802ccb070db232f18e4972}{my\+Callback\+\_\+right\+Limit}} (const std\+\_\+msgs\+::\+Bool \&msg)
+\begin{DoxyCompactList}\small\item\em 右限制开关回调 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a9f6ab99d070a5acc644e5bfafa2b1954}{my\+Callback\+\_\+orin\+\_\+cpu\+\_\+temp}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em ORIN CPU温度回调 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a38270ebfd641dbac569e27febaa9c441}{my\+Callback\+\_\+orin\+\_\+gpu\+\_\+temp}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em ORIN GPU温度回调 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_ae86abc9dd0741d2acc385f29572a9c86}{my\+Callback\+\_\+rx\+\_\+motor\+\_\+tq}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 绕线盘电机力矩回调 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a0b13cedebba3173303c9caf8dd458ef4}{my\+Callback\+\_\+rx\+\_\+motor\+\_\+speed}} (const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em 绕线盘电机速度回调 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a85fc564b736ac2b2a35722ffeaf8d240}{my\+Callback\+\_\+laser\+\_\+scan}} (const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&scan)
+\begin{DoxyCompactList}\small\item\em Laser\+Scan数据回调函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a6b2dc894a7e16dfd10b6235e3c2118fc}{publish\+Message}} (const std\+::string \&msg)
+\begin{DoxyCompactList}\small\item\em 发布普通字符串消息 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a7967495bbd1f3bc0b3e83ef70a187788}{publish\+Pian\+Tou}} (const pipeline\+::\+Header\+Info \&msg)
+\begin{DoxyCompactList}\small\item\em 发布片头信息 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a89068b8a7fed63d822050a8c7a097b16}{publish\+Autonomous\+Navigation}} (const geometry\+\_\+msgs\+::\+Pose\+Stamped \&msg2)
+\begin{DoxyCompactList}\small\item\em 发布自主导航指令 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a8a32b66beffdb4a2ed66fcc6c7b0739c}{publish\+Automatic\+Recycle}} (double \mbox{\hyperlink{odom__pub_8cpp_a79b8e036dca6911e3295a47d99f21f43}{distance}})
+\begin{DoxyCompactList}\small\item\em 发布自动回收指令 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_ae1b288c8f80f61dfa526dd885f02962e}{publish\+Reset\+Meter}} ()
+\begin{DoxyCompactList}\small\item\em 发布计米器归零指令 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_ac1bd480e69700e4e41545cdab1c71989}{publish\+Stop}} ()
+\begin{DoxyCompactList}\small\item\em 发布急停指令 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_a424aae07eabbcc7263cda7e171be1cbf}{publish\+\_\+cable}} (const std\+::string \&msg)
+\begin{DoxyCompactList}\small\item\em 发布cable消息 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_ac9d8e1e36dd9845af6e9f68fe2541950}{publish\+\_\+report\+\_\+generate}} (const std\+\_\+msgs\+::\+Bool msg)
+\begin{DoxyCompactList}\small\item\em 发布自动报告生成指令 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qnode_8cpp_aafdf780e43504aadfb3d4d2c4e72120b}{publish\+\_\+cloudmodel\+\_\+pub}} (const std\+\_\+msgs\+::\+Bool msg)
+\begin{DoxyCompactList}\small\item\em 发布点云模型生成指令 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{qnode_8cpp_adf916204820072417ed73a32de1cefcf}{flag}}
+\item 
+bool \mbox{\hyperlink{qnode_8cpp_ac4ba270cc7bf5e19ebfbebcbc6b7fd9a}{current\+\_\+video\+\_\+topic}} = true
+\begin{DoxyCompactList}\small\item\em 视频切换标志符 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+QNode类实现，用于\+ROS节点初始化、消息订阅/发布以及与\+Qt界面的交互。 
+
+该文件包含：
+\begin{DoxyItemize}
+\item ROS节点初始化与启动
+\item 图像、\+IMU、odom、激光雷达、传感器等数据的订阅回调
+\item 各种控制命令和状态信息的发布
+\item 将\+ROS数据转换为\+Qt可显示的格式（如\+QImage）
+\item Qt信号发射，用于更新界面 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{qnode_8cpp_a41c9f100c603d297d9cb0e3ae316acba}\label{qnode_8cpp_a41c9f100c603d297d9cb0e3ae316acba} 
+\index{qnode.cpp@{qnode.cpp}!callbackPub2stm@{callbackPub2stm}}
+\index{callbackPub2stm@{callbackPub2stm}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{callbackPub2stm()}{callbackPub2stm()}}
+{\footnotesize\ttfamily void callback\+Pub2stm (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+String\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+处理来自\+Pub2stm话题的字符串消息，并根据内容发射不同\+Qt信号 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的字符串消息指针 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00126}{126}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00127\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ QString\ data\ =\ QString::fromStdString(msg-\/>data);}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{if}\ (data\ ==\ \textcolor{stringliteral}{"{}FO"{}})\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ emit\ signalFO();}
+\DoxyCodeLine{00131\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(data\ ==\ \textcolor{stringliteral}{"{}BA"{}})\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ emit\ signalBA();}
+\DoxyCodeLine{00133\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ emit\ signalST();}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a0d7dfd9133ce1e6b48bfdc8249db33d1}\label{qnode_8cpp_a0d7dfd9133ce1e6b48bfdc8249db33d1} 
+\index{qnode.cpp@{qnode.cpp}!imageCallback@{imageCallback}}
+\index{imageCallback@{imageCallback}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{imageCallback()}{imageCallback()}}
+{\footnotesize\ttfamily void image\+Callback (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+处理yolov8检测图像回调，将\+ROS图像转为\+QImage并发射信号 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的图像消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00142}{142}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ cv\_bridge::CvImagePtr\ cv\_ptr;}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ cv\_ptr\ =\ cv\_bridge::toCvCopy(msg,\ sensor\_msgs::image\_encodings::BGR8);}
+\DoxyCodeLine{00147\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (cv\_bridge::Exception\&\ e)\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}cv\_bridge\ exception:\ \%s"{}},\ e.what());}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ cv::Mat\ mat\ =\ cv\_ptr-\/>image;}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (mat.empty())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ cv::Mat\ mat\_rgb;}
+\DoxyCodeLine{00156\ \ \ \ \ cv::cvtColor(mat,\ mat\_rgb,\ cv::COLOR\_BGR2RGB);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ QImage\ img(mat\_rgb.data,\ mat\_rgb.cols,\ mat\_rgb.rows,\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(mat\_rgb.step),\ QImage::Format\_RGB888);}
+\DoxyCodeLine{00159\ \ \ \ \ emit\ imageReceived(img.copy());}
+\DoxyCodeLine{00160\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_aee8048628ff2b5c026c9e15acdcaacb8}\label{qnode_8cpp_aee8048628ff2b5c026c9e15acdcaacb8} 
+\index{qnode.cpp@{qnode.cpp}!init@{init}}
+\index{init@{init}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily bool init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+初始化\+ROS节点、发布器、订阅器并启动线程 
+
+\begin{DoxyReturn}{Returns}
+初始化成功返回true，失败返回false 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ ros::init(init\_argc,init\_argv,init\_node\_name);}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\ ros::master::check()\ )\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ ros::start();}
+\DoxyCodeLine{00057\ \ \ \ \ ros::NodeHandle\ n;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ ======================\ ROS发布器\ ======================\ //}}
+\DoxyCodeLine{00060\ \ \ \ \ chatter\_publisher1\ =\ n.advertise<std\_msgs::String>(\textcolor{stringliteral}{"{}Pub2stm"{}},\ 1000);\ \ }
+\DoxyCodeLine{00061\ \ \ \ \ chatter\_publisher2\ =\ n.advertise<pipeline::HeaderInfo>(\textcolor{stringliteral}{"{}piantou"{}},\ 1000);\ \ }
+\DoxyCodeLine{00062\ \ \ \ \ chatter\_publisher3\ =\ n.advertise<geometry\_msgs::PoseStamped>(\textcolor{stringliteral}{"{}finalgoal"{}},\ 1000);\ }
+\DoxyCodeLine{00063\ \ \ \ \ chatter\_publisher4\ =\ n.advertise<std\_msgs::Bool>(\textcolor{stringliteral}{"{}whether\_auto\_navigation"{}},\ 1000);\ }
+\DoxyCodeLine{00064\ \ \ \ \ chatter\_publisher5\ =\ n.advertise<std\_msgs::Bool>(\textcolor{stringliteral}{"{}whether\_stop"{}},\ 1000);\ }
+\DoxyCodeLine{00065\ \ \ \ \ chatter\_publisher6\ =\ n.advertise<geometry\_msgs::PoseStamped>(\textcolor{stringliteral}{"{}waypoint"{}},\ 1000);\ }
+\DoxyCodeLine{00066\ \ \ \ \ chatter\_publisher7\ =\ n.advertise<std\_msgs::Bool>(\textcolor{stringliteral}{"{}reset\_odom"{}},\ 1000);\ }
+\DoxyCodeLine{00067\ \ \ \ \ chatter\_publisher8\ =\ n.advertise<std\_msgs::String>(\textcolor{stringliteral}{"{}cable"{}},\ 1000);\ \ }
+\DoxyCodeLine{00068\ \ \ \ \ chatter\_publisher9\ =\ n.advertise<std\_msgs::Bool>(\textcolor{stringliteral}{"{}whether\_report\_generate"{}},\ 1000);\ }
+\DoxyCodeLine{00069\ \ \ \ \ chatter\_publisher10\ =\ n.advertise<std\_msgs::Bool>(\textcolor{stringliteral}{"{}cloudmodel\_pub"{}},\ 1000);\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ ======================\ ROS订阅器\ ======================\ //}}
+\DoxyCodeLine{00072\ \ \ \ \ chatter\_subscriber1\ =\ n.subscribe(\textcolor{stringliteral}{"{}/yolov8\_detection"{}},\ 1,\ \&QNode::imageCallback,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00073\ \ \ \ \ chatter\_subscriber2\ =\ n.subscribe(\textcolor{stringliteral}{"{}wit/imu"{}},\ 1000,\ \&QNode::myCallback\_imu,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00074\ \ \ \ \ chatter\_subscriber3\ =\ n.subscribe(\textcolor{stringliteral}{"{}pressure"{}},\ 1000,\ \&QNode::myCallback\_pre,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00075\ \ \ \ \ chatter\_subscriber4\ =\ n.subscribe(\textcolor{stringliteral}{"{}/cable/odom"{}},\ 1000,\ \&QNode::myCallback\_odom,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00076\ \ \ \ \ chatter\_subscriber5\ =\ n.subscribe(\textcolor{stringliteral}{"{}/camera/image\_raw"{}},\ 1,\ \&QNode::myCallback\_backimage,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00077\ \ \ \ \ chatter\_subscriber6\ =\ n.subscribe(\textcolor{stringliteral}{"{}/whether\_auto\_navigation"{}},\ 1000,\ \&QNode::myCallback\_auto\_navigation,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ chatter\_subscriber7\ =\ n.subscribe(\textcolor{stringliteral}{"{}/current\_data\_cs0"{}},\ 1000,\ \&QNode::myCallback\_current1,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00080\ \ \ \ \ chatter\_subscriber8\ =\ n.subscribe(\textcolor{stringliteral}{"{}/current\_data\_cs1"{}},\ 1000,\ \&QNode::myCallback\_current2,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00081\ \ \ \ \ chatter\_subscriber9\ =\ n.subscribe(\textcolor{stringliteral}{"{}/current\_data\_cs2"{}},\ 1000,\ \&QNode::myCallback\_current3,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00082\ \ \ \ \ chatter\_subscriber10\ =\ n.subscribe(\textcolor{stringliteral}{"{}/current\_data\_cs3"{}},\ 1000,\ \&QNode::myCallback\_current4,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00083\ \ \ \ \ chatter\_subscriber11\ =\ n.subscribe(\textcolor{stringliteral}{"{}/current\_data\_cs4"{}},\ 1000,\ \&QNode::myCallback\_current5,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ chatter\_subscriber12\ =\ n.subscribe(\textcolor{stringliteral}{"{}/temperature\_data"{}},\ 1000,\ \&QNode::myCallback\_temperature,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00086\ \ \ \ \ chatter\_subscriber13\ =\ n.subscribe(\textcolor{stringliteral}{"{}/pressVal"{}},\ 1000,\ \&QNode::myCallback\_press,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00087\ \ \ \ \ chatter\_subscriber14\ =\ n.subscribe(\textcolor{stringliteral}{"{}/encodeVal"{}},\ 1000,\ \&QNode::myCallback\_encodeVal,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00088\ \ \ \ \ chatter\_subscriber15\ =\ n.subscribe(\textcolor{stringliteral}{"{}/angle0"{}},\ 1000,\ \&QNode::myCallback\_angle0,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00089\ \ \ \ \ chatter\_subscriber16\ =\ n.subscribe(\textcolor{stringliteral}{"{}/angle1"{}},\ 1000,\ \&QNode::myCallback\_angle1,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00090\ \ \ \ \ chatter\_subscriber17\ =\ n.subscribe(\textcolor{stringliteral}{"{}/leftLimit"{}},\ 1000,\ \&QNode::myCallback\_leftLimit,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00091\ \ \ \ \ chatter\_subscriber18\ =\ n.subscribe(\textcolor{stringliteral}{"{}/rightLimit"{}},\ 1000,\ \&QNode::myCallback\_rightLimit,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00092\ \ \ \ \ chatter\_subscriber19\ =\ n.subscribe(\textcolor{stringliteral}{"{}/orin\_cpu\_temp"{}},\ 1000,\ \&QNode::myCallback\_orin\_cpu\_temp,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00093\ \ \ \ \ chatter\_subscriber20\ =\ n.subscribe(\textcolor{stringliteral}{"{}/orin\_gpu\_temp"{}},\ 1000,\ \&QNode::myCallback\_orin\_gpu\_temp,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ chatter\_subscriber21\ =\ n.subscribe(\textcolor{stringliteral}{"{}/rx\_motor/tq"{}},\ 1000,\ \&QNode::myCallback\_rx\_motor\_tq,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00096\ \ \ \ \ chatter\_subscriber22\ =\ n.subscribe(\textcolor{stringliteral}{"{}/rx\_motor/speed"{}},\ 1000,\ \&QNode::myCallback\_rx\_motor\_speed,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ chatter\_subscriber23\ =\ n.subscribe(\textcolor{stringliteral}{"{}/laser\_scan"{}},\ 1000,\ \&QNode::myCallback\_laser\_scan,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00099\ \ \ \ \ chatter\_subscriber24\ =\ n.subscribe(\textcolor{stringliteral}{"{}/roll"{}},\ 1000,\ \&QNode::rollCallback,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00100\ \ \ \ \ chatter\_subscriber25\ =\ n.subscribe(\textcolor{stringliteral}{"{}/pitch"{}},\ 1000,\ \&QNode::pitchCallback,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00101\ \ \ \ \ chatter\_subscriber27\ =\ n.subscribe(\textcolor{stringliteral}{"{}/heading"{}},\ 1000,\ \&QNode::headingCallback,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00102\ \ \ \ \ chatter\_subscriber26\ =\ n.subscribe(\textcolor{stringliteral}{"{}/overall\_map\_cloud"{}},\ 1000,\ \&QNode::cloudcallback,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00103\ \ \ \ \ chatter\_subscriber28\ =\ n.subscribe(\textcolor{stringliteral}{"{}Pub2stm"{}},\ 100,\ \&QNode::callbackPub2stm,\ \textcolor{keyword}{this});\ }
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ start();\ \textcolor{comment}{//\ 启动线程}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00107\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a0c64987a15b5d83e876dbc8dbbb4e39e}\label{qnode_8cpp_a0c64987a15b5d83e876dbc8dbbb4e39e} 
+\index{qnode.cpp@{qnode.cpp}!Mat2QImage@{Mat2QImage}}
+\index{Mat2QImage@{Mat2QImage}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{Mat2QImage()}{Mat2QImage()}}
+{\footnotesize\ttfamily QImage Mat2\+QImage (\begin{DoxyParamCaption}\item[{cv\+::\+Mat const \&}]{src }\end{DoxyParamCaption})}
+
+
+
+将cv\+::\+Mat转换为\+QImage 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & 输入的cv\+::\+Mat图像 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+转换后的\+QImage 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00167}{167}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00168\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ QImage\ dest(src.cols,\ src.rows,\ QImage::Format\_ARGB32);}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ scale\ =\ 255.0;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (src.depth()\ ==\ CV\_8U)\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (src.channels()\ ==\ 1)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ src.rows;\ ++i)}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ src.cols;\ ++j)}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dest.setPixel(j,\ i,\ qRgb(src.at<quint8>(i,\ j),\ src.at<quint8>(i,\ j),\ src.at<quint8>(i,\ j)));}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (src.channels()\ ==\ 3)\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ src.rows;\ ++i)}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ src.cols;\ ++j)\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cv::Vec3b\ bgr\ =\ src.at<cv::Vec3b>(i,\ j);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dest.setPixel(j,\ i,\ qRgb(bgr[2],\ bgr[1],\ bgr[0]));}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (src.depth()\ ==\ CV\_32F)\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (src.channels()\ ==\ 1)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ src.rows;\ ++i)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ src.cols;\ ++j)\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ level\ =\ scale\ *\ src.at<\textcolor{keywordtype}{float}>(i,\ j);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dest.setPixel(j,\ i,\ qRgb(level,\ level,\ level));}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (src.channels()\ ==\ 3)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ src.rows;\ ++i)}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ src.cols;\ ++j)\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cv::Vec3f\ bgr\ =\ scale\ *\ src.at<cv::Vec3f>(i,\ j);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dest.setPixel(j,\ i,\ qRgb(bgr[2],\ bgr[1],\ bgr[0]));}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{return}\ dest;}
+\DoxyCodeLine{00200\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a8b31629c866ae3db64f7e399d416e438}\label{qnode_8cpp_a8b31629c866ae3db64f7e399d416e438} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_angle0@{myCallback\_angle0}}
+\index{myCallback\_angle0@{myCallback\_angle0}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_angle0()}{myCallback\_angle0()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+angle0 (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+云台角度0回调 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Float32消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00336}{336}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00337\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ emit\ updateAngle0(msg-\/>data);}
+\DoxyCodeLine{00339\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_ae4ff203d72bce085fb5e144f6940eefb}\label{qnode_8cpp_ae4ff203d72bce085fb5e144f6940eefb} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_angle1@{myCallback\_angle1}}
+\index{myCallback\_angle1@{myCallback\_angle1}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_angle1()}{myCallback\_angle1()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+angle1 (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+云台角度1回调 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Float32消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00345}{345}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00346\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ emit\ updateAngle1(msg-\/>data);}
+\DoxyCodeLine{00348\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a855c4c0b048d710a48ef278e61f1765d}\label{qnode_8cpp_a855c4c0b048d710a48ef278e61f1765d} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_backimage@{myCallback\_backimage}}
+\index{myCallback\_backimage@{myCallback\_backimage}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_backimage()}{myCallback\_backimage()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+backimage (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+处理后置摄像头图像回调，仅在current\+\_\+video\+\_\+topic为false时处理 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的图像消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00213}{213}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00214\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{qnode_8cpp_ac4ba270cc7bf5e19ebfbebcbc6b7fd9a}{current\_video\_topic}})\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ cv\_bridge::CvImagePtr\ cv\_ptr;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ cv\_ptr\ =\ cv\_bridge::toCvCopy(msg,\ msg-\/>encoding);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ QImage\ im\ =\ \mbox{\hyperlink{qnode_8cpp_a0c64987a15b5d83e876dbc8dbbb4e39e}{Mat2QImage}}(cv\_ptr-\/>image);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ emit\ Show\_image(1,\ im);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (cv\_bridge::Exception\&\ e)\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Could\ not\ convert\ from\ '\%s'\ to\ 'bgr8':\ \%s"{}},\ msg-\/>encoding.c\_str(),\ e.what());}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qnode_8cpp_source_l00016}{current\+\_\+video\+\_\+topic}}, and \mbox{\hyperlink{qnode_8cpp_source_l00167}{Mat2\+QImage()}}.
+
+\Hypertarget{qnode_8cpp_a89301eeb1d8058636d04a80f9c905c41}\label{qnode_8cpp_a89301eeb1d8058636d04a80f9c905c41} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_current1@{myCallback\_current1}}
+\index{myCallback\_current1@{myCallback\_current1}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_current1()}{myCallback\_current1()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+current1 (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+电流传感器数据回调函数1 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Float32消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00288}{288}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00289\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ emit\ updateCurrent1(msg-\/>data);}
+\DoxyCodeLine{00291\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_ac97671280340d73f28708641e7fe4db0}\label{qnode_8cpp_ac97671280340d73f28708641e7fe4db0} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_current2@{myCallback\_current2}}
+\index{myCallback\_current2@{myCallback\_current2}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_current2()}{myCallback\_current2()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+current2 (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00292}{292}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00293\ \ \ \ \ emit\ updateCurrent2(msg-\/>data);}
+\DoxyCodeLine{00294\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_af7dabc6ef8af62a891fc3c65f645d581}\label{qnode_8cpp_af7dabc6ef8af62a891fc3c65f645d581} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_current3@{myCallback\_current3}}
+\index{myCallback\_current3@{myCallback\_current3}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_current3()}{myCallback\_current3()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+current3 (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00295}{295}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ emit\ updateCurrent3(msg-\/>data);}
+\DoxyCodeLine{00297\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a4689547d1c0042ac997ddc526d73a5b0}\label{qnode_8cpp_a4689547d1c0042ac997ddc526d73a5b0} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_current4@{myCallback\_current4}}
+\index{myCallback\_current4@{myCallback\_current4}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_current4()}{myCallback\_current4()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+current4 (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00298}{298}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00299\ \ \ \ \ emit\ updateCurrent4(msg-\/>data);}
+\DoxyCodeLine{00300\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a09d70b20585e957c2063a88460dbfbc1}\label{qnode_8cpp_a09d70b20585e957c2063a88460dbfbc1} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_current5@{myCallback\_current5}}
+\index{myCallback\_current5@{myCallback\_current5}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_current5()}{myCallback\_current5()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+current5 (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00301}{301}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00302\ \ \ \ \ emit\ updateCurrent5(msg-\/>data);}
+\DoxyCodeLine{00303\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_af2831a739e57abfc29f6231436c9feab}\label{qnode_8cpp_af2831a739e57abfc29f6231436c9feab} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_encodeVal@{myCallback\_encodeVal}}
+\index{myCallback\_encodeVal@{myCallback\_encodeVal}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_encodeVal()}{myCallback\_encodeVal()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+encode\+Val (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+俯仰角编码值回调 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Float32消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00327}{327}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00328\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ emit\ updateEncodeVal(msg-\/>data);}
+\DoxyCodeLine{00330\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_ae6699c4dc53afed92e401a014a526731}\label{qnode_8cpp_ae6699c4dc53afed92e401a014a526731} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_img@{myCallback\_img}}
+\index{myCallback\_img@{myCallback\_img}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_img()}{myCallback\_img()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+img (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+处理前置摄像头图像回调，仅在current\+\_\+video\+\_\+topic为true时处理 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的图像消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00232}{232}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00233\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{qnode_8cpp_ac4ba270cc7bf5e19ebfbebcbc6b7fd9a}{current\_video\_topic}})\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ cv\_bridge::CvImagePtr\ cv\_ptr;}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ cv\_ptr\ =\ cv\_bridge::toCvCopy(msg,\ msg-\/>encoding);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ QImage\ im\ =\ \mbox{\hyperlink{qnode_8cpp_a0c64987a15b5d83e876dbc8dbbb4e39e}{Mat2QImage}}(cv\_ptr-\/>image);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ emit\ Show\_image(0,\ im);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (cv\_bridge::Exception\&\ e)\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ ROS\_ERROR(\textcolor{stringliteral}{"{}Could\ not\ convert\ from\ '\%s'\ to\ 'bgr8':\ \%s"{}},\ msg-\/>encoding.c\_str(),\ e.what());}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qnode_8cpp_source_l00016}{current\+\_\+video\+\_\+topic}}, and \mbox{\hyperlink{qnode_8cpp_source_l00167}{Mat2\+QImage()}}.
+
+\Hypertarget{qnode_8cpp_a3df8dd3c339b80b79030fda2e1ca062e}\label{qnode_8cpp_a3df8dd3c339b80b79030fda2e1ca062e} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_imu@{myCallback\_imu}}
+\index{myCallback\_imu@{myCallback\_imu}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_imu()}{myCallback\_imu()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+imu (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Imu \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+IMU数据回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+IMU消息\\
+\hline
+\end{DoxyParams}
+将\+IMU姿态四元数转换为滚转角、俯仰角、偏航角，并通过\+Qt信号发射到界面。 
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00252}{252}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ tf::Quaternion\ q(msg.orientation.x,\ msg.orientation.y,\ msg.orientation.z,\ msg.orientation.w);}
+\DoxyCodeLine{00254\ \ \ \ \ tf::Matrix3x3\ m(q);}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordtype}{double}\ roll,pitch,yaw;}
+\DoxyCodeLine{00256\ \ \ \ \ m.getRPY(roll,pitch,yaw);}
+\DoxyCodeLine{00257\ \ \ \ \ emit\ Show\_imu(pitch,roll,\ yaw);}
+\DoxyCodeLine{00258\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a85fc564b736ac2b2a35722ffeaf8d240}\label{qnode_8cpp_a85fc564b736ac2b2a35722ffeaf8d240} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_laser\_scan@{myCallback\_laser\_scan}}
+\index{myCallback\_laser\_scan@{myCallback\_laser\_scan}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_laser\_scan()}{myCallback\_laser\_scan()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+laser\+\_\+scan (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&}]{scan }\end{DoxyParamCaption})}
+
+
+
+Laser\+Scan数据回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scan} & 接收到的\+Laser\+Scan消息\\
+\hline
+\end{DoxyParams}
+提取指定角度范围内的平均距离，并发射\+Qt信号。 
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00406}{406}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{comment}{//\ ...\ 保持原逻辑}}
+\DoxyCodeLine{00408\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a0f50071ce0ffc57d2b76b3926bfa840c}\label{qnode_8cpp_a0f50071ce0ffc57d2b76b3926bfa840c} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_leftLimit@{myCallback\_leftLimit}}
+\index{myCallback\_leftLimit@{myCallback\_leftLimit}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_leftLimit()}{myCallback\_leftLimit()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+left\+Limit (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Bool \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+左限制开关回调 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Bool消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00354}{354}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00355\ \{}
+\DoxyCodeLine{00356\ \ \ \ \ emit\ updateLeftLimit(msg.data);}
+\DoxyCodeLine{00357\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_adb2aed4dd096ba5611bb424fa207cca1}\label{qnode_8cpp_adb2aed4dd096ba5611bb424fa207cca1} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_odom@{myCallback\_odom}}
+\index{myCallback\_odom@{myCallback\_odom}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_odom()}{myCallback\_odom()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+odom (\begin{DoxyParamCaption}\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+odom数据回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Odometry消息\\
+\hline
+\end{DoxyParams}
+提取机器人速度和位置，并通过\+Qt信号发射。 
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00266}{266}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordtype}{double}\ speed\ =\ msg-\/>twist.twist.linear.x;}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordtype}{double}\ position\ =\ msg-\/>pose.pose.position.x;}
+\DoxyCodeLine{00269\ \ \ \ \ emit\ odomDataReceived(speed,\ position);}
+\DoxyCodeLine{00270\ \ \ \ \ emit\ odomReceived(msg-\/>pose.pose);}
+\DoxyCodeLine{00271\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a9f6ab99d070a5acc644e5bfafa2b1954}\label{qnode_8cpp_a9f6ab99d070a5acc644e5bfafa2b1954} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_orin\_cpu\_temp@{myCallback\_orin\_cpu\_temp}}
+\index{myCallback\_orin\_cpu\_temp@{myCallback\_orin\_cpu\_temp}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_orin\_cpu\_temp()}{myCallback\_orin\_cpu\_temp()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+orin\+\_\+cpu\+\_\+temp (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+ORIN CPU温度回调 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Float32消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00372}{372}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00373\ \ \ emit\ updateCpuTemp(msg-\/>data);}
+\DoxyCodeLine{00374\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a38270ebfd641dbac569e27febaa9c441}\label{qnode_8cpp_a38270ebfd641dbac569e27febaa9c441} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_orin\_gpu\_temp@{myCallback\_orin\_gpu\_temp}}
+\index{myCallback\_orin\_gpu\_temp@{myCallback\_orin\_gpu\_temp}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_orin\_gpu\_temp()}{myCallback\_orin\_gpu\_temp()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+orin\+\_\+gpu\+\_\+temp (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+ORIN GPU温度回调 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Float32消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00380}{380}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00381\ \ \ emit\ updateGpuTemp(msg-\/>data);}
+\DoxyCodeLine{00382\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_aaeb56f05ad952f500ac626d9987a397f}\label{qnode_8cpp_aaeb56f05ad952f500ac626d9987a397f} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_pre@{myCallback\_pre}}
+\index{myCallback\_pre@{myCallback\_pre}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_pre()}{myCallback\_pre()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+pre (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Fluid\+Pressure\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+气压传感器数据回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Fluid\+Pressure消息\\
+\hline
+\end{DoxyParams}
+发射\+Qt信号更新界面气压显示。 
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00279}{279}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordtype}{double}\ pressure\ =\ msg-\/>fluid\_pressure;}
+\DoxyCodeLine{00281\ \ \ \ \ emit\ Show\_pressure(pressure);}
+\DoxyCodeLine{00282\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_aa4c78e90d9f893cfc63b5ee053d7aec3}\label{qnode_8cpp_aa4c78e90d9f893cfc63b5ee053d7aec3} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_press@{myCallback\_press}}
+\index{myCallback\_press@{myCallback\_press}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_press()}{myCallback\_press()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+press (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+气压传感器数值回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Float32消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00318}{318}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00319\ \{}
+\DoxyCodeLine{00320\ \ \ \ \ emit\ updatePress(msg-\/>data);}
+\DoxyCodeLine{00321\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a0f01e12373802ccb070db232f18e4972}\label{qnode_8cpp_a0f01e12373802ccb070db232f18e4972} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_rightLimit@{myCallback\_rightLimit}}
+\index{myCallback\_rightLimit@{myCallback\_rightLimit}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_rightLimit()}{myCallback\_rightLimit()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+right\+Limit (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Bool \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+右限制开关回调 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Bool消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00363}{363}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00364\ \{}
+\DoxyCodeLine{00365\ \ \ \ \ emit\ updateRightLimit(msg.data);}
+\DoxyCodeLine{00366\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a0b13cedebba3173303c9caf8dd458ef4}\label{qnode_8cpp_a0b13cedebba3173303c9caf8dd458ef4} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_rx\_motor\_speed@{myCallback\_rx\_motor\_speed}}
+\index{myCallback\_rx\_motor\_speed@{myCallback\_rx\_motor\_speed}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_rx\_motor\_speed()}{myCallback\_rx\_motor\_speed()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+rx\+\_\+motor\+\_\+speed (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+绕线盘电机速度回调 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Float32消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00396}{396}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00397\ \ \ emit\ updateRxMotorSpeed(msg-\/>data);}
+\DoxyCodeLine{00398\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_ae86abc9dd0741d2acc385f29572a9c86}\label{qnode_8cpp_ae86abc9dd0741d2acc385f29572a9c86} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_rx\_motor\_tq@{myCallback\_rx\_motor\_tq}}
+\index{myCallback\_rx\_motor\_tq@{myCallback\_rx\_motor\_tq}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_rx\_motor\_tq()}{myCallback\_rx\_motor\_tq()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+rx\+\_\+motor\+\_\+tq (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+绕线盘电机力矩回调 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Float32消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00388}{388}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00389\ \ \ emit\ updateRxMotorTq(msg-\/>data);}
+\DoxyCodeLine{00390\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_afd7f20bc249158ebe1ca28a6526fe0f4}\label{qnode_8cpp_afd7f20bc249158ebe1ca28a6526fe0f4} 
+\index{qnode.cpp@{qnode.cpp}!myCallback\_temperature@{myCallback\_temperature}}
+\index{myCallback\_temperature@{myCallback\_temperature}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{myCallback\_temperature()}{myCallback\_temperature()}}
+{\footnotesize\ttfamily void my\+Callback\+\_\+temperature (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+温度传感器数据回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 接收到的\+Float32消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00309}{309}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00310\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ emit\ updateTemp(msg-\/>data);}
+\DoxyCodeLine{00312\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_aec3b5210af99a83e3a2cd3c37de6dfa6}\label{qnode_8cpp_aec3b5210af99a83e3a2cd3c37de6dfa6} 
+\index{qnode.cpp@{qnode.cpp}!odetoggleVideoSource@{odetoggleVideoSource}}
+\index{odetoggleVideoSource@{odetoggleVideoSource}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{odetoggleVideoSource()}{odetoggleVideoSource()}}
+{\footnotesize\ttfamily void odetoggle\+Video\+Source (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+切换当前视频源，前置/后置摄像头 
+
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00205}{205}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{qnode_8cpp_ac4ba270cc7bf5e19ebfbebcbc6b7fd9a}{current\_video\_topic}}\ =\ !\mbox{\hyperlink{qnode_8cpp_ac4ba270cc7bf5e19ebfbebcbc6b7fd9a}{current\_video\_topic}};}
+\DoxyCodeLine{00207\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qnode_8cpp_source_l00016}{current\+\_\+video\+\_\+topic}}.
+
+\Hypertarget{qnode_8cpp_a424aae07eabbcc7263cda7e171be1cbf}\label{qnode_8cpp_a424aae07eabbcc7263cda7e171be1cbf} 
+\index{qnode.cpp@{qnode.cpp}!publish\_cable@{publish\_cable}}
+\index{publish\_cable@{publish\_cable}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{publish\_cable()}{publish\_cable()}}
+{\footnotesize\ttfamily void publish\+\_\+cable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+发布cable消息 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 字符串消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00498}{498}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00499\ \{}
+\DoxyCodeLine{00500\ \ \ \ \ std\_msgs::String\ message;}
+\DoxyCodeLine{00501\ \ \ \ \ message.data\ =\ msg;}
+\DoxyCodeLine{00502\ \ \ \ \ chatter\_publisher8.publish(message);}
+\DoxyCodeLine{00503\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_aafdf780e43504aadfb3d4d2c4e72120b}\label{qnode_8cpp_aafdf780e43504aadfb3d4d2c4e72120b} 
+\index{qnode.cpp@{qnode.cpp}!publish\_cloudmodel\_pub@{publish\_cloudmodel\_pub}}
+\index{publish\_cloudmodel\_pub@{publish\_cloudmodel\_pub}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{publish\_cloudmodel\_pub()}{publish\_cloudmodel\_pub()}}
+{\footnotesize\ttfamily void publish\+\_\+cloudmodel\+\_\+pub (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Bool}]{msg }\end{DoxyParamCaption})}
+
+
+
+发布点云模型生成指令 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Bool消息，true表示生成 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00518}{518}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00519\ \{}
+\DoxyCodeLine{00520\ \ \ \ \ chatter\_publisher10.publish(msg);}
+\DoxyCodeLine{00521\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_ac9d8e1e36dd9845af6e9f68fe2541950}\label{qnode_8cpp_ac9d8e1e36dd9845af6e9f68fe2541950} 
+\index{qnode.cpp@{qnode.cpp}!publish\_report\_generate@{publish\_report\_generate}}
+\index{publish\_report\_generate@{publish\_report\_generate}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{publish\_report\_generate()}{publish\_report\_generate()}}
+{\footnotesize\ttfamily void publish\+\_\+report\+\_\+generate (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Bool}]{msg }\end{DoxyParamCaption})}
+
+
+
+发布自动报告生成指令 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Bool消息，true表示开启 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00509}{509}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00510\ \{}
+\DoxyCodeLine{00511\ \ \ \ \ chatter\_publisher9.publish(msg);}
+\DoxyCodeLine{00512\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a8a32b66beffdb4a2ed66fcc6c7b0739c}\label{qnode_8cpp_a8a32b66beffdb4a2ed66fcc6c7b0739c} 
+\index{qnode.cpp@{qnode.cpp}!publishAutomaticRecycle@{publishAutomaticRecycle}}
+\index{publishAutomaticRecycle@{publishAutomaticRecycle}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{publishAutomaticRecycle()}{publishAutomaticRecycle()}}
+{\footnotesize\ttfamily void publish\+Automatic\+Recycle (\begin{DoxyParamCaption}\item[{double}]{distance }\end{DoxyParamCaption})}
+
+
+
+发布自动回收指令 
+
+
+\begin{DoxyParams}{Parameters}
+{\em distance} & 回收距离 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00454}{454}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00455\ \{\ \ }
+\DoxyCodeLine{00456\ \ \ \ \ std\_msgs::Bool\ msg;}
+\DoxyCodeLine{00457\ \ \ \ \ msg.data\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00458\ \ \ \ \ geometry\_msgs::PoseStamped\ waypoint;}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{odom__pub_8cpp_a79b8e036dca6911e3295a47d99f21f43}{distance}}\ >\ 0)\ waypoint.pose.position.x\ =\ 0;}
+\DoxyCodeLine{00460\ \ \ \ \ \textcolor{keywordflow}{else}\ waypoint.pose.position.x\ =\ \mbox{\hyperlink{odom__pub_8cpp_a79b8e036dca6911e3295a47d99f21f43}{distance}};}
+\DoxyCodeLine{00461\ \ \ \ \ chatter\_publisher6.publish(waypoint);}
+\DoxyCodeLine{00462\ \ \ \ \ chatter\_publisher5.publish(msg);}
+\DoxyCodeLine{00463\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{odom__pub_8cpp_source_l00031}{distance}}.
+
+\Hypertarget{qnode_8cpp_a89068b8a7fed63d822050a8c7a097b16}\label{qnode_8cpp_a89068b8a7fed63d822050a8c7a097b16} 
+\index{qnode.cpp@{qnode.cpp}!publishAutonomousNavigation@{publishAutonomousNavigation}}
+\index{publishAutonomousNavigation@{publishAutonomousNavigation}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{publishAutonomousNavigation()}{publishAutonomousNavigation()}}
+{\footnotesize\ttfamily void publish\+Autonomous\+Navigation (\begin{DoxyParamCaption}\item[{const geometry\+\_\+msgs\+::\+Pose\+Stamped \&}]{msg2 }\end{DoxyParamCaption})}
+
+
+
+发布自主导航指令 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg2} & 最终目标\+Pose\+Stamped \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00432}{432}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00433\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ std\_msgs::Bool\ msg;}
+\DoxyCodeLine{00435\ \ \ \ \ msg.data\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00436\ \ \ \ \ chatter\_publisher4.publish(msg);}
+\DoxyCodeLine{00437\ \ \ \ \ QThread::msleep(100);}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ std\_msgs::Bool\ msg1;}
+\DoxyCodeLine{00440\ \ \ \ \ msg1.data\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00441\ \ \ \ \ chatter\_publisher3.publish(msg2);}
+\DoxyCodeLine{00442\ \ \ \ \ QThread::msleep(100);}
+\DoxyCodeLine{00443\ \ \ \ \ chatter\_publisher3.publish(msg2);}
+\DoxyCodeLine{00444\ \ \ \ \ QThread::msleep(100);}
+\DoxyCodeLine{00445\ \ \ \ \ chatter\_publisher3.publish(msg2);}
+\DoxyCodeLine{00446\ \ \ \ \ QThread::msleep(100);}
+\DoxyCodeLine{00447\ \ \ \ \ chatter\_publisher5.publish(msg1);}
+\DoxyCodeLine{00448\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a6b2dc894a7e16dfd10b6235e3c2118fc}\label{qnode_8cpp_a6b2dc894a7e16dfd10b6235e3c2118fc} 
+\index{qnode.cpp@{qnode.cpp}!publishMessage@{publishMessage}}
+\index{publishMessage@{publishMessage}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{publishMessage()}{publishMessage()}}
+{\footnotesize\ttfamily void publish\+Message (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+发布普通字符串消息 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 要发布的字符串 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00414}{414}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \ \ \ \ std\_msgs::String\ message;}
+\DoxyCodeLine{00416\ \ \ \ \ message.data\ =\ msg;}
+\DoxyCodeLine{00417\ \ \ \ \ chatter\_publisher1.publish(message);}
+\DoxyCodeLine{00418\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a7967495bbd1f3bc0b3e83ef70a187788}\label{qnode_8cpp_a7967495bbd1f3bc0b3e83ef70a187788} 
+\index{qnode.cpp@{qnode.cpp}!publishPianTou@{publishPianTou}}
+\index{publishPianTou@{publishPianTou}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{publishPianTou()}{publishPianTou()}}
+{\footnotesize\ttfamily void publish\+Pian\+Tou (\begin{DoxyParamCaption}\item[{const pipeline\+::\+Header\+Info \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+发布片头信息 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & pipeline\+::\+Header\+Info结构体消息 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00424}{424}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00425\ \ \ \ \ chatter\_publisher2.publish(msg);}
+\DoxyCodeLine{00426\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_ae1b288c8f80f61dfa526dd885f02962e}\label{qnode_8cpp_ae1b288c8f80f61dfa526dd885f02962e} 
+\index{qnode.cpp@{qnode.cpp}!publishResetMeter@{publishResetMeter}}
+\index{publishResetMeter@{publishResetMeter}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{publishResetMeter()}{publishResetMeter()}}
+{\footnotesize\ttfamily void publish\+Reset\+Meter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+发布计米器归零指令 
+
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00468}{468}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00469\ \{}
+\DoxyCodeLine{00470\ \ \ \ \ std\_msgs::Bool\ msg;}
+\DoxyCodeLine{00471\ \ \ \ \ msg.data\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00472\ \ \ \ \ chatter\_publisher7.publish(msg);}
+\DoxyCodeLine{00473\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_ac1bd480e69700e4e41545cdab1c71989}\label{qnode_8cpp_ac1bd480e69700e4e41545cdab1c71989} 
+\index{qnode.cpp@{qnode.cpp}!publishStop@{publishStop}}
+\index{publishStop@{publishStop}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{publishStop()}{publishStop()}}
+{\footnotesize\ttfamily void publish\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+发布急停指令 
+
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00478}{478}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00479\ \{}
+\DoxyCodeLine{00480\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00481\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x53'});}
+\DoxyCodeLine{00482\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x44'});}
+\DoxyCodeLine{00483\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00484\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00485\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ \ \ std\_msgs::Bool\ msg1,\ msg2;}
+\DoxyCodeLine{00488\ \ \ \ \ msg1.data\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00489\ \ \ \ \ msg2.data\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00490\ \ \ \ \ chatter\_publisher5.publish(msg1);}
+\DoxyCodeLine{00491\ \ \ \ \ chatter\_publisher4.publish(msg2);}
+\DoxyCodeLine{00492\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_a0acbfdfac02bb5a765d2447f794ecbe4}\label{qnode_8cpp_a0acbfdfac02bb5a765d2447f794ecbe4} 
+\index{qnode.cpp@{qnode.cpp}!QNode@{QNode}}
+\index{QNode@{QNode}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{QNode()}{QNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classQNode}{QNode}} (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv,  }\item[{char \texorpdfstring{$\ast$}{*}}]{node\+\_\+name }\end{DoxyParamCaption})}
+
+构造函数，保存节点初始化参数并调用init()进行节点初始化 
+\begin{DoxyParams}{Parameters}
+{\em argc} & 命令行参数个数 \\
+\hline
+{\em argv} & 命令行参数数组 \\
+\hline
+{\em node\+\_\+name} & ROS节点名称\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ init\_argc\ =\ argc;}
+\DoxyCodeLine{00031\ \ \ \ \ init\_argv\ =\ argv;}
+\DoxyCodeLine{00032\ \ \ \ \ init\_node\_name\ =\ node\_name;}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{qnode_8cpp_aee8048628ff2b5c026c9e15acdcaacb8}{init}}();}
+\DoxyCodeLine{00034\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{qnode_8cpp_source_l00051}{init()}}.
+
+\Hypertarget{qnode_8cpp_a13a43e6d814de94978c515cb084873b1}\label{qnode_8cpp_a13a43e6d814de94978c515cb084873b1} 
+\index{qnode.cpp@{qnode.cpp}!run@{run}}
+\index{run@{run}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+QNode线程主循环，处理\+ROS回调 
+
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00112}{112}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ ros::Rate\ loop\_rate(10);}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{while}(ros::ok())}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ ros::spinOnce();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ loop\_rate.sleep();}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \}}
+
+\end{DoxyCode}
+\Hypertarget{qnode_8cpp_ab67a83db86e20b83f8ba0492d6dc75eb}\label{qnode_8cpp_ab67a83db86e20b83f8ba0492d6dc75eb} 
+\index{qnode.cpp@{qnode.cpp}!````~QNode@{\texorpdfstring{$\sim$}{\string~}QNode}}
+\index{````~QNode@{\texorpdfstring{$\sim$}{\string~}QNode}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}QNode()}{\string~QNode()}}
+{\footnotesize\ttfamily \texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classQNode}{QNode}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+析构函数，关闭\+ROS节点并等待线程结束 
+
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{if}(ros::isStarted())\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ ros::shutdown();\ \textcolor{comment}{//\ 显式关闭ROS}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ ros::waitForShutdown();}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ wait();\ \textcolor{comment}{//\ 线程等待}}
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{qnode_8cpp_ac4ba270cc7bf5e19ebfbebcbc6b7fd9a}\label{qnode_8cpp_ac4ba270cc7bf5e19ebfbebcbc6b7fd9a} 
+\index{qnode.cpp@{qnode.cpp}!current\_video\_topic@{current\_video\_topic}}
+\index{current\_video\_topic@{current\_video\_topic}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{current\_video\_topic}{current\_video\_topic}}
+{\footnotesize\ttfamily bool current\+\_\+video\+\_\+topic = true}
+
+
+
+视频切换标志符 
+
+
+
+Definition at line \mbox{\hyperlink{qnode_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{qnode_8cpp_source}{qnode.\+cpp}}.
+
+\Hypertarget{qnode_8cpp_adf916204820072417ed73a32de1cefcf}\label{qnode_8cpp_adf916204820072417ed73a32de1cefcf} 
+\index{qnode.cpp@{qnode.cpp}!flag@{flag}}
+\index{flag@{flag}!qnode.cpp@{qnode.cpp}}
+\doxysubsubsection{\texorpdfstring{flag}{flag}}
+{\footnotesize\ttfamily int flag\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00059}{59}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+

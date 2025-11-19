@@ -1,0 +1,3318 @@
+\doxysection{function\+\_\+key/widget.cpp File Reference}
+\hypertarget{widget_8cpp}{}\label{widget_8cpp}\index{function\_key/widget.cpp@{function\_key/widget.cpp}}
+
+
+\doxylink{classWidget}{Widget} 类的实现文件  
+
+
+{\ttfamily \#include "{}widget.\+h"{}}\newline
+{\ttfamily \#include "{}ui\+\_\+widget.\+h"{}}\newline
+{\ttfamily \#include "{}ros\+\_\+tcp\+\_\+sender.\+h"{}}\newline
+{\ttfamily \#include "{}ros/ros.\+h"{}}\newline
+{\ttfamily \#include $<$QThread$>$}\newline
+{\ttfamily \#include "{}videorecorder.\+h"{}}\newline
+Include dependency graph for widget.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{widget_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{widget_8cpp_a7abc164494ec132dc9f3699b9f21bacb}{Widget}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv, QWidget \texorpdfstring{$\ast$}{*}parent)
+\begin{DoxyCompactList}\small\item\em Widget类构造函数 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{widget_8cpp_a4aecdb998b8b28b278843eaa1644998b}{Widget}} ()
+\begin{DoxyCompactList}\small\item\em Widget析构函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a28690a37682df78fb34a06a4793a4740}{on\+Frame\+Decoded}} (const QImage \&image)
+\begin{DoxyCompactList}\small\item\em 视频解码帧回调函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a05b0cc1ae7d49b1c3ae47c038109bbb5}{on\+Frame\+Decoded1}} (const QImage \&image)
+\begin{DoxyCompactList}\small\item\em 第二路视频帧回调函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a5de2bd09256045c0b96e5a0be780fa85}{close\+Event}} (QClose\+Event \texorpdfstring{$\ast$}{*}event)
+\begin{DoxyCompactList}\small\item\em 重写窗口关闭事件 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a42119c4ca6c0a4460440f8f8067e7b6a}{rx\+Timer\+Slot}} ()
+\begin{DoxyCompactList}\small\item\em rx\+Timer定时器槽函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a902b480e34ce30a340d2baa78ca82e1a}{on\+\_\+push\+Button\+\_\+4\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 摄像头切换按钮槽函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a6244b5d36de0e994b92f5c42a7bbc9b1}{slot\+\_\+show\+\_\+imu}} (double pitch, double roll, double yaw)
+\begin{DoxyCompactList}\small\item\em IMU数据槽函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a10d281e5e2ade8b5c1e9040d1714e0a1}{display\+Current\+Left\+Motor}} (float value)
+\begin{DoxyCompactList}\small\item\em 左电机电流显示槽函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a631f867c242d0d1326409bac3e047d1a}{display\+Current\+Right\+Motor}} (float value)
+\item 
+void \mbox{\hyperlink{widget_8cpp_a80a2ef35f64b6af487d94ef52c59f83a}{display\+Current\+Lift\+Motor}} (float value)
+\item 
+void \mbox{\hyperlink{widget_8cpp_a13da26a33fc84b2fec9332cd0e80c010}{display\+Current\+Pitch\+Motor}} (float value)
+\item 
+void \mbox{\hyperlink{widget_8cpp_a75f7392fe31cf988ad2ec04f1ffea499}{display\+Current\+Rotation\+Motor}} (float value)
+\item 
+void \mbox{\hyperlink{widget_8cpp_a5623166a2c903d0ad41cda9bd6f15459}{update\+\_\+encode\+Val}} (float value)
+\begin{DoxyCompactList}\small\item\em 更新编码器值 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ad96f13ee907d060783d1e8238aaba1a7}{angle0\+\_\+\+SSZ}} ()
+\begin{DoxyCompactList}\small\item\em 控制角度0顺时针旋转（\+SSZ） \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a1ff212362b1885beff8b9fe9755d5cbe}{angle0\+\_\+\+NSZ}} ()
+\begin{DoxyCompactList}\small\item\em 控制角度0逆时针旋转（\+NSZ） \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a33add4720b08f7729b14a787215f0b36}{angle1\+\_\+up}} ()
+\begin{DoxyCompactList}\small\item\em 控制角度1升起（\+NSZ） \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a6665df6f5f68a4459cca87df9c025c72}{angle1\+\_\+down}} ()
+\begin{DoxyCompactList}\small\item\em 控制角度1下降 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ac7142ee2baa705d2dd402769467d5a4e}{save\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em 保存angle0\+\_\+round和angle1\+\_\+round到文件 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a1165e1d4439a045e94970c9fbc73bb3c}{load\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em 从文件加载angle0\+\_\+round和angle1\+\_\+round \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a98466931787e33ff26d9b03c3f09c746}{rotate\+To\+Target\+Angle}} (int angle\+Type, int target\+Angle\+Temp)
+\begin{DoxyCompactList}\small\item\em 旋转到指定目标角度 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a30072d610b34aad6aa00a3d1d1e34281}{update\+\_\+angle0}} (float value)
+\begin{DoxyCompactList}\small\item\em 更新角度0值 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a53f9170763ac401174788783e7b05c88}{update\+\_\+angle1}} (float value)
+\begin{DoxyCompactList}\small\item\em 更新角度1值 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_aa9491fc5a1718173e248e887c5cb928c}{update\+\_\+left\+Limit}} (bool value)
+\begin{DoxyCompactList}\small\item\em 更新左限位开关状态 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ae4c154d8b92360aaab5cdbb52f93f8a4}{update\+\_\+right\+Limit}} (bool value)
+\begin{DoxyCompactList}\small\item\em 更新右限位开关状态 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ab94efd7cf5aba85e8215fed366bec901}{update\+\_\+rx\+\_\+motor\+\_\+tq}} (float value)
+\begin{DoxyCompactList}\small\item\em 更新\+Rx电机扭矩值 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ad1adf23b78c414c003ea6595056b2f7d}{update\+\_\+rx\+\_\+motor\+\_\+speed}} (float value)
+\begin{DoxyCompactList}\small\item\em 更新\+RX电机速度 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a08367007928a16fe33195bcacda22d03}{update\+\_\+top\+\_\+laser}} (float value)
+\item 
+void \mbox{\hyperlink{widget_8cpp_a3a49f463b5b244e34d67e4c53c333fc7}{update\+\_\+down\+\_\+laser}} (float value)
+\item 
+void \mbox{\hyperlink{widget_8cpp_a5bc68801c8da5c06acb771c7009d3a7b}{check\+Left\+Limit}} ()
+\begin{DoxyCompactList}\small\item\em 检查左限位开关 如果触发，停止下降动作并显示警告 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a09fb370968540bf0ccc1bfbd6f28173d}{check\+Right\+Limit}} ()
+\begin{DoxyCompactList}\small\item\em 检查右限位开关 如果触发，停止下降动作并显示警告 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ac6cb48261b2055e553b6efbafed4197b}{reset\+All}} ()
+\begin{DoxyCompactList}\small\item\em 云台复位操作，分状态机执行 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_abe2850c65efb8b97ca5e3d01648c8d0d}{rotate\+Timer\+Slot}} ()
+\begin{DoxyCompactList}\small\item\em 云台旋转定时器槽函数 根据state\+\_\+rotate控制角度达到目标后停止旋转 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a0c57db83f38d71a70d8dccd09a6de80f}{update\+Odom\+Labels}} (double speed, double position)
+\item 
+void \mbox{\hyperlink{widget_8cpp_afadad875c2955cd6161d9dda7b20a020}{on\+\_\+\+Button\+\_\+\+Stop\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 急停按钮槽函数 停止所有电机，停止\+MODBUS控制，并重置\+UI \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a6f48fec09173c062314c23813616d176}{Speed\+\_\+\+Up}} ()
+\begin{DoxyCompactList}\small\item\em 加速指令 增加左右电机速度 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a88ffa98c2b7297cef493e63a1bbe06df}{Speed\+\_\+\+Down}} ()
+\begin{DoxyCompactList}\small\item\em 减速指令 减小左右电机速度 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_aba1a76122e3e41b22f161ad1952994eb}{on\+NSZPressed}} ()
+\begin{DoxyCompactList}\small\item\em 云台逆时针旋转（angle0增大） \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_aca799bcd9814c813340142158b123b1b}{on\+SSZPressed}} ()
+\begin{DoxyCompactList}\small\item\em 云台顺时针旋转（angle0减小） \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ad667e83cfcfc3df95ab4b222aaee87cc}{ondrop\+Pressed}} ()
+\begin{DoxyCompactList}\small\item\em 云台俯视旋转（angle1增大） \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_adf17307e99cfe9ac7c95fda1b688bb8a}{onlift\+Pressed}} ()
+\begin{DoxyCompactList}\small\item\em 云台仰视旋转（angle1减小） \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a0787778f20a57060ef32a922dbadf080}{yuntai\+\_\+lift\+Pressed}} ()
+\begin{DoxyCompactList}\small\item\em 云台升降向上 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a8837a6c242d1627020ca3f3893ae402a}{yuntai\+\_\+down\+Pressed}} ()
+\begin{DoxyCompactList}\small\item\em 云台升降向下 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ac592b21305bd2eee7a1cf6f82b588ebb}{yuntai\+\_\+\+Reset}} ()
+\begin{DoxyCompactList}\small\item\em 云台复位指令（停止角度电机） \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_aa38c8ae3924fcbe576f48844eb6ace8f}{down\+Button\+Released}} ()
+\begin{DoxyCompactList}\small\item\em 停止云台、升降电机 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}{camera\+Button\+Released}} ()
+\begin{DoxyCompactList}\small\item\em 停止云台旋转 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a10477ac52dbfc16c2c074475b3448ad7}{FLED\+\_\+\+On\+\_\+\+Clicked}} ()
+\begin{DoxyCompactList}\small\item\em 前置\+LED灯开启 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a2c5cc8a5e2c49aa2358ca91a9c46712b}{FLED\+\_\+\+Off\+\_\+\+Clicked}} ()
+\begin{DoxyCompactList}\small\item\em 前置\+LED灯关闭 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_adba26a24828f6a305c4e104ab52f3f10}{WBLED\+\_\+\+On\+\_\+\+Clicked}} ()
+\begin{DoxyCompactList}\small\item\em 后置\+LED灯开启 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ad8488e7ff4f1d660d5cd5d33d9703c22}{BLED\+\_\+\+Off\+\_\+\+Clicked}} ()
+\begin{DoxyCompactList}\small\item\em 后置\+LED补光灯关闭 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_af175cf3f7948ac944834cad09819b753}{on\+\_\+push\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 设置按钮，跳转到 Setting\+Widget 界面 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a34b820e5222a61cc20d043bcbd27d283}{on\+\_\+\+Button\+\_\+\+Jian\+Tu\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 三维建图按钮，跳转到 Jian\+Tu\+Widget 界面 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_aea81de06a5eeeb40fa62167d4e249d8b}{on\+\_\+\+Button\+\_\+distance\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 设置自主导航距离并开始导航，同时启动报告生成 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a750998e0a93752c3573bd8e734f938a0}{on\+\_\+\+Button\+\_\+report\+\_\+finish\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 停止报告生成 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ae175cac75dd163c27be6887a4feb6035}{on\+\_\+\+Button\+\_\+\+Reset\+Meter\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 计米器归零 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_aafe556e0712c77175e1b46904570221c}{update\+\_\+auto\+\_\+navigation}} (bool msg)
+\begin{DoxyCompactList}\small\item\em 接收 \doxylink{namespaceauto__navigation}{auto\+\_\+navigation} 状态更新 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_af99fc29bf936ce8bf46829452c8808b1}{on\+\_\+check\+Param\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 打开参数界面 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a96bfc28d8a1b6496b014bb48933521ff}{on\+\_\+stop\+Reset\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 停止复位操作 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a5700355f7234d5894a0024dd8cea43a4}{on\+\_\+rotate360\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 旋转360度按钮槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ac571fe629cef6b28d5f066d5d1d986e5}{on\+\_\+rotate90\+Button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 旋转90度按钮槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_afd495e249ed1bec6d93ec6db7037f716}{on\+\_\+rxpush\+Button\+\_\+2\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 向后自动行走按钮槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a977d3a05eed506c3e76a8a4ef3b2c136}{on\+\_\+push\+Button\+\_\+8\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 停止行走按钮槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_aecf488478d8ffdd0af69d8a78ecac2b3}{slot\+FOTriggered}} ()
+\begin{DoxyCompactList}\small\item\em ROS FO 信号触发处理槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a16760f15b2cb5ea428bf80b0dbc164c2}{slot\+BATriggered}} ()
+\begin{DoxyCompactList}\small\item\em ROS BA 信号触发处理槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a8e1c8366503c244e7b7e341006d4148f}{slot\+STTriggered}} ()
+\begin{DoxyCompactList}\small\item\em ROS ST 信号触发处理槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a1f374a128317ab653c2d32ede371e4a3}{on\+\_\+\+Button\+\_\+\+FO\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 前进按钮槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a87384c9aa721183899e6a4d5a6a762ce}{on\+\_\+\+Button\+\_\+\+BA\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 后退按钮槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a5a13ef0e37d074c91bf4cacd17fd0d98}{on\+\_\+\+Button\+\_\+\+LF\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 左转按钮槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a3fdfe3bac08a96f3626db3f6bbd80691}{on\+\_\+\+Button\+\_\+\+RT\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 右转按钮槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ad9cbdc26e3e9860b10676afb1e5511c3}{on\+\_\+push\+Button\+\_\+2\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 左右电机手动速度设置按钮槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a19d42b4098e3b50ecc8b87237093387a}{on\+Lon\+Recived}} (double lon)
+\begin{DoxyCompactList}\small\item\em 接收并显示经纬度：经度 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a3bc457ab7dc7c6778e1158a9f3069ea7}{on\+Lat\+Recived}} (double lat)
+\begin{DoxyCompactList}\small\item\em 接收并显示经纬度：纬度 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ac4590ccabe0aaded73b3956123dc77cd}{on\+\_\+snapshot\+\_\+button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 截图按钮槽函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a1387b738523063a463928d5d1f41cc6d}{on\+\_\+motor\+\_\+speed\+\_\+test\+\_\+button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 打开电机速度测试窗口 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a75dbf6414035c0585fef49cda78a8097}{on\+\_\+start\+\_\+robot\+\_\+button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 启动机器人下位机程序 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a589e62bdba599a4cee2559e636e099be}{on\+\_\+quit\+\_\+robot\+\_\+button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 远程关闭机器人下位机 ROS \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a102d75b14dd4e042fed267d3a9594332}{on\+\_\+start\+\_\+record\+\_\+button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 录制视频按钮槽函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a9653aa7161b1013b2a4166f9091ef25e}{on\+Recording\+Finished}} (const QString \&filename)
+\begin{DoxyCompactList}\small\item\em 视频录制完成后的回调函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a224f31dc97ce32b3bad5bcba9262d832}{update\+Image}} (const QImage \&img)
+\begin{DoxyCompactList}\small\item\em 更新 UI 显示的视频图像 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_aa964d8309c89d16a4db776ac8d7fb467}{on\+\_\+reset\+\_\+robot\+\_\+button\+\_\+2\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 远程重启机器人（关机） \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ae1dcd246ec2c60ce2965326c752fd7e2}{on\+\_\+laser\+\_\+deep\+\_\+measure\+\_\+button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 激光井深测量按钮 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a7de22ab8b1dc865bb9591264a2464b26}{on\+\_\+line\+\_\+deep\+\_\+measure\+\_\+button\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 线缆井深度测量按钮 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_ad414e9eaef2cf2ae2c6d8239fde2eaa1}{on\+Latency\+Updated}} (double latency)
+\begin{DoxyCompactList}\small\item\em 延迟数据显示槽 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a0a3810d20c1a2eb80fe2a6b2e4df1164}{on\+\_\+push\+Button\+\_\+3\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 切换 RTSP 摄像头按钮 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{widget_8cpp_a299553a6ef0130887c0771b2c342d969}{on\+\_\+push\+Button\+\_\+5\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em 保存当前的三轴角度（用于校准） \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{widget_8cpp_adf916204820072417ed73a32de1cefcf}{flag}} =0
+\item 
+bool \mbox{\hyperlink{widget_8cpp_a03dd8def03190553a1559b0151327105}{current\+R\+\_\+limit\+\_\+flag}} = false
+\begin{DoxyCompactList}\small\item\em 显示右电机电流 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{widget_8cpp_aea821c00f026ff864e42b6346cd3c7f7}{currentsj\+\_\+limit\+\_\+flag}} = false
+\begin{DoxyCompactList}\small\item\em 显示升降台电机电流（\+C0） \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{widget_8cpp_af7273f322abca46101f0b7d85eab01d3}{currentfy\+\_\+limit\+\_\+flag}} = false
+\begin{DoxyCompactList}\small\item\em 显示俯仰电机电流（\+C1） \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{widget_8cpp_a3bfa1006325e5a8eed4c4f94ae0644cf}{currentxz\+\_\+limit\+\_\+flag}} = false
+\begin{DoxyCompactList}\small\item\em 显示旋转电机电流（\+C2） \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{widget_8cpp_ae13f42ff7ec9fbdcc7c913a72197232d}{top\+\_\+laser\+\_\+auto\+\_\+stop}} = false
+\begin{DoxyCompactList}\small\item\em 更新顶部激光数据（井口检测） \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{widget_8cpp_ad2c80288834ae64cf7ecd1768e65e4d2}{first\+\_\+top\+\_\+laser}} = true
+\item 
+float \mbox{\hyperlink{widget_8cpp_af783e425d2e2f49754bb1b4efa872571}{last\+\_\+top\+\_\+data}} = 0
+\item 
+int \mbox{\hyperlink{widget_8cpp_ad342601a6feed02a4789dabf71521222}{time\+\_\+laser\+\_\+scan}} = 0
+\begin{DoxyCompactList}\small\item\em 更新底部激光测距，用于平均测量 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{widget_8cpp_aeeafe7e9eebbd2a45ce4fa2ae0d96c51}{sum}} = 0
+\item 
+bool \mbox{\hyperlink{widget_8cpp_a4ca834506ea57a28fa4831e076264b8c}{flag\+\_\+laser\+\_\+measure}} = false
+\item 
+double \mbox{\hyperlink{widget_8cpp_ad77c55775639306203aeb855b17a9294}{odom\+\_\+data}} = 0
+\begin{DoxyCompactList}\small\item\em 更新里程计标签 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classWidget}{Widget} 类的实现文件 
+
+本文件实现了系统的主界面逻辑，包括：\hypertarget{widget_8cpp_autotoc_md0}{}\doxysubsubsubsection{\texorpdfstring{1. UI 界面初始化}{1. UI 界面初始化}}\label{widget_8cpp_autotoc_md0}
+
+\begin{DoxyItemize}
+\item 初始化主窗口、控件、样式和布局
+\item 初始化子窗口（如电机速度测试窗口 Motor\+Speed\+Test）
+\item 配置标签、按钮、视频显示区域、状态栏等 UI 元素
+\end{DoxyItemize}\hypertarget{widget_8cpp_autotoc_md1}{}\doxysubsubsubsection{\texorpdfstring{2. RTSP 视频解码与显示}{2. RTSP 视频解码与显示}}\label{widget_8cpp_autotoc_md1}
+
+\begin{DoxyItemize}
+\item 使用 Rtsp\+Decoder / Ffplay\+Wrapper 解码 RTSP 视频流
+\item 显示当前帧至 QLabel（label\+\_\+35）
+\item 实现摄像头切换、延迟显示、截图、视频录制等功能
+\end{DoxyItemize}\hypertarget{widget_8cpp_autotoc_md2}{}\doxysubsubsubsection{\texorpdfstring{3. ROS 通信模块}{3. ROS 通信模块}}\label{widget_8cpp_autotoc_md2}
+
+\begin{DoxyItemize}
+\item 订阅多个 ROS Topic（如 IMU、里程、激光、传感器等）
+\item 发布控制命令（自动导航、启动/停止、复位、回收等）
+\item 通过回调槽更新 UI 显示与系统状态变量
+\end{DoxyItemize}\hypertarget{widget_8cpp_autotoc_md3}{}\doxysubsubsubsection{\texorpdfstring{4. 传感器数据处理}{4. 传感器数据处理}}\label{widget_8cpp_autotoc_md3}
+
+\begin{DoxyItemize}
+\item 经度、纬度、\+IMU、里程、激光测距等数据解析
+\item 深度测量、延迟计算、姿态角校准
+\item 对传感器数据进行平均、滤波、转换与显示
+\end{DoxyItemize}\hypertarget{widget_8cpp_autotoc_md4}{}\doxysubsubsubsection{\texorpdfstring{5. 下位机控制与远程 SSH 操作}{5. 下位机控制与远程 SSH 操作}}\label{widget_8cpp_autotoc_md4}
+
+\begin{DoxyItemize}
+\item 一键启动下位机程序（run\+\_\+robot.\+sh）
+\item 远程关闭 / 重启机器人（通过 sshpass 执行 kill 或 shutdown）
+\item 检测与提示远程执行结果
+\end{DoxyItemize}\hypertarget{widget_8cpp_autotoc_md5}{}\doxysubsubsubsection{\texorpdfstring{6. 视频录制功能}{6. 视频录制功能}}\label{widget_8cpp_autotoc_md5}
+
+\begin{DoxyItemize}
+\item 开始/停止录制 RTSP 视频流
+\item 自动生成时间戳视频文件名
+\item 录制完成后弹窗提示（on\+Recording\+Finished）
+\end{DoxyItemize}\hypertarget{widget_8cpp_autotoc_md6}{}\doxysubsubsubsection{\texorpdfstring{7. 各类控制按钮槽函数}{7. 各类控制按钮槽函数}}\label{widget_8cpp_autotoc_md6}
+
+\begin{DoxyItemize}
+\item 截图、切换摄像头、开始/结束深度测量
+\item 初始化姿态角校准
+\item 打开电机速度测试界面
+\item UI 按钮状态联动与动态样式切换
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+本文件实现了主界面从 UI、\+ROS 到视频和控制所有核心业务逻辑， 是整个管道机器人可视化与交互系统的中心模块。 
+
+Definition in file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{widget_8cpp_a1ff212362b1885beff8b9fe9755d5cbe}\label{widget_8cpp_a1ff212362b1885beff8b9fe9755d5cbe} 
+\index{widget.cpp@{widget.cpp}!angle0\_NSZ@{angle0\_NSZ}}
+\index{angle0\_NSZ@{angle0\_NSZ}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{angle0\_NSZ()}{angle0\_NSZ()}}
+{\footnotesize\ttfamily void angle0\+\_\+\+NSZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+控制角度0逆时针旋转（\+NSZ） 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00401}{401}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00402\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00403\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x5A'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x55'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});\ }
+\DoxyCodeLine{00404\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00405\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00406\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ad96f13ee907d060783d1e8238aaba1a7}\label{widget_8cpp_ad96f13ee907d060783d1e8238aaba1a7} 
+\index{widget.cpp@{widget.cpp}!angle0\_SSZ@{angle0\_SSZ}}
+\index{angle0\_SSZ@{angle0\_SSZ}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{angle0\_SSZ()}{angle0\_SSZ()}}
+{\footnotesize\ttfamily void angle0\+\_\+\+SSZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+控制角度0顺时针旋转（\+SSZ） 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00391}{391}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00392\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00393\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x59'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x55'});\ }
+\DoxyCodeLine{00394\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00395\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00396\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a6665df6f5f68a4459cca87df9c025c72}\label{widget_8cpp_a6665df6f5f68a4459cca87df9c025c72} 
+\index{widget.cpp@{widget.cpp}!angle1\_down@{angle1\_down}}
+\index{angle1\_down@{angle1\_down}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{angle1\_down()}{angle1\_down()}}
+{\footnotesize\ttfamily void angle1\+\_\+down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+控制角度1下降 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00421}{421}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00423\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x44'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x57'});\ }
+\DoxyCodeLine{00424\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x4E'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00425\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00426\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a33add4720b08f7729b14a787215f0b36}\label{widget_8cpp_a33add4720b08f7729b14a787215f0b36} 
+\index{widget.cpp@{widget.cpp}!angle1\_up@{angle1\_up}}
+\index{angle1\_up@{angle1\_up}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{angle1\_up()}{angle1\_up()}}
+{\footnotesize\ttfamily void angle1\+\_\+up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+控制角度1升起（\+NSZ） 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00411}{411}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00412\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00413\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x4E'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x53'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x5A'});}
+\DoxyCodeLine{00414\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00415\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00416\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ad8488e7ff4f1d660d5cd5d33d9703c22}\label{widget_8cpp_ad8488e7ff4f1d660d5cd5d33d9703c22} 
+\index{widget.cpp@{widget.cpp}!BLED\_Off\_Clicked@{BLED\_Off\_Clicked}}
+\index{BLED\_Off\_Clicked@{BLED\_Off\_Clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{BLED\_Off\_Clicked()}{BLED\_Off\_Clicked()}}
+{\footnotesize\ttfamily void BLED\+\_\+\+Off\+\_\+\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+后置\+LED补光灯关闭 
+
+生成\+BLEDOFF指令并通过ros\+Sender发送到目标\+IP和端口。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00844}{844}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00845\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00846\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x42'});}
+\DoxyCodeLine{00847\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x4c'});}
+\DoxyCodeLine{00848\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x45'});}
+\DoxyCodeLine{00849\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x44'});}
+\DoxyCodeLine{00850\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});}
+\DoxyCodeLine{00851\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x46'});}
+\DoxyCodeLine{00852\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x46'});}
+\DoxyCodeLine{00853\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{00854\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00855\ }
+\DoxyCodeLine{00856\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00857\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}\label{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8} 
+\index{widget.cpp@{widget.cpp}!cameraButtonReleased@{cameraButtonReleased}}
+\index{cameraButtonReleased@{cameraButtonReleased}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{cameraButtonReleased()}{cameraButtonReleased()}}
+{\footnotesize\ttfamily void camera\+Button\+Released (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+停止云台旋转 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00804}{804}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00805\ \ \ \ \ node.publishMessage(\textcolor{stringliteral}{"{}SS3"{}});}
+\DoxyCodeLine{00806\ \ \ \ \ node.publishMessage(\textcolor{stringliteral}{"{}SS3"{}});}
+\DoxyCodeLine{00807\ \ \ \ \ QThread::msleep(30);}
+\DoxyCodeLine{00808\ \ \ \ \ node.publishMessage(\textcolor{stringliteral}{"{}SS3"{}});}
+\DoxyCodeLine{00809\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a5bc68801c8da5c06acb771c7009d3a7b}\label{widget_8cpp_a5bc68801c8da5c06acb771c7009d3a7b} 
+\index{widget.cpp@{widget.cpp}!checkLeftLimit@{checkLeftLimit}}
+\index{checkLeftLimit@{checkLeftLimit}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{checkLeftLimit()}{checkLeftLimit()}}
+{\footnotesize\ttfamily void check\+Left\+Limit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+检查左限位开关 如果触发，停止下降动作并显示警告 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00593}{593}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00594\ \ \ \ \ \textcolor{keywordflow}{if}(left\_limit)\ \{}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_aa38c8ae3924fcbe576f48844eb6ace8f}{downButtonReleased}}();}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ leftLimitTimer-\/>stop();}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}warning"{}},\ \textcolor{stringliteral}{"{}到达高度上限"{}});}
+\DoxyCodeLine{00598\ \ \ \ \ \}}
+\DoxyCodeLine{00599\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00797}{down\+Button\+Released()}}.
+
+\Hypertarget{widget_8cpp_a09fb370968540bf0ccc1bfbd6f28173d}\label{widget_8cpp_a09fb370968540bf0ccc1bfbd6f28173d} 
+\index{widget.cpp@{widget.cpp}!checkRightLimit@{checkRightLimit}}
+\index{checkRightLimit@{checkRightLimit}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{checkRightLimit()}{checkRightLimit()}}
+{\footnotesize\ttfamily void check\+Right\+Limit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+检查右限位开关 如果触发，停止下降动作并显示警告 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00605}{605}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00606\ \ \ \ \ \textcolor{keywordflow}{if}(right\_limit)\ \{}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_aa38c8ae3924fcbe576f48844eb6ace8f}{downButtonReleased}}();}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ rightLimitTimer-\/>stop();}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}warning"{}},\ \textcolor{stringliteral}{"{}到达高度下限"{}});}
+\DoxyCodeLine{00610\ \ \ \ \ \}}
+\DoxyCodeLine{00611\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00797}{down\+Button\+Released()}}.
+
+\Hypertarget{widget_8cpp_a5de2bd09256045c0b96e5a0be780fa85}\label{widget_8cpp_a5de2bd09256045c0b96e5a0be780fa85} 
+\index{widget.cpp@{widget.cpp}!closeEvent@{closeEvent}}
+\index{closeEvent@{closeEvent}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{closeEvent()}{closeEvent()}}
+{\footnotesize\ttfamily void close\+Event (\begin{DoxyParamCaption}\item[{QClose\+Event \texorpdfstring{$\ast$}{*}}]{event }\end{DoxyParamCaption})}
+
+
+
+重写窗口关闭事件 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & QClose\+Event指针\\
+\hline
+\end{DoxyParams}
+关闭机器人连接并执行窗口关闭 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00206}{206}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}窗口即将关闭，执行清理操作..."{}};}
+\DoxyCodeLine{00208\ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a589e62bdba599a4cee2559e636e099be}{on\_quit\_robot\_button\_clicked}}();}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{event}-\/>accept();}
+\DoxyCodeLine{00210\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l01387}{on\+\_\+quit\+\_\+robot\+\_\+button\+\_\+clicked()}}.
+
+\Hypertarget{widget_8cpp_a10d281e5e2ade8b5c1e9040d1714e0a1}\label{widget_8cpp_a10d281e5e2ade8b5c1e9040d1714e0a1} 
+\index{widget.cpp@{widget.cpp}!displayCurrentLeftMotor@{displayCurrentLeftMotor}}
+\index{displayCurrentLeftMotor@{displayCurrentLeftMotor}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{displayCurrentLeftMotor()}{displayCurrentLeftMotor()}}
+{\footnotesize\ttfamily void display\+Current\+Left\+Motor (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+左电机电流显示槽函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 电流值\\
+\hline
+\end{DoxyParams}
+超过限制时执行急停并提示 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00284}{284}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ ui-\/>labelCurrentLeftMotor-\/>setText(QString::number(value,\ \textcolor{charliteral}{'f'},\ 4));}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordflow}{if}\ (qAbs(value)\ >\ current\_limit)\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(currentL\_limit\_flag)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ node.publishStop();}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a102d75b14dd4e042fed267d3a9594332}{on\_start\_record\_button\_clicked}}();}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ currentL\_limit\_flag\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00291\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ currentL\_limit\_flag\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00293\ \ \ \ \ \}}
+\DoxyCodeLine{00294\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l01423}{on\+\_\+start\+\_\+record\+\_\+button\+\_\+clicked()}}.
+
+\Hypertarget{widget_8cpp_a80a2ef35f64b6af487d94ef52c59f83a}\label{widget_8cpp_a80a2ef35f64b6af487d94ef52c59f83a} 
+\index{widget.cpp@{widget.cpp}!displayCurrentLiftMotor@{displayCurrentLiftMotor}}
+\index{displayCurrentLiftMotor@{displayCurrentLiftMotor}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{displayCurrentLiftMotor()}{displayCurrentLiftMotor()}}
+{\footnotesize\ttfamily void display\+Current\+Lift\+Motor (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00321}{321}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00322\ \ \ \ \ ui-\/>labelCurrentLiftMotor-\/>setText(QString::number(value,\ \textcolor{charliteral}{'f'},\ 4));}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keywordflow}{if}\ (qAbs(value)\ >\ currentsj\_limit)\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{widget_8cpp_aea821c00f026ff864e42b6346cd3c7f7}{currentsj\_limit\_flag}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}{cameraButtonReleased}}();}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ rotateTimer-\/>stop();}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ state\_rotate\ =\ -\/1;}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ state\ =\ 3;}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ resetTimer-\/>stop();}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_aea821c00f026ff864e42b6346cd3c7f7}{currentsj\_limit\_flag}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00331\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_aea821c00f026ff864e42b6346cd3c7f7}{currentsj\_limit\_flag}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00333\ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00804}{camera\+Button\+Released()}}, and \mbox{\hyperlink{widget_8cpp_source_l00320}{currentsj\+\_\+limit\+\_\+flag}}.
+
+\Hypertarget{widget_8cpp_a13da26a33fc84b2fec9332cd0e80c010}\label{widget_8cpp_a13da26a33fc84b2fec9332cd0e80c010} 
+\index{widget.cpp@{widget.cpp}!displayCurrentPitchMotor@{displayCurrentPitchMotor}}
+\index{displayCurrentPitchMotor@{displayCurrentPitchMotor}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{displayCurrentPitchMotor()}{displayCurrentPitchMotor()}}
+{\footnotesize\ttfamily void display\+Current\+Pitch\+Motor (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00343}{343}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ ui-\/>labelCurrentPitchMotor-\/>setText(QString::number(value,\ \textcolor{charliteral}{'f'},\ 4));}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordflow}{if}\ (qAbs(value)\ >\ currentfy\_limit)\ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{widget_8cpp_af7273f322abca46101f0b7d85eab01d3}{currentfy\_limit\_flag}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}{cameraButtonReleased}}();}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ rotateTimer-\/>stop();}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ state\_rotate\ =\ -\/1;}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ state\ =\ 3;}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ resetTimer-\/>stop();}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_af7273f322abca46101f0b7d85eab01d3}{currentfy\_limit\_flag}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00353\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_af7273f322abca46101f0b7d85eab01d3}{currentfy\_limit\_flag}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00355\ \ \ \ \ \}}
+\DoxyCodeLine{00356\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00804}{camera\+Button\+Released()}}, and \mbox{\hyperlink{widget_8cpp_source_l00342}{currentfy\+\_\+limit\+\_\+flag}}.
+
+\Hypertarget{widget_8cpp_a631f867c242d0d1326409bac3e047d1a}\label{widget_8cpp_a631f867c242d0d1326409bac3e047d1a} 
+\index{widget.cpp@{widget.cpp}!displayCurrentRightMotor@{displayCurrentRightMotor}}
+\index{displayCurrentRightMotor@{displayCurrentRightMotor}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{displayCurrentRightMotor()}{displayCurrentRightMotor()}}
+{\footnotesize\ttfamily void display\+Current\+Right\+Motor (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00303}{303}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ ui-\/>labelCurrentRightMotor-\/>setText(QString::number(value,\ \textcolor{charliteral}{'f'},\ 4));}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordflow}{if}\ (qAbs(value)\ >\ current\_limit)\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{widget_8cpp_a03dd8def03190553a1559b0151327105}{currentR\_limit\_flag}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 可加急停逻辑}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a03dd8def03190553a1559b0151327105}{currentR\_limit\_flag}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00309\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a03dd8def03190553a1559b0151327105}{currentR\_limit\_flag}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00311\ \ \ \ \ \}}
+\DoxyCodeLine{00312\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00302}{current\+R\+\_\+limit\+\_\+flag}}.
+
+\Hypertarget{widget_8cpp_a75f7392fe31cf988ad2ec04f1ffea499}\label{widget_8cpp_a75f7392fe31cf988ad2ec04f1ffea499} 
+\index{widget.cpp@{widget.cpp}!displayCurrentRotationMotor@{displayCurrentRotationMotor}}
+\index{displayCurrentRotationMotor@{displayCurrentRotationMotor}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{displayCurrentRotationMotor()}{displayCurrentRotationMotor()}}
+{\footnotesize\ttfamily void display\+Current\+Rotation\+Motor (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00365}{365}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ ui-\/>labelCurrentLiftMotor-\/>setText(QString::number(value,\ \textcolor{charliteral}{'f'},\ 4));}
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keywordflow}{if}\ (qAbs(value)\ >\ currentxz\_limit)\ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{widget_8cpp_a3bfa1006325e5a8eed4c4f94ae0644cf}{currentxz\_limit\_flag}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}{cameraButtonReleased}}();}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ rotateTimer-\/>stop();}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ state\_rotate\ =\ -\/1;}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ state\ =\ 3;}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ resetTimer-\/>stop();}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a3bfa1006325e5a8eed4c4f94ae0644cf}{currentxz\_limit\_flag}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00375\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a3bfa1006325e5a8eed4c4f94ae0644cf}{currentxz\_limit\_flag}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00377\ \ \ \ \ \}}
+\DoxyCodeLine{00378\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00804}{camera\+Button\+Released()}}, and \mbox{\hyperlink{widget_8cpp_source_l00364}{currentxz\+\_\+limit\+\_\+flag}}.
+
+\Hypertarget{widget_8cpp_aa38c8ae3924fcbe576f48844eb6ace8f}\label{widget_8cpp_aa38c8ae3924fcbe576f48844eb6ace8f} 
+\index{widget.cpp@{widget.cpp}!downButtonReleased@{downButtonReleased}}
+\index{downButtonReleased@{downButtonReleased}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{downButtonReleased()}{downButtonReleased()}}
+{\footnotesize\ttfamily void down\+Button\+Released (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+停止云台、升降电机 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00797}{797}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00798\ \ \ \ \ node.publishMessage(\textcolor{stringliteral}{"{}CS"{}});}
+\DoxyCodeLine{00799\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a2c5cc8a5e2c49aa2358ca91a9c46712b}\label{widget_8cpp_a2c5cc8a5e2c49aa2358ca91a9c46712b} 
+\index{widget.cpp@{widget.cpp}!FLED\_Off\_Clicked@{FLED\_Off\_Clicked}}
+\index{FLED\_Off\_Clicked@{FLED\_Off\_Clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{FLED\_Off\_Clicked()}{FLED\_Off\_Clicked()}}
+{\footnotesize\ttfamily void FLED\+\_\+\+Off\+\_\+\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+前置\+LED灯关闭 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00823}{823}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00824\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00825\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x46'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4C'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x45'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x44'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x46'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x46'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00826\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00827\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a10477ac52dbfc16c2c074475b3448ad7}\label{widget_8cpp_a10477ac52dbfc16c2c074475b3448ad7} 
+\index{widget.cpp@{widget.cpp}!FLED\_On\_Clicked@{FLED\_On\_Clicked}}
+\index{FLED\_On\_Clicked@{FLED\_On\_Clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{FLED\_On\_Clicked()}{FLED\_On\_Clicked()}}
+{\footnotesize\ttfamily void FLED\+\_\+\+On\+\_\+\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+前置\+LED灯开启 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00814}{814}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00815\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00816\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x46'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4C'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x45'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x44'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4E'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00817\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00818\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a1165e1d4439a045e94970c9fbc73bb3c}\label{widget_8cpp_a1165e1d4439a045e94970c9fbc73bb3c} 
+\index{widget.cpp@{widget.cpp}!loadSettings@{loadSettings}}
+\index{loadSettings@{loadSettings}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{loadSettings()}{loadSettings()}}
+{\footnotesize\ttfamily void load\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+从文件加载angle0\+\_\+round和angle1\+\_\+round 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00446}{446}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00447\ \ \ \ \ QFile\ file(settingsFile);}
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordflow}{if}\ (file.open(QIODevice::ReadOnly\ |\ QIODevice::Text))\ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ QTextStream\ in(\&file);}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ QString\ line1\ =\ in.readLine();}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ QString\ line2\ =\ in.readLine();}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!line1.isEmpty())\ angle0\_round\ =\ line1.split(\textcolor{charliteral}{'='}).last().toInt();}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!line2.isEmpty())\ angle1\_round\ =\ line2.split(\textcolor{charliteral}{'='}).last().toInt();}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00455\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}无法打开文件进行读取"{}};}
+\DoxyCodeLine{00457\ \ \ \ \ \}}
+\DoxyCodeLine{00458\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a87384c9aa721183899e6a4d5a6a762ce}\label{widget_8cpp_a87384c9aa721183899e6a4d5a6a762ce} 
+\index{widget.cpp@{widget.cpp}!on\_Button\_BA\_clicked@{on\_Button\_BA\_clicked}}
+\index{on\_Button\_BA\_clicked@{on\_Button\_BA\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_Button\_BA\_clicked()}{on\_Button\_BA\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+\+Button\+\_\+\+BA\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+后退按钮槽 
+
+根据当前按钮状态发送 BA 指令启动后退，或者发送 SD 指令停止后退。 仅在其它方向按钮未被按下时有效。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01162}{1162}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01163\ \{}
+\DoxyCodeLine{01164\ \ \ \ \ \textcolor{keywordflow}{if}(BUTTONFO==0\&\&BUTTONLE==0\&\&BUTTONRI==0)\{}
+\DoxyCodeLine{01165\ \ \ \ \ \ \ \ \ BUTTONBA=1;}
+\DoxyCodeLine{01166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ui-\/>Button\_BA-\/>text()\ ==\ \textcolor{stringliteral}{"{}向后"{}})\ \{}
+\DoxyCodeLine{01167\ \ \ \ \ \ \ \ \ \ \ \ \ QThread::msleep(500);}
+\DoxyCodeLine{01168\ \ \ \ \ \ \ \ \ \ \ \ \ QByteArray\ command1;}
+\DoxyCodeLine{01169\ \ \ \ \ \ \ \ \ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x42'});}
+\DoxyCodeLine{01170\ \ \ \ \ \ \ \ \ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x41'});}
+\DoxyCodeLine{01171\ \ \ \ \ \ \ \ \ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01172\ \ \ \ \ \ \ \ \ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01173\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command1);}
+\DoxyCodeLine{01174\ }
+\DoxyCodeLine{01175\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_BA-\/>setText(\textcolor{stringliteral}{"{}停止"{}});}
+\DoxyCodeLine{01176\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_BA-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\#FF0000;"{}});}
+\DoxyCodeLine{01177\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01178\ \ \ \ \ \ \ \ \ \ \ \ \ QByteArray\ command2;}
+\DoxyCodeLine{01179\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x53'});}
+\DoxyCodeLine{01180\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x44'});}
+\DoxyCodeLine{01181\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01182\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01183\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{01184\ }
+\DoxyCodeLine{01185\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_BA-\/>setText(\textcolor{stringliteral}{"{}向后"{}});}
+\DoxyCodeLine{01186\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_BA-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\#000000;"{}});}
+\DoxyCodeLine{01187\ \ \ \ \ \ \ \ \ \ \ \ \ BUTTONBA=0;}
+\DoxyCodeLine{01188\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01189\ \ \ \ \ \}}
+\DoxyCodeLine{01190\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_aea81de06a5eeeb40fa62167d4e249d8b}\label{widget_8cpp_aea81de06a5eeeb40fa62167d4e249d8b} 
+\index{widget.cpp@{widget.cpp}!on\_Button\_distance\_clicked@{on\_Button\_distance\_clicked}}
+\index{on\_Button\_distance\_clicked@{on\_Button\_distance\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_Button\_distance\_clicked()}{on\_Button\_distance\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+\+Button\+\_\+distance\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+设置自主导航距离并开始导航，同时启动报告生成 
+
+读取 line\+Edit\+\_\+\+Distance 输入框内容，如果为空或非整数则弹出警告。 构造 finalgoal 消息发布自动导航指令，同时更新 label\+\_\+17 提示报告生成状态。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00904}{904}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00905\ \{}
+\DoxyCodeLine{00906\ \ \ \ \ QString\ distanceText\ =\ ui-\/>lineEdit\_Distance-\/>text();}
+\DoxyCodeLine{00907\ \ \ \ \ \textcolor{keywordflow}{if}\ (distanceText.isEmpty())\ \{}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}输入错误"{}},\ \textcolor{stringliteral}{"{}请输入自主导航距离。"{}});}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00910\ \ \ \ \ \}}
+\DoxyCodeLine{00911\ }
+\DoxyCodeLine{00912\ \ \ \ \ \textcolor{keywordtype}{bool}\ ok;}
+\DoxyCodeLine{00913\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{odom__pub_8cpp_a79b8e036dca6911e3295a47d99f21f43}{distance}}\ =\ distanceText.toInt(\&ok);}
+\DoxyCodeLine{00914\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ok)\ \{}
+\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}输入错误"{}},\ \textcolor{stringliteral}{"{}自主导航距离必须是整数。"{}});}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00917\ \ \ \ \ \}}
+\DoxyCodeLine{00918\ }
+\DoxyCodeLine{00919\ \ \ \ \ geometry\_msgs::PoseStamped\ finalgoal;}
+\DoxyCodeLine{00920\ \ \ \ \ finalgoal.pose.position.x\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{odom__pub_8cpp_a79b8e036dca6911e3295a47d99f21f43}{distance}});}
+\DoxyCodeLine{00921\ \ \ \ \ node.publishAutonomousNavigation(finalgoal);}
+\DoxyCodeLine{00922\ }
+\DoxyCodeLine{00923\ \ \ \ \ ui-\/>label\_17-\/>setText(\textcolor{stringliteral}{"{}正在记录检测报告，需要手动关闭报告生成"{}});}
+\DoxyCodeLine{00924\ }
+\DoxyCodeLine{00925\ \ \ \ \ std\_msgs::Bool\ msg;}
+\DoxyCodeLine{00926\ \ \ \ \ msg.data\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00927\ \ \ \ \ node.publish\_report\_generate(msg);}
+\DoxyCodeLine{00928\ }
+\DoxyCodeLine{00929\ \ \ \ \ start\_auto\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00930\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{odom__pub_8cpp_source_l00031}{distance}}.
+
+\Hypertarget{widget_8cpp_a1f374a128317ab653c2d32ede371e4a3}\label{widget_8cpp_a1f374a128317ab653c2d32ede371e4a3} 
+\index{widget.cpp@{widget.cpp}!on\_Button\_FO\_clicked@{on\_Button\_FO\_clicked}}
+\index{on\_Button\_FO\_clicked@{on\_Button\_FO\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_Button\_FO\_clicked()}{on\_Button\_FO\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+\+Button\+\_\+\+FO\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+前进按钮槽 
+
+根据当前按钮状态发送 FO 指令启动前进，或者发送 SD 指令停止前进。 仅在其它方向按钮未被按下时有效。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01120}{1120}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01121\ \{}
+\DoxyCodeLine{01122\ \ \ \ \ \textcolor{keywordflow}{if}(BUTTONBA==0\&\&BUTTONLE==0\&\&BUTTONRI==0)\{}
+\DoxyCodeLine{01123\ \ \ \ \ \ \ \ \ BUTTONFO=1;}
+\DoxyCodeLine{01124\ }
+\DoxyCodeLine{01125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ui-\/>Button\_FO-\/>text()\ ==\ \textcolor{stringliteral}{"{}向前"{}})\ \{}
+\DoxyCodeLine{01126\ \ \ \ \ \ \ \ \ \ \ \ \ QThread::msleep(500);}
+\DoxyCodeLine{01127\ \ \ \ \ \ \ \ \ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{01128\ \ \ \ \ \ \ \ \ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x46'});}
+\DoxyCodeLine{01129\ \ \ \ \ \ \ \ \ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});}
+\DoxyCodeLine{01130\ \ \ \ \ \ \ \ \ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01132\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{01133\ }
+\DoxyCodeLine{01134\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_FO-\/>setText(\textcolor{stringliteral}{"{}停止"{}});}
+\DoxyCodeLine{01135\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_FO-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\#FF0000;"{}});}
+\DoxyCodeLine{01136\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01137\ \ \ \ \ \ \ \ \ \ \ \ \ QByteArray\ command1;}
+\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x53'});}
+\DoxyCodeLine{01139\ \ \ \ \ \ \ \ \ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x44'});}
+\DoxyCodeLine{01140\ \ \ \ \ \ \ \ \ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01141\ \ \ \ \ \ \ \ \ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01142\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command1);}
+\DoxyCodeLine{01143\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command1);}
+\DoxyCodeLine{01144\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command1);}
+\DoxyCodeLine{01145\ \ \ \ \ \ \ \ \ \ \ \ \ my\_modbus-\/>stopLine();}
+\DoxyCodeLine{01146\ }
+\DoxyCodeLine{01147\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_FO-\/>setText(\textcolor{stringliteral}{"{}向前"{}});}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_FO-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\#000000;"{}});}
+\DoxyCodeLine{01149\ \ \ \ \ \ \ \ \ \ \ \ \ BUTTONFO=0;}
+\DoxyCodeLine{01150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01151\ \ \ \ \ \}}
+\DoxyCodeLine{01152\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a34b820e5222a61cc20d043bcbd27d283}\label{widget_8cpp_a34b820e5222a61cc20d043bcbd27d283} 
+\index{widget.cpp@{widget.cpp}!on\_Button\_JianTu\_clicked@{on\_Button\_JianTu\_clicked}}
+\index{on\_Button\_JianTu\_clicked@{on\_Button\_JianTu\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_Button\_JianTu\_clicked()}{on\_Button\_JianTu\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+\+Button\+\_\+\+Jian\+Tu\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+三维建图按钮，跳转到 Jian\+Tu\+Widget 界面 
+
+创建 Jian\+Tu\+Widget 实例并显示，同时发布 cloudmodel\+\_\+pub 话题。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00882}{882}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00883\ \{}
+\DoxyCodeLine{00884\ \ \ \ \ \textcolor{keywordflow}{if}\ (!jiantuWidgetInstance)\{}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ jiantuWidgetInstance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{jiantuwidget_8cpp_a84704c7f6cf268592f712b0257ba486e}{JianTuWidget}}(tempArgc,tempArgv,\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ my\_rviz=\textcolor{keyword}{new}\ \mbox{\hyperlink{qrviz_8cpp_a310c5b1a9731b4b64600ed2c73311b0b}{Qrviz}}(jiantuWidgetInstance-\/>VerticalLayout);}
+\DoxyCodeLine{00887\ \ \ \ \ \}}
+\DoxyCodeLine{00888\ \ \ \ \ jiantuWidgetInstance-\/>showNormal();}
+\DoxyCodeLine{00889\ \ \ \ \ jiantuWidgetInstance-\/>update();}
+\DoxyCodeLine{00890\ }
+\DoxyCodeLine{00891\ \ \ \ \ std\_msgs::Bool\ msg;}
+\DoxyCodeLine{00892\ \ \ \ \ msg.data\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00893\ \ \ \ \ node.publish\_cloudmodel\_pub(msg);}
+\DoxyCodeLine{00894\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{jiantuwidget_8cpp_source_l00017}{Jian\+Tu\+Widget()}}, and \mbox{\hyperlink{qrviz_8cpp_source_l00018}{Qrviz()}}.
+
+\Hypertarget{widget_8cpp_a5a13ef0e37d074c91bf4cacd17fd0d98}\label{widget_8cpp_a5a13ef0e37d074c91bf4cacd17fd0d98} 
+\index{widget.cpp@{widget.cpp}!on\_Button\_LF\_clicked@{on\_Button\_LF\_clicked}}
+\index{on\_Button\_LF\_clicked@{on\_Button\_LF\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_Button\_LF\_clicked()}{on\_Button\_LF\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+\+Button\+\_\+\+LF\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+左转按钮槽 
+
+根据当前按钮状态发送 LE 指令启动左转，或者发送 SD 指令停止左转。 仅在其它方向按钮未被按下时有效。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01200}{1200}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01201\ \{}
+\DoxyCodeLine{01202\ \ \ \ \ \textcolor{keywordflow}{if}(BUTTONFO==0\&\&BUTTONBA==0\&\&BUTTONRI==0)\{}
+\DoxyCodeLine{01203\ \ \ \ \ \ \ \ \ BUTTONLE=1;}
+\DoxyCodeLine{01204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ui-\/>Button\_LF-\/>text()\ ==\ \textcolor{stringliteral}{"{}向左"{}})\ \{}
+\DoxyCodeLine{01205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ speed\ =\ 31;}
+\DoxyCodeLine{01206\ \ \ \ \ \ \ \ \ \ \ \ \ QThread::msleep(500);}
+\DoxyCodeLine{01207\ \ \ \ \ \ \ \ \ \ \ \ \ QByteArray\ command3;}
+\DoxyCodeLine{01208\ \ \ \ \ \ \ \ \ \ \ \ \ command3.append(\textcolor{stringliteral}{'\(\backslash\)x4C'});}
+\DoxyCodeLine{01209\ \ \ \ \ \ \ \ \ \ \ \ \ command3.append(\textcolor{stringliteral}{'\(\backslash\)x45'});}
+\DoxyCodeLine{01210\ \ \ \ \ \ \ \ \ \ \ \ \ command3.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01211\ \ \ \ \ \ \ \ \ \ \ \ \ command3.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01212\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command3);}
+\DoxyCodeLine{01213\ }
+\DoxyCodeLine{01214\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_LF-\/>setText(\textcolor{stringliteral}{"{}停止"{}});}
+\DoxyCodeLine{01215\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_LF-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\#FF0000;"{}});}
+\DoxyCodeLine{01216\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01217\ \ \ \ \ \ \ \ \ \ \ \ \ QByteArray\ command2;}
+\DoxyCodeLine{01218\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x53'});}
+\DoxyCodeLine{01219\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x44'});}
+\DoxyCodeLine{01220\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01221\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01222\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{01223\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{01224\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{01225\ }
+\DoxyCodeLine{01226\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_LF-\/>setText(\textcolor{stringliteral}{"{}向左"{}});}
+\DoxyCodeLine{01227\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_LF-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\#000000;"{}});}
+\DoxyCodeLine{01228\ \ \ \ \ \ \ \ \ \ \ \ \ BUTTONLE=0;}
+\DoxyCodeLine{01229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01230\ \ \ \ \ \}}
+\DoxyCodeLine{01231\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a750998e0a93752c3573bd8e734f938a0}\label{widget_8cpp_a750998e0a93752c3573bd8e734f938a0} 
+\index{widget.cpp@{widget.cpp}!on\_Button\_report\_finish\_clicked@{on\_Button\_report\_finish\_clicked}}
+\index{on\_Button\_report\_finish\_clicked@{on\_Button\_report\_finish\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_Button\_report\_finish\_clicked()}{on\_Button\_report\_finish\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+\+Button\+\_\+report\+\_\+finish\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+停止报告生成 
+
+发布 whether\+\_\+report\+\_\+generate 消息为 false，同时更新界面提示。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00939}{939}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00940\ \{}
+\DoxyCodeLine{00941\ \ \ \ \ std\_msgs::Bool\ msg;}
+\DoxyCodeLine{00942\ \ \ \ \ msg.data\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00943\ \ \ \ \ node.publish\_report\_generate(msg);}
+\DoxyCodeLine{00944\ \ \ \ \ ui-\/>label\_17-\/>setText(\textcolor{stringliteral}{"{}报告已生成"{}});}
+\DoxyCodeLine{00945\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ae175cac75dd163c27be6887a4feb6035}\label{widget_8cpp_ae175cac75dd163c27be6887a4feb6035} 
+\index{widget.cpp@{widget.cpp}!on\_Button\_ResetMeter\_clicked@{on\_Button\_ResetMeter\_clicked}}
+\index{on\_Button\_ResetMeter\_clicked@{on\_Button\_ResetMeter\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_Button\_ResetMeter\_clicked()}{on\_Button\_ResetMeter\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+\+Button\+\_\+\+Reset\+Meter\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+计米器归零 
+
+发布计米器归零消息。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00954}{954}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00955\ \{}
+\DoxyCodeLine{00956\ \ \ \ \ node.publishResetMeter();}
+\DoxyCodeLine{00957\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a3fdfe3bac08a96f3626db3f6bbd80691}\label{widget_8cpp_a3fdfe3bac08a96f3626db3f6bbd80691} 
+\index{widget.cpp@{widget.cpp}!on\_Button\_RT\_clicked@{on\_Button\_RT\_clicked}}
+\index{on\_Button\_RT\_clicked@{on\_Button\_RT\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_Button\_RT\_clicked()}{on\_Button\_RT\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+\+Button\+\_\+\+RT\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+右转按钮槽 
+
+根据当前按钮状态发送 RI 指令启动右转，或者发送 SD 指令停止右转。 仅在其它方向按钮未被按下时有效。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01241}{1241}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01242\ \{}
+\DoxyCodeLine{01243\ \ \ \ \ \textcolor{keywordflow}{if}(BUTTONFO==0\&\&BUTTONBA==0\&\&BUTTONLE==0)\{}
+\DoxyCodeLine{01244\ \ \ \ \ \ \ \ \ BUTTONRI=1;}
+\DoxyCodeLine{01245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ui-\/>Button\_RT-\/>text()\ ==\ \textcolor{stringliteral}{"{}向右"{}})\ \{}
+\DoxyCodeLine{01246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ speed\ =\ 31;}
+\DoxyCodeLine{01247\ \ \ \ \ \ \ \ \ \ \ \ \ QThread::msleep(500);}
+\DoxyCodeLine{01248\ \ \ \ \ \ \ \ \ \ \ \ \ QByteArray\ command2;}
+\DoxyCodeLine{01249\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x52'});}
+\DoxyCodeLine{01250\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x49'});}
+\DoxyCodeLine{01251\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01252\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01253\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{01254\ }
+\DoxyCodeLine{01255\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_RT-\/>setText(\textcolor{stringliteral}{"{}停止"{}});}
+\DoxyCodeLine{01256\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_RT-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\#FF0000;"{}});}
+\DoxyCodeLine{01257\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01258\ \ \ \ \ \ \ \ \ \ \ \ \ QByteArray\ command2;}
+\DoxyCodeLine{01259\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x53'});}
+\DoxyCodeLine{01260\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x44'});}
+\DoxyCodeLine{01261\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01262\ \ \ \ \ \ \ \ \ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01263\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{01264\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{01265\ \ \ \ \ \ \ \ \ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{01266\ }
+\DoxyCodeLine{01267\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_RT-\/>setText(\textcolor{stringliteral}{"{}向右"{}});}
+\DoxyCodeLine{01268\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>Button\_RT-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\#000000;"{}});}
+\DoxyCodeLine{01269\ \ \ \ \ \ \ \ \ \ \ \ \ BUTTONRI=0;}
+\DoxyCodeLine{01270\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01271\ \ \ \ \ \}}
+\DoxyCodeLine{01272\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_afadad875c2955cd6161d9dda7b20a020}\label{widget_8cpp_afadad875c2955cd6161d9dda7b20a020} 
+\index{widget.cpp@{widget.cpp}!on\_Button\_Stop\_clicked@{on\_Button\_Stop\_clicked}}
+\index{on\_Button\_Stop\_clicked@{on\_Button\_Stop\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_Button\_Stop\_clicked()}{on\_Button\_Stop\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+\+Button\+\_\+\+Stop\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+急停按钮槽函数 停止所有电机，停止\+MODBUS控制，并重置\+UI 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00688}{688}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00689\ \ \ \ \ QByteArray\ command2;}
+\DoxyCodeLine{00690\ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x53'});\ command2.append(\textcolor{stringliteral}{'\(\backslash\)x44'});\ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00691\ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{00692\ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{00693\ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{00694\ \ \ \ \ my\_modbus-\/>stopLine();}
+\DoxyCodeLine{00695\ \ \ \ \ ui-\/>Button\_FO-\/>setText(\textcolor{stringliteral}{"{}向后"{}});}
+\DoxyCodeLine{00696\ \ \ \ \ ui-\/>Button\_FO-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\#000000;"{}});}
+\DoxyCodeLine{00697\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_af99fc29bf936ce8bf46829452c8808b1}\label{widget_8cpp_af99fc29bf936ce8bf46829452c8808b1} 
+\index{widget.cpp@{widget.cpp}!on\_checkParamButton\_clicked@{on\_checkParamButton\_clicked}}
+\index{on\_checkParamButton\_clicked@{on\_checkParamButton\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_checkParamButton\_clicked()}{on\_checkParamButton\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+check\+Param\+Button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+打开参数界面 
+
+根据当前\+GPS经纬度显示创建 Param 窗口实例并显示。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00977}{977}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00978\ \{}
+\DoxyCodeLine{00979\ \ \ \ \ Param\ *paramWidegt\ =\ \textcolor{keyword}{new}\ Param(tempArgc,\ tempArgv,}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>labelLon-\/>text(),\ ui-\/>labelLat-\/>text(),\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00981\ \ \ \ \ paramWidegt-\/>show();}
+\DoxyCodeLine{00982\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ae1dcd246ec2c60ce2965326c752fd7e2}\label{widget_8cpp_ae1dcd246ec2c60ce2965326c752fd7e2} 
+\index{widget.cpp@{widget.cpp}!on\_laser\_deep\_measure\_button\_clicked@{on\_laser\_deep\_measure\_button\_clicked}}
+\index{on\_laser\_deep\_measure\_button\_clicked@{on\_laser\_deep\_measure\_button\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_laser\_deep\_measure\_button\_clicked()}{on\_laser\_deep\_measure\_button\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+laser\+\_\+deep\+\_\+measure\+\_\+button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+激光井深测量按钮 
+
+设置激光测距触发标志位 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01695}{1695}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01696\ \{}
+\DoxyCodeLine{01697\ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a4ca834506ea57a28fa4831e076264b8c}{flag\_laser\_measure}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01698\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00572}{flag\+\_\+laser\+\_\+measure}}.
+
+\Hypertarget{widget_8cpp_a7de22ab8b1dc865bb9591264a2464b26}\label{widget_8cpp_a7de22ab8b1dc865bb9591264a2464b26} 
+\index{widget.cpp@{widget.cpp}!on\_line\_deep\_measure\_button\_clicked@{on\_line\_deep\_measure\_button\_clicked}}
+\index{on\_line\_deep\_measure\_button\_clicked@{on\_line\_deep\_measure\_button\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_line\_deep\_measure\_button\_clicked()}{on\_line\_deep\_measure\_button\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+line\+\_\+deep\+\_\+measure\+\_\+button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+线缆井深度测量按钮 
+
+点击一次 → 开始测量 ~\newline
+ 再点击一次 → 结束测量并显示结果 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01706}{1706}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01707\ \{}
+\DoxyCodeLine{01708\ \ \ \ \ \textcolor{keywordflow}{if}\ (ui-\/>line\_deep\_measure\_button-\/>text()\ ==\ \textcolor{stringliteral}{"{}线缆井深测量"{}})\ \{}
+\DoxyCodeLine{01709\ }
+\DoxyCodeLine{01710\ \ \ \ \ \ \ \ \ ui-\/>line\_deep\_measure\_button-\/>setText(\textcolor{stringliteral}{"{}结束测量"{}});}
+\DoxyCodeLine{01711\ \ \ \ \ \ \ \ \ ui-\/>line\_deep\_measure\_button-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\#FF0000;"{}});}
+\DoxyCodeLine{01712\ \ \ \ \ \ \ \ \ start\_measure\_dis\ =\ \mbox{\hyperlink{widget_8cpp_ad77c55775639306203aeb855b17a9294}{odom\_data}};}
+\DoxyCodeLine{01713\ }
+\DoxyCodeLine{01714\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01715\ }
+\DoxyCodeLine{01716\ \ \ \ \ \ \ \ \ ui-\/>line\_deep\_measure\_button-\/>setText(\textcolor{stringliteral}{"{}线缆井深测量"{}});}
+\DoxyCodeLine{01717\ \ \ \ \ \ \ \ \ ui-\/>line\_deep\_measure\_button-\/>setStyleSheet(\textcolor{stringliteral}{"{}color:\#000000;"{}});}
+\DoxyCodeLine{01718\ \ \ \ \ \ \ \ \ end\_measure\_dis\ =\ \mbox{\hyperlink{widget_8cpp_ad77c55775639306203aeb855b17a9294}{odom\_data}};}
+\DoxyCodeLine{01719\ }
+\DoxyCodeLine{01720\ \ \ \ \ \ \ \ \ ui-\/>line\_deep\_measure-\/>setText(QString::number(end\_measure\_dis\ -\/\ start\_measure\_dis,\ \textcolor{charliteral}{'f'},\ 5));}
+\DoxyCodeLine{01721\ }
+\DoxyCodeLine{01722\ \ \ \ \ \ \ \ \ start\_measure\_dis\ =\ 0;}
+\DoxyCodeLine{01723\ \ \ \ \ \ \ \ \ end\_measure\_dis\ =\ 0;}
+\DoxyCodeLine{01724\ \ \ \ \ \}}
+\DoxyCodeLine{01725\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00677}{odom\+\_\+data}}.
+
+\Hypertarget{widget_8cpp_a1387b738523063a463928d5d1f41cc6d}\label{widget_8cpp_a1387b738523063a463928d5d1f41cc6d} 
+\index{widget.cpp@{widget.cpp}!on\_motor\_speed\_test\_button\_clicked@{on\_motor\_speed\_test\_button\_clicked}}
+\index{on\_motor\_speed\_test\_button\_clicked@{on\_motor\_speed\_test\_button\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_motor\_speed\_test\_button\_clicked()}{on\_motor\_speed\_test\_button\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+motor\+\_\+speed\+\_\+test\+\_\+button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+打开电机速度测试窗口 
+
+创建 Motor\+Speed\+Test 实例并显示为独立窗口， 若窗口已存在则直接显示。
+
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+若 motor\+Speed\+Test\+Widget\+Instance 尚未创建，则动态创建并显示。 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01354}{1354}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01355\ \{}
+\DoxyCodeLine{01356\ \ \ \ \ \textcolor{keywordflow}{if}\ (!motorSpeedTestWidgetInstance)\ \{}
+\DoxyCodeLine{01357\ \ \ \ \ \ \ \ \ motorSpeedTestWidgetInstance\ =\ \textcolor{keyword}{new}\ MotorSpeedTest(tempArgc,\ tempArgv,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{01358\ \ \ \ \ \}}
+\DoxyCodeLine{01359\ \ \ \ \ motorSpeedTestWidgetInstance-\/>setWindowFlag(Qt::Window);}
+\DoxyCodeLine{01360\ \ \ \ \ motorSpeedTestWidgetInstance-\/>show();}
+\DoxyCodeLine{01361\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ad9cbdc26e3e9860b10676afb1e5511c3}\label{widget_8cpp_ad9cbdc26e3e9860b10676afb1e5511c3} 
+\index{widget.cpp@{widget.cpp}!on\_pushButton\_2\_clicked@{on\_pushButton\_2\_clicked}}
+\index{on\_pushButton\_2\_clicked@{on\_pushButton\_2\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_pushButton\_2\_clicked()}{on\_pushButton\_2\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+push\+Button\+\_\+2\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+左右电机手动速度设置按钮槽 
+
+读取 line\+Edit 左右速度值，生成 L/R 指令并通过 ROS 发布。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01281}{1281}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01282\ \{}
+\DoxyCodeLine{01283\ \ \ \ \ \textcolor{keywordtype}{int}\ left\_s\ =\ ui-\/>lineEdit\_left\_s-\/>text().toInt();}
+\DoxyCodeLine{01284\ \ \ \ \ \textcolor{keywordtype}{int}\ right\_s\ =\ ui-\/>lineEdit\_right\_s-\/>text().toInt();}
+\DoxyCodeLine{01285\ \ \ \ \ QString\ str\ =\ QString(\textcolor{stringliteral}{"{}L\%1R\%2"{}}).arg(left\_s).arg(right\_s);}
+\DoxyCodeLine{01286\ \ \ \ \ qDebug()\ <<\ QString::fromStdString(str.toStdString());}
+\DoxyCodeLine{01287\ \ \ \ \ node.publishMessage(str.toStdString());}
+\DoxyCodeLine{01288\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a0a3810d20c1a2eb80fe2a6b2e4df1164}\label{widget_8cpp_a0a3810d20c1a2eb80fe2a6b2e4df1164} 
+\index{widget.cpp@{widget.cpp}!on\_pushButton\_3\_clicked@{on\_pushButton\_3\_clicked}}
+\index{on\_pushButton\_3\_clicked@{on\_pushButton\_3\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_pushButton\_3\_clicked()}{on\_pushButton\_3\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+push\+Button\+\_\+3\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+切换 RTSP 摄像头按钮 
+
+停止解码器 → 修改 URL → 重启解码器 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01743}{1743}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01744\ \{}
+\DoxyCodeLine{01745\ \ \ \ \ decoder\_-\/>requestInterruption();}
+\DoxyCodeLine{01746\ \ \ \ \ decoder\_-\/>wait();}
+\DoxyCodeLine{01747\ }
+\DoxyCodeLine{01748\ \ \ \ \ decoder\_-\/>setUrl(\mbox{\hyperlink{widget_8cpp_adf916204820072417ed73a32de1cefcf}{flag}}\ ?}
+\DoxyCodeLine{01749\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}rtsp://admin:123456@192.168.8.10/Streaming/Channels/2"{}}\ :}
+\DoxyCodeLine{01750\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}rtsp://admin:123456@192.168.8.9/Streaming/Channels/2"{}});}
+\DoxyCodeLine{01751\ }
+\DoxyCodeLine{01752\ \ \ \ \ decoder\_-\/>start();}
+\DoxyCodeLine{01753\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00059}{flag}}.
+
+\Hypertarget{widget_8cpp_a902b480e34ce30a340d2baa78ca82e1a}\label{widget_8cpp_a902b480e34ce30a340d2baa78ca82e1a} 
+\index{widget.cpp@{widget.cpp}!on\_pushButton\_4\_clicked@{on\_pushButton\_4\_clicked}}
+\index{on\_pushButton\_4\_clicked@{on\_pushButton\_4\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_pushButton\_4\_clicked()}{on\_pushButton\_4\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+push\+Button\+\_\+4\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+摄像头切换按钮槽函数 
+
+切换显示摄像头和m\+\_\+current\+Camera标志 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00234}{234}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00235\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \mbox{\hyperlink{widget_8cpp_adf916204820072417ed73a32de1cefcf}{flag}}\ =\ !\mbox{\hyperlink{widget_8cpp_adf916204820072417ed73a32de1cefcf}{flag}};}
+\DoxyCodeLine{00237\ \ \ \ \ m\_currentCamera\ =\ !m\_currentCamera;}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{widget_8cpp_adf916204820072417ed73a32de1cefcf}{flag}})\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ ui-\/>label\_7-\/>show();}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ ui-\/>label\_35-\/>hide();}
+\DoxyCodeLine{00242\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ ui-\/>label\_35-\/>show();}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ ui-\/>label\_7-\/>hide();}
+\DoxyCodeLine{00245\ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00059}{flag}}.
+
+\Hypertarget{widget_8cpp_a299553a6ef0130887c0771b2c342d969}\label{widget_8cpp_a299553a6ef0130887c0771b2c342d969} 
+\index{widget.cpp@{widget.cpp}!on\_pushButton\_5\_clicked@{on\_pushButton\_5\_clicked}}
+\index{on\_pushButton\_5\_clicked@{on\_pushButton\_5\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_pushButton\_5\_clicked()}{on\_pushButton\_5\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+push\+Button\+\_\+5\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+保存当前的三轴角度（用于校准） 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01758}{1758}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01759\ \{}
+\DoxyCodeLine{01760\ \ \ \ \ roll\_ave1\ =\ roll\_ave;}
+\DoxyCodeLine{01761\ \ \ \ \ pitch\_ave1\ =\ pitch\_ave;}
+\DoxyCodeLine{01762\ \ \ \ \ yaw\_ave1\ =\ yaw\_ave;}
+\DoxyCodeLine{01763\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a977d3a05eed506c3e76a8a4ef3b2c136}\label{widget_8cpp_a977d3a05eed506c3e76a8a4ef3b2c136} 
+\index{widget.cpp@{widget.cpp}!on\_pushButton\_8\_clicked@{on\_pushButton\_8\_clicked}}
+\index{on\_pushButton\_8\_clicked@{on\_pushButton\_8\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_pushButton\_8\_clicked()}{on\_pushButton\_8\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+push\+Button\+\_\+8\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+停止行走按钮槽 
+
+调用 Modbus 的 stop\+Line 函数停止当前运动。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01053}{1053}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01054\ \{}
+\DoxyCodeLine{01055\ \ \ \ \ my\_modbus-\/>stopLine();}
+\DoxyCodeLine{01056\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_af175cf3f7948ac944834cad09819b753}\label{widget_8cpp_af175cf3f7948ac944834cad09819b753} 
+\index{widget.cpp@{widget.cpp}!on\_pushButton\_clicked@{on\_pushButton\_clicked}}
+\index{on\_pushButton\_clicked@{on\_pushButton\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_pushButton\_clicked()}{on\_pushButton\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+push\+Button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+设置按钮，跳转到 Setting\+Widget 界面 
+
+如果实例不存在则创建，显示 Setting\+Widget 窗口。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00866}{866}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00867\ \{}
+\DoxyCodeLine{00868\ \ \ \ \ \textcolor{keywordflow}{if}\ (!settingWidgetInstance)\ \{}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ settingWidgetInstance\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{settingwidget_8cpp_a8b1953256a61c736ad79424a6dc429bc}{SettingWidget}}(tempArgc,tempArgv,\textcolor{keyword}{this});}
+\DoxyCodeLine{00870\ \ \ \ \ \}}
+\DoxyCodeLine{00871\ \ \ \ \ settingWidgetInstance-\/>setWindowFlag(Qt::Window);}
+\DoxyCodeLine{00872\ \ \ \ \ settingWidgetInstance-\/>show();}
+\DoxyCodeLine{00873\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{settingwidget_8cpp_source_l00021}{Setting\+Widget()}}.
+
+\Hypertarget{widget_8cpp_a589e62bdba599a4cee2559e636e099be}\label{widget_8cpp_a589e62bdba599a4cee2559e636e099be} 
+\index{widget.cpp@{widget.cpp}!on\_quit\_robot\_button\_clicked@{on\_quit\_robot\_button\_clicked}}
+\index{on\_quit\_robot\_button\_clicked@{on\_quit\_robot\_button\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_quit\_robot\_button\_clicked()}{on\_quit\_robot\_button\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+quit\+\_\+robot\+\_\+button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+远程关闭机器人下位机 ROS 
+
+停止远程机器人（关闭 ROS launch）
+
+使用 sshpass + ssh 执行远程 kill 命令， 若 PID 不存在则输出提示。
+
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+通过 sshpass 执行远程 kill 命令关闭下位机 roslaunch 进程。 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01387}{1387}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01388\ \{}
+\DoxyCodeLine{01389\ \ \ \ \ QProcess\ process;}
+\DoxyCodeLine{01390\ \ \ \ \ QString\ password\ =\ \textcolor{stringliteral}{"{}lee"{}};}
+\DoxyCodeLine{01391\ \ \ \ \ QString\ remoteUser\ =\ \textcolor{stringliteral}{"{}lee"{}};}
+\DoxyCodeLine{01392\ \ \ \ \ QString\ remoteIp\ =\ \textcolor{stringliteral}{"{}192.168.8.7"{}};}
+\DoxyCodeLine{01393\ }
+\DoxyCodeLine{01394\ \ \ \ \ QStringList\ args;}
+\DoxyCodeLine{01395\ \ \ \ \ args\ <<\ \textcolor{stringliteral}{"{}-\/p"{}}\ <<\ password}
+\DoxyCodeLine{01396\ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}ssh"{}}}
+\DoxyCodeLine{01397\ \ \ \ \ \ \ \ \ \ <<\ QString(\textcolor{stringliteral}{"{}\%1@\%2"{}}).arg(remoteUser).arg(remoteIp)}
+\DoxyCodeLine{01398\ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}kill\ -\/TERM\ \$(cat\ /tmp/roslaunch.pid)\ 2>/dev/null\ ||\ echo\ '进程不存在或PID文件已丢失'"{}};}
+\DoxyCodeLine{01399\ }
+\DoxyCodeLine{01400\ \ \ \ \ process.start(\textcolor{stringliteral}{"{}sshpass"{}},\ args);}
+\DoxyCodeLine{01401\ }
+\DoxyCodeLine{01402\ \ \ \ \ \textcolor{keywordflow}{if}\ (!process.waitForFinished(5000))\ \{}
+\DoxyCodeLine{01403\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}执行超时或发生错误:"{}}\ <<\ process.errorString();}
+\DoxyCodeLine{01404\ \ \ \ \ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}成功"{}},\ \textcolor{stringliteral}{"{}关闭下位机失败"{}});}
+\DoxyCodeLine{01405\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01406\ \ \ \ \ \}}
+\DoxyCodeLine{01407\ }
+\DoxyCodeLine{01408\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}退出码:"{}}\ <<\ process.exitCode();}
+\DoxyCodeLine{01409\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}标准输出:"{}}\ <<\ process.readAllStandardOutput();}
+\DoxyCodeLine{01410\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}错误输出:"{}}\ <<\ process.readAllStandardError();}
+\DoxyCodeLine{01411\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_aa964d8309c89d16a4db776ac8d7fb467}\label{widget_8cpp_aa964d8309c89d16a4db776ac8d7fb467} 
+\index{widget.cpp@{widget.cpp}!on\_reset\_robot\_button\_2\_clicked@{on\_reset\_robot\_button\_2\_clicked}}
+\index{on\_reset\_robot\_button\_2\_clicked@{on\_reset\_robot\_button\_2\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_reset\_robot\_button\_2\_clicked()}{on\_reset\_robot\_button\_2\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+reset\+\_\+robot\+\_\+button\+\_\+2\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+远程重启机器人（关机） 
+
+发送 sudo shutdown -\/h now 若 SSH 中断，也认为命令已发送。 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01666}{1666}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01667\ \{}
+\DoxyCodeLine{01668\ \ \ \ \ QProcess\ process;}
+\DoxyCodeLine{01669\ \ \ \ \ QString\ password\ =\ \textcolor{stringliteral}{"{}lee"{}};}
+\DoxyCodeLine{01670\ \ \ \ \ QString\ remoteUser\ =\ \textcolor{stringliteral}{"{}lee"{}};}
+\DoxyCodeLine{01671\ \ \ \ \ QString\ remoteIp\ =\ \textcolor{stringliteral}{"{}192.168.8.7"{}};}
+\DoxyCodeLine{01672\ }
+\DoxyCodeLine{01673\ \ \ \ \ QStringList\ args;}
+\DoxyCodeLine{01674\ \ \ \ \ args\ <<\ \textcolor{stringliteral}{"{}-\/p"{}}\ <<\ password}
+\DoxyCodeLine{01675\ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}ssh"{}}}
+\DoxyCodeLine{01676\ \ \ \ \ \ \ \ \ \ <<\ QString(\textcolor{stringliteral}{"{}\%1@\%2"{}}).arg(remoteUser).arg(remoteIp)}
+\DoxyCodeLine{01677\ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}echo\ '"{}}\ +\ password\ +\ \textcolor{stringliteral}{"{}'\ |\ sudo\ -\/S\ shutdown\ -\/h\ now"{}};}
+\DoxyCodeLine{01678\ }
+\DoxyCodeLine{01679\ \ \ \ \ process.start(\textcolor{stringliteral}{"{}sshpass"{}},\ args);}
+\DoxyCodeLine{01680\ }
+\DoxyCodeLine{01681\ \ \ \ \ \textcolor{keywordflow}{if}\ (!process.waitForFinished(30000))\ \{}
+\DoxyCodeLine{01682\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}连接断开，可能已触发重启:"{}}\ <<\ process.errorString();}
+\DoxyCodeLine{01683\ \ \ \ \ \ \ \ \ QMessageBox::information(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}提示"{}},\ \textcolor{stringliteral}{"{}已发送重启指令，请等待主机重启"{}});}
+\DoxyCodeLine{01684\ \ \ \ \ \}}
+\DoxyCodeLine{01685\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01686\ \ \ \ \ \ \ \ \ QMessageBox::information(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}成功"{}},\ \textcolor{stringliteral}{"{}远程主机已关机，需要断电才能重启"{}});}
+\DoxyCodeLine{01687\ \ \ \ \ \}}
+\DoxyCodeLine{01688\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a5700355f7234d5894a0024dd8cea43a4}\label{widget_8cpp_a5700355f7234d5894a0024dd8cea43a4} 
+\index{widget.cpp@{widget.cpp}!on\_rotate360Button\_clicked@{on\_rotate360Button\_clicked}}
+\index{on\_rotate360Button\_clicked@{on\_rotate360Button\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_rotate360Button\_clicked()}{on\_rotate360Button\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+rotate360\+Button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+旋转360度按钮槽 
+
+调用 rotate\+To\+Target\+Angle 执行旋转。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01017}{1017}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01018\ \{}
+\DoxyCodeLine{01019\ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a98466931787e33ff26d9b03c3f09c746}{rotateToTargetAngle}}(0,\ angle0\_zero\ -\/\ 355);}
+\DoxyCodeLine{01020\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00465}{rotate\+To\+Target\+Angle()}}.
+
+\Hypertarget{widget_8cpp_ac571fe629cef6b28d5f066d5d1d986e5}\label{widget_8cpp_ac571fe629cef6b28d5f066d5d1d986e5} 
+\index{widget.cpp@{widget.cpp}!on\_rotate90Button\_clicked@{on\_rotate90Button\_clicked}}
+\index{on\_rotate90Button\_clicked@{on\_rotate90Button\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_rotate90Button\_clicked()}{on\_rotate90Button\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+rotate90\+Button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+旋转90度按钮槽 
+
+调用 rotate\+To\+Target\+Angle 执行旋转。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01029}{1029}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01030\ \{}
+\DoxyCodeLine{01031\ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a98466931787e33ff26d9b03c3f09c746}{rotateToTargetAngle}}(1,\ angle1\_zero\ +\ 65);}
+\DoxyCodeLine{01032\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00465}{rotate\+To\+Target\+Angle()}}.
+
+\Hypertarget{widget_8cpp_afd495e249ed1bec6d93ec6db7037f716}\label{widget_8cpp_afd495e249ed1bec6d93ec6db7037f716} 
+\index{widget.cpp@{widget.cpp}!on\_rxpushButton\_2\_clicked@{on\_rxpushButton\_2\_clicked}}
+\index{on\_rxpushButton\_2\_clicked@{on\_rxpushButton\_2\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_rxpushButton\_2\_clicked()}{on\_rxpushButton\_2\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+rxpush\+Button\+\_\+2\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+向后自动行走按钮槽 
+
+调用 Modbus 的 auto\+Line\+Back 函数实现向后自动移动。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01041}{1041}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01042\ \{}
+\DoxyCodeLine{01043\ \ \ \ \ my\_modbus-\/>autoLineBack(29);}
+\DoxyCodeLine{01044\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ac4590ccabe0aaded73b3956123dc77cd}\label{widget_8cpp_ac4590ccabe0aaded73b3956123dc77cd} 
+\index{widget.cpp@{widget.cpp}!on\_snapshot\_button\_clicked@{on\_snapshot\_button\_clicked}}
+\index{on\_snapshot\_button\_clicked@{on\_snapshot\_button\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_snapshot\_button\_clicked()}{on\_snapshot\_button\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+snapshot\+\_\+button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+截图按钮槽函数 
+
+截图按钮点击事件槽函数
+
+截取整个主窗口，弹出对话框选择保存路径，并保存 PNG/\+JPG。 保存成功或失败会弹出提示框。
+
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+执行步骤：
+\begin{DoxyEnumerate}
+\item 对当前窗口进行截图
+\item 用户选择保存路径
+\item 保存为 PNG / JPG 格式
+\item 成功或失败均会弹出提示框 
+\end{DoxyEnumerate}
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01321}{1321}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01322\ \{}
+\DoxyCodeLine{01323\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}==========================snapshot"{}};}
+\DoxyCodeLine{01324\ \ \ \ \ QPixmap\ screenshot\ =\ this-\/>grab();}
+\DoxyCodeLine{01325\ }
+\DoxyCodeLine{01326\ \ \ \ \ \textcolor{keywordflow}{if}(!screenshot.isNull())\ \{}
+\DoxyCodeLine{01327\ \ \ \ \ \ \ \ \ QString\ fileName\ =\ QFileDialog::getSaveFileName(}
+\DoxyCodeLine{01328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},}
+\DoxyCodeLine{01329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}保存截图"{}},}
+\DoxyCodeLine{01330\ \ \ \ \ \ \ \ \ \ \ \ \ QDir::homePath(),}
+\DoxyCodeLine{01331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}图片文件\ (*.png\ *.jpg\ *.jpeg)"{}}}
+\DoxyCodeLine{01332\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{01333\ }
+\DoxyCodeLine{01334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!fileName.isEmpty())\ \{}
+\DoxyCodeLine{01335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(screenshot.save(fileName))\ \{}
+\DoxyCodeLine{01336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QMessageBox::information(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}成功"{}},\ \textcolor{stringliteral}{"{}截图保存成功"{}});}
+\DoxyCodeLine{01337\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}错误"{}},\ \textcolor{stringliteral}{"{}保存文件失败"{}});}
+\DoxyCodeLine{01339\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01340\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01341\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01342\ \ \ \ \ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}错误"{}},\ \textcolor{stringliteral}{"{}截图获取失败"{}});}
+\DoxyCodeLine{01343\ \ \ \ \ \}}
+\DoxyCodeLine{01344\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a102d75b14dd4e042fed267d3a9594332}\label{widget_8cpp_a102d75b14dd4e042fed267d3a9594332} 
+\index{widget.cpp@{widget.cpp}!on\_start\_record\_button\_clicked@{on\_start\_record\_button\_clicked}}
+\index{on\_start\_record\_button\_clicked@{on\_start\_record\_button\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_start\_record\_button\_clicked()}{on\_start\_record\_button\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+start\+\_\+record\+\_\+button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+录制视频按钮槽函数 
+
+点击按钮开始或停止录制视频
+
+第一次点击：开始录制视频，自动命名保存到 \texorpdfstring{$\sim$}{\string~}/\+Videos/ 再次点击：停止录制并恢复按钮样式
+
+UI 使用 reset\+\_\+robot\+\_\+button 显示录制状态（红色/蓝色）
+
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+使用自定义 Recorder 类录制当前视频帧。 按钮会动态切换状态、颜色与文字。 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01423}{1423}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01424\ \{}
+\DoxyCodeLine{01425\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{videorecorder_8cpp_a5191d39ffb83928d29dbe1bc3a8aa6da}{isRecording}})\ \{}
+\DoxyCodeLine{01426\ \ \ \ \ \ \ \ \ QString\ filename\ =\ QDir::homePath()+\textcolor{stringliteral}{"{}/Videos/"{}}+QDateTime::currentDateTime().toString(\textcolor{stringliteral}{"{}yyyyMMdd\_hhmmss"{}})\ +\ \textcolor{stringliteral}{"{}.mp4"{}};}
+\DoxyCodeLine{01427\ }
+\DoxyCodeLine{01428\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_recorder-\/>startRecording(filename,\ m\_currentFrame.width(),}
+\DoxyCodeLine{01429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentFrame.height(),\ 25))\ \{}
+\DoxyCodeLine{01430\ }
+\DoxyCodeLine{01431\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>reset\_robot\_button-\/>setText(\textcolor{stringliteral}{"{}正在录制"{}});}
+\DoxyCodeLine{01432\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>reset\_robot\_button-\/>setStyleSheet(}
+\DoxyCodeLine{01433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}QPushButton\ \{\ background-\/color:\ \#FF0000;\ color:\ white;\ border-\/radius:\ 5px;\ padding:5px;\ \}"{}}}
+\DoxyCodeLine{01434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}QPushButton:hover\ \{\ background-\/color:\ \#CC0000;\ \}"{}}}
+\DoxyCodeLine{01435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}QPushButton:pressed\ \{\ background-\/color:\ \#AA0000;\ \}"{}}}
+\DoxyCodeLine{01436\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{01437\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{videorecorder_8cpp_a5191d39ffb83928d29dbe1bc3a8aa6da}{isRecording}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01438\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01439\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01440\ \ \ \ \ \ \ \ \ m\_recorder-\/>stopRecording();}
+\DoxyCodeLine{01441\ }
+\DoxyCodeLine{01442\ \ \ \ \ \ \ \ \ ui-\/>reset\_robot\_button-\/>setText(\textcolor{stringliteral}{"{}开始录制"{}});}
+\DoxyCodeLine{01443\ \ \ \ \ \ \ \ \ ui-\/>reset\_robot\_button-\/>setStyleSheet(}
+\DoxyCodeLine{01444\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}QPushButton\ \{\ background-\/color:\ \#007ACC;\ color:\ white;\ border-\/radius:\ 5px;\ padding:5px;\ \}"{}}}
+\DoxyCodeLine{01445\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}QPushButton:hover\ \{\ background-\/color:\ \#005B99;\ \}"{}}}
+\DoxyCodeLine{01446\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}QPushButton:pressed\ \{\ background-\/color:\ \#004D80;\ \}"{}}}
+\DoxyCodeLine{01447\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{01448\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{videorecorder_8cpp_a5191d39ffb83928d29dbe1bc3a8aa6da}{isRecording}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01449\ \ \ \ \ \}}
+\DoxyCodeLine{01450\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{videorecorder_8cpp_source_l00193}{is\+Recording()}}.
+
+\Hypertarget{widget_8cpp_a75dbf6414035c0585fef49cda78a8097}\label{widget_8cpp_a75dbf6414035c0585fef49cda78a8097} 
+\index{widget.cpp@{widget.cpp}!on\_start\_robot\_button\_clicked@{on\_start\_robot\_button\_clicked}}
+\index{on\_start\_robot\_button\_clicked@{on\_start\_robot\_button\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_start\_robot\_button\_clicked()}{on\_start\_robot\_button\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+start\+\_\+robot\+\_\+button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+启动机器人下位机程序 
+
+启动远程机器人（运行 run\+\_\+robot.\+sh）
+
+调用 run\+\_\+robot.\+sh 脚本启动下位机 ROS 节点。 成功启动后弹出提示框。
+
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+调用远程脚本用于启动下位机。 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01371}{1371}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01372\ \{}
+\DoxyCodeLine{01373\ \ \ \ \ QString\ scriptPath\ =\ \textcolor{stringliteral}{"{}/home/ralab/Pipelineqt/Pipeline/mySrc/run\_robot.sh"{}};}
+\DoxyCodeLine{01374\ \ \ \ \ remoteProcess-\/>start(\textcolor{stringliteral}{"{}sh"{}},\ QStringList()\ <<\ scriptPath);}
+\DoxyCodeLine{01375\ \ \ \ \ QThread::sleep(3);}
+\DoxyCodeLine{01376\ \ \ \ \ QMessageBox::information(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}成功"{}},\ \textcolor{stringliteral}{"{}下位机开启成功"{}});}
+\DoxyCodeLine{01377\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a96bfc28d8a1b6496b014bb48933521ff}\label{widget_8cpp_a96bfc28d8a1b6496b014bb48933521ff} 
+\index{widget.cpp@{widget.cpp}!on\_stopResetButton\_clicked@{on\_stopResetButton\_clicked}}
+\index{on\_stopResetButton\_clicked@{on\_stopResetButton\_clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{on\_stopResetButton\_clicked()}{on\_stopResetButton\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+stop\+Reset\+Button\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+停止复位操作 
+
+发送 SJSTOP 指令停止复位，并停止 reset\+Timer，同时释放相关按键状态。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00991}{991}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00992\ \{}
+\DoxyCodeLine{00993\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00994\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x53'});}
+\DoxyCodeLine{00995\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x4A'});}
+\DoxyCodeLine{00996\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x53'});}
+\DoxyCodeLine{00997\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x54'});}
+\DoxyCodeLine{00998\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});}
+\DoxyCodeLine{00999\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x50'});}
+\DoxyCodeLine{01000\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01001\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01002\ }
+\DoxyCodeLine{01003\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{01004\ \ \ \ \ resetTimer-\/>stop();}
+\DoxyCodeLine{01005\ \ \ \ \ \mbox{\hyperlink{widget_8cpp_aa38c8ae3924fcbe576f48844eb6ace8f}{downButtonReleased}}();}
+\DoxyCodeLine{01006\ \ \ \ \ \mbox{\hyperlink{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}{cameraButtonReleased}}();}
+\DoxyCodeLine{01007\ \ \ \ \ state\ =\ 0;}
+\DoxyCodeLine{01008\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00804}{camera\+Button\+Released()}}, and \mbox{\hyperlink{widget_8cpp_source_l00797}{down\+Button\+Released()}}.
+
+\Hypertarget{widget_8cpp_ad667e83cfcfc3df95ab4b222aaee87cc}\label{widget_8cpp_ad667e83cfcfc3df95ab4b222aaee87cc} 
+\index{widget.cpp@{widget.cpp}!ondropPressed@{ondropPressed}}
+\index{ondropPressed@{ondropPressed}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{ondropPressed()}{ondropPressed()}}
+{\footnotesize\ttfamily void ondrop\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+云台俯视旋转（angle1增大） 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00746}{746}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00747\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00748\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x44'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x57'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4E'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00749\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00750\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a28690a37682df78fb34a06a4793a4740}\label{widget_8cpp_a28690a37682df78fb34a06a4793a4740} 
+\index{widget.cpp@{widget.cpp}!onFrameDecoded@{onFrameDecoded}}
+\index{onFrameDecoded@{onFrameDecoded}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{onFrameDecoded()}{onFrameDecoded()}}
+{\footnotesize\ttfamily void on\+Frame\+Decoded (\begin{DoxyParamCaption}\item[{const QImage \&}]{image }\end{DoxyParamCaption})}
+
+
+
+视频解码帧回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & 解码得到的\+QImage帧\\
+\hline
+\end{DoxyParams}
+更新显示标签，并在录制状态下将帧添加到\+Video\+Recorder 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00174}{174}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ QSize\ targetSize(ui-\/>label\_7-\/>width(),\ ui-\/>label\_7-\/>height());}
+\DoxyCodeLine{00176\ \ \ \ \ QPixmap\ pix\ =\ QPixmap::fromImage(image.scaled(targetSize,\ Qt::KeepAspectRatio));}
+\DoxyCodeLine{00177\ \ \ \ \ ui-\/>label\_7-\/>setPixmap(pix);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ m\_currentFrame\ =\ image;}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_recorder-\/>isRecording()\ \&\&\ m\_currentCamera\ ==\ 0)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ m\_recorder-\/>addFrame(image);}
+\DoxyCodeLine{00182\ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a05b0cc1ae7d49b1c3ae47c038109bbb5}\label{widget_8cpp_a05b0cc1ae7d49b1c3ae47c038109bbb5} 
+\index{widget.cpp@{widget.cpp}!onFrameDecoded1@{onFrameDecoded1}}
+\index{onFrameDecoded1@{onFrameDecoded1}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{onFrameDecoded1()}{onFrameDecoded1()}}
+{\footnotesize\ttfamily void on\+Frame\+Decoded1 (\begin{DoxyParamCaption}\item[{const QImage \&}]{image }\end{DoxyParamCaption})}
+
+
+
+第二路视频帧回调函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & 解码得到的\+QImage帧 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00189}{189}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ QSize\ targetSize(ui-\/>label\_35-\/>width(),\ ui-\/>label\_35-\/>height());}
+\DoxyCodeLine{00191\ \ \ \ \ QPixmap\ pix\ =\ QPixmap::fromImage(image.scaled(targetSize,\ Qt::KeepAspectRatio));}
+\DoxyCodeLine{00192\ \ \ \ \ ui-\/>label\_35-\/>setPixmap(pix);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ m\_currentFrame\ =\ image;}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_recorder-\/>isRecording()\ \&\&\ m\_currentCamera\ ==\ 1)\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ m\_recorder-\/>addFrame(image);}
+\DoxyCodeLine{00197\ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ad414e9eaef2cf2ae2c6d8239fde2eaa1}\label{widget_8cpp_ad414e9eaef2cf2ae2c6d8239fde2eaa1} 
+\index{widget.cpp@{widget.cpp}!onLatencyUpdated@{onLatencyUpdated}}
+\index{onLatencyUpdated@{onLatencyUpdated}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{onLatencyUpdated()}{onLatencyUpdated()}}
+{\footnotesize\ttfamily void on\+Latency\+Updated (\begin{DoxyParamCaption}\item[{double}]{latency }\end{DoxyParamCaption})}
+
+
+
+延迟数据显示槽 
+
+
+\begin{DoxyParams}{Parameters}
+{\em latency} & 平均网络延迟（毫秒） \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01732}{1732}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01733\ \{}
+\DoxyCodeLine{01734\ \ \ \ \ ui-\/>label\_34-\/>setText(QString(\textcolor{stringliteral}{"{}延迟:\ \%1\ ms"{}}).arg(latency,\ 0,\ \textcolor{charliteral}{'f'},\ 1));}
+\DoxyCodeLine{01735\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Average\ latency:"{}}\ <<\ latency\ <<\ \textcolor{stringliteral}{"{}ms"{}};}
+\DoxyCodeLine{01736\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a3bc457ab7dc7c6778e1158a9f3069ea7}\label{widget_8cpp_a3bc457ab7dc7c6778e1158a9f3069ea7} 
+\index{widget.cpp@{widget.cpp}!onLatRecived@{onLatRecived}}
+\index{onLatRecived@{onLatRecived}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{onLatRecived()}{onLatRecived()}}
+{\footnotesize\ttfamily void on\+Lat\+Recived (\begin{DoxyParamCaption}\item[{double}]{lat }\end{DoxyParamCaption})}
+
+
+
+接收并显示经纬度：纬度 
+
+纬度回调处理槽函数
+
+将 ROS 或串口传来的纬度值显示在 UI label\+Lat 上。
+
+
+\begin{DoxyParams}{Parameters}
+{\em lat} & 双精度纬度数值 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+接收到纬度数值后，将其格式化为字符串并显示到 UI 标签 label\+Lat 上。
+
+
+\begin{DoxyParams}{Parameters}
+{\em lat} & 接收到的纬度值（单位：度） \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01309}{1309}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01310\ \ \ \ \ ui-\/>labelLat-\/>setText(QString::number(lat,\ \textcolor{charliteral}{'f'},\ 5));}
+\DoxyCodeLine{01311\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_adf17307e99cfe9ac7c95fda1b688bb8a}\label{widget_8cpp_adf17307e99cfe9ac7c95fda1b688bb8a} 
+\index{widget.cpp@{widget.cpp}!onliftPressed@{onliftPressed}}
+\index{onliftPressed@{onliftPressed}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{onliftPressed()}{onliftPressed()}}
+{\footnotesize\ttfamily void onlift\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+云台仰视旋转（angle1减小） 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00755}{755}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00756\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00757\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x55'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x50'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00758\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00759\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a19d42b4098e3b50ecc8b87237093387a}\label{widget_8cpp_a19d42b4098e3b50ecc8b87237093387a} 
+\index{widget.cpp@{widget.cpp}!onLonRecived@{onLonRecived}}
+\index{onLonRecived@{onLonRecived}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{onLonRecived()}{onLonRecived()}}
+{\footnotesize\ttfamily void on\+Lon\+Recived (\begin{DoxyParamCaption}\item[{double}]{lon }\end{DoxyParamCaption})}
+
+
+
+接收并显示经纬度：经度 
+
+经度回调处理槽函数
+
+将 ROS 或串口传来的经度值显示在 UI label\+Lon 上。
+
+
+\begin{DoxyParams}{Parameters}
+{\em lon} & 双精度经度数值 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+接收到经度数值后，将其格式化为字符串并显示到 UI 标签 label\+Lon 上。
+
+
+\begin{DoxyParams}{Parameters}
+{\em lon} & 接收到的经度值（单位：度） \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01297}{1297}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01298\ \ \ \ \ ui-\/>labelLon-\/>setText(QString::number(lon,\ \textcolor{charliteral}{'f'},\ 5));}
+\DoxyCodeLine{01299\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_aba1a76122e3e41b22f161ad1952994eb}\label{widget_8cpp_aba1a76122e3e41b22f161ad1952994eb} 
+\index{widget.cpp@{widget.cpp}!onNSZPressed@{onNSZPressed}}
+\index{onNSZPressed@{onNSZPressed}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{onNSZPressed()}{onNSZPressed()}}
+{\footnotesize\ttfamily void on\+NSZPressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+云台逆时针旋转（angle0增大） 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00728}{728}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00729\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00730\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x5A'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x55'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00731\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00732\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a9653aa7161b1013b2a4166f9091ef25e}\label{widget_8cpp_a9653aa7161b1013b2a4166f9091ef25e} 
+\index{widget.cpp@{widget.cpp}!onRecordingFinished@{onRecordingFinished}}
+\index{onRecordingFinished@{onRecordingFinished}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{onRecordingFinished()}{onRecordingFinished()}}
+{\footnotesize\ttfamily void on\+Recording\+Finished (\begin{DoxyParamCaption}\item[{const QString \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+视频录制完成后的回调函数 
+
+视频录制完成后的回调槽函数
+
+外部 Video\+Recorder 调用此槽， 提示用户录制的视频文件保存位置。
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & 保存的视频文件路径 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & 已保存的视频文件路径 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01461}{1461}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01462\ \{}
+\DoxyCodeLine{01463\ \ \ \ \ QMessageBox::information(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}录制完成"{}},}
+\DoxyCodeLine{01464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}视频已保存为:\ "{}}\ +\ filename);}
+\DoxyCodeLine{01465\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_aca799bcd9814c813340142158b123b1b}\label{widget_8cpp_aca799bcd9814c813340142158b123b1b} 
+\index{widget.cpp@{widget.cpp}!onSSZPressed@{onSSZPressed}}
+\index{onSSZPressed@{onSSZPressed}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{onSSZPressed()}{onSSZPressed()}}
+{\footnotesize\ttfamily void on\+SSZPressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+云台顺时针旋转（angle0减小） 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00737}{737}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00738\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00739\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x59'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x55'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00740\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00741\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ac6cb48261b2055e553b6efbafed4197b}\label{widget_8cpp_ac6cb48261b2055e553b6efbafed4197b} 
+\index{widget.cpp@{widget.cpp}!resetAll@{resetAll}}
+\index{resetAll@{resetAll}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{resetAll()}{resetAll()}}
+{\footnotesize\ttfamily void reset\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+云台复位操作，分状态机执行 
+
+状态： 0 -\/ 初始下降云台 1 -\/ 检查右限位 2 -\/ 根据angle0旋转 3 -\/ 根据angle1俯仰 4 -\/ 完成复位，停止定时器 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00623}{623}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00624\ \ \ \ \ \textcolor{keywordflow}{switch}(state)\ \{}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ state\ =\ 3;}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_aa38c8ae3924fcbe576f48844eb6ace8f}{downButtonReleased}}();}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ node.publishMessage(\textcolor{stringliteral}{"{}CL"{}});}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ state\ =\ 2;}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(right\_limit)\ \mbox{\hyperlink{widget_8cpp_aa38c8ae3924fcbe576f48844eb6ace8f}{downButtonReleased}}(),\ state\ =\ 3;}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(angle0\_absolute\ >\ angle0\_zero\ +\ angle0\_error)\ \mbox{\hyperlink{widget_8cpp_aca799bcd9814c813340142158b123b1b}{onSSZPressed}}();}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(angle0\_absolute\ <\ angle0\_zero\ -\/\ angle0\_error)\ \mbox{\hyperlink{widget_8cpp_aba1a76122e3e41b22f161ad1952994eb}{onNSZPressed}}();}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \mbox{\hyperlink{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}{cameraButtonReleased}}(),\ state\ =\ 4;}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(angle1\_absolute\ >\ angle1\_zero\ +\ angle1\_error)\ \mbox{\hyperlink{widget_8cpp_adf17307e99cfe9ac7c95fda1b688bb8a}{onliftPressed}}();}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(angle1\_absolute\ <\ angle1\_zero\ -\/\ angle1\_error)\ \mbox{\hyperlink{widget_8cpp_ad667e83cfcfc3df95ab4b222aaee87cc}{ondropPressed}}();}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \mbox{\hyperlink{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}{cameraButtonReleased}}(),\ state\ =\ 0,\ resetTimer-\/>stop();}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00646\ \ \ \ \ \}}
+\DoxyCodeLine{00647\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00804}{camera\+Button\+Released()}}, \mbox{\hyperlink{widget_8cpp_source_l00797}{down\+Button\+Released()}}, \mbox{\hyperlink{widget_8cpp_source_l00746}{ondrop\+Pressed()}}, \mbox{\hyperlink{widget_8cpp_source_l00755}{onlift\+Pressed()}}, \mbox{\hyperlink{widget_8cpp_source_l00728}{on\+NSZPressed()}}, and \mbox{\hyperlink{widget_8cpp_source_l00737}{on\+SSZPressed()}}.
+
+\Hypertarget{widget_8cpp_abe2850c65efb8b97ca5e3d01648c8d0d}\label{widget_8cpp_abe2850c65efb8b97ca5e3d01648c8d0d} 
+\index{widget.cpp@{widget.cpp}!rotateTimerSlot@{rotateTimerSlot}}
+\index{rotateTimerSlot@{rotateTimerSlot}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{rotateTimerSlot()}{rotateTimerSlot()}}
+{\footnotesize\ttfamily void rotate\+Timer\+Slot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+云台旋转定时器槽函数 根据state\+\_\+rotate控制角度达到目标后停止旋转 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00653}{653}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00654\ \ \ \ \ \textcolor{keywordflow}{switch}(state\_rotate)\ \{}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetAngle\ <=\ angle0\_absolute)\ \mbox{\hyperlink{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}{cameraButtonReleased}}(),\ rotateTimer-\/>stop(),\ state\_rotate\ =\ -\/1;}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetAngle\ >=\ angle0\_absolute)\ \mbox{\hyperlink{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}{cameraButtonReleased}}(),\ rotateTimer-\/>stop(),\ state\_rotate\ =\ -\/1;}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetAngle\ <=\ angle1\_absolute)\ \mbox{\hyperlink{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}{cameraButtonReleased}}(),\ rotateTimer-\/>stop(),\ state\_rotate\ =\ -\/1;}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetAngle\ >=\ angle1\_absolute)\ \mbox{\hyperlink{widget_8cpp_af120943b9db7b2f26204bccf7edf76a8}{cameraButtonReleased}}(),\ rotateTimer-\/>stop(),\ state\_rotate\ =\ -\/1;}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ rotateTimer-\/>stop();}
+\DoxyCodeLine{00669\ \ \ \ \ \}}
+\DoxyCodeLine{00670\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00804}{camera\+Button\+Released()}}.
+
+\Hypertarget{widget_8cpp_a98466931787e33ff26d9b03c3f09c746}\label{widget_8cpp_a98466931787e33ff26d9b03c3f09c746} 
+\index{widget.cpp@{widget.cpp}!rotateToTargetAngle@{rotateToTargetAngle}}
+\index{rotateToTargetAngle@{rotateToTargetAngle}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{rotateToTargetAngle()}{rotateToTargetAngle()}}
+{\footnotesize\ttfamily void rotate\+To\+Target\+Angle (\begin{DoxyParamCaption}\item[{int}]{angle\+Type,  }\item[{int}]{target\+Angle\+Temp }\end{DoxyParamCaption})}
+
+
+
+旋转到指定目标角度 
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle\+Type} & 0表示角度0，1表示角度1 \\
+\hline
+{\em target\+Angle\+Temp} & 目标角度 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00465}{465}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keywordflow}{if}(angleType\ ==\ 0)\ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetAngleTemp\ >\ angle0\_absolute)\ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_aba1a76122e3e41b22f161ad1952994eb}{onNSZPressed}}();}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ state\_rotate\ =\ 0;}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ targetAngle\ =\ targetAngleTemp;}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ rotateTimer-\/>start(100);}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(targetAngleTemp\ <\ angle0\_absolute)\ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_aca799bcd9814c813340142158b123b1b}{onSSZPressed}}();}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ state\_rotate\ =\ 1;}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ targetAngle\ =\ targetAngleTemp;}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ rotateTimer-\/>start(100);}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00478\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(angleType\ ==\ 1)\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetAngleTemp\ >\ angle1\_absolute)\ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_ad667e83cfcfc3df95ab4b222aaee87cc}{ondropPressed}}();}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ state\_rotate\ =\ 2;}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ targetAngle\ =\ targetAngleTemp;}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ rotateTimer-\/>start(100);}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(targetAngleTemp\ <\ angle1\_absolute)\ \{}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_adf17307e99cfe9ac7c95fda1b688bb8a}{onliftPressed}}();}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ state\_rotate\ =\ 3;}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ targetAngle\ =\ targetAngleTemp;}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ rotateTimer-\/>start(100);}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00490\ \ \ \ \ \}}
+\DoxyCodeLine{00491\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00746}{ondrop\+Pressed()}}, \mbox{\hyperlink{widget_8cpp_source_l00755}{onlift\+Pressed()}}, \mbox{\hyperlink{widget_8cpp_source_l00728}{on\+NSZPressed()}}, and \mbox{\hyperlink{widget_8cpp_source_l00737}{on\+SSZPressed()}}.
+
+\Hypertarget{widget_8cpp_a42119c4ca6c0a4460440f8f8067e7b6a}\label{widget_8cpp_a42119c4ca6c0a4460440f8f8067e7b6a} 
+\index{widget.cpp@{widget.cpp}!rxTimerSlot@{rxTimerSlot}}
+\index{rxTimerSlot@{rxTimerSlot}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{rxTimerSlot()}{rxTimerSlot()}}
+{\footnotesize\ttfamily void rx\+Timer\+Slot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+rx\+Timer定时器槽函数 
+
+定时发送cable消息“\+TQ”和“\+SP” 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00217}{217}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00218\ \{}
+\DoxyCodeLine{00219\ \ \ \ \ t\_tr++;}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{if}(t\_tr\ ==\ 20)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ node.publish\_cable(\textcolor{stringliteral}{"{}TQ"{}});}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{if}(t\_tr\ >=\ 40)\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ node.publish\_cable(\textcolor{stringliteral}{"{}SP"{}});}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ t\_tr\ =\ 0;}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ac7142ee2baa705d2dd402769467d5a4e}\label{widget_8cpp_ac7142ee2baa705d2dd402769467d5a4e} 
+\index{widget.cpp@{widget.cpp}!saveSettings@{saveSettings}}
+\index{saveSettings@{saveSettings}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{saveSettings()}{saveSettings()}}
+{\footnotesize\ttfamily void save\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+保存angle0\+\_\+round和angle1\+\_\+round到文件 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00431}{431}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00432\ \ \ \ \ QFile\ file(settingsFile);}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keywordflow}{if}\ (file.open(QIODevice::WriteOnly\ |\ QIODevice::Text))\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ QTextStream\ out(\&file);}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}angle0\_round="{}}\ <<\ angle0\_round\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}angle1\_round="{}}\ <<\ angle1\_round\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00438\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}无法打开文件进行保存"{}};}
+\DoxyCodeLine{00440\ \ \ \ \ \}}
+\DoxyCodeLine{00441\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a6244b5d36de0e994b92f5c42a7bbc9b1}\label{widget_8cpp_a6244b5d36de0e994b92f5c42a7bbc9b1} 
+\index{widget.cpp@{widget.cpp}!slot\_show\_imu@{slot\_show\_imu}}
+\index{slot\_show\_imu@{slot\_show\_imu}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{slot\_show\_imu()}{slot\_show\_imu()}}
+{\footnotesize\ttfamily void slot\+\_\+show\+\_\+imu (\begin{DoxyParamCaption}\item[{double}]{pitch,  }\item[{double}]{roll,  }\item[{double}]{yaw }\end{DoxyParamCaption})}
+
+
+
+IMU数据槽函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pitch} & 俯仰角 (rad) \\
+\hline
+{\em roll} & 横滚角 (rad) \\
+\hline
+{\em yaw} & 偏航角 (rad)\\
+\hline
+\end{DoxyParams}
+更新\+UI显示，当倾角超过30度时，执行急停并提示 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00256}{256}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00257\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ QString\ pitchText\ =\ QString::number(pitch\ *\ 180.0\ /M\_PI\ +\ imu\_pitch\_error,\ \textcolor{charliteral}{'f'},\ 2)+\textcolor{stringliteral}{"{}°"{}};}
+\DoxyCodeLine{00259\ \ \ \ \ QString\ rollText\ =\ QString::number(roll\ *\ 180.0\ /M\_PI\ +\ imu\_roll\_error,\ \textcolor{charliteral}{'f'},\ 2)+\textcolor{stringliteral}{"{}°"{}};}
+\DoxyCodeLine{00260\ \ \ \ \ QString\ yawText\ =\ QString::number(yaw\ *\ 180.0\ /M\_PI,\ \textcolor{charliteral}{'f'},\ 2)+\textcolor{stringliteral}{"{}°"{}};}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ ui-\/>label\_5-\/>setText(rollText);}
+\DoxyCodeLine{00263\ \ \ \ \ ui-\/>label\_6-\/>setText(pitchText);}
+\DoxyCodeLine{00264\ \ \ \ \ ui-\/>label\_yaw-\/>setText(yawText);}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keywordflow}{if}\ (qAbs(pitch\ *\ 180.0\ /M\_PI\ +\ imu\_pitch\_error)\ >\ 30.0\ ||\ qAbs(roll\ *\ 180.0\ /M\_PI\ +\ imu\_roll\_error)\ >\ 30.0)}
+\DoxyCodeLine{00267\ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(imu\_flag)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ node.publishStop();}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a102d75b14dd4e042fed267d3a9594332}{on\_start\_record\_button\_clicked}}();}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ imu\_flag\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ QMessageBox::warning(\textcolor{keyword}{this},\ tr(\textcolor{stringliteral}{"{}警告"{}}),\ tr(\textcolor{stringliteral}{"{}检测到倾角超过30度，请注意！"{}}),\ QMessageBox::Ok);}
+\DoxyCodeLine{00273\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ imu\_flag\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00275\ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l01423}{on\+\_\+start\+\_\+record\+\_\+button\+\_\+clicked()}}.
+
+\Hypertarget{widget_8cpp_a16760f15b2cb5ea428bf80b0dbc164c2}\label{widget_8cpp_a16760f15b2cb5ea428bf80b0dbc164c2} 
+\index{widget.cpp@{widget.cpp}!slotBATriggered@{slotBATriggered}}
+\index{slotBATriggered@{slotBATriggered}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{slotBATriggered()}{slotBATriggered()}}
+{\footnotesize\ttfamily void slot\+BATriggered (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+ROS BA 信号触发处理槽 
+
+当接收到 ROS BA 消息时触发，发送 BA 指令到目标\+IP和端口。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01083}{1083}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01084\ \{}
+\DoxyCodeLine{01085\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Received\ BA\ from\ ROS,\ triggering\ button\ logic..."{}};}
+\DoxyCodeLine{01086\ \ \ \ \ QByteArray\ command1;}
+\DoxyCodeLine{01087\ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x42'});}
+\DoxyCodeLine{01088\ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x41'});}
+\DoxyCodeLine{01089\ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01090\ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01091\ \ \ \ \ rosSender-\/>sendCommand(command1);}
+\DoxyCodeLine{01092\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_aecf488478d8ffdd0af69d8a78ecac2b3}\label{widget_8cpp_aecf488478d8ffdd0af69d8a78ecac2b3} 
+\index{widget.cpp@{widget.cpp}!slotFOTriggered@{slotFOTriggered}}
+\index{slotFOTriggered@{slotFOTriggered}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{slotFOTriggered()}{slotFOTriggered()}}
+{\footnotesize\ttfamily void slot\+FOTriggered (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+ROS FO 信号触发处理槽 
+
+当接收到 ROS FO 消息时触发，发送 FO 指令到目标\+IP和端口。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01065}{1065}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01066\ \{}
+\DoxyCodeLine{01067\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Received\ FO\ from\ ROS,\ triggering\ button\ logic..."{}};}
+\DoxyCodeLine{01068\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{01069\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x46'});}
+\DoxyCodeLine{01070\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});}
+\DoxyCodeLine{01071\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01072\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01073\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{01074\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a8e1c8366503c244e7b7e341006d4148f}\label{widget_8cpp_a8e1c8366503c244e7b7e341006d4148f} 
+\index{widget.cpp@{widget.cpp}!slotSTTriggered@{slotSTTriggered}}
+\index{slotSTTriggered@{slotSTTriggered}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{slotSTTriggered()}{slotSTTriggered()}}
+{\footnotesize\ttfamily void slot\+STTriggered (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+ROS ST 信号触发处理槽 
+
+当接收到 ROS ST 消息时触发，发送 SD 指令到目标\+IP和端口。
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01101}{1101}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01102\ \{}
+\DoxyCodeLine{01103\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Received\ ST\ from\ ROS,\ triggering\ button\ logic..."{}};}
+\DoxyCodeLine{01104\ \ \ \ \ QByteArray\ command2;}
+\DoxyCodeLine{01105\ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x53'});}
+\DoxyCodeLine{01106\ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x44'});}
+\DoxyCodeLine{01107\ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});}
+\DoxyCodeLine{01108\ \ \ \ \ command2.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{01109\ \ \ \ \ rosSender-\/>sendCommand(command2);}
+\DoxyCodeLine{01110\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a88ffa98c2b7297cef493e63a1bbe06df}\label{widget_8cpp_a88ffa98c2b7297cef493e63a1bbe06df} 
+\index{widget.cpp@{widget.cpp}!Speed\_Down@{Speed\_Down}}
+\index{Speed\_Down@{Speed\_Down}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{Speed\_Down()}{Speed\_Down()}}
+{\footnotesize\ttfamily void Speed\+\_\+\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+减速指令 减小左右电机速度 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00716}{716}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00717\ \ \ \ \ left\_speed\ -\/=\ 20;}
+\DoxyCodeLine{00718\ \ \ \ \ right\_speed\ -\/=\ 20;}
+\DoxyCodeLine{00719\ \ \ \ \ QMessageBox::information(\textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}info"{}},\ QString(\textcolor{stringliteral}{"{}L\_speed:\%1,\ R\_speed:\%2"{}}).arg(left\_speed).arg(right\_speed));}
+\DoxyCodeLine{00720\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00721\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x44'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x43'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00722\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00723\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a6f48fec09173c062314c23813616d176}\label{widget_8cpp_a6f48fec09173c062314c23813616d176} 
+\index{widget.cpp@{widget.cpp}!Speed\_Up@{Speed\_Up}}
+\index{Speed\_Up@{Speed\_Up}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{Speed\_Up()}{Speed\_Up()}}
+{\footnotesize\ttfamily void Speed\+\_\+\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+加速指令 增加左右电机速度 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00703}{703}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00704\ \ \ \ \ left\_speed\ +=\ 20;}
+\DoxyCodeLine{00705\ \ \ \ \ right\_speed\ +=\ 20;}
+\DoxyCodeLine{00706\ \ \ \ \ QMessageBox::information(\textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}info"{}},\ QString(\textcolor{stringliteral}{"{}L\_speed:\%1,\ R\_speed:\%2"{}}).arg(left\_speed).arg(right\_speed));}
+\DoxyCodeLine{00707\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00708\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x41'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x43'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00709\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00710\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a30072d610b34aad6aa00a3d1d1e34281}\label{widget_8cpp_a30072d610b34aad6aa00a3d1d1e34281} 
+\index{widget.cpp@{widget.cpp}!update\_angle0@{update\_angle0}}
+\index{update\_angle0@{update\_angle0}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_angle0()}{update\_angle0()}}
+{\footnotesize\ttfamily void update\+\_\+angle0 (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+更新角度0值 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 当前角度值 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00497}{497}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keywordflow}{if}(value\ ==\ -\/1)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00499\ \ \ \ \ \textcolor{keywordflow}{if}(angle0\_first\_flag)\ \{\ angle0\ =\ value;\ angle0\_first\_flag\ =\ \textcolor{keyword}{false};\ \textcolor{keywordflow}{return};\ \}}
+\DoxyCodeLine{00500\ \ \ \ \ \textcolor{keywordflow}{if}(value\ >\ angle0\ +\ 200)\ \{\ angle0\_round\ -\/=\ 1;\ \mbox{\hyperlink{widget_8cpp_ac7142ee2baa705d2dd402769467d5a4e}{saveSettings}}();\ \}}
+\DoxyCodeLine{00501\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(value\ <\ angle0\ -\/\ 200)\ \{\ angle0\_round\ +=\ 1;\ \mbox{\hyperlink{widget_8cpp_ac7142ee2baa705d2dd402769467d5a4e}{saveSettings}}();\ \}}
+\DoxyCodeLine{00502\ \ \ \ \ angle0\ =\ value;}
+\DoxyCodeLine{00503\ \ \ \ \ angle0\_absolute\ =\ angle0\ +\ angle0\_round*360;}
+\DoxyCodeLine{00504\ \ \ \ \ ui-\/>labelCurrentLiftMotor-\/>setText(QString::number(angle0\_absolute));}
+\DoxyCodeLine{00505\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00431}{save\+Settings()}}.
+
+\Hypertarget{widget_8cpp_a53f9170763ac401174788783e7b05c88}\label{widget_8cpp_a53f9170763ac401174788783e7b05c88} 
+\index{widget.cpp@{widget.cpp}!update\_angle1@{update\_angle1}}
+\index{update\_angle1@{update\_angle1}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_angle1()}{update\_angle1()}}
+{\footnotesize\ttfamily void update\+\_\+angle1 (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+更新角度1值 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 当前角度值 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00511}{511}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{keywordflow}{if}(value\ ==\ -\/1)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keywordflow}{if}(angle1\_first\_flag)\ \{\ angle1\ =\ value;\ angle1\_first\_flag\ =\ \textcolor{keyword}{false};\ \textcolor{keywordflow}{return};\ \}}
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{keywordflow}{if}(value\ >\ angle1\ +\ 200)\ \{\ angle1\_round\ -\/=\ 1;\ \mbox{\hyperlink{widget_8cpp_ac7142ee2baa705d2dd402769467d5a4e}{saveSettings}}();\ \}}
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(value\ <\ angle1\ -\/\ 200)\ \{\ angle1\_round\ +=\ 1;\ \mbox{\hyperlink{widget_8cpp_ac7142ee2baa705d2dd402769467d5a4e}{saveSettings}}();\ \}}
+\DoxyCodeLine{00516\ \ \ \ \ angle1\ =\ value;}
+\DoxyCodeLine{00517\ \ \ \ \ angle1\_absolute\ =\ angle1\ +\ angle1\_round*360;}
+\DoxyCodeLine{00518\ \ \ \ \ ui-\/>labelCurrentPitchMotor-\/>setText(QString::number(angle1\_absolute));}
+\DoxyCodeLine{00519\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00431}{save\+Settings()}}.
+
+\Hypertarget{widget_8cpp_aafe556e0712c77175e1b46904570221c}\label{widget_8cpp_aafe556e0712c77175e1b46904570221c} 
+\index{widget.cpp@{widget.cpp}!update\_auto\_navigation@{update\_auto\_navigation}}
+\index{update\_auto\_navigation@{update\_auto\_navigation}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_auto\_navigation()}{update\_auto\_navigation()}}
+{\footnotesize\ttfamily void update\+\_\+auto\+\_\+navigation (\begin{DoxyParamCaption}\item[{bool}]{msg }\end{DoxyParamCaption})}
+
+
+
+接收 \doxylink{namespaceauto__navigation}{auto\+\_\+navigation} 状态更新 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & 当前自动导航状态 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00965}{965}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00966\ \{}
+\DoxyCodeLine{00967\ \ \ \ \ \textcolor{comment}{//\ 逻辑暂时注释}}
+\DoxyCodeLine{00968\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a3a49f463b5b244e34d67e4c53c333fc7}\label{widget_8cpp_a3a49f463b5b244e34d67e4c53c333fc7} 
+\index{widget.cpp@{widget.cpp}!update\_down\_laser@{update\_down\_laser}}
+\index{update\_down\_laser@{update\_down\_laser}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_down\_laser()}{update\_down\_laser()}}
+{\footnotesize\ttfamily void update\+\_\+down\+\_\+laser (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00573}{573}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00574\ \ \ \ \ downLaserMeter\ =\ value;}
+\DoxyCodeLine{00575\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{widget_8cpp_a4ca834506ea57a28fa4831e076264b8c}{flag\_laser\_measure}})\{}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{widget_8cpp_ad342601a6feed02a4789dabf71521222}{time\_laser\_scan}}\ <\ 5)\{}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_aeeafe7e9eebbd2a45ce4fa2ae0d96c51}{sum}}\ +=\ downLaserMeter;}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_ad342601a6feed02a4789dabf71521222}{time\_laser\_scan}}\ +=\ 1;}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ measure\ =\ \mbox{\hyperlink{widget_8cpp_aeeafe7e9eebbd2a45ce4fa2ae0d96c51}{sum}}\ /\ 5.0;}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ ui-\/>laser\_deep\_measure-\/>setText(QString::number(measure,\ \textcolor{charliteral}{'f'},\ 5));}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_ad342601a6feed02a4789dabf71521222}{time\_laser\_scan}}\ =\ 0;}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_aeeafe7e9eebbd2a45ce4fa2ae0d96c51}{sum}}\ =\ 0;}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a4ca834506ea57a28fa4831e076264b8c}{flag\_laser\_measure}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00586\ \ \ \ \ \}}
+\DoxyCodeLine{00587\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00572}{flag\+\_\+laser\+\_\+measure}}, \mbox{\hyperlink{widget_8cpp_source_l00571}{sum}}, and \mbox{\hyperlink{widget_8cpp_source_l00570}{time\+\_\+laser\+\_\+scan}}.
+
+\Hypertarget{widget_8cpp_a5623166a2c903d0ad41cda9bd6f15459}\label{widget_8cpp_a5623166a2c903d0ad41cda9bd6f15459} 
+\index{widget.cpp@{widget.cpp}!update\_encodeVal@{update\_encodeVal}}
+\index{update\_encodeVal@{update\_encodeVal}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_encodeVal()}{update\_encodeVal()}}
+{\footnotesize\ttfamily void update\+\_\+encode\+Val (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+更新编码器值 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 编码器数值 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00384}{384}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00385\ \ \ \ \ encodeVal\ =\ value;}
+\DoxyCodeLine{00386\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_aa9491fc5a1718173e248e887c5cb928c}\label{widget_8cpp_aa9491fc5a1718173e248e887c5cb928c} 
+\index{widget.cpp@{widget.cpp}!update\_leftLimit@{update\_leftLimit}}
+\index{update\_leftLimit@{update\_leftLimit}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_leftLimit()}{update\_leftLimit()}}
+{\footnotesize\ttfamily void update\+\_\+left\+Limit (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+
+
+更新左限位开关状态 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & true表示触发，false表示未触发 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00525}{525}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00526\ \ \ \ \ left\_limit\ =\ value;}
+\DoxyCodeLine{00527\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ae4c154d8b92360aaab5cdbb52f93f8a4}\label{widget_8cpp_ae4c154d8b92360aaab5cdbb52f93f8a4} 
+\index{widget.cpp@{widget.cpp}!update\_rightLimit@{update\_rightLimit}}
+\index{update\_rightLimit@{update\_rightLimit}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_rightLimit()}{update\_rightLimit()}}
+{\footnotesize\ttfamily void update\+\_\+right\+Limit (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+
+
+更新右限位开关状态 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & true表示触发，false表示未触发 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00533}{533}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00534\ \ \ \ \ right\_limit\ =\ value;}
+\DoxyCodeLine{00535\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ad1adf23b78c414c003ea6595056b2f7d}\label{widget_8cpp_ad1adf23b78c414c003ea6595056b2f7d} 
+\index{widget.cpp@{widget.cpp}!update\_rx\_motor\_speed@{update\_rx\_motor\_speed}}
+\index{update\_rx\_motor\_speed@{update\_rx\_motor\_speed}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_rx\_motor\_speed()}{update\_rx\_motor\_speed()}}
+{\footnotesize\ttfamily void update\+\_\+rx\+\_\+motor\+\_\+speed (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+更新\+RX电机速度 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 当前电机速度值 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00549}{549}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00550\ \ \ \ \ rx\_motor\_speed\ =\ value;}
+\DoxyCodeLine{00551\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ab94efd7cf5aba85e8215fed366bec901}\label{widget_8cpp_ab94efd7cf5aba85e8215fed366bec901} 
+\index{widget.cpp@{widget.cpp}!update\_rx\_motor\_tq@{update\_rx\_motor\_tq}}
+\index{update\_rx\_motor\_tq@{update\_rx\_motor\_tq}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_rx\_motor\_tq()}{update\_rx\_motor\_tq()}}
+{\footnotesize\ttfamily void update\+\_\+rx\+\_\+motor\+\_\+tq (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+更新\+Rx电机扭矩值 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 扭矩值 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00541}{541}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00542\ \ \ \ \ rx\_motor\_tq\ =\ value;}
+\DoxyCodeLine{00543\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a08367007928a16fe33195bcacda22d03}\label{widget_8cpp_a08367007928a16fe33195bcacda22d03} 
+\index{widget.cpp@{widget.cpp}!update\_top\_laser@{update\_top\_laser}}
+\index{update\_top\_laser@{update\_top\_laser}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_top\_laser()}{update\_top\_laser()}}
+{\footnotesize\ttfamily void update\+\_\+top\+\_\+laser (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00562}{562}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00563\ \ \ \ \ \textcolor{comment}{//\ 当前代码逻辑被注释，可按需启用}}
+\DoxyCodeLine{00564\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a224f31dc97ce32b3bad5bcba9262d832}\label{widget_8cpp_a224f31dc97ce32b3bad5bcba9262d832} 
+\index{widget.cpp@{widget.cpp}!updateImage@{updateImage}}
+\index{updateImage@{updateImage}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{updateImage()}{updateImage()}}
+{\footnotesize\ttfamily void update\+Image (\begin{DoxyParamCaption}\item[{const QImage \&}]{img }\end{DoxyParamCaption})}
+
+
+
+更新 UI 显示的视频图像 
+
+将图像显示到 UI 的 label\+\_\+35 中
+
+将输入 QImage 缩放并显示到 UI label\+\_\+35 中， 保持比例并使用平滑缩放。
+
+
+\begin{DoxyParams}{Parameters}
+{\em img} & 显示的图像帧 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em img} & 传入的图像 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l01476}{1476}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01477\ \{}
+\DoxyCodeLine{01478\ \ \ \ \ \textcolor{keywordflow}{if}(img.isNull())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01479\ }
+\DoxyCodeLine{01480\ \ \ \ \ ui-\/>label\_35-\/>setPixmap(QPixmap::fromImage(img).scaled(}
+\DoxyCodeLine{01481\ \ \ \ \ \ \ \ \ ui-\/>label\_35-\/>size(),}
+\DoxyCodeLine{01482\ \ \ \ \ \ \ \ \ Qt::KeepAspectRatio,}
+\DoxyCodeLine{01483\ \ \ \ \ \ \ \ \ Qt::SmoothTransformation}
+\DoxyCodeLine{01484\ \ \ \ \ ));}
+\DoxyCodeLine{01485\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a0c57db83f38d71a70d8dccd09a6de80f}\label{widget_8cpp_a0c57db83f38d71a70d8dccd09a6de80f} 
+\index{widget.cpp@{widget.cpp}!updateOdomLabels@{updateOdomLabels}}
+\index{updateOdomLabels@{updateOdomLabels}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{updateOdomLabels()}{updateOdomLabels()}}
+{\footnotesize\ttfamily void update\+Odom\+Labels (\begin{DoxyParamCaption}\item[{double}]{speed,  }\item[{double}]{position }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00678}{678}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00679\ \ \ \ \ ui-\/>label\_2-\/>setText(QString::number(speed,\ \textcolor{charliteral}{'f'},\ 2));}
+\DoxyCodeLine{00680\ \ \ \ \ ui-\/>label\_14-\/>setText(QString::number(position,\ \textcolor{charliteral}{'f'},\ 2));}
+\DoxyCodeLine{00681\ \ \ \ \ \mbox{\hyperlink{widget_8cpp_ad77c55775639306203aeb855b17a9294}{odom\_data}}\ =\ position;}
+\DoxyCodeLine{00682\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00677}{odom\+\_\+data}}.
+
+\Hypertarget{widget_8cpp_adba26a24828f6a305c4e104ab52f3f10}\label{widget_8cpp_adba26a24828f6a305c4e104ab52f3f10} 
+\index{widget.cpp@{widget.cpp}!WBLED\_On\_Clicked@{WBLED\_On\_Clicked}}
+\index{WBLED\_On\_Clicked@{WBLED\_On\_Clicked}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{WBLED\_On\_Clicked()}{WBLED\_On\_Clicked()}}
+{\footnotesize\ttfamily void WBLED\+\_\+\+On\+\_\+\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+后置\+LED灯开启 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00832}{832}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00833\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00834\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x42'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4C'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x45'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x44'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4E'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00835\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00836\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a4aecdb998b8b28b278843eaa1644998b}\label{widget_8cpp_a4aecdb998b8b28b278843eaa1644998b} 
+\index{widget.cpp@{widget.cpp}!Widget@{Widget}}
+\index{Widget@{Widget}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{Widget()}{Widget()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classWidget}{Widget}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Widget析构函数 
+
+停止\+Modbus，关闭文件，释放\+UI和动态分配的子窗口指针 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00159}{159}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ my\_modbus-\/>stopLine();}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{delete}\ ui;}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{delete}\ settingWidgetInstance;}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{delete}\ jiantuWidgetInstance;}
+\DoxyCodeLine{00165\ \ \ \ \ file\_save\_imu.close();}
+\DoxyCodeLine{00166\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a7abc164494ec132dc9f3699b9f21bacb}\label{widget_8cpp_a7abc164494ec132dc9f3699b9f21bacb} 
+\index{widget.cpp@{widget.cpp}!Widget@{Widget}}
+\index{Widget@{Widget}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{Widget()}{Widget()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classWidget}{Widget}} (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv,  }\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent }\end{DoxyParamCaption})}
+
+
+
+Widget类构造函数 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & 命令行参数数量 \\
+\hline
+{\em argv} & 命令行参数数组 \\
+\hline
+{\em parent} & 父\+QWidget指针\\
+\hline
+\end{DoxyParams}
+初始化\+UI界面、\+ROS节点、\+TCP发送器、\+Modbus、\+GPS、视频解码器和定时器。 绑定信号和槽，包括传感器数据、视频显示、摄像头切换、按钮控制。 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00070}{70}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{00071\ \ \ \ \ QWidget(parent),}
+\DoxyCodeLine{00072\ \ \ \ \ ui(\textcolor{keyword}{new}\ Ui::Widget),}
+\DoxyCodeLine{00073\ \ \ \ \ settingWidgetInstance(\textcolor{keyword}{nullptr}),}
+\DoxyCodeLine{00074\ \ \ \ \ jiantuWidgetInstance(\textcolor{keyword}{nullptr}),}
+\DoxyCodeLine{00075\ \ \ \ \ node(argc,\ argv,\ \textcolor{stringliteral}{"{}node\_test"{}}),}
+\DoxyCodeLine{00076\ \ \ \ \ motorSpeedTestWidgetInstance(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ ui-\/>setupUi(\textcolor{keyword}{this});}
+\DoxyCodeLine{00079\ \ \ \ \ tempArgc\ =\ argc;}
+\DoxyCodeLine{00080\ \ \ \ \ tempArgv\ =\ argv;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ rosSender\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{ros__tcp__sender_8cpp_a5e8da266cec1f747a58cef6bf225d1c7}{RosTcpSender}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00083\ \ \ \ \ my\_modbus\ =\ \textcolor{keyword}{new}\ modbus();}
+\DoxyCodeLine{00084\ \ \ \ \ my\_modbus-\/>mod\_init();}
+\DoxyCodeLine{00085\ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}aaa"{}};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ my\_gps\_get\ =\ \textcolor{keyword}{new}\ GpsGet();}
+\DoxyCodeLine{00088\ \ \ \ \ my\_gps\_get-\/>gps\_start();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ decoder\_\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{rtspdecoder_8cpp_ac47d701a82f51b95eda1062eff0c0711}{RtspDecoder}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00091\ \ \ \ \ connect(decoder\_,\ \&RtspDecoder::frameDecoded,\ \textcolor{keyword}{this},\ \&Widget::onFrameDecoded);}
+\DoxyCodeLine{00092\ \ \ \ \ decoder\_-\/>setUrl(\textcolor{stringliteral}{"{}rtsp://admin:123456@192.168.8.9/Streaming/Channels/2"{}});}
+\DoxyCodeLine{00093\ \ \ \ \ decoder\_-\/>start();}
+\DoxyCodeLine{00094\ \ \ \ \ connect(decoder\_,\ \&RtspDecoder::connectionLost,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ QTimer::singleShot(1000,\ \textcolor{keyword}{this},\ [\textcolor{keyword}{this}]()\{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a0a3810d20c1a2eb80fe2a6b2e4df1164}{on\_pushButton\_3\_clicked}}();\ \ \textcolor{comment}{//\ 自动触发重连}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00098\ \ \ \ \ \});}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ ui-\/>label\_7-\/>show();}
+\DoxyCodeLine{00101\ \ \ \ \ ui-\/>label\_35-\/>hide();}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ m\_recorder\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{videorecorder_8cpp_a2e0a9c267b6801cddb3cb0f19f89923b}{VideoRecorder}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00104\ \ \ \ \ connect(m\_recorder,\ \&VideoRecorder::recordingFinished,\ \textcolor{keyword}{this},\ \&Widget::onRecordingFinished);}
+\DoxyCodeLine{00105\ \ \ \ \ m\_currentCamera\ =\ 0;\ \textcolor{comment}{//\ 默认第一个摄像头}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ 绑定ROS信号和槽}}
+\DoxyCodeLine{00108\ \ \ \ \ connect(\&node,\ \&QNode::signalFO,\ \textcolor{keyword}{this},\ \&Widget::slotFOTriggered);}
+\DoxyCodeLine{00109\ \ \ \ \ connect(\&node,\ \&QNode::signalBA,\ \textcolor{keyword}{this},\ \&Widget::slotBATriggered);}
+\DoxyCodeLine{00110\ \ \ \ \ connect(\&node,\ \&QNode::signalST,\ \textcolor{keyword}{this},\ \&Widget::slotSTTriggered);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ connect(\&node,\ \&QNode::imageReceived,\ \textcolor{keyword}{this},\ \&Widget::updateImage);}
+\DoxyCodeLine{00113\ \ \ \ \ connect(my\_gps\_get,\ \&GpsGet::LondataReceived,\ \textcolor{keyword}{this},\ \&Widget::onLonRecived);}
+\DoxyCodeLine{00114\ \ \ \ \ connect(my\_gps\_get,\ \&GpsGet::LatdataReceived,\ \textcolor{keyword}{this},\ \&Widget::onLatRecived);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ 绑定UI显示信号}}
+\DoxyCodeLine{00117\ \ \ \ \ connect(\&node,\ SIGNAL(Show\_image(\textcolor{keywordtype}{int},QImage))\ ,\textcolor{keyword}{this},SLOT(slot\_show\_image(\textcolor{keywordtype}{int},\ QImage)));}
+\DoxyCodeLine{00118\ \ \ \ \ connect(\&node,\ SIGNAL(Show\_imu(\textcolor{keywordtype}{double},\textcolor{keywordtype}{double},\textcolor{keywordtype}{double}))\ ,\textcolor{keyword}{this},SLOT(\mbox{\hyperlink{widget_8cpp_a6244b5d36de0e994b92f5c42a7bbc9b1}{slot\_show\_imu}}(\textcolor{keywordtype}{double},\textcolor{keywordtype}{double},\textcolor{keywordtype}{double})));}
+\DoxyCodeLine{00119\ \ \ \ \ connect(\&node,\ SIGNAL(odomDataReceived(\textcolor{keywordtype}{double},\textcolor{keywordtype}{double})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_a0c57db83f38d71a70d8dccd09a6de80f}{updateOdomLabels}}(\textcolor{keywordtype}{double},\textcolor{keywordtype}{double})));}
+\DoxyCodeLine{00120\ \ \ \ \ connect(\&node,\ SIGNAL(Show\_auto\_navigation(\textcolor{keywordtype}{bool})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_aafe556e0712c77175e1b46904570221c}{update\_auto\_navigation}}(\textcolor{keywordtype}{bool})));}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ connect(\&node,\ SIGNAL(updateCurrent1(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_a10d281e5e2ade8b5c1e9040d1714e0a1}{displayCurrentLeftMotor}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00123\ \ \ \ \ connect(\&node,\ SIGNAL(updateCurrent2(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_a631f867c242d0d1326409bac3e047d1a}{displayCurrentRightMotor}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00124\ \ \ \ \ connect(\&node,\ SIGNAL(updateCurrent3(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_a80a2ef35f64b6af487d94ef52c59f83a}{displayCurrentLiftMotor}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00125\ \ \ \ \ connect(\&node,\ SIGNAL(updateCurrent4(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_a13da26a33fc84b2fec9332cd0e80c010}{displayCurrentPitchMotor}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00126\ \ \ \ \ connect(\&node,\ SIGNAL(updateCurrent5(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_a75f7392fe31cf988ad2ec04f1ffea499}{displayCurrentRotationMotor}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ connect(\&node,\ SIGNAL(updateEncodeVal(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_a5623166a2c903d0ad41cda9bd6f15459}{update\_encodeVal}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00129\ \ \ \ \ connect(\&node,\ SIGNAL(updateAngle0(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_a30072d610b34aad6aa00a3d1d1e34281}{update\_angle0}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00130\ \ \ \ \ connect(\&node,\ SIGNAL(updateAngle1(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_a53f9170763ac401174788783e7b05c88}{update\_angle1}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00131\ \ \ \ \ connect(\&node,\ SIGNAL(updateLeftLimit(\textcolor{keywordtype}{bool})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_aa9491fc5a1718173e248e887c5cb928c}{update\_leftLimit}}(\textcolor{keywordtype}{bool})));}
+\DoxyCodeLine{00132\ \ \ \ \ connect(\&node,\ SIGNAL(updateRightLimit(\textcolor{keywordtype}{bool})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_ae4c154d8b92360aaab5cdbb52f93f8a4}{update\_rightLimit}}(\textcolor{keywordtype}{bool})));}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ connect(\&node,\ SIGNAL(updateRxMotorTq(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_ab94efd7cf5aba85e8215fed366bec901}{update\_rx\_motor\_tq}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00135\ \ \ \ \ connect(\&node,\ SIGNAL(updateRxMotorSpeed(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_ad1adf23b78c414c003ea6595056b2f7d}{update\_rx\_motor\_speed}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ connect(\&node,\ SIGNAL(updateTopLaser(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_a08367007928a16fe33195bcacda22d03}{update\_top\_laser}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00138\ \ \ \ \ connect(\&node,\ SIGNAL(updateDownLaser(\textcolor{keywordtype}{float})),\ \textcolor{keyword}{this},\ SLOT(\mbox{\hyperlink{widget_8cpp_a3a49f463b5b244e34d67e4c53c333fc7}{update\_down\_laser}}(\textcolor{keywordtype}{float})));}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ 绑定定时器槽函数}}
+\DoxyCodeLine{00141\ \ \ \ \ connect(leftLimitTimer,\ \&QTimer::timeout,\ \textcolor{keyword}{this},\ \&Widget::checkLeftLimit);}
+\DoxyCodeLine{00142\ \ \ \ \ connect(rightLimitTimer,\ \&QTimer::timeout,\ \textcolor{keyword}{this},\ \&Widget::checkRightLimit);}
+\DoxyCodeLine{00143\ \ \ \ \ connect(resetTimer,\ \&QTimer::timeout,\ \textcolor{keyword}{this},\ \&Widget::resetAll);}
+\DoxyCodeLine{00144\ \ \ \ \ connect(rotateTimer,\ \&QTimer::timeout,\ \textcolor{keyword}{this},\ \&Widget::rotateTimerSlot);}
+\DoxyCodeLine{00145\ \ \ \ \ connect(rxTimer,\ \&QTimer::timeout,\ \textcolor{keyword}{this},\ \&Widget::rxTimerSlot);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a1165e1d4439a045e94970c9fbc73bb3c}{loadSettings}}();}
+\DoxyCodeLine{00148\ \ \ \ \ remoteProcess\ =\ \textcolor{keyword}{new}\ QProcess(\textcolor{keyword}{this});}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ 启动下位机}}
+\DoxyCodeLine{00151\ \ \ \ \ \mbox{\hyperlink{widget_8cpp_a75dbf6414035c0585fef49cda78a8097}{on\_start\_robot\_button\_clicked}}();}
+\DoxyCodeLine{00152\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{widget_8cpp_source_l00284}{display\+Current\+Left\+Motor()}}, \mbox{\hyperlink{widget_8cpp_source_l00321}{display\+Current\+Lift\+Motor()}}, \mbox{\hyperlink{widget_8cpp_source_l00343}{display\+Current\+Pitch\+Motor()}}, \mbox{\hyperlink{widget_8cpp_source_l00303}{display\+Current\+Right\+Motor()}}, \mbox{\hyperlink{widget_8cpp_source_l00365}{display\+Current\+Rotation\+Motor()}}, \mbox{\hyperlink{widget_8cpp_source_l00446}{load\+Settings()}}, \mbox{\hyperlink{widget_8cpp_source_l01743}{on\+\_\+push\+Button\+\_\+3\+\_\+clicked()}}, \mbox{\hyperlink{widget_8cpp_source_l01371}{on\+\_\+start\+\_\+robot\+\_\+button\+\_\+clicked()}}, \mbox{\hyperlink{ros__tcp__sender_8cpp_source_l00018}{Ros\+Tcp\+Sender()}}, \mbox{\hyperlink{rtspdecoder_8cpp_source_l00025}{Rtsp\+Decoder()}}, \mbox{\hyperlink{widget_8cpp_source_l00256}{slot\+\_\+show\+\_\+imu()}}, \mbox{\hyperlink{widget_8cpp_source_l00497}{update\+\_\+angle0()}}, \mbox{\hyperlink{widget_8cpp_source_l00511}{update\+\_\+angle1()}}, \mbox{\hyperlink{widget_8cpp_source_l00965}{update\+\_\+auto\+\_\+navigation()}}, \mbox{\hyperlink{widget_8cpp_source_l00573}{update\+\_\+down\+\_\+laser()}}, \mbox{\hyperlink{widget_8cpp_source_l00384}{update\+\_\+encode\+Val()}}, \mbox{\hyperlink{widget_8cpp_source_l00525}{update\+\_\+left\+Limit()}}, \mbox{\hyperlink{widget_8cpp_source_l00533}{update\+\_\+right\+Limit()}}, \mbox{\hyperlink{widget_8cpp_source_l00549}{update\+\_\+rx\+\_\+motor\+\_\+speed()}}, \mbox{\hyperlink{widget_8cpp_source_l00541}{update\+\_\+rx\+\_\+motor\+\_\+tq()}}, \mbox{\hyperlink{widget_8cpp_source_l00562}{update\+\_\+top\+\_\+laser()}}, \mbox{\hyperlink{widget_8cpp_source_l00678}{update\+Odom\+Labels()}}, and \mbox{\hyperlink{videorecorder_8cpp_source_l00016}{Video\+Recorder()}}.
+
+\Hypertarget{widget_8cpp_a8837a6c242d1627020ca3f3893ae402a}\label{widget_8cpp_a8837a6c242d1627020ca3f3893ae402a} 
+\index{widget.cpp@{widget.cpp}!yuntai\_downPressed@{yuntai\_downPressed}}
+\index{yuntai\_downPressed@{yuntai\_downPressed}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{yuntai\_downPressed()}{yuntai\_downPressed()}}
+{\footnotesize\ttfamily void yuntai\+\_\+down\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+云台升降向下 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00774}{774}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00775\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00776\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x43'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x53'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x58'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4A'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00777\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00778\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00779\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_a0787778f20a57060ef32a922dbadf080}\label{widget_8cpp_a0787778f20a57060ef32a922dbadf080} 
+\index{widget.cpp@{widget.cpp}!yuntai\_liftPressed@{yuntai\_liftPressed}}
+\index{yuntai\_liftPressed@{yuntai\_liftPressed}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{yuntai\_liftPressed()}{yuntai\_liftPressed()}}
+{\footnotesize\ttfamily void yuntai\+\_\+lift\+Pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+云台升降向上 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00764}{764}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00765\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00766\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x43'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4C'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x53'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x53'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00767\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00768\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00769\ \}}
+
+\end{DoxyCode}
+\Hypertarget{widget_8cpp_ac592b21305bd2eee7a1cf6f82b588ebb}\label{widget_8cpp_ac592b21305bd2eee7a1cf6f82b588ebb} 
+\index{widget.cpp@{widget.cpp}!yuntai\_Reset@{yuntai\_Reset}}
+\index{yuntai\_Reset@{yuntai\_Reset}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{yuntai\_Reset()}{yuntai\_Reset()}}
+{\footnotesize\ttfamily void yuntai\+\_\+\+Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+云台复位指令（停止角度电机） 
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00784}{784}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00785\ \ \ \ \ QByteArray\ command;}
+\DoxyCodeLine{00786\ \ \ \ \ command.append(\textcolor{stringliteral}{'\(\backslash\)x58'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x5A'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x53'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x54'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x50'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00787\ \ \ \ \ rosSender-\/>sendCommand(command);}
+\DoxyCodeLine{00788\ }
+\DoxyCodeLine{00789\ \ \ \ \ QByteArray\ command1;}
+\DoxyCodeLine{00790\ \ \ \ \ command1.append(\textcolor{stringliteral}{'\(\backslash\)x46'});\ command1.append(\textcolor{stringliteral}{'\(\backslash\)x59'});\ command1.append(\textcolor{stringliteral}{'\(\backslash\)x53'});\ command1.append(\textcolor{stringliteral}{'\(\backslash\)x54'});\ command1.append(\textcolor{stringliteral}{'\(\backslash\)x4F'});\ command1.append(\textcolor{stringliteral}{'\(\backslash\)x50'});\ command1.append(\textcolor{stringliteral}{'\(\backslash\)x0D'});\ command1.append(\textcolor{stringliteral}{'\(\backslash\)x0A'});}
+\DoxyCodeLine{00791\ \ \ \ \ rosSender-\/>sendCommand(command1);}
+\DoxyCodeLine{00792\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{widget_8cpp_af7273f322abca46101f0b7d85eab01d3}\label{widget_8cpp_af7273f322abca46101f0b7d85eab01d3} 
+\index{widget.cpp@{widget.cpp}!currentfy\_limit\_flag@{currentfy\_limit\_flag}}
+\index{currentfy\_limit\_flag@{currentfy\_limit\_flag}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{currentfy\_limit\_flag}{currentfy\_limit\_flag}}
+{\footnotesize\ttfamily bool currentfy\+\_\+limit\+\_\+flag = false}
+
+
+
+显示俯仰电机电流（\+C1） 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 电流值\\
+\hline
+\end{DoxyParams}
+超过限制时触发保护逻辑 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00342}{342}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+\Hypertarget{widget_8cpp_a03dd8def03190553a1559b0151327105}\label{widget_8cpp_a03dd8def03190553a1559b0151327105} 
+\index{widget.cpp@{widget.cpp}!currentR\_limit\_flag@{currentR\_limit\_flag}}
+\index{currentR\_limit\_flag@{currentR\_limit\_flag}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{currentR\_limit\_flag}{currentR\_limit\_flag}}
+{\footnotesize\ttfamily bool current\+R\+\_\+limit\+\_\+flag = false}
+
+
+
+显示右电机电流 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 电流值\\
+\hline
+\end{DoxyParams}
+超过限制时触发保护逻辑 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00302}{302}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+\Hypertarget{widget_8cpp_aea821c00f026ff864e42b6346cd3c7f7}\label{widget_8cpp_aea821c00f026ff864e42b6346cd3c7f7} 
+\index{widget.cpp@{widget.cpp}!currentsj\_limit\_flag@{currentsj\_limit\_flag}}
+\index{currentsj\_limit\_flag@{currentsj\_limit\_flag}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{currentsj\_limit\_flag}{currentsj\_limit\_flag}}
+{\footnotesize\ttfamily bool currentsj\+\_\+limit\+\_\+flag = false}
+
+
+
+显示升降台电机电流（\+C0） 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 电流值\\
+\hline
+\end{DoxyParams}
+超过限制时触发保护逻辑，停止旋转和重置定时器 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00320}{320}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+\Hypertarget{widget_8cpp_a3bfa1006325e5a8eed4c4f94ae0644cf}\label{widget_8cpp_a3bfa1006325e5a8eed4c4f94ae0644cf} 
+\index{widget.cpp@{widget.cpp}!currentxz\_limit\_flag@{currentxz\_limit\_flag}}
+\index{currentxz\_limit\_flag@{currentxz\_limit\_flag}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{currentxz\_limit\_flag}{currentxz\_limit\_flag}}
+{\footnotesize\ttfamily bool currentxz\+\_\+limit\+\_\+flag = false}
+
+
+
+显示旋转电机电流（\+C2） 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 电流值\\
+\hline
+\end{DoxyParams}
+超过限制时触发保护逻辑 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00364}{364}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+\Hypertarget{widget_8cpp_ad2c80288834ae64cf7ecd1768e65e4d2}\label{widget_8cpp_ad2c80288834ae64cf7ecd1768e65e4d2} 
+\index{widget.cpp@{widget.cpp}!first\_top\_laser@{first\_top\_laser}}
+\index{first\_top\_laser@{first\_top\_laser}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{first\_top\_laser}{first\_top\_laser}}
+{\footnotesize\ttfamily bool first\+\_\+top\+\_\+laser = true}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00560}{560}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+\Hypertarget{widget_8cpp_adf916204820072417ed73a32de1cefcf}\label{widget_8cpp_adf916204820072417ed73a32de1cefcf} 
+\index{widget.cpp@{widget.cpp}!flag@{flag}}
+\index{flag@{flag}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{flag}{flag}}
+{\footnotesize\ttfamily int flag =0}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00059}{59}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+\Hypertarget{widget_8cpp_a4ca834506ea57a28fa4831e076264b8c}\label{widget_8cpp_a4ca834506ea57a28fa4831e076264b8c} 
+\index{widget.cpp@{widget.cpp}!flag\_laser\_measure@{flag\_laser\_measure}}
+\index{flag\_laser\_measure@{flag\_laser\_measure}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{flag\_laser\_measure}{flag\_laser\_measure}}
+{\footnotesize\ttfamily bool flag\+\_\+laser\+\_\+measure = false}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00572}{572}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+\Hypertarget{widget_8cpp_af783e425d2e2f49754bb1b4efa872571}\label{widget_8cpp_af783e425d2e2f49754bb1b4efa872571} 
+\index{widget.cpp@{widget.cpp}!last\_top\_data@{last\_top\_data}}
+\index{last\_top\_data@{last\_top\_data}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{last\_top\_data}{last\_top\_data}}
+{\footnotesize\ttfamily float last\+\_\+top\+\_\+data = 0}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00561}{561}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+\Hypertarget{widget_8cpp_ad77c55775639306203aeb855b17a9294}\label{widget_8cpp_ad77c55775639306203aeb855b17a9294} 
+\index{widget.cpp@{widget.cpp}!odom\_data@{odom\_data}}
+\index{odom\_data@{odom\_data}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{odom\_data}{odom\_data}}
+{\footnotesize\ttfamily double odom\+\_\+data = 0}
+
+
+
+更新里程计标签 
+
+
+\begin{DoxyParams}{Parameters}
+{\em speed} & 当前速度 \\
+\hline
+{\em position} & 当前位移 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00677}{677}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+\Hypertarget{widget_8cpp_aeeafe7e9eebbd2a45ce4fa2ae0d96c51}\label{widget_8cpp_aeeafe7e9eebbd2a45ce4fa2ae0d96c51} 
+\index{widget.cpp@{widget.cpp}!sum@{sum}}
+\index{sum@{sum}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{sum}{sum}}
+{\footnotesize\ttfamily float sum = 0}
+
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00571}{571}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+\Hypertarget{widget_8cpp_ad342601a6feed02a4789dabf71521222}\label{widget_8cpp_ad342601a6feed02a4789dabf71521222} 
+\index{widget.cpp@{widget.cpp}!time\_laser\_scan@{time\_laser\_scan}}
+\index{time\_laser\_scan@{time\_laser\_scan}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{time\_laser\_scan}{time\_laser\_scan}}
+{\footnotesize\ttfamily int time\+\_\+laser\+\_\+scan = 0}
+
+
+
+更新底部激光测距，用于平均测量 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 激光测距值 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00570}{570}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
+\Hypertarget{widget_8cpp_ae13f42ff7ec9fbdcc7c913a72197232d}\label{widget_8cpp_ae13f42ff7ec9fbdcc7c913a72197232d} 
+\index{widget.cpp@{widget.cpp}!top\_laser\_auto\_stop@{top\_laser\_auto\_stop}}
+\index{top\_laser\_auto\_stop@{top\_laser\_auto\_stop}!widget.cpp@{widget.cpp}}
+\doxysubsubsection{\texorpdfstring{top\_laser\_auto\_stop}{top\_laser\_auto\_stop}}
+{\footnotesize\ttfamily bool top\+\_\+laser\+\_\+auto\+\_\+stop = false}
+
+
+
+更新顶部激光数据（井口检测） 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 激光测距值\\
+\hline
+\end{DoxyParams}
+如果检测到障碍或井口，可触发自动停止逻辑 
+
+Definition at line \mbox{\hyperlink{widget_8cpp_source_l00559}{559}} of file \mbox{\hyperlink{widget_8cpp_source}{widget.\+cpp}}.
+
