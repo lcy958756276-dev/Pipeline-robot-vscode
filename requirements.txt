@@ -3,4 +3,4 @@ sphinx-rtd-theme
 recommonmark
 sphinx-markdown-tables
 sphinx-autodoc-typehints
-
+breathe
