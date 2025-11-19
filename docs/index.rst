@@ -5,10 +5,8 @@
 
 Pipeline_robot_vscode documentation
 ===================================
-.. warning::
-   这是一个警告哈
 .. note::
-   这是一个
+   这是一个Pipeline_robot的代码整理文档 @author lcy
 
 Add your content using ``reStructuredText`` syntax. See the
 `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
