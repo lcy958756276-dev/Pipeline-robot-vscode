@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cable_read Module &mdash; Pipeline_robot_vscode  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="3D_mapping Module" href="3D_mapping.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Pipeline_robot_vscode
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report_generate_doc.html">Report Generate python Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cameralcapture_yolomodel.html">Cameral Yolo Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode_cpp.html">Camera Capture C++ Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="navigation.html">Navigation Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Motherboard_data_process.html">Motherboard_data_process Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3D_mapping.html">3D_mapping Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cable_read Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#odom-pub-cpp">odom_pub_cpp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv45extraRKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">extra()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv421resetOdometryCallbackRKN8std_msgs4Bool8ConstPtrE"><code class="docutils literal notranslate"><span class="pre">resetOdometryCallback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv415EncoderCallbackRKN8std_msgs6String8ConstPtrE"><code class="docutils literal notranslate"><span class="pre">EncoderCallback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv415publishOdometryRN3ros9PublisherERN2tf20TransformBroadcasterE"><code class="docutils literal notranslate"><span class="pre">publishOdometry()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv44mainiPPc"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv410reset_odom"><code class="docutils literal notranslate"><span class="pre">reset_odom</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv412wheel_radius"><code class="docutils literal notranslate"><span class="pre">wheel_radius</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv410wheel_base"><code class="docutils literal notranslate"><span class="pre">wheel_base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv48distance"><code class="docutils literal notranslate"><span class="pre">distance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv41x"><code class="docutils literal notranslate"><span class="pre">x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv41y"><code class="docutils literal notranslate"><span class="pre">y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv45theta"><code class="docutils literal notranslate"><span class="pre">theta</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv45pluse"><code class="docutils literal notranslate"><span class="pre">pluse</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv49last_time"><code class="docutils literal notranslate"><span class="pre">last_time</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#full-source-code">Full Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stm32-cpp">stm32_cpp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv417datasend_callbackRKN8std_msgs6String8ConstPtrE"><code class="docutils literal notranslate"><span class="pre">datasend_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv43ser"><code class="docutils literal notranslate"><span class="pre">ser</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Full Source Code</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Pipeline_robot_vscode</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">cable_read Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/scripts/cable_read.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cable-read-module">
+<h1>cable_read Module<a class="headerlink" href="#cable-read-module" title="Link to this heading"></a></h1>
+<section id="odom-pub-cpp">
+<h2>odom_pub_cpp<a class="headerlink" href="#odom-pub-cpp" title="Link to this heading"></a></h2>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv45extraRKNSt6stringE">
+<span id="_CPPv35extraRKNSt6stringE"></span><span id="_CPPv25extraRKNSt6stringE"></span><span id="extra__ssCR"></span><span class="target" id="odom__pub_8cpp_1aed25fed1ceb628954de9adc35a411398"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">extra</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">input</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45extraRKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>从编码器字符串消息中提取左轮增量数 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input</strong> – 编码器字符串消息 </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>std::string 左轮增量字符串 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421resetOdometryCallbackRKN8std_msgs4Bool8ConstPtrE">
+<span id="_CPPv321resetOdometryCallbackRKN8std_msgs4Bool8ConstPtrE"></span><span id="_CPPv221resetOdometryCallbackRKN8std_msgs4Bool8ConstPtrE"></span><span id="resetOdometryCallback__std_msgs::Bool::ConstPtrCR"></span><span class="target" id="odom__pub_8cpp_1a6e9f67764013c92ecd2200c1e90d714a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resetOdometryCallback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Bool</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421resetOdometryCallbackRKN8std_msgs4Bool8ConstPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>接收 /reset_odom 消息，设置重置标志 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – std_msgs::Bool 消息，true 表示重置 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415EncoderCallbackRKN8std_msgs6String8ConstPtrE">
+<span id="_CPPv315EncoderCallbackRKN8std_msgs6String8ConstPtrE"></span><span id="_CPPv215EncoderCallbackRKN8std_msgs6String8ConstPtrE"></span><span id="EncoderCallback__std_msgs::String::ConstPtrCR"></span><span class="target" id="odom__pub_8cpp_1afca0ce71eb34f139dd215289e37db241"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EncoderCallback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">String</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415EncoderCallbackRKN8std_msgs6String8ConstPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>接收编码器字符串消息，计算左轮行进距离 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – std_msgs::String 消息 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415publishOdometryRN3ros9PublisherERN2tf20TransformBroadcasterE">
+<span id="_CPPv315publishOdometryRN3ros9PublisherERN2tf20TransformBroadcasterE"></span><span id="_CPPv215publishOdometryRN3ros9PublisherERN2tf20TransformBroadcasterE"></span><span id="publishOdometry__ros::PublisherR.tf::TransformBroadcasterR"></span><span class="target" id="odom__pub_8cpp_1a8f5e3f6c52f55538bf51ba8c929b3017"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publishOdometry</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">odom_pub</span></span>, <span class="n"><span class="pre">tf</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TransformBroadcaster</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">tf_broadcaster</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415publishOdometryRN3ros9PublisherERN2tf20TransformBroadcasterE" title="Link to this definition"></a><br /></dt>
+<dd><p>发布里程计消息并广播 tf 变换 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>odom_pub</strong> – ROS 发布器，发布 nav_msgs::Odometry </p></li>
+<li><p><strong>tf_broadcaster</strong> – tf 广播器 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44mainiPPc">
+<span id="_CPPv34mainiPPc"></span><span id="_CPPv24mainiPPc"></span><span id="main__i.cPP"></span><span class="target" id="odom__pub_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>主函数，初始化 ROS 节点，订阅编码器和重置指令，发布里程计 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>argc</strong> – 命令行参数数量 </p></li>
+<li><p><strong>argv</strong> – 命令行参数数组 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>int 程序退出状态 </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410reset_odom">
+<span id="_CPPv310reset_odom"></span><span id="_CPPv210reset_odom"></span><span id="reset_odom__b"></span><span class="target" id="odom__pub_8cpp_1a30b9d036a79a00e325dd2bbb9e991755"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset_odom</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv410reset_odom" title="Link to this definition"></a><br /></dt>
+<dd><p>全局变量 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv412wheel_radius">
+<span id="_CPPv312wheel_radius"></span><span id="_CPPv212wheel_radius"></span><span id="wheel_radius__double"></span><span class="target" id="odom__pub_8cpp_1ac5e0ffa856f94297db93de525454d254"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">wheel_radius</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0318</span></span><a class="headerlink" href="#_CPPv412wheel_radius" title="Link to this definition"></a><br /></dt>
+<dd><p>轮子半径(m) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410wheel_base">
+<span id="_CPPv310wheel_base"></span><span id="_CPPv210wheel_base"></span><span id="wheel_base__double"></span><span class="target" id="odom__pub_8cpp_1a7528b439f0436b7327b1acaa71f0fc88"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">wheel_base</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.343</span></span><a class="headerlink" href="#_CPPv410wheel_base" title="Link to this definition"></a><br /></dt>
+<dd><p>轮距(m) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48distance">
+<span id="_CPPv38distance"></span><span id="_CPPv28distance"></span><span id="distance__double"></span><span class="target" id="odom__pub_8cpp_1a79b8e036dca6911e3295a47d99f21f43"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">distance</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0</span></span><a class="headerlink" href="#_CPPv48distance" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv41x">
+<span id="_CPPv31x"></span><span id="_CPPv21x"></span><span id="x__double"></span><span class="target" id="odom__pub_8cpp_1af88b946fb90d5f08b5fb740c70e98c10"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">x</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0</span></span><a class="headerlink" href="#_CPPv41x" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv41y">
+<span id="_CPPv31y"></span><span id="_CPPv21y"></span><span id="y__double"></span><span class="target" id="odom__pub_8cpp_1ab927965981178aa1fba979a37168db2a"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">y</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0</span></span><a class="headerlink" href="#_CPPv41y" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45theta">
+<span id="_CPPv35theta"></span><span id="_CPPv25theta"></span><span id="theta__double"></span><span class="target" id="odom__pub_8cpp_1aca81c35c21e3a5f7f3a8d24504e76664"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">theta</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0</span></span><a class="headerlink" href="#_CPPv45theta" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45pluse">
+<span id="_CPPv35pluse"></span><span id="_CPPv25pluse"></span><span id="pluse__double"></span><span class="target" id="odom__pub_8cpp_1ac7cf637ac08386a7e08f7a9cb1975056"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pluse</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">2.295048561</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">360.0</span></span><span class="w"> </span><span class="o"><span class="pre">/</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">400</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">4</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv45pluse" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49last_time">
+<span id="_CPPv39last_time"></span><span id="_CPPv29last_time"></span><span id="last_time__ros::Time"></span><span class="target" id="odom__pub_8cpp_1a55886e34bc6a03b24f6ce7455fe67289"></span><span class="n"><span class="pre">ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Time</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">last_time</span></span></span><a class="headerlink" href="#_CPPv49last_time" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</section>
+<section id="full-source-code">
+<h2>Full Source Code<a class="headerlink" href="#full-source-code" title="Link to this heading"></a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/**</span>
+<span class="linenos">  2</span><span class="cm"> * @file odometry_publisher.cpp</span>
+<span class="linenos">  3</span><span class="cm"> * @brief 基于轮速编码器计算里程计并发布 /cable/odom，同时广播 tf 变换</span>
+<span class="linenos">  4</span><span class="cm"> *</span>
+<span class="linenos">  5</span><span class="cm"> * 功能：</span>
+<span class="linenos">  6</span><span class="cm"> * - 订阅 `/minipc_echo` 获取轮速编码器脉冲。</span>
+<span class="linenos">  7</span><span class="cm"> * - 根据轮半径和脉冲计算机器人行进距离。</span>
+<span class="linenos">  8</span><span class="cm"> * - 发布 `/cable/odom` 里程计消息。</span>
+<span class="linenos">  9</span><span class="cm"> * - 广播 `odom -&gt; base_link` 的 tf 变换。</span>
+<span class="linenos"> 10</span><span class="cm"> * - 支持通过 `/reset_odom` 重置里程计。</span>
+<span class="linenos"> 11</span><span class="cm"> */</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ros/ros.h&gt;</span>
+<span class="linenos"> 14</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;std_msgs/Int32.h&gt;</span>
+<span class="linenos"> 15</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;nav_msgs/Odometry.h&gt;</span>
+<span class="linenos"> 16</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tf/transform_broadcaster.h&gt;</span>
+<span class="linenos"> 17</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;std_msgs/String.h&quot;</span>
+<span class="linenos"> 18</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;regex&gt;</span>
+<span class="linenos"> 19</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;std_msgs/Bool.h&gt;</span>
+<span class="linenos"> 20</span>
+<span class="linenos"> 21</span><span class="cm">/** @brief 全局变量 */</span>
+<span class="linenos"> 22</span>
+<span class="linenos"> 23</span><span class="c1">// 重置里程计标志</span>
+<span class="linenos"> 24</span><span class="kt">bool</span><span class="w"> </span><span class="n">reset_odom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos"> 25</span>
+<span class="linenos"> 26</span><span class="c1">// 轮子参数</span>
+<span class="linenos"> 27</span><span class="kt">double</span><span class="w"> </span><span class="n">wheel_radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0318</span><span class="p">;</span><span class="w">  </span><span class="c1">///&lt; 轮子半径(m)</span>
+<span class="linenos"> 28</span><span class="kt">double</span><span class="w"> </span><span class="n">wheel_base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.343</span><span class="p">;</span><span class="w">     </span><span class="c1">///&lt; 轮距(m)</span>
+<span class="linenos"> 29</span>
+<span class="linenos"> 30</span><span class="c1">// 行进距离</span>
+<span class="linenos"> 31</span><span class="kt">double</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos"> 32</span><span class="c1">// double right_distance = 0.0; // 右轮距离（未使用）</span>
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span><span class="c1">// 当前位姿</span>
+<span class="linenos"> 35</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos"> 36</span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos"> 37</span><span class="kt">double</span><span class="w"> </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span><span class="c1">// 每脉冲对应的角度</span>
+<span class="linenos"> 40</span><span class="kt">double</span><span class="w"> </span><span class="n">pluse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.295048561</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">360.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">400</span><span class="o">*</span><span class="mi">4</span><span class="p">);</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span><span class="c1">// 上一次更新时间</span>
+<span class="linenos"> 43</span><span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="w"> </span><span class="n">last_time</span><span class="p">;</span>
+<span class="linenos"> 44</span>
+<span class="linenos"> 45</span><span class="cm">/**</span>
+<span class="linenos"> 46</span><span class="cm"> * @brief 从编码器字符串消息中提取左轮增量数</span>
+<span class="linenos"> 47</span><span class="cm"> * @param input 编码器字符串消息</span>
+<span class="linenos"> 48</span><span class="cm"> * @return std::string 左轮增量字符串</span>
+<span class="linenos"> 49</span><span class="cm"> */</span>
+<span class="linenos"> 50</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">extra</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
+<span class="linenos"> 51</span><span class="p">{</span>
+<span class="linenos"> 52</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">prefix</span><span class="o">=</span><span class="s">&quot;e1:&quot;</span><span class="p">;</span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">num</span><span class="p">;</span>
+<span class="linenos"> 54</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">prefix_pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">prefix</span><span class="p">);</span>
+<span class="linenos"> 55</span><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prefix_pos</span><span class="o">+</span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="linenos"> 56</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos"> 57</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;p&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos"> 58</span><span class="w">        </span><span class="n">num</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="linenos"> 59</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 60</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">num</span><span class="p">;</span>
+<span class="linenos"> 61</span><span class="p">}</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span><span class="cm">/**</span>
+<span class="linenos"> 64</span><span class="cm"> * @brief 接收 /reset_odom 消息，设置重置标志</span>
+<span class="linenos"> 65</span><span class="cm"> * @param msg std_msgs::Bool 消息，true 表示重置</span>
+<span class="linenos"> 66</span><span class="cm"> */</span>
+<span class="linenos"> 67</span><span class="kt">void</span><span class="w"> </span><span class="nf">resetOdometryCallback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std_msgs</span><span class="o">::</span><span class="n">Bool</span><span class="o">::</span><span class="n">ConstPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span>
+<span class="linenos"> 68</span><span class="p">{</span>
+<span class="linenos"> 69</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span>
+<span class="linenos"> 70</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos"> 71</span><span class="w">        </span><span class="n">reset_odom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// 设置重置标志为真</span>
+<span class="linenos"> 72</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 73</span><span class="p">}</span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span><span class="cm">/**</span>
+<span class="linenos"> 76</span><span class="cm"> * @brief 接收编码器字符串消息，计算左轮行进距离</span>
+<span class="linenos"> 77</span><span class="cm"> * @param msg std_msgs::String 消息</span>
+<span class="linenos"> 78</span><span class="cm"> */</span>
+<span class="linenos"> 79</span><span class="kt">void</span><span class="w"> </span><span class="nf">EncoderCallback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">ConstPtr</span><span class="w"> </span><span class="o">&amp;</span><span class="n">msg</span><span class="p">)</span>
+<span class="linenos"> 80</span><span class="p">{</span>
+<span class="linenos"> 81</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
+<span class="linenos"> 82</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;e1&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span>
+<span class="linenos"> 83</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos"> 84</span><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos"> 85</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 86</span><span class="w">    </span>
+<span class="linenos"> 87</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">num_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extra</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+<span class="linenos"> 88</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">num_str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 89</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos"> 90</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">left_increment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">num_str</span><span class="p">);</span>
+<span class="linenos"> 91</span><span class="w">        </span><span class="c1">// 根据脉冲数计算左轮行进距离</span>
+<span class="linenos"> 92</span><span class="w">        </span><span class="n">distance</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">left_increment</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">pluse</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">360.0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M_PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wheel_radius</span><span class="p">);</span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 94</span><span class="p">}</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="cm">/**</span>
+<span class="linenos"> 97</span><span class="cm"> * @brief 发布里程计消息并广播 tf 变换</span>
+<span class="linenos"> 98</span><span class="cm"> * @param odom_pub ROS 发布器，发布 nav_msgs::Odometry</span>
+<span class="linenos"> 99</span><span class="cm"> * @param tf_broadcaster tf 广播器</span>
+<span class="linenos">100</span><span class="cm"> */</span>
+<span class="linenos">101</span><span class="kt">void</span><span class="w"> </span><span class="nf">publishOdometry</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span><span class="o">&amp;</span><span class="w"> </span><span class="n">odom_pub</span><span class="p">,</span><span class="w"> </span><span class="n">tf</span><span class="o">::</span><span class="n">TransformBroadcaster</span><span class="o">&amp;</span><span class="w"> </span><span class="n">tf_broadcaster</span><span class="p">)</span>
+<span class="linenos">102</span><span class="p">{</span>
+<span class="linenos">103</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="w"> </span><span class="n">current_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="linenos">104</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">current_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">last_time</span><span class="p">).</span><span class="n">toSec</span><span class="p">();</span>
+<span class="linenos">105</span>
+<span class="linenos">106</span><span class="w">    </span><span class="c1">// 处理里程计重置</span>
+<span class="linenos">107</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reset_odom</span><span class="p">)</span>
+<span class="linenos">108</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">109</span><span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos">110</span><span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos">111</span><span class="w">        </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos">112</span><span class="w">        </span><span class="n">reset_odom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// 重置完成</span>
+<span class="linenos">113</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">114</span>
+<span class="linenos">115</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">d_distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distance</span><span class="p">;</span><span class="w"> </span><span class="c1">// 计算行进距离</span>
+<span class="linenos">116</span><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">d_distance</span><span class="p">;</span><span class="w">              </span><span class="c1">// 更新 x 坐标</span>
+<span class="linenos">117</span><span class="w">    </span><span class="c1">// y += d_distance * sin(theta); // 更新 y 坐标（未使用）</span>
+<span class="linenos">118</span><span class="w">    </span><span class="n">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">                     </span><span class="c1">// 更新角度</span>
+<span class="linenos">119</span>
+<span class="linenos">120</span><span class="w">    </span><span class="c1">// 创建里程计消息</span>
+<span class="linenos">121</span><span class="w">    </span><span class="n">nav_msgs</span><span class="o">::</span><span class="n">Odometry</span><span class="w"> </span><span class="n">odom</span><span class="p">;</span>
+<span class="linenos">122</span><span class="w">    </span><span class="n">odom</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;odom&quot;</span><span class="p">;</span>
+<span class="linenos">123</span><span class="w">    </span><span class="n">odom</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="linenos">124</span><span class="w">    </span><span class="n">odom</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">125</span><span class="w">    </span><span class="n">odom</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos">126</span><span class="w">    </span><span class="n">odom</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="o">::</span><span class="n">createQuaternionMsgFromYaw</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+<span class="linenos">127</span><span class="w">    </span><span class="n">odom</span><span class="p">.</span><span class="n">child_frame_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;base_link&quot;</span><span class="p">;</span>
+<span class="linenos">128</span><span class="w">    </span><span class="n">odom</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d_distance</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span><span class="w">    </span><span class="c1">// 发布里程计</span>
+<span class="linenos">131</span><span class="w">    </span><span class="n">odom_pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">odom</span><span class="p">);</span>
+<span class="linenos">132</span>
+<span class="linenos">133</span><span class="w">    </span><span class="c1">// 广播 tf 变换</span>
+<span class="linenos">134</span><span class="w">    </span><span class="n">tf</span><span class="o">::</span><span class="n">Transform</span><span class="w"> </span><span class="n">transform</span><span class="p">;</span>
+<span class="linenos">135</span><span class="w">    </span><span class="n">transform</span><span class="p">.</span><span class="n">setOrigin</span><span class="p">(</span><span class="n">tf</span><span class="o">::</span><span class="n">Vector3</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">));</span>
+<span class="linenos">136</span><span class="w">    </span><span class="n">tf</span><span class="o">::</span><span class="n">Quaternion</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
+<span class="linenos">137</span><span class="w">    </span><span class="n">q</span><span class="p">.</span><span class="n">setRPY</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">theta</span><span class="p">);</span>
+<span class="linenos">138</span><span class="w">    </span><span class="n">transform</span><span class="p">.</span><span class="n">setRotation</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+<span class="linenos">139</span><span class="w">    </span><span class="n">tf_broadcaster</span><span class="p">.</span><span class="n">sendTransform</span><span class="p">(</span><span class="n">tf</span><span class="o">::</span><span class="n">StampedTransform</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span><span class="w"> </span><span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;odom&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;base_link&quot;</span><span class="p">));</span>
+<span class="linenos">140</span>
+<span class="linenos">141</span><span class="w">    </span><span class="c1">// 重置行进距离</span>
+<span class="linenos">142</span><span class="w">    </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="linenos">143</span><span class="w">    </span><span class="n">last_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_time</span><span class="p">;</span>
+<span class="linenos">144</span><span class="p">}</span>
+<span class="linenos">145</span>
+<span class="linenos">146</span><span class="cm">/**</span>
+<span class="linenos">147</span><span class="cm"> * @brief 主函数，初始化 ROS 节点，订阅编码器和重置指令，发布里程计</span>
+<span class="linenos">148</span><span class="cm"> * @param argc 命令行参数数量</span>
+<span class="linenos">149</span><span class="cm"> * @param argv 命令行参数数组</span>
+<span class="linenos">150</span><span class="cm"> * @return int 程序退出状态</span>
+<span class="linenos">151</span><span class="cm"> */</span>
+<span class="linenos">152</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span>
+<span class="linenos">153</span><span class="p">{</span>
+<span class="linenos">154</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;odometry_publisher&quot;</span><span class="p">);</span>
+<span class="linenos">155</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span><span class="w"> </span><span class="n">nh</span><span class="p">;</span>
+<span class="linenos">156</span>
+<span class="linenos">157</span><span class="w">    </span><span class="c1">// 订阅编码器数据</span>
+<span class="linenos">158</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span><span class="w"> </span><span class="n">ticks_sub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;/minipc_echo&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="n">EncoderCallback</span><span class="p">);</span>
+<span class="linenos">159</span><span class="w">    </span><span class="c1">// 订阅重置指令</span>
+<span class="linenos">160</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span><span class="w"> </span><span class="n">reset_sub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;/reset_odom&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">resetOdometryCallback</span><span class="p">);</span>
+<span class="linenos">161</span>
+<span class="linenos">162</span><span class="w">    </span><span class="c1">// 发布里程计</span>
+<span class="linenos">163</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span><span class="w"> </span><span class="n">odom_pub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">nav_msgs</span><span class="o">::</span><span class="n">Odometry</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;/cable/odom&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">164</span>
+<span class="linenos">165</span><span class="w">    </span><span class="c1">// tf 广播器</span>
+<span class="linenos">166</span><span class="w">    </span><span class="n">tf</span><span class="o">::</span><span class="n">TransformBroadcaster</span><span class="w"> </span><span class="n">tf_broadcaster</span><span class="p">;</span>
+<span class="linenos">167</span>
+<span class="linenos">168</span><span class="w">    </span><span class="c1">// 初始化循环频率</span>
+<span class="linenos">169</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Rate</span><span class="w"> </span><span class="n">loop_rate</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"> </span><span class="c1">// 10Hz</span>
+<span class="linenos">170</span>
+<span class="linenos">171</span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">ok</span><span class="p">())</span>
+<span class="linenos">172</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">173</span><span class="w">        </span><span class="c1">// 发布里程计消息和 tf</span>
+<span class="linenos">174</span><span class="w">        </span><span class="n">publishOdometry</span><span class="p">(</span><span class="n">odom_pub</span><span class="p">,</span><span class="w"> </span><span class="n">tf_broadcaster</span><span class="p">);</span>
+<span class="linenos">175</span>
+<span class="linenos">176</span><span class="w">        </span><span class="n">ros</span><span class="o">::</span><span class="n">spinOnce</span><span class="p">();</span>
+<span class="linenos">177</span><span class="w">        </span><span class="n">loop_rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">();</span>
+<span class="linenos">178</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">179</span>
+<span class="linenos">180</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">181</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="stm32-cpp">
+<h2>stm32_cpp<a class="headerlink" href="#stm32-cpp" title="Link to this heading"></a></h2>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417datasend_callbackRKN8std_msgs6String8ConstPtrE">
+<span id="_CPPv317datasend_callbackRKN8std_msgs6String8ConstPtrE"></span><span id="_CPPv217datasend_callbackRKN8std_msgs6String8ConstPtrE"></span><span id="datasend_callback__std_msgs::String::ConstPtrCR"></span><span class="target" id="stm32_8cpp_1aa53aae2dcc352535349deb3a56abdfc4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">datasend_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">String</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417datasend_callbackRKN8std_msgs6String8ConstPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>处理订阅到的发送数据，将其发送到串口 </p>
+<p>
+功能：<ul class="simple">
+<li><p>如果消息以 “AC” 开头，将消息中的数字解析出来，进行特定计算后发送。</p></li>
+<li><p>否则直接将消息追加 “\r\n” 发送到串口。 </p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – std_msgs::String 发送的字符串消息</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="stm32_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>主函数，初始化节点，打开串口，订阅/发布主题 </p>
+<p>
+功能：<ul class="simple">
+<li><p>初始化 ROS 节点。</p></li>
+<li><p>打开串口 “/dev/ttyACM0”，波特率 19200。</p></li>
+<li><p>订阅 “cable” 主题发送数据。</p></li>
+<li><p>发布 “minipc_echo” 主题接收数据。</p></li>
+<li><p>循环读取串口数据并发布。 </p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>argc</strong> – 命令行参数个数 </p></li>
+<li><p><strong>argv</strong> – 命令行参数数组 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>int 程序退出状态</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv43ser">
+<span id="_CPPv33ser"></span><span id="_CPPv23ser"></span><span id="ser__serial::Serial"></span><span class="target" id="stm32_8cpp_1a448b5187ce5b494da4cf14cea184169b"></span><span class="n"><span class="pre">serial</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Serial</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ser</span></span></span><a class="headerlink" href="#_CPPv43ser" title="Link to this definition"></a><br /></dt>
+<dd><p>全局串口对象 </p>
+</dd></dl>
+
+</div>
+</section>
+<section id="id1">
+<h2>Full Source Code<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/**</span>
+<span class="linenos">  2</span><span class="cm"> * @file serial_readwrite_node.cpp</span>
+<span class="linenos">  3</span><span class="cm"> * @brief ROS节点，用于通过串口与STM32通信，实现数据接收和发送</span>
+<span class="linenos">  4</span><span class="cm"> *</span>
+<span class="linenos">  5</span><span class="cm"> * 功能：</span>
+<span class="linenos">  6</span><span class="cm"> * - 订阅 &quot;cable&quot; 主题，将接收到的字符串通过串口发送给STM32。</span>
+<span class="linenos">  7</span><span class="cm"> * - 接收STM32返回的数据，发布到 &quot;minipc_echo&quot; 主题。</span>
+<span class="linenos">  8</span><span class="cm"> * - 支持对特定命令（如 &quot;AC&quot; 开头）进行数值处理后再发送。</span>
+<span class="linenos">  9</span><span class="cm"> */</span>
+<span class="linenos"> 10</span>
+<span class="linenos"> 11</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ros/ros.h&gt;</span>
+<span class="linenos"> 12</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;serial/serial.h&gt;</span><span class="c1"> // ROS 内置串口库</span>
+<span class="linenos"> 13</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;std_msgs/String.h&gt;</span>
+<span class="linenos"> 14</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;std_msgs/Empty.h&gt;</span>
+<span class="linenos"> 15</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;std_msgs/UInt8.h&quot;</span>
+<span class="linenos"> 16</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;std_msgs/UInt8MultiArray.h&quot;</span>
+<span class="linenos"> 17</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span>
+<span class="linenos"> 18</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="linenos"> 19</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdexcept&gt;</span>
+<span class="linenos"> 20</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span><span class="cm">/** @brief 全局串口对象 */</span>
+<span class="linenos"> 23</span><span class="n">serial</span><span class="o">::</span><span class="n">Serial</span><span class="w"> </span><span class="n">ser</span><span class="p">;</span>
+<span class="linenos"> 24</span>
+<span class="linenos"> 25</span><span class="cm">/**</span>
+<span class="linenos"> 26</span><span class="cm"> * @brief 处理订阅到的发送数据，将其发送到串口</span>
+<span class="linenos"> 27</span><span class="cm"> * @param msg std_msgs::String 发送的字符串消息</span>
+<span class="linenos"> 28</span><span class="cm"> *</span>
+<span class="linenos"> 29</span><span class="cm"> * 功能：</span>
+<span class="linenos"> 30</span><span class="cm"> * - 如果消息以 &quot;AC&quot; 开头，将消息中的数字解析出来，进行特定计算后发送。</span>
+<span class="linenos"> 31</span><span class="cm"> * - 否则直接将消息追加 &quot;\r\n&quot; 发送到串口。</span>
+<span class="linenos"> 32</span><span class="cm"> */</span>
+<span class="linenos"> 33</span><span class="kt">void</span><span class="w"> </span><span class="nf">datasend_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">ConstPtr</span><span class="w"> </span><span class="o">&amp;</span><span class="n">msg</span><span class="p">)</span>
+<span class="linenos"> 34</span><span class="p">{</span>
+<span class="linenos"> 35</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="linenos"> 36</span><span class="w">    </span><span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;Successfully get: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span><span class="w">    </span><span class="c1">// 特殊处理 &quot;AC&quot; 开头的消息</span>
+<span class="linenos"> 39</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;AC&quot;</span><span class="p">)</span>
+<span class="linenos"> 40</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos"> 41</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stod</span><span class="p">(</span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+<span class="linenos"> 42</span><span class="w">        </span><span class="c1">// 根据公式处理数字</span>
+<span class="linenos"> 43</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">newNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">72000000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">number</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1200</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">0.17</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 44</span><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;AC+&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">newNumber</span><span class="p">);</span>
+<span class="linenos"> 45</span><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">command_to_send</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="linenos"> 46</span><span class="w">        </span><span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;Successfully send: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">command_to_send</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="linenos"> 47</span><span class="w">        </span><span class="n">ser</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">command_to_send</span><span class="p">);</span>
+<span class="linenos"> 48</span><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos"> 49</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 50</span>
+<span class="linenos"> 51</span><span class="w">    </span><span class="c1">// 普通字符串直接发送</span>
+<span class="linenos"> 52</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">command_to_send</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="n">ser</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">command_to_send</span><span class="p">);</span>
+<span class="linenos"> 54</span><span class="p">}</span>
+<span class="linenos"> 55</span>
+<span class="linenos"> 56</span><span class="cm">/**</span>
+<span class="linenos"> 57</span><span class="cm"> * @brief 主函数，初始化节点，打开串口，订阅/发布主题</span>
+<span class="linenos"> 58</span><span class="cm"> * @param argc 命令行参数个数</span>
+<span class="linenos"> 59</span><span class="cm"> * @param argv 命令行参数数组</span>
+<span class="linenos"> 60</span><span class="cm"> * @return int 程序退出状态</span>
+<span class="linenos"> 61</span><span class="cm"> *</span>
+<span class="linenos"> 62</span><span class="cm"> * 功能：</span>
+<span class="linenos"> 63</span><span class="cm"> * - 初始化 ROS 节点。</span>
+<span class="linenos"> 64</span><span class="cm"> * - 打开串口 &quot;/dev/ttyACM0&quot;，波特率 19200。</span>
+<span class="linenos"> 65</span><span class="cm"> * - 订阅 &quot;cable&quot; 主题发送数据。</span>
+<span class="linenos"> 66</span><span class="cm"> * - 发布 &quot;minipc_echo&quot; 主题接收数据。</span>
+<span class="linenos"> 67</span><span class="cm"> * - 循环读取串口数据并发布。</span>
+<span class="linenos"> 68</span><span class="cm"> */</span>
+<span class="linenos"> 69</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="linenos"> 70</span><span class="p">{</span>
+<span class="linenos"> 71</span><span class="w">    </span><span class="c1">// 初始化节点</span>
+<span class="linenos"> 72</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;serial_readwrite_node&quot;</span><span class="p">);</span>
+<span class="linenos"> 73</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span><span class="w"> </span><span class="n">nh</span><span class="p">;</span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+<span class="linenos"> 76</span><span class="w">    </span><span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="w"> </span><span class="n">RecvData</span><span class="p">;</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span><span class="w">    </span><span class="c1">// 订阅发送主题</span>
+<span class="linenos"> 79</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span><span class="w"> </span><span class="n">send_sub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;cable&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="n">datasend_callback</span><span class="p">);</span>
+<span class="linenos"> 80</span><span class="w">    </span><span class="c1">// 发布接收主题</span>
+<span class="linenos"> 81</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span><span class="w"> </span><span class="n">read_pub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;minipc_echo&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span>
+<span class="linenos"> 82</span>
+<span class="linenos"> 83</span><span class="w">    </span><span class="k">try</span>
+<span class="linenos"> 84</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos"> 85</span><span class="w">        </span><span class="c1">// 设置串口属性并打开</span>
+<span class="linenos"> 86</span><span class="w">        </span><span class="n">ser</span><span class="p">.</span><span class="n">setPort</span><span class="p">(</span><span class="s">&quot;/dev/ttyACM0&quot;</span><span class="p">);</span>
+<span class="linenos"> 87</span><span class="w">        </span><span class="n">ser</span><span class="p">.</span><span class="n">setBaudrate</span><span class="p">(</span><span class="mi">19200</span><span class="p">);</span>
+<span class="linenos"> 88</span><span class="w">        </span><span class="n">serial</span><span class="o">::</span><span class="n">Timeout</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">serial</span><span class="o">::</span><span class="n">Timeout</span><span class="o">::</span><span class="n">simpleTimeout</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="linenos"> 89</span><span class="w">        </span><span class="n">ser</span><span class="p">.</span><span class="n">setTimeout</span><span class="p">(</span><span class="n">to</span><span class="p">);</span>
+<span class="linenos"> 90</span><span class="w">        </span><span class="n">ser</span><span class="p">.</span><span class="n">open</span><span class="p">();</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="w">        </span><span class="c1">// 使用 stty 设置串口参数</span>
+<span class="linenos"> 93</span><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/dev/ttyACM0&quot;</span><span class="p">;</span>
+<span class="linenos"> 94</span><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;stty -F &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; cs8 -cstopb -parenb&quot;</span><span class="p">;</span>
+<span class="linenos"> 95</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">.</span><span class="n">c_str</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 96</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos"> 97</span><span class="w">            </span><span class="n">ROS_ERROR_STREAM</span><span class="p">(</span><span class="s">&quot;Failed to set serial port parameters using stty&quot;</span><span class="p">);</span>
+<span class="linenos"> 98</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="linenos"> 99</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">100</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">101</span><span class="w">    </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">serial</span><span class="o">::</span><span class="n">IOException</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span>
+<span class="linenos">102</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">103</span><span class="w">        </span><span class="n">ROS_ERROR_STREAM</span><span class="p">(</span><span class="s">&quot;Unable to open port /dev/ttyACM0&quot;</span><span class="p">);</span>
+<span class="linenos">104</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="linenos">105</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">106</span>
+<span class="linenos">107</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ser</span><span class="p">.</span><span class="n">isOpen</span><span class="p">())</span>
+<span class="linenos">108</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">109</span><span class="w">        </span><span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;Serial Port initialized&quot;</span><span class="p">);</span>
+<span class="linenos">110</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">111</span><span class="w">    </span><span class="k">else</span>
+<span class="linenos">112</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">113</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="linenos">114</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">115</span>
+<span class="linenos">116</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Rate</span><span class="w"> </span><span class="n">loop_rate</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"> </span><span class="c1">// 循环频率 10Hz</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">ok</span><span class="p">())</span>
+<span class="linenos">119</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">120</span><span class="w">        </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ser</span><span class="p">.</span><span class="n">available</span><span class="p">();</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">len</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">123</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">124</span><span class="w">            </span><span class="n">std_msgs</span><span class="o">::</span><span class="n">UInt8MultiArray</span><span class="w"> </span><span class="n">serial_data</span><span class="p">;</span>
+<span class="linenos">125</span>
+<span class="linenos">126</span><span class="w">            </span><span class="c1">// 读取串口数据</span>
+<span class="linenos">127</span><span class="w">            </span><span class="n">ser</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">serial_data</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
+<span class="linenos">128</span>
+<span class="linenos">129</span><span class="w">            </span><span class="n">RecvData</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="w"> </span><span class="c1">// 清除上一次数据</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="linenos">132</span><span class="w">            </span><span class="p">{</span>
+<span class="linenos">133</span><span class="w">                </span><span class="n">RecvData</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">serial_data</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="linenos">134</span><span class="w">            </span><span class="p">}</span>
+<span class="linenos">135</span>
+<span class="linenos">136</span><span class="w">            </span><span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;Successfully received: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">RecvData</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="linenos">137</span>
+<span class="linenos">138</span><span class="w">            </span><span class="c1">// 发布接收到的数据</span>
+<span class="linenos">139</span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">RecvData</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">140</span><span class="w">            </span><span class="p">{</span>
+<span class="linenos">141</span><span class="w">                </span><span class="n">read_pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">RecvData</span><span class="p">);</span>
+<span class="linenos">142</span><span class="w">            </span><span class="p">}</span>
+<span class="linenos">143</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">144</span>
+<span class="linenos">145</span><span class="w">        </span><span class="c1">// 处理订阅消息</span>
+<span class="linenos">146</span><span class="w">        </span><span class="n">ros</span><span class="o">::</span><span class="n">spinOnce</span><span class="p">();</span>
+<span class="linenos">147</span><span class="w">        </span><span class="n">loop_rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">();</span>
+<span class="linenos">148</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">149</span>
+<span class="linenos">150</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">151</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3D_mapping.html" class="btn btn-neutral float-left" title="3D_mapping Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

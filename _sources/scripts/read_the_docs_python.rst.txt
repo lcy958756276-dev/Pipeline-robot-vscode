@@ -1,0 +1,21 @@
+read\_the\_docs\_python package
+===============================
+
+Submodules
+----------
+
+read\_the\_docs\_python.start\_report\_generate module
+------------------------------------------------------
+
+.. automodule:: read_the_docs_python.start_report_generate
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: read_the_docs_python
+   :members:
+   :show-inheritance:
+   :undoc-members:

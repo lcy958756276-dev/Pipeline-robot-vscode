@@ -1,0 +1,7 @@
+report_generate 模块
+======================
+
+.. automodule:: scripts.report_generate
+    :members:
+    :undoc-members:
+    :show-inheritance:

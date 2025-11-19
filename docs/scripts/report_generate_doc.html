@@ -1,0 +1,185 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>report_generate_doc package &mdash; Pipeline_robot_vscode  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Pipeline_robot_vscode
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/report_generate_doc.html">Report Generate python Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/cameralcapture_yolomodel.html">Cameral Yolo Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/vscode_cpp.html">Camera Capture C++ Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/navigation.html">Navigation Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/Motherboard_data_process.html">Motherboard_data_process Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/3D_mapping.html">3D_mapping Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/cable_read.html">cable_read Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Pipeline_robot_vscode</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">report_generate_doc package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/scripts/report_generate_doc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="report-generate-doc-package">
+<h1>report_generate_doc package<a class="headerlink" href="#report-generate-doc-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-report_generate_doc.start_report_generate">
+<span id="report-generate-doc-start-report-generate-module"></span><h2>report_generate_doc.start_report_generate module<a class="headerlink" href="#module-report_generate_doc.start_report_generate" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>作用：</dt><dd><p>该模块用于监听 ROS 话题 <cite>whether_report_generate</cite>，根据接收到的
+Bool 值来启动或终止 auto_report.launch，从而控制报告生成流程。</p>
+</dd>
+<dt>主要功能：</dt><dd><ul class="simple">
+<li><p>订阅 whether_report_generate 话题</p></li>
+<li><p>在收到 True 时启动 auto_report.launch</p></li>
+<li><p>在收到 False 时终止 auto_report.launch</p></li>
+</ul>
+</dd>
+<dt>使用的库：</dt><dd><ul class="simple">
+<li><p>rospy：ROS Python 客户端库</p></li>
+<li><p>std_msgs.msg：标准 ROS 消息类型</p></li>
+<li><p>subprocess：用于启动外部 roslaunch 进程</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="report_generate_doc.start_report_generate.handle_roslaunch">
+<span class="sig-prename descclassname"><span class="pre">report_generate_doc.start_report_generate.</span></span><span class="sig-name descname"><span class="pre">handle_roslaunch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">is_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/report_generate_doc/start_report_generate.html#handle_roslaunch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#report_generate_doc.start_report_generate.handle_roslaunch" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>根据 is_start 的值启动或终止 auto_report.launch 进程。</p>
+</dd>
+<dt>参数：</dt><dd><dl class="simple">
+<dt>is_start (bool):</dt><dd><ul class="simple">
+<li><p>True：启动报告生成流程</p></li>
+<li><p>False：终止已启动的流程</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>返回：</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="report_generate_doc.start_report_generate.listener">
+<span class="sig-prename descclassname"><span class="pre">report_generate_doc.start_report_generate.</span></span><span class="sig-name descname"><span class="pre">listener</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/report_generate_doc/start_report_generate.html#listener"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#report_generate_doc.start_report_generate.listener" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>初始化 ROS 节点并开始监听 whether_report_generate 话题。</p>
+</dd>
+<dt>参数：</dt><dd><p>无</p>
+</dd>
+<dt>返回：</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="report_generate_doc.start_report_generate.report_generate_callback">
+<span class="sig-prename descclassname"><span class="pre">report_generate_doc.start_report_generate.</span></span><span class="sig-name descname"><span class="pre">report_generate_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">name='mock.Bool'</span> <span class="pre">id='127388499169104'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/report_generate_doc/start_report_generate.html#report_generate_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#report_generate_doc.start_report_generate.report_generate_callback" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>ROS Subscriber 的回调函数，用于接收是否需要生成报告的指令。</p>
+</dd>
+<dt>参数：</dt><dd><dl class="simple">
+<dt>msg (Bool):</dt><dd><p>从 whether_report_generate 话题收到的布尔值。</p>
+</dd>
+</dl>
+</dd>
+<dt>返回：</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-report_generate_doc">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-report_generate_doc" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>auto_navigation.point_transform &mdash; Pipeline_robot_vscode  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Pipeline_robot_vscode
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/report_generate_doc.html">Report Generate python Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/cameralcapture_yolomodel.html">Cameral Yolo Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/vscode_cpp.html">Camera Capture C++ Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/navigation.html">Navigation C++ Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Pipeline_robot_vscode</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">auto_navigation.point_transform</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for auto_navigation.point_transform</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># coding: UTF-8</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@file point_transformer.py</span>
+<span class="sd">@brief 检测点坐标转换模块</span>
+
+<span class="sd">该文件实现了一个 ROS 节点，用于将来自相机坐标系的检测点信息</span>
+<span class="sd">(detection_new 消息) 转换到全局 odom 坐标系下，并发布转换后的检测点。</span>
+
+<span class="sd">功能：</span>
+<span class="sd">- 订阅 /_detection_info 接收检测点信息</span>
+<span class="sd">- 使用 tf2 将检测点从相机坐标系转换到 odom 坐标系</span>
+<span class="sd">- 发布转换后的检测点到 /transformed_detection_info</span>
+<span class="sd">- 支持检测点的最小值和最大值坐标转换</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">rospy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tf2_ros</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">geometry_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">PointStamped</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tf2_geometry_msgs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pipeline_robot.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">detection_new</span>
+
+<div class="viewcode-block" id="PointTransformer">
+<a class="viewcode-back" href="../../scripts/navigation.html#auto_navigation.point_transform.PointTransformer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PointTransformer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    @class PointTransformer</span>
+<span class="sd">    @brief 检测点坐标转换类</span>
+
+<span class="sd">    该类功能：</span>
+<span class="sd">    - 初始化 ROS 节点和 TF2 监听器</span>
+<span class="sd">    - 接收来自 /_detection_info 的检测点消息</span>
+<span class="sd">    - 将检测点坐标从原始坐标系转换到 odom 坐标系</span>
+<span class="sd">    - 发布转换后的检测点消息到 /transformed_detection_info</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @brief 构造函数，初始化 ROS 节点、TF2 和订阅/发布者</span>
+
+<span class="sd">        功能：</span>
+<span class="sd">        - 初始化 ROS 节点 &#39;point_transformer&#39;</span>
+<span class="sd">        - 初始化 tf2 缓冲区和监听器</span>
+<span class="sd">        - 订阅 /_detection_info 接收 detection_new 消息</span>
+<span class="sd">        - 创建 /transformed_detection_info 发布者</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;point_transformer&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">tf_buffer</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="o">.</span><span class="n">Buffer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tf_listener</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="o">.</span><span class="n">TransformListener</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tf_buffer</span><span class="p">)</span>
+        
+        <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s2">&quot;/_detection_info&quot;</span><span class="p">,</span> <span class="n">detection_new</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">detection_callback</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">detection_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s2">&quot;/transformed_detection_info&quot;</span><span class="p">,</span> <span class="n">detection_new</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PointTransformer.detection_callback">
+<a class="viewcode-back" href="../../scripts/navigation.html#auto_navigation.point_transform.PointTransformer.detection_callback">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">detection_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detection_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @brief 检测点回调函数，将检测点从原始坐标系转换到 odom 坐标系并发布</span>
+
+<span class="sd">        @param detection_data detection_new</span>
+<span class="sd">            输入的检测点消息，包含以下字段：</span>
+<span class="sd">            - class_name: 检测类别名称</span>
+<span class="sd">            - score: 检测置信度</span>
+<span class="sd">            - point_stamped: 检测点坐标</span>
+<span class="sd">            - min_stamped: 检测点最小值坐标</span>
+<span class="sd">            - max_stamped: 检测点最大值坐标</span>
+
+<span class="sd">        @return None</span>
+<span class="sd">            函数无返回值</span>
+
+<span class="sd">        功能：</span>
+<span class="sd">        - 使用 tf2 查找检测点坐标到 odom 的变换</span>
+<span class="sd">        - 对 point_stamped、min_stamped 和 max_stamped 进行坐标变换</span>
+<span class="sd">        - 将转换后的检测点封装到新的 detection_new 消息并发布</span>
+<span class="sd">        - 如果发生 TF2 错误，输出错误日志</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">transform</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tf_buffer</span><span class="o">.</span><span class="n">lookup_transform</span><span class="p">(</span><span class="s1">&#39;odom&#39;</span><span class="p">,</span>
+                                                        <span class="n">detection_data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span><span class="p">,</span>
+                                                        <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                                                        <span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+            
+            <span class="n">transformed_point</span> <span class="o">=</span> <span class="n">tf2_geometry_msgs</span><span class="o">.</span><span class="n">do_transform_point</span><span class="p">(</span><span class="n">detection_data</span><span class="o">.</span><span class="n">point_stamped</span><span class="p">,</span> <span class="n">transform</span><span class="p">)</span>
+            <span class="n">transformed_point_min</span> <span class="o">=</span> <span class="n">tf2_geometry_msgs</span><span class="o">.</span><span class="n">do_transform_point</span><span class="p">(</span><span class="n">detection_data</span><span class="o">.</span><span class="n">min_stamped</span><span class="p">,</span> <span class="n">transform</span><span class="p">)</span>
+            <span class="n">transformed_point_max</span> <span class="o">=</span> <span class="n">tf2_geometry_msgs</span><span class="o">.</span><span class="n">do_transform_point</span><span class="p">(</span><span class="n">detection_data</span><span class="o">.</span><span class="n">max_stamped</span><span class="p">,</span> <span class="n">transform</span><span class="p">)</span>
+            
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Transformed point in camera_link: (</span><span class="si">%s</span><span class="s2">,</span><span class="si">%.2f</span><span class="s2">, </span><span class="si">%.2f</span><span class="s2">, </span><span class="si">%.2f</span><span class="s2">)&quot;</span><span class="p">,</span> 
+                          <span class="n">detection_data</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span>
+                          <span class="n">transformed_point</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> 
+                          <span class="n">transformed_point</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> 
+                          <span class="n">transformed_point</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+            
+            <span class="n">new_detection</span> <span class="o">=</span> <span class="n">detection_new</span><span class="p">()</span>
+            <span class="n">new_detection</span><span class="o">.</span><span class="n">class_name</span> <span class="o">=</span> <span class="n">detection_data</span><span class="o">.</span><span class="n">class_name</span>
+            <span class="n">new_detection</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">detection_data</span><span class="o">.</span><span class="n">score</span>
+            <span class="c1"># new_detection.image_data = detection_data.image_data  </span>
+            <span class="n">new_detection</span><span class="o">.</span><span class="n">min_stamped</span> <span class="o">=</span> <span class="n">transformed_point_min</span> 
+            <span class="n">new_detection</span><span class="o">.</span><span class="n">max_stamped</span> <span class="o">=</span> <span class="n">transformed_point_max</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">detection_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">new_detection</span><span class="p">)</span>
+            
+        <span class="k">except</span> <span class="p">(</span><span class="n">tf2_ros</span><span class="o">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="o">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="o">.</span><span class="n">ExtrapolationException</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="s2">&quot;TF2 Error: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+</div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    @brief 主程序入口，创建 PointTransformer 对象并进入 ROS 循环</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pt</span> <span class="o">=</span> <span class="n">PointTransformer</span><span class="p">()</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

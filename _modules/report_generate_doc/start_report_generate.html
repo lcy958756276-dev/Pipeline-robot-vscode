@@ -1,0 +1,205 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>report_generate_doc.start_report_generate &mdash; Pipeline_robot_vscode  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Pipeline_robot_vscode
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/report_generate_doc.html">Report Generate Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Pipeline_robot_vscode</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">report_generate_doc.start_report_generate</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for report_generate_doc.start_report_generate</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">作用：</span>
+<span class="sd">    该模块用于监听 ROS 话题 `whether_report_generate`，根据接收到的</span>
+<span class="sd">    Bool 值来启动或终止 auto_report.launch，从而控制报告生成流程。</span>
+
+<span class="sd">主要功能：</span>
+<span class="sd">    - 订阅 whether_report_generate 话题</span>
+<span class="sd">    - 在收到 True 时启动 auto_report.launch</span>
+<span class="sd">    - 在收到 False 时终止 auto_report.launch</span>
+
+<span class="sd">使用的库：</span>
+<span class="sd">    - rospy：ROS Python 客户端库</span>
+<span class="sd">    - std_msgs.msg：标准 ROS 消息类型</span>
+<span class="sd">    - subprocess：用于启动外部 roslaunch 进程</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">rospy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Bool</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+
+<span class="n">roslaunch_process</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="handle_roslaunch">
+<a class="viewcode-back" href="../../scripts/report_generate_doc.html#report_generate_doc.start_report_generate.handle_roslaunch">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">handle_roslaunch</span><span class="p">(</span><span class="n">is_start</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    作用：</span>
+<span class="sd">        根据 is_start 的值启动或终止 auto_report.launch 进程。</span>
+
+<span class="sd">    参数：</span>
+<span class="sd">        is_start (bool):</span>
+<span class="sd">            - True：启动报告生成流程</span>
+<span class="sd">            - False：终止已启动的流程</span>
+
+<span class="sd">    返回：</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">roslaunch_process</span>
+
+    <span class="k">if</span> <span class="n">is_start</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">roslaunch_process</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;===================================subprocess start========================&quot;</span><span class="p">)</span>
+                <span class="n">roslaunch_process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
+                    <span class="p">[</span><span class="s1">&#39;roslaunch&#39;</span><span class="p">,</span> <span class="s1">&#39;pipeline_robot&#39;</span><span class="p">,</span> <span class="s1">&#39;auto_report.launch&#39;</span><span class="p">]</span>
+                <span class="p">)</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;report_generate started.&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="s2">&quot;Failed to start report_generate: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;report_generate is already running.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">roslaunch_process</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">roslaunch_process</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+            <span class="n">roslaunch_process</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;report_generate terminated.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;No report_generate process to terminate.&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="report_generate_callback">
+<a class="viewcode-back" href="../../scripts/report_generate_doc.html#report_generate_doc.start_report_generate.report_generate_callback">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">report_generate_callback</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    作用：</span>
+<span class="sd">        ROS Subscriber 的回调函数，用于接收是否需要生成报告的指令。</span>
+
+<span class="sd">    参数：</span>
+<span class="sd">        msg (Bool):</span>
+<span class="sd">            从 whether_report_generate 话题收到的布尔值。</span>
+
+<span class="sd">    返回：</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Received report_generate: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">handle_roslaunch</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="listener">
+<a class="viewcode-back" href="../../scripts/report_generate_doc.html#report_generate_doc.start_report_generate.listener">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">listener</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    作用：</span>
+<span class="sd">        初始化 ROS 节点并开始监听 whether_report_generate 话题。</span>
+
+<span class="sd">    参数：</span>
+<span class="sd">        无</span>
+
+<span class="sd">    返回：</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;report_generate_listener&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s2">&quot;whether_report_generate&quot;</span><span class="p">,</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">report_generate_callback</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">listener</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

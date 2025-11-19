@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report Generate python Module &mdash; Pipeline_robot_vscode  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cameral Yolo Module" href="cameralcapture_yolomodel.html" />
+    <link rel="prev" title="Introduction" href="../intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Pipeline_robot_vscode
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Report Generate python Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#start-report-generate">Start Report Generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#report-generate">Report Generate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cameralcapture_yolomodel.html">Cameral Yolo Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode_cpp.html">Camera Capture C++ Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="navigation.html">Navigation Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Motherboard_data_process.html">Motherboard_data_process Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3D_mapping.html">3D_mapping Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cable_read.html">cable_read Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Pipeline_robot_vscode</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Report Generate python Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/scripts/report_generate_doc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="report-generate-python-module">
+<h1>Report Generate python Module<a class="headerlink" href="#report-generate-python-module" title="Link to this heading"></a></h1>
+<section id="start-report-generate">
+<h2>Start Report Generate<a class="headerlink" href="#start-report-generate" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>作用：</dt><dd><p>该模块用于监听 ROS 话题 <cite>whether_report_generate</cite>，根据接收到的
+Bool 值来启动或终止 auto_report.launch，从而控制报告生成流程。</p>
+</dd>
+<dt>主要功能：</dt><dd><ul class="simple">
+<li><p>订阅 whether_report_generate 话题</p></li>
+<li><p>在收到 True 时启动 auto_report.launch</p></li>
+<li><p>在收到 False 时终止 auto_report.launch</p></li>
+</ul>
+</dd>
+<dt>使用的库：</dt><dd><ul class="simple">
+<li><p>rospy：ROS Python 客户端库</p></li>
+<li><p>std_msgs.msg：标准 ROS 消息类型</p></li>
+<li><p>subprocess：用于启动外部 roslaunch 进程</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">report_generate_doc.start_report_generate.</span></span><span class="sig-name descname"><span class="pre">handle_roslaunch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">is_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/report_generate_doc/start_report_generate.html#handle_roslaunch"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>根据 is_start 的值启动或终止 auto_report.launch 进程。</p>
+</dd>
+<dt>参数：</dt><dd><dl class="simple">
+<dt>is_start (bool):</dt><dd><ul class="simple">
+<li><p>True：启动报告生成流程</p></li>
+<li><p>False：终止已启动的流程</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>返回：</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">report_generate_doc.start_report_generate.</span></span><span class="sig-name descname"><span class="pre">listener</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/report_generate_doc/start_report_generate.html#listener"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>初始化 ROS 节点并开始监听 whether_report_generate 话题。</p>
+</dd>
+<dt>参数：</dt><dd><p>无</p>
+</dd>
+<dt>返回：</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">report_generate_doc.start_report_generate.</span></span><span class="sig-name descname"><span class="pre">report_generate_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">name='mock.Bool'</span> <span class="pre">id='127388499169104'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/report_generate_doc/start_report_generate.html#report_generate_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>ROS Subscriber 的回调函数，用于接收是否需要生成报告的指令。</p>
+</dd>
+<dt>参数：</dt><dd><dl class="simple">
+<dt>msg (Bool):</dt><dd><p>从 whether_report_generate 话题收到的布尔值。</p>
+</dd>
+</dl>
+</dd>
+<dt>返回：</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="report-generate">
+<h2>Report Generate<a class="headerlink" href="#report-generate" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>作用：</dt><dd><p>接收管道检测相关的 ROS 消息，将检测到的缺陷信息（含图像）写入 Word 文档用于报告生成。</p>
+</dd>
+<dt>参数：</dt><dd><p>无（通过 ROS 订阅接收数据）。</p>
+</dd>
+<dt>返回：</dt><dd><p>无（运行在 ROS 节点内，执行 I/O 操作保存文档）。</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">report_generate_doc.report_generate.</span></span><span class="sig-name descname"><span class="pre">ImageSaver</span></span><a class="reference internal" href="../_modules/report_generate_doc/report_generate.html#ImageSaver"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="simple">
+<dt>作用：</dt><dd><p>订阅缺陷检测与里程计话题，接收缺陷信息并把带图像的缺陷条目写入 Word 文档（报告）。</p>
+</dd>
+<dt>参数：</dt><dd><p>无（类在实例化时会初始化 ROS 订阅者和内部状态）。</p>
+</dd>
+<dt>返回：</dt><dd><p>无（实例化后在 ROS spin 循环中运行）。</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">detection_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/report_generate_doc/report_generate.html#ImageSaver.detection_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>接收来自 /_detection_info 的检测消息，记录缺陷并触发保存函数。</p>
+</dd>
+<dt>参数：</dt><dd><p>data (detection_new): 来自检测模块的消息，包含 class_name、point_stamped、image_data、size 等字段。</p>
+</dd>
+<dt>返回：</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">is_defect_unuseful</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/report_generate_doc/report_generate.html#ImageSaver.is_defect_unuseful"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>判断当前检测到的缺陷是否应被忽略（例如异常点、机器人未静止、距离过远或与已记录缺陷重复）。</p>
+</dd>
+<dt>参数：</dt><dd><p>data (detection_new): 检测消息，含坐标与类别等信息。
+threshold (float): 判定与已记录缺陷重复的距离阈值，默认 0.5。</p>
+</dd>
+<dt>返回：</dt><dd><p>bool: 若返回 True 表示该缺陷不需要记录，False 表示应记录。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">odom_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/report_generate_doc/report_generate.html#ImageSaver.odom_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>接收里程计数据并更新内部的当前全局 x 位置（用于将检测点转换为全局坐标）。</p>
+</dd>
+<dt>参数：</dt><dd><p>data (Odometry): 里程计消息，包含位姿信息。</p>
+</dd>
+<dt>返回：</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">save_defect_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/report_generate_doc/report_generate.html#ImageSaver.save_defect_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>将单条缺陷信息写入 Word 文档：包含将 ROS 图像转换成文件、在文档中创建表格并插入图片和缺陷信息，最后保存文档。</p>
+</dd>
+<dt>参数：</dt><dd><p>data (detection_new): 来自检测模块的消息，包含图像、类别、位置信息与尺寸等字段。</p>
+</dd>
+<dt>返回：</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">set_table_font_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size_pt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/report_generate_doc/report_generate.html#ImageSaver.set_table_font_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>将指定表格内所有单元格文本的字体大小设置为指定磅数。</p>
+</dd>
+<dt>参数：</dt><dd><p>table: docx 的 table 对象。
+font_size_pt (int/float): 字体大小（磅）。</p>
+</dd>
+<dt>返回：</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">state_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/report_generate_doc/report_generate.html#ImageSaver.state_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><dl class="simple">
+<dt>作用：</dt><dd><p>根据里程计的线速度判断机器人是否处于静止状态，并更新内部标志 is_stop。</p>
+</dd>
+<dt>参数：</dt><dd><p>data (Odometry): 里程计消息，包含速度信息。</p>
+</dd>
+<dt>返回：</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cameralcapture_yolomodel.html" class="btn btn-neutral float-right" title="Cameral Yolo Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

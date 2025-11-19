@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cameral Yolo Module &mdash; Pipeline_robot_vscode  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Camera Capture C++ Module" href="vscode_cpp.html" />
+    <link rel="prev" title="Report Generate python Module" href="report_generate_doc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Pipeline_robot_vscode
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report_generate_doc.html">Report Generate python Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cameral Yolo Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#yolo-process">Yolo Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vscode_cpp.html">Camera Capture C++ Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="navigation.html">Navigation Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Motherboard_data_process.html">Motherboard_data_process Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3D_mapping.html">3D_mapping Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cable_read.html">cable_read Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Pipeline_robot_vscode</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Cameral Yolo Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/scripts/cameralcapture_yolomodel.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cameral-yolo-module">
+<h1>Cameral Yolo Module<a class="headerlink" href="#cameral-yolo-module" title="Link to this heading"></a></h1>
+<section id="yolo-process">
+<h2>Yolo Process<a class="headerlink" href="#yolo-process" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cameralcapture_yolomodel.seg.</span></span><span class="sig-name descname"><span class="pre">YOLOv8Seg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onnx_model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cameralcapture_yolomodel/seg.html#YOLOv8Seg"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>YOLOv8 ONNX Segmentation ROS 节点</p>
+<dl class="simple">
+<dt>作用：</dt><dd><p>使用 ONNX 模型进行图像分割和目标检测，并通过 ROS 发布检测结果和可视化图像。</p>
+</dd>
+<dt>参数：</dt><dd><p>onnx_model (str): ONNX 模型文件路径。</p>
+</dd>
+<dt>返回：</dt><dd><p>无</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">crop_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">masks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boxes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cameralcapture_yolomodel/seg.html#YOLOv8Seg.crop_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>裁剪掩码到检测框区域</p>
+<dl class="simple">
+<dt>作用：</dt><dd><p>将掩码裁剪到对应的检测框区域</p>
+</dd>
+<dt>参数：</dt><dd><p>masks (np.ndarray): 掩码
+boxes (np.ndarray): 检测框</p>
+</dd>
+<dt>返回：</dt><dd><p>masks (np.ndarray): 裁剪后的掩码</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">draw_and_visualize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bboxes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segments</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cameralcapture_yolomodel/seg.html#YOLOv8Seg.draw_and_visualize"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>绘制检测框、分割轮廓并可视化</p>
+<dl class="simple">
+<dt>作用：</dt><dd><p>在图像上绘制检测框、轮廓、多边形，并标注目标中心点。</p>
+</dd>
+<dt>参数：</dt><dd><p>im (np.ndarray): 原始图像
+bboxes (np.ndarray): 检测框
+segments (list): 分割轮廓</p>
+</dd>
+<dt>返回：</dt><dd><p>im (np.ndarray): 可视化后的图像</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cameralcapture_yolomodel/seg.html#YOLOv8Seg.image_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>ROS 图像订阅回调函数</p>
+<dl class="simple">
+<dt>作用：</dt><dd><p>接收摄像头图像消息，解码后进行 YOLOv8 检测，绘制可视化结果，并发布检测结果和图像。</p>
+</dd>
+<dt>参数：</dt><dd><p>msg (compressedRGBD): 摄像头压缩 RGBD 消息</p>
+</dd>
+<dt>返回：</dt><dd><p>无</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">masks2segments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">masks</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cameralcapture_yolomodel/seg.html#YOLOv8Seg.masks2segments"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>掩码转换为轮廓</p>
+<dl class="simple">
+<dt>作用：</dt><dd><p>将二值掩码转换为轮廓点集</p>
+</dd>
+<dt>参数：</dt><dd><p>masks (np.ndarray): 分割掩码</p>
+</dd>
+<dt>返回：</dt><dd><p>segments (list): 每个掩码对应的轮廓点</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">postprocess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">im0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf_threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iou_threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cameralcapture_yolomodel/seg.html#YOLOv8Seg.postprocess"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>模型后处理</p>
+<dl class="simple">
+<dt>作用：</dt><dd><p>对模型输出进行 NMS、掩码处理和轮廓提取。</p>
+</dd>
+<dt>参数：</dt><dd><p>preds (list): 模型输出
+im0 (np.ndarray): 原始图像
+ratio (tuple): 缩放比例
+pad_w, pad_h (float): 填充宽度和高度
+conf_threshold (float): 置信度阈值
+iou_threshold (float): NMS 阈值
+nm (int): 掩码通道数量</p>
+</dd>
+<dt>返回：</dt><dd><p>boxes (np.ndarray): 检测框坐标和置信度
+segments (list): 分割轮廓
+masks (np.ndarray): 分割掩码</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">preprocess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cameralcapture_yolomodel/seg.html#YOLOv8Seg.preprocess"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>图像预处理</p>
+<dl class="simple">
+<dt>作用：</dt><dd><p>对图像进行缩放、填充和格式转换以适应 ONNX 模型输入。</p>
+</dd>
+<dt>参数：</dt><dd><p>img (np.ndarray): 原始图像</p>
+</dd>
+<dt>返回：</dt><dd><p>img (np.ndarray): 处理后的图像
+ratio (tuple): 缩放比例
+pad_w, pad_h (float): 填充宽度和高度</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">process_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bboxes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">im0_shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cameralcapture_yolomodel/seg.html#YOLOv8Seg.process_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>处理掩码并缩放</p>
+<dl class="simple">
+<dt>作用：</dt><dd><p>根据原始图像尺寸缩放掩码，并裁剪到检测框区域</p>
+</dd>
+<dt>参数：</dt><dd><p>protos (np.ndarray): 原始掩码原型
+masks_in (np.ndarray): 模型输出掩码
+bboxes (np.ndarray): 检测框
+im0_shape (tuple): 原图形状</p>
+</dd>
+<dt>返回：</dt><dd><p>masks (np.ndarray): 处理后的掩码</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">publish_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cv_image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cameralcapture_yolomodel/seg.html#YOLOv8Seg.publish_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>发布 ROS 图像消息</p>
+<dl class="simple">
+<dt>作用：</dt><dd><p>将 OpenCV 图像发布到 ROS 话题</p>
+</dd>
+<dt>参数：</dt><dd><p>cv_image (np.ndarray): 要发布的图像</p>
+</dd>
+<dt>返回：</dt><dd><p>无</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scale_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">masks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">im0_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio_pad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cameralcapture_yolomodel/seg.html#YOLOv8Seg.scale_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>掩码缩放到原图大小</p>
+<dl class="simple">
+<dt>作用：</dt><dd><p>将掩码缩放到输入图像大小</p>
+</dd>
+<dt>参数：</dt><dd><p>masks (np.ndarray): 原始掩码
+im0_shape (tuple): 原图尺寸
+ratio_pad (tuple): 缩放填充比例（可选）</p>
+</dd>
+<dt>返回：</dt><dd><p>masks (np.ndarray): 缩放后的掩码</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="report_generate_doc.html" class="btn btn-neutral float-left" title="Report Generate python Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vscode_cpp.html" class="btn btn-neutral float-right" title="Camera Capture C++ Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

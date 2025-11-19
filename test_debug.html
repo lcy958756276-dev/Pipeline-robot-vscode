@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Breathe 调试测试 &mdash; Pipeline_robot_vscode  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Pipeline_robot_vscode
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/report_generate_doc.html">Report Generate Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/cameralcapture_yolomodel.html">Cameral Yolo Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/vscode_cpp.html">Camera Capture C++ Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pipeline_robot_vscode</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Breathe 调试测试</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/test_debug.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="breathe">
+<h1>Breathe 调试测试<a class="headerlink" href="#breathe" title="Link to this heading"></a></h1>
+<p>测试 Doxygen 索引连接:</p>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="testcam_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">testcam.cpp</span></span></dt>
+<dd><div class="docutils container">
+<em>#include &lt;ros/ros.h&gt;</em></div>
+<div class="docutils container">
+<em>#include &lt;opencv2/opencv.hpp&gt;</em></div>
+<div class="docutils container">
+<em>#include &lt;cv_bridge/cv_bridge.h&gt;</em></div>
+<div class="docutils container">
+<em>#include &lt;sensor_msgs/CompressedImage.h&gt;</em></div>
+<div class="docutils container">
+<em>#include “pipeline_robot/compressedRGBD.h”</em></div>
+<p>RTSP视频流读取与RGBD消息发布节点 </p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>lcy </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0 </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2024-11 </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44mainiPPc">
+<span id="_CPPv34mainiPPc"></span><span id="_CPPv24mainiPPc"></span><span id="main__i.cPP"></span><span class="target" id="testcam_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44mainiPPc" title="Link to this definition"></a><br /></dt>
+<dd><p>ROS节点主入口函数：从RTSP流读取视频帧并发布RGBD消息。 </p>
+<p>该函数负责初始化ROS节点，连接RTSP视频流，读取视频帧，压缩RGB图像， 并通过自定义消息发布压缩的RGBD数据。支持断线自动重连机制。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果视频流断开，函数会自动尝试重新连接。 </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>请确保网络通畅且RTSP URL地址正确。 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>argc</strong> – 命令行参数个数 </p></li>
+<li><p><strong>argv</strong> – 命令行参数数组 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>int 程序退出码（0表示成功，-1表示失败） </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="dir_d79eecd18aa11c1aeb114a23ed426d6f"></span><em><span class="pre">dir</span></em> <span class="sig-name descname"><span class="pre">cameralcapture</span></span></dt>
+<dd></dd></dl>
+
+<p>测试具体函数引用:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “main” in doxygen xml output for project “vscode_cpp” from directory: ./_doxygen/xml</p>
+</div>
+<p>测试使用函数ID:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “testcam_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627” in doxygen xml output for project “vscode_cpp” from directory: ./_doxygen/xml</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

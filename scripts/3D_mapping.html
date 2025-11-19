@@ -1,0 +1,606 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D_mapping Module &mdash; Pipeline_robot_vscode  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cable_read Module" href="cable_read.html" />
+    <link rel="prev" title="Motherboard_data_process Module" href="Motherboard_data_process.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Pipeline_robot_vscode
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report_generate_doc.html">Report Generate python Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cameralcapture_yolomodel.html">Cameral Yolo Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode_cpp.html">Camera Capture C++ Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="navigation.html">Navigation Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Motherboard_data_process.html">Motherboard_data_process Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3D_mapping Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overall-map-cpp">overall_map_cpp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv46octree10resolution"><code class="docutils literal notranslate"><span class="pre">octree()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv412odomCallbackRKN8nav_msgs8Odometry8ConstPtrE"><code class="docutils literal notranslate"><span class="pre">odomCallback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv413cloudCallbackRKN11sensor_msgs11PointCloud28ConstPtrE"><code class="docutils literal notranslate"><span class="pre">cloudCallback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv44mainiPPc"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv410resolution"><code class="docutils literal notranslate"><span class="pre">resolution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv410tfListener"><code class="docutils literal notranslate"><span class="pre">tfListener</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv416cumulativePoints"><code class="docutils literal notranslate"><span class="pre">cumulativePoints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv413currentVoxels"><code class="docutils literal notranslate"><span class="pre">currentVoxels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv412lastPosition"><code class="docutils literal notranslate"><span class="pre">lastPosition</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv415currentPosition"><code class="docutils literal notranslate"><span class="pre">currentPosition</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv419positionInitialized"><code class="docutils literal notranslate"><span class="pre">positionInitialized</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#full-source-code">Full Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sanweijiantu-cpp">sanweijiantu_cpp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv414DA_Octree_Node"><code class="docutils literal notranslate"><span class="pre">DA_Octree_Node</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node14DA_Octree_NodeEv"><code class="docutils literal notranslate"><span class="pre">DA_Octree_Node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node12odomCallbackERKN8nav_msgs8Odometry8ConstPtrE"><code class="docutils literal notranslate"><span class="pre">odomCallback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node10daCallbackERKN14pipeline_robot13DistanceAngle8ConstPtrE"><code class="docutils literal notranslate"><span class="pre">daCallback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node7da_sub_E"><code class="docutils literal notranslate"><span class="pre">da_sub_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node9odom_sub_E"><code class="docutils literal notranslate"><span class="pre">odom_sub_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node10cloud_pub_E"><code class="docutils literal notranslate"><span class="pre">cloud_pub_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node6cloud_E"><code class="docutils literal notranslate"><span class="pre">cloud_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node7octree_E"><code class="docutils literal notranslate"><span class="pre">octree_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node13current_pose_E"><code class="docutils literal notranslate"><span class="pre">current_pose_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N14DA_Octree_Node14odom_received_E"><code class="docutils literal notranslate"><span class="pre">odom_received_</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Full Source Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cable_read.html">cable_read Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Pipeline_robot_vscode</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">3D_mapping Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/scripts/3D_mapping.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="d-mapping-module">
+<h1>3D_mapping Module<a class="headerlink" href="#d-mapping-module" title="Link to this heading"></a></h1>
+<section id="overall-map-cpp">
+<h2>overall_map_cpp<a class="headerlink" href="#overall-map-cpp" title="Link to this heading"></a></h2>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv46octree10resolution">
+<span id="_CPPv36octree10resolution"></span><span id="_CPPv26octree10resolution"></span><span id="octree__resolution"></span><span class="target" id="overall__map_8cpp_1a941d8397015c32731d1f8b1bd52b2ba1"></span><span class="n"><span class="pre">pcl</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">octree</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">OctreePointCloudVoxelCentroid</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">pcl</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointXYZ</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">octree</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410resolution" title="resolution"><span class="n"><span class="pre">resolution</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46octree10resolution" title="Link to this definition"></a><br /></dt>
+<dd><p>八叉树对象，用于存储体素中心点 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412odomCallbackRKN8nav_msgs8Odometry8ConstPtrE">
+<span id="_CPPv312odomCallbackRKN8nav_msgs8Odometry8ConstPtrE"></span><span id="_CPPv212odomCallbackRKN8nav_msgs8Odometry8ConstPtrE"></span><span id="odomCallback__nav_msgs::Odometry::ConstPtrCR"></span><span class="target" id="overall__map_8cpp_1ae77e5d68ff0f4892f5154064e8b5e21c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">odomCallback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nav_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Odometry</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412odomCallbackRKN8nav_msgs8Odometry8ConstPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>odometry 回调函数，更新机器人当前位置 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – 当前机器人里程计信息（nav_msgs::Odometry） </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>void </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413cloudCallbackRKN11sensor_msgs11PointCloud28ConstPtrE">
+<span id="_CPPv313cloudCallbackRKN11sensor_msgs11PointCloud28ConstPtrE"></span><span id="_CPPv213cloudCallbackRKN11sensor_msgs11PointCloud28ConstPtrE"></span><span id="cloudCallback__sensor_msgs::PointCloud2::ConstPtrCR"></span><span class="target" id="overall__map_8cpp_1ae555b00aee41d288cfc286fe5fdd2f61"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cloudCallback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointCloud2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">cloudMsg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413cloudCallbackRKN11sensor_msgs11PointCloud28ConstPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>点云回调函数，将接收到的点云变换到 odom 坐标系并更新八叉树 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cloudMsg</strong> – 接收到的点云（sensor_msgs::PointCloud2） </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>void </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44mainiPPc">
+<span id="_CPPv34mainiPPc"></span><span id="_CPPv24mainiPPc"></span><span id="main__i.cPP"></span><span class="target" id="overall__map_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44mainiPPc" title="Link to this definition"></a><br /></dt>
+<dd><p>主函数，初始化 ROS 节点、订阅者、发布者并循环处理点云 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>argc</strong> – 命令行参数数量 </p></li>
+<li><p><strong>argv</strong> – 命令行参数数组 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>int 程序退出状态 </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410resolution">
+<span id="_CPPv310resolution"></span><span id="_CPPv210resolution"></span><span id="resolution__float"></span><span class="target" id="overall__map_8cpp_1a4333d786c60465d20826583358b2798d"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resolution</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.01f</span></span><a class="headerlink" href="#_CPPv410resolution" title="Link to this definition"></a><br /></dt>
+<dd><p>八叉树分辨率 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410tfListener">
+<span id="_CPPv310tfListener"></span><span id="_CPPv210tfListener"></span><span id="tfListener__tf::TransformListenerP"></span><span class="target" id="overall__map_8cpp_1a82d466187eb99a84467bf27a26ee481a"></span><span class="n"><span class="pre">tf</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TransformListener</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">tfListener</span></span></span><a class="headerlink" href="#_CPPv410tfListener" title="Link to this definition"></a><br /></dt>
+<dd><p>TF 监听器指针，用于坐标变换 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv416cumulativePoints">
+<span id="_CPPv316cumulativePoints"></span><span id="_CPPv216cumulativePoints"></span><span id="cumulativePoints__s"></span><span class="target" id="overall__map_8cpp_1a14ca948851469d68a76e0b26d879a1aa"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cumulativePoints</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv416cumulativePoints" title="Link to this definition"></a><br /></dt>
+<dd><p>累计接收点数 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv413currentVoxels">
+<span id="_CPPv313currentVoxels"></span><span id="_CPPv213currentVoxels"></span><span id="currentVoxels__s"></span><span class="target" id="overall__map_8cpp_1a1bcf55de3abb110c38e335e9fb8f5eb1"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">currentVoxels</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv413currentVoxels" title="Link to this definition"></a><br /></dt>
+<dd><p>当前体素数量 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv412lastPosition">
+<span id="_CPPv312lastPosition"></span><span id="_CPPv212lastPosition"></span><span id="lastPosition__Eigen::Vector3d"></span><span class="target" id="overall__map_8cpp_1a3e57fc0dd660c31635246086b6428a83"></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lastPosition</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Zero</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv412lastPosition" title="Link to this definition"></a><br /></dt>
+<dd><p>上一时刻机器人位置 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv415currentPosition">
+<span id="_CPPv315currentPosition"></span><span id="_CPPv215currentPosition"></span><span id="currentPosition__Eigen::Vector3d"></span><span class="target" id="overall__map_8cpp_1a8bbc76585965c3f3c1067d4e2b8e4635"></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">currentPosition</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Zero</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv415currentPosition" title="Link to this definition"></a><br /></dt>
+<dd><p>当前机器人位置 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419positionInitialized">
+<span id="_CPPv319positionInitialized"></span><span id="_CPPv219positionInitialized"></span><span id="positionInitialized__b"></span><span class="target" id="overall__map_8cpp_1a699159ca5d125cf65d82bbeaefc750dd"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">positionInitialized</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv419positionInitialized" title="Link to this definition"></a><br /></dt>
+<dd><p>位置是否初始化标志 </p>
+</dd></dl>
+
+</div>
+</section>
+<section id="full-source-code">
+<h2>Full Source Code<a class="headerlink" href="#full-source-code" title="Link to this heading"></a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/**</span>
+<span class="linenos">  2</span><span class="cm"> * @file octree_map_builder.cpp</span>
+<span class="linenos">  3</span><span class="cm"> * @brief 使用八叉树对累计点云进行存储与管理，同时根据机器人位姿进行点云变换和统计。</span>
+<span class="linenos">  4</span><span class="cm"> * </span>
+<span class="linenos">  5</span><span class="cm"> * 功能：</span>
+<span class="linenos">  6</span><span class="cm"> * - 接收机器人里程计信息，记录当前位置。</span>
+<span class="linenos">  7</span><span class="cm"> * - 接收点云信息，并根据里程计变换至 odom 坐标系。</span>
+<span class="linenos">  8</span><span class="cm"> * - 使用 pcl::octree::OctreePointCloudVoxelCentroid 构建八叉树。</span>
+<span class="linenos">  9</span><span class="cm"> * - 累计统计点云数量和八叉树体素数量。</span>
+<span class="linenos"> 10</span><span class="cm"> * - 发布整体地图点云。</span>
+<span class="linenos"> 11</span><span class="cm"> */</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ros/ros.h&gt;</span>
+<span class="linenos"> 14</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sensor_msgs/PointCloud2.h&gt;</span>
+<span class="linenos"> 15</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;nav_msgs/Odometry.h&gt;</span>
+<span class="linenos"> 16</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pcl_conversions/pcl_conversions.h&gt;</span>
+<span class="linenos"> 17</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pcl/point_cloud.h&gt;</span>
+<span class="linenos"> 18</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pcl/point_types.h&gt;</span>
+<span class="linenos"> 19</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pcl_ros/transforms.h&gt;</span>
+<span class="linenos"> 20</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tf/transform_listener.h&gt;</span>
+<span class="linenos"> 21</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pcl/octree/octree_pointcloud_voxelcentroid.h&gt;</span>
+<span class="linenos"> 22</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Dense&gt;</span>
+<span class="linenos"> 23</span>
+<span class="linenos"> 24</span><span class="cm">/** @brief 八叉树分辨率 */</span>
+<span class="linenos"> 25</span><span class="kt">float</span><span class="w"> </span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.01f</span><span class="p">;</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="cm">/** @brief 八叉树对象，用于存储体素中心点 */</span>
+<span class="linenos"> 28</span><span class="n">pcl</span><span class="o">::</span><span class="n">octree</span><span class="o">::</span><span class="n">OctreePointCloudVoxelCentroid</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span><span class="w"> </span><span class="n">octree</span><span class="p">(</span><span class="n">resolution</span><span class="p">);</span>
+<span class="linenos"> 29</span>
+<span class="linenos"> 30</span><span class="cm">/** @brief TF 监听器指针，用于坐标变换 */</span>
+<span class="linenos"> 31</span><span class="n">tf</span><span class="o">::</span><span class="n">TransformListener</span><span class="o">*</span><span class="w"> </span><span class="n">tfListener</span><span class="p">;</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span><span class="c1">// 统计相关变量</span>
+<span class="linenos"> 34</span><span class="kt">size_t</span><span class="w"> </span><span class="n">cumulativePoints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">        </span><span class="c1">///&lt; 累计接收点数</span>
+<span class="linenos"> 35</span><span class="kt">size_t</span><span class="w"> </span><span class="n">currentVoxels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">           </span><span class="c1">///&lt; 当前体素数量</span>
+<span class="linenos"> 36</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">lastPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span><span class="w">  </span><span class="c1">///&lt; 上一时刻机器人位置</span>
+<span class="linenos"> 37</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">currentPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span><span class="w"> </span><span class="c1">///&lt; 当前机器人位置</span>
+<span class="linenos"> 38</span><span class="kt">bool</span><span class="w"> </span><span class="n">positionInitialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w">   </span><span class="c1">///&lt; 位置是否初始化标志</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span><span class="cm">/**</span>
+<span class="linenos"> 41</span><span class="cm"> * @brief odometry 回调函数，更新机器人当前位置</span>
+<span class="linenos"> 42</span><span class="cm"> * </span>
+<span class="linenos"> 43</span><span class="cm"> * @param msg 当前机器人里程计信息（nav_msgs::Odometry）</span>
+<span class="linenos"> 44</span><span class="cm"> * @return void</span>
+<span class="linenos"> 45</span><span class="cm"> */</span>
+<span class="linenos"> 46</span><span class="kt">void</span><span class="w"> </span><span class="nf">odomCallback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">nav_msgs</span><span class="o">::</span><span class="n">Odometry</span><span class="o">::</span><span class="n">ConstPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span>
+<span class="linenos"> 47</span><span class="p">{</span>
+<span class="linenos"> 48</span><span class="w">    </span><span class="n">currentPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span>
+<span class="linenos"> 49</span><span class="w">        </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+<span class="linenos"> 50</span><span class="w">        </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+<span class="linenos"> 51</span><span class="w">        </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+<span class="linenos"> 52</span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">positionInitialized</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 54</span><span class="w">        </span><span class="n">lastPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentPosition</span><span class="p">;</span>
+<span class="linenos"> 55</span><span class="w">        </span><span class="n">positionInitialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos"> 56</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 57</span><span class="p">}</span>
+<span class="linenos"> 58</span>
+<span class="linenos"> 59</span><span class="cm">/**</span>
+<span class="linenos"> 60</span><span class="cm"> * @brief 点云回调函数，将接收到的点云变换到 odom 坐标系并更新八叉树</span>
+<span class="linenos"> 61</span><span class="cm"> * </span>
+<span class="linenos"> 62</span><span class="cm"> * @param cloudMsg 接收到的点云（sensor_msgs::PointCloud2）</span>
+<span class="linenos"> 63</span><span class="cm"> * @return void</span>
+<span class="linenos"> 64</span><span class="cm"> */</span>
+<span class="linenos"> 65</span><span class="kt">void</span><span class="w"> </span><span class="nf">cloudCallback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">ConstPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">cloudMsg</span><span class="p">)</span>
+<span class="linenos"> 66</span><span class="p">{</span>
+<span class="linenos"> 67</span><span class="w">    </span><span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">cloud</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="linenos"> 68</span><span class="w">    </span><span class="n">pcl</span><span class="o">::</span><span class="n">fromROSMsg</span><span class="p">(</span><span class="o">*</span><span class="n">cloudMsg</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">cloud</span><span class="p">);</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">distanceMoved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">currentPosition</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lastPosition</span><span class="p">).</span><span class="n">norm</span><span class="p">();</span>
+<span class="linenos"> 71</span><span class="w">    </span>
+<span class="linenos"> 72</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">distanceMoved</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.01</span><span class="p">)</span>
+<span class="linenos"> 73</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos"> 74</span><span class="w">        </span><span class="n">lastPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentPosition</span><span class="p">;</span>
+<span class="linenos"> 75</span>
+<span class="linenos"> 76</span><span class="w">        </span><span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">transformedCloud</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="linenos"> 77</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">tfListener</span><span class="o">-&gt;</span><span class="n">waitForTransform</span><span class="p">(</span><span class="s">&quot;odom&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cloudMsg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="p">,</span><span class="w"> </span>
+<span class="linenos"> 78</span><span class="w">                                      </span><span class="n">cloudMsg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">,</span><span class="w"> </span><span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)))</span>
+<span class="linenos"> 79</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos"> 80</span><span class="w">            </span><span class="n">pcl_ros</span><span class="o">::</span><span class="n">transformPointCloud</span><span class="p">(</span><span class="s">&quot;odom&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">cloud</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">transformedCloud</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">tfListener</span><span class="p">);</span>
+<span class="linenos"> 81</span><span class="w">            </span>
+<span class="linenos"> 82</span><span class="w">            </span><span class="c1">// 更新统计信息</span>
+<span class="linenos"> 83</span><span class="w">            </span><span class="n">cumulativePoints</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">transformedCloud</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">();</span>
+<span class="linenos"> 84</span><span class="w">            </span>
+<span class="linenos"> 85</span><span class="w">            </span><span class="c1">// 更新八叉树</span>
+<span class="linenos"> 86</span><span class="w">            </span><span class="n">octree</span><span class="p">.</span><span class="n">setInputCloud</span><span class="p">(</span><span class="n">transformedCloud</span><span class="p">);</span>
+<span class="linenos"> 87</span><span class="w">            </span><span class="n">octree</span><span class="p">.</span><span class="n">addPointsFromInputCloud</span><span class="p">();</span>
+<span class="linenos"> 88</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos"> 89</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 90</span><span class="p">}</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="cm">/**</span>
+<span class="linenos"> 93</span><span class="cm"> * @brief 主函数，初始化 ROS 节点、订阅者、发布者并循环处理点云</span>
+<span class="linenos"> 94</span><span class="cm"> * </span>
+<span class="linenos"> 95</span><span class="cm"> * @param argc 命令行参数数量</span>
+<span class="linenos"> 96</span><span class="cm"> * @param argv 命令行参数数组</span>
+<span class="linenos"> 97</span><span class="cm"> * @return int 程序退出状态</span>
+<span class="linenos"> 98</span><span class="cm"> */</span>
+<span class="linenos"> 99</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span>
+<span class="linenos">100</span><span class="p">{</span>
+<span class="linenos">101</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;octree_map_builder&quot;</span><span class="p">);</span>
+<span class="linenos">102</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span><span class="w"> </span><span class="n">nh</span><span class="p">;</span>
+<span class="linenos">103</span><span class="w">    </span>
+<span class="linenos">104</span><span class="w">    </span><span class="n">tfListener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">tf</span><span class="o">::</span><span class="n">TransformListener</span><span class="p">();</span>
+<span class="linenos">105</span>
+<span class="linenos">106</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;/point_cloud&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">cloudCallback</span><span class="p">);</span>
+<span class="linenos">107</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span><span class="w"> </span><span class="n">odomSub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;/cable/odom&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">odomCallback</span><span class="p">);</span>
+<span class="linenos">108</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span><span class="w"> </span><span class="n">pub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;/overall_map_cloud&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Rate</span><span class="w"> </span><span class="n">rate</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos">111</span><span class="w">    </span>
+<span class="linenos">112</span><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">ok</span><span class="p">())</span>
+<span class="linenos">113</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">114</span><span class="w">        </span><span class="n">ros</span><span class="o">::</span><span class="n">spinOnce</span><span class="p">();</span>
+<span class="linenos">115</span><span class="w">        </span>
+<span class="linenos">116</span><span class="w">        </span><span class="c1">// 获取当前八叉树状态</span>
+<span class="linenos">117</span><span class="w">        </span><span class="n">currentVoxels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">octree</span><span class="p">.</span><span class="n">getLeafCount</span><span class="p">();</span>
+<span class="linenos">118</span><span class="w">        </span>
+<span class="linenos">119</span><span class="w">        </span><span class="c1">// 计算内存占用（假设每个点占12字节：3个float）</span>
+<span class="linenos">120</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">rawMemoryMB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">cumulativePoints</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">1024.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1024.0</span><span class="p">);</span>
+<span class="linenos">121</span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">octreeMemoryMB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">currentVoxels</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">1024.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1024.0</span><span class="p">);</span>
+<span class="linenos">122</span><span class="w">        </span>
+<span class="linenos">123</span><span class="w">        </span><span class="c1">// 发布点云</span>
+<span class="linenos">124</span><span class="w">        </span><span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">outputCloud</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="linenos">125</span><span class="w">        </span><span class="n">octree</span><span class="p">.</span><span class="n">getOccupiedVoxelCenters</span><span class="p">(</span><span class="n">outputCloud</span><span class="o">-&gt;</span><span class="n">points</span><span class="p">);</span>
+<span class="linenos">126</span><span class="w">        </span>
+<span class="linenos">127</span><span class="w">        </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2</span><span class="w"> </span><span class="n">outputMsg</span><span class="p">;</span>
+<span class="linenos">128</span><span class="w">        </span><span class="n">pcl</span><span class="o">::</span><span class="n">toROSMsg</span><span class="p">(</span><span class="o">*</span><span class="n">outputCloud</span><span class="p">,</span><span class="w"> </span><span class="n">outputMsg</span><span class="p">);</span>
+<span class="linenos">129</span><span class="w">        </span><span class="n">outputMsg</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="linenos">130</span><span class="w">        </span><span class="n">outputMsg</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;odom&quot;</span><span class="p">;</span>
+<span class="linenos">131</span><span class="w">        </span><span class="n">pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">outputMsg</span><span class="p">);</span>
+<span class="linenos">132</span><span class="w">        </span>
+<span class="linenos">133</span><span class="w">        </span><span class="c1">// 输出统计信息</span>
+<span class="linenos">134</span><span class="w">        </span><span class="c1">// ROS_INFO_STREAM(&quot;Accumulated Points: &quot; &lt;&lt; cumulativePoints </span>
+<span class="linenos">135</span><span class="w">        </span><span class="c1">//                &lt;&lt; &quot; (&quot; &lt;&lt; rawMemoryMB &lt;&lt; &quot; MB) | &quot;</span>
+<span class="linenos">136</span><span class="w">        </span><span class="c1">//                &lt;&lt; &quot;Octree Voxels: &quot; &lt;&lt; currentVoxels </span>
+<span class="linenos">137</span><span class="w">        </span><span class="c1">//                &lt;&lt; &quot; (&quot; &lt;&lt; octreeMemoryMB &lt;&lt; &quot; MB)&quot;);</span>
+<span class="linenos">138</span><span class="w">        </span>
+<span class="linenos">139</span><span class="w">        </span><span class="n">rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">();</span>
+<span class="linenos">140</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">141</span><span class="w">    </span>
+<span class="linenos">142</span><span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">tfListener</span><span class="p">;</span>
+<span class="linenos">143</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">144</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="sanweijiantu-cpp">
+<h2>sanweijiantu_cpp<a class="headerlink" href="#sanweijiantu-cpp" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv414DA_Octree_Node">
+<span id="_CPPv314DA_Octree_Node"></span><span id="_CPPv214DA_Octree_Node"></span><span id="DA_Octree_Node"></span><span class="target" id="classDA__Octree__Node"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DA_Octree_Node</span></span></span><a class="headerlink" href="#_CPPv414DA_Octree_Node" title="Link to this definition"></a><br /></dt>
+<dd><p>通过 Distance-Angle 数据生成点云并构建八叉树的节点类 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node14DA_Octree_NodeEv">
+<span id="_CPPv3N14DA_Octree_Node14DA_Octree_NodeEv"></span><span id="_CPPv2N14DA_Octree_Node14DA_Octree_NodeEv"></span><span id="DA_Octree_Node::DA_Octree_Node"></span><span class="target" id="classDA__Octree__Node_1affd4d94f5e93e83256aa82725fd79509"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DA_Octree_Node</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node14DA_Octree_NodeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>构造函数，初始化订阅者、发布者和八叉树 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node12odomCallbackERKN8nav_msgs8Odometry8ConstPtrE">
+<span id="_CPPv3N14DA_Octree_Node12odomCallbackERKN8nav_msgs8Odometry8ConstPtrE"></span><span id="_CPPv2N14DA_Octree_Node12odomCallbackERKN8nav_msgs8Odometry8ConstPtrE"></span><span id="DA_Octree_Node::odomCallback__nav_msgs::Odometry::ConstPtrCR"></span><span class="target" id="classDA__Octree__Node_1a5cb1a998850bddf23da20ae4f49119af"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">odomCallback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nav_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Odometry</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node12odomCallbackERKN8nav_msgs8Odometry8ConstPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>odom 回调函数，更新当前机器人位姿 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – 当前里程计消息（nav_msgs::Odometry） </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node10daCallbackERKN14pipeline_robot13DistanceAngle8ConstPtrE">
+<span id="_CPPv3N14DA_Octree_Node10daCallbackERKN14pipeline_robot13DistanceAngle8ConstPtrE"></span><span id="_CPPv2N14DA_Octree_Node10daCallbackERKN14pipeline_robot13DistanceAngle8ConstPtrE"></span><span id="DA_Octree_Node::daCallback__pipeline_robot::DistanceAngle::ConstPtrCR"></span><span class="target" id="classDA__Octree__Node_1a2cb85a99abd9811255ef21bf99110a6c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">daCallback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">pipeline_robot</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">DistanceAngle</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node10daCallbackERKN14pipeline_robot13DistanceAngle8ConstPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>Distance-Angle 回调函数，将距离角度数据转换为点并更新八叉树 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – Distance-Angle 消息（pipeline_robot::DistanceAngle） </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-private-members">Private Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node7da_sub_E">
+<span id="_CPPv3N14DA_Octree_Node7da_sub_E"></span><span id="_CPPv2N14DA_Octree_Node7da_sub_E"></span><span id="DA_Octree_Node::da_sub___ros::Subscriber"></span><span class="target" id="classDA__Octree__Node_1ac9e99724363e8816834a603e56250462"></span><span class="n"><span class="pre">ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscriber</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">da_sub_</span></span></span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node7da_sub_E" title="Link to this definition"></a><br /></dt>
+<dd><p>Distance-Angle 数据订阅者 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node9odom_sub_E">
+<span id="_CPPv3N14DA_Octree_Node9odom_sub_E"></span><span id="_CPPv2N14DA_Octree_Node9odom_sub_E"></span><span id="DA_Octree_Node::odom_sub___ros::Subscriber"></span><span class="target" id="classDA__Octree__Node_1a89264bb14609035442fb21d826a7bb71"></span><span class="n"><span class="pre">ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscriber</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">odom_sub_</span></span></span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node9odom_sub_E" title="Link to this definition"></a><br /></dt>
+<dd><p>外部 odom 数据订阅者 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node10cloud_pub_E">
+<span id="_CPPv3N14DA_Octree_Node10cloud_pub_E"></span><span id="_CPPv2N14DA_Octree_Node10cloud_pub_E"></span><span id="DA_Octree_Node::cloud_pub___ros::Publisher"></span><span class="target" id="classDA__Octree__Node_1a302c05b9f02186592a77d55372927df9"></span><span class="n"><span class="pre">ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cloud_pub_</span></span></span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node10cloud_pub_E" title="Link to this definition"></a><br /></dt>
+<dd><p>发布稀疏化点云 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node6cloud_E">
+<span id="_CPPv3N14DA_Octree_Node6cloud_E"></span><span id="_CPPv2N14DA_Octree_Node6cloud_E"></span><span id="DA_Octree_Node::cloud___pcl::PointCloud:pcl::PointXYZ:::Ptr"></span><span class="target" id="classDA__Octree__Node_1a9445d49b805496111099deb1cd89e115"></span><span class="n"><span class="pre">pcl</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointCloud</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">pcl</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointXYZ</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Ptr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cloud_</span></span></span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node6cloud_E" title="Link to this definition"></a><br /></dt>
+<dd><p>原始点云存储 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node7octree_E">
+<span id="_CPPv3N14DA_Octree_Node7octree_E"></span><span id="_CPPv2N14DA_Octree_Node7octree_E"></span><span id="DA_Octree_Node::octree___pcl::octree::OctreePointCloudVoxelCentroid:pcl::PointXYZ:"></span><span class="target" id="classDA__Octree__Node_1a8851e9db2952ddbecebbf6bffa8dd6ec"></span><span class="n"><span class="pre">pcl</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">octree</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">OctreePointCloudVoxelCentroid</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">pcl</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointXYZ</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">octree_</span></span></span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node7octree_E" title="Link to this definition"></a><br /></dt>
+<dd><p>八叉树对象 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node13current_pose_E">
+<span id="_CPPv3N14DA_Octree_Node13current_pose_E"></span><span id="_CPPv2N14DA_Octree_Node13current_pose_E"></span><span id="DA_Octree_Node::current_pose___geometry_msgs::Pose"></span><span class="target" id="classDA__Octree__Node_1a4b7666d696a436fb6c444de982b46c04"></span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Pose</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">current_pose_</span></span></span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node13current_pose_E" title="Link to this definition"></a><br /></dt>
+<dd><p>当前机器人位姿 </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N14DA_Octree_Node14odom_received_E">
+<span id="_CPPv3N14DA_Octree_Node14odom_received_E"></span><span id="_CPPv2N14DA_Octree_Node14odom_received_E"></span><span id="DA_Octree_Node::odom_received___b"></span><span class="target" id="classDA__Octree__Node_1a788e3a9b1a9378469f0dff71be998020"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">odom_received_</span></span></span><a class="headerlink" href="#_CPPv4N14DA_Octree_Node14odom_received_E" title="Link to this definition"></a><br /></dt>
+<dd><p>odom 是否已接收标志 </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="id1">
+<h2>Full Source Code<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/**</span>
+<span class="linenos">  2</span><span class="cm"> * @file da_octree_node.cpp</span>
+<span class="linenos">  3</span><span class="cm"> * @brief 通过订阅 Distance-Angle 数据和外部 odom，生成稀疏化点云并构建八叉树</span>
+<span class="linenos">  4</span><span class="cm"> *</span>
+<span class="linenos">  5</span><span class="cm"> * 功能：</span>
+<span class="linenos">  6</span><span class="cm"> * - 订阅 `/distance_angle` 消息，将距离角度数据转换为点云。</span>
+<span class="linenos">  7</span><span class="cm"> * - 订阅 `/cable/odom` 获取机器人位姿。</span>
+<span class="linenos">  8</span><span class="cm"> * - 使用 pcl::octree::OctreePointCloudVoxelCentroid 对点云进行稀疏化。</span>
+<span class="linenos">  9</span><span class="cm"> * - 发布整体稀疏化点云 `/overall_map_cloud`。</span>
+<span class="linenos"> 10</span><span class="cm"> */</span>
+<span class="linenos"> 11</span>
+<span class="linenos"> 12</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ros/ros.h&gt;</span>
+<span class="linenos"> 13</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sensor_msgs/PointCloud2.h&gt;</span>
+<span class="linenos"> 14</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;nav_msgs/Odometry.h&gt;</span>
+<span class="linenos"> 15</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pcl/point_cloud.h&gt;</span>
+<span class="linenos"> 16</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pcl/point_types.h&gt;</span>
+<span class="linenos"> 17</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pcl_conversions/pcl_conversions.h&gt;</span>
+<span class="linenos"> 18</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pcl/octree/octree_pointcloud_voxelcentroid.h&gt;</span>
+<span class="linenos"> 19</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pipeline_robot/DistanceAngle.h&gt;</span>
+<span class="linenos"> 20</span>
+<span class="linenos"> 21</span><span class="cm">/**</span>
+<span class="linenos"> 22</span><span class="cm"> * @class DA_Octree_Node</span>
+<span class="linenos"> 23</span><span class="cm"> * @brief 通过 Distance-Angle 数据生成点云并构建八叉树的节点类</span>
+<span class="linenos"> 24</span><span class="cm"> */</span>
+<span class="linenos"> 25</span><span class="k">class</span><span class="w"> </span><span class="nc">DA_Octree_Node</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 26</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos"> 27</span><span class="w">    </span><span class="cm">/**</span>
+<span class="linenos"> 28</span><span class="cm">     * @brief 构造函数，初始化订阅者、发布者和八叉树</span>
+<span class="linenos"> 29</span><span class="cm">     */</span>
+<span class="linenos"> 30</span><span class="w">    </span><span class="n">DA_Octree_Node</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">octree_</span><span class="p">(</span><span class="mf">0.000001f</span><span class="p">),</span><span class="w"> </span><span class="n">odom_received_</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 31</span><span class="w">        </span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span><span class="w"> </span><span class="n">nh</span><span class="p">;</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span><span class="w">        </span><span class="c1">// 订阅 Distance-Angle</span>
+<span class="linenos"> 34</span><span class="w">        </span><span class="n">da_sub_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;/distance_angle&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DA_Octree_Node</span><span class="o">::</span><span class="n">daCallback</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
+<span class="linenos"> 35</span>
+<span class="linenos"> 36</span><span class="w">        </span><span class="c1">// 订阅外部 odom</span>
+<span class="linenos"> 37</span><span class="w">        </span><span class="n">odom_sub_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;/cable/odom&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DA_Octree_Node</span><span class="o">::</span><span class="n">odomCallback</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span><span class="w">        </span><span class="c1">// 发布稀疏化点云</span>
+<span class="linenos"> 40</span><span class="w">        </span><span class="n">cloud_pub_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nh</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;/overall_map_cloud&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span><span class="w">        </span><span class="n">cloud_</span><span class="p">.</span><span class="n">reset</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="linenos"> 43</span><span class="w">        </span><span class="n">cloud_</span><span class="o">-&gt;</span><span class="n">is_dense</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="linenos"> 44</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 45</span>
+<span class="linenos"> 46</span><span class="w">    </span><span class="cm">/**</span>
+<span class="linenos"> 47</span><span class="cm">     * @brief odom 回调函数，更新当前机器人位姿</span>
+<span class="linenos"> 48</span><span class="cm">     * @param msg 当前里程计消息（nav_msgs::Odometry）</span>
+<span class="linenos"> 49</span><span class="cm">     */</span>
+<span class="linenos"> 50</span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">odomCallback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">nav_msgs</span><span class="o">::</span><span class="n">Odometry</span><span class="o">::</span><span class="n">ConstPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 51</span><span class="w">        </span><span class="n">current_pose_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">;</span>
+<span class="linenos"> 52</span><span class="w">        </span><span class="n">odom_received_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 54</span>
+<span class="linenos"> 55</span><span class="w">    </span><span class="cm">/**</span>
+<span class="linenos"> 56</span><span class="cm">     * @brief Distance-Angle 回调函数，将距离角度数据转换为点并更新八叉树</span>
+<span class="linenos"> 57</span><span class="cm">     * @param msg Distance-Angle 消息（pipeline_robot::DistanceAngle）</span>
+<span class="linenos"> 58</span><span class="cm">     */</span>
+<span class="linenos"> 59</span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">daCallback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">pipeline_robot</span><span class="o">::</span><span class="n">DistanceAngle</span><span class="o">::</span><span class="n">ConstPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 60</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">odom_received_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 61</span><span class="w">            </span><span class="n">ROS_WARN_THROTTLE</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Waiting for /cable/odom ...&quot;</span><span class="p">);</span>
+<span class="linenos"> 62</span><span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos"> 63</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos"> 64</span>
+<span class="linenos"> 65</span><span class="w">        </span><span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="w"> </span><span class="n">current_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="linenos"> 66</span><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">angle_rad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">angle</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M_PI</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">180.0</span><span class="p">;</span>
+<span class="linenos"> 67</span>
+<span class="linenos"> 68</span><span class="w">        </span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="w"> </span><span class="n">point</span><span class="p">;</span>
+<span class="linenos"> 69</span><span class="w">        </span><span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_pose_</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w">            </span><span class="c1">///&lt; 使用外部 odom 的 X</span>
+<span class="linenos"> 70</span><span class="w">        </span><span class="n">point</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">distance</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.01</span><span class="p">;</span>
+<span class="linenos"> 71</span><span class="w">        </span><span class="n">point</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">distance</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">-0.01</span><span class="p">);</span>
+<span class="linenos"> 72</span>
+<span class="linenos"> 73</span><span class="w">        </span><span class="n">cloud_</span><span class="o">-&gt;</span><span class="n">points</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">point</span><span class="p">);</span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span><span class="w">        </span><span class="c1">// 更新八叉树</span>
+<span class="linenos"> 76</span><span class="w">        </span><span class="n">octree_</span><span class="p">.</span><span class="n">setInputCloud</span><span class="p">(</span><span class="n">cloud_</span><span class="p">);</span>
+<span class="linenos"> 77</span><span class="w">        </span><span class="n">octree_</span><span class="p">.</span><span class="n">addPointsFromInputCloud</span><span class="p">();</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span><span class="w">        </span><span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">outputCloud</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="linenos"> 80</span><span class="w">        </span><span class="n">octree_</span><span class="p">.</span><span class="n">getOccupiedVoxelCenters</span><span class="p">(</span><span class="n">outputCloud</span><span class="o">-&gt;</span><span class="n">points</span><span class="p">);</span>
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span><span class="w">        </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2</span><span class="w"> </span><span class="n">outputMsg</span><span class="p">;</span>
+<span class="linenos"> 83</span><span class="w">        </span><span class="n">pcl</span><span class="o">::</span><span class="n">toROSMsg</span><span class="p">(</span><span class="o">*</span><span class="n">outputCloud</span><span class="p">,</span><span class="w"> </span><span class="n">outputMsg</span><span class="p">);</span>
+<span class="linenos"> 84</span><span class="w">        </span><span class="n">outputMsg</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_time</span><span class="p">;</span>
+<span class="linenos"> 85</span><span class="w">        </span><span class="n">outputMsg</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;odom&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">///&lt; 与外部 odom 保持一致</span>
+<span class="linenos"> 86</span><span class="w">        </span><span class="n">cloud_pub_</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">outputMsg</span><span class="p">);</span>
+<span class="linenos"> 87</span>
+<span class="linenos"> 88</span><span class="w">        </span><span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;Octree voxels: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">octree_</span><span class="p">.</span><span class="n">getLeafCount</span><span class="p">()</span>
+<span class="linenos"> 89</span><span class="w">                        </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; | Input points: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cloud_</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span>
+<span class="linenos"> 90</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="k">private</span><span class="o">:</span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span><span class="w"> </span><span class="n">da_sub_</span><span class="p">;</span><span class="w">        </span><span class="c1">///&lt; Distance-Angle 数据订阅者</span>
+<span class="linenos"> 94</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span><span class="w"> </span><span class="n">odom_sub_</span><span class="p">;</span><span class="w">      </span><span class="c1">///&lt; 外部 odom 数据订阅者</span>
+<span class="linenos"> 95</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span><span class="w"> </span><span class="n">cloud_pub_</span><span class="p">;</span><span class="w">      </span><span class="c1">///&lt; 发布稀疏化点云</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">cloud_</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; 原始点云存储</span>
+<span class="linenos"> 98</span><span class="w">    </span><span class="n">pcl</span><span class="o">::</span><span class="n">octree</span><span class="o">::</span><span class="n">OctreePointCloudVoxelCentroid</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZ</span><span class="o">&gt;</span><span class="w"> </span><span class="n">octree_</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; 八叉树对象</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span><span class="w">    </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Pose</span><span class="w"> </span><span class="n">current_pose_</span><span class="p">;</span><span class="w"> </span><span class="c1">///&lt; 当前机器人位姿</span>
+<span class="linenos">101</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">odom_received_</span><span class="p">;</span><span class="w">               </span><span class="c1">///&lt; odom 是否已接收标志</span>
+<span class="linenos">102</span><span class="p">};</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span><span class="cm">/**</span>
+<span class="linenos">105</span><span class="cm"> * @brief 主函数，初始化 ROS 节点并启动 DA_Octree_Node</span>
+<span class="linenos">106</span><span class="cm"> * @param argc 命令行参数数量</span>
+<span class="linenos">107</span><span class="cm"> * @param argv 命令行参数数组</span>
+<span class="linenos">108</span><span class="cm"> * @return int 程序退出状态</span>
+<span class="linenos">109</span><span class="cm"> */</span>
+<span class="linenos">110</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">111</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;da_octree_node&quot;</span><span class="p">);</span>
+<span class="linenos">112</span><span class="w">    </span><span class="n">DA_Octree_Node</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="linenos">113</span><span class="w">    </span><span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+<span class="linenos">114</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">115</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Motherboard_data_process.html" class="btn btn-neutral float-left" title="Motherboard_data_process Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cable_read.html" class="btn btn-neutral float-right" title="cable_read Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

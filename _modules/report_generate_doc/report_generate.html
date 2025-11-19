@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>report_generate_doc.report_generate &mdash; Pipeline_robot_vscode  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Pipeline_robot_vscode
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/report_generate_doc.html">Report Generate Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Pipeline_robot_vscode</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">report_generate_doc.report_generate</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for report_generate_doc.report_generate</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">作用：</span>
+<span class="sd">    接收管道检测相关的 ROS 消息，将检测到的缺陷信息（含图像）写入 Word 文档用于报告生成。</span>
+
+<span class="sd">参数：</span>
+<span class="sd">    无（通过 ROS 订阅接收数据）。</span>
+
+<span class="sd">返回：</span>
+<span class="sd">    无（运行在 ROS 节点内，执行 I/O 操作保存文档）。</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">rospy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pipeline_robot.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">detection_new</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nav_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Odometry</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cv_bridge</span><span class="w"> </span><span class="kn">import</span> <span class="n">CvBridge</span><span class="p">,</span> <span class="n">CvBridgeError</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docx</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docx.shared</span><span class="w"> </span><span class="kn">import</span> <span class="n">Inches</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xml.etree.ElementTree</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ET</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docx.oxml</span><span class="w"> </span><span class="kn">import</span> <span class="n">OxmlElement</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docx.oxml.ns</span><span class="w"> </span><span class="kn">import</span> <span class="n">qn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docx.shared</span><span class="w"> </span><span class="kn">import</span> <span class="n">Cm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docx.shared</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docx.enum.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">WD_TABLE_ALIGNMENT</span>
+
+<div class="viewcode-block" id="ImageSaver">
+<a class="viewcode-back" href="../../scripts/report_generate_doc.html#report_generate_doc.report_generate.ImageSaver">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ImageSaver</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    作用：</span>
+<span class="sd">        订阅缺陷检测与里程计话题，接收缺陷信息并把带图像的缺陷条目写入 Word 文档（报告）。</span>
+
+<span class="sd">    参数：</span>
+<span class="sd">        无（类在实例化时会初始化 ROS 订阅者和内部状态）。</span>
+
+<span class="sd">    返回：</span>
+<span class="sd">        无（实例化后在 ROS spin 循环中运行）。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        作用：</span>
+<span class="sd">            初始化 ImageSaver 对象，设置 CvBridge、Document、输出路径、订阅话题等初始状态。</span>
+
+<span class="sd">        参数：</span>
+<span class="sd">            无</span>
+
+<span class="sd">        返回：</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;===================================enter report generate========================&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">CvBridge</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
+        <span class="n">current_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">_%H-%M-%S&quot;</span><span class="p">)</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;detection55_</span><span class="si">{</span><span class="n">current_time</span><span class="si">}</span><span class="s2">.docx&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;/home/ralab/pipeline-inspection-robot-topnx/src/pipeline_robot/report_test/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="c1"># self.doc_path = &#39;/home/jetson/pipeline-inspection-robot/src/pipeline_robot/report/3.docx&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">detected_defects</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 存储已检测到的缺陷</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_odom_x</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># 初始化当前odom x值</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stop</span><span class="o">=</span><span class="kc">True</span>
+
+        <span class="c1"># 订阅detection_info和odom话题</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s2">&quot;/_detection_info&quot;</span><span class="p">,</span> <span class="n">detection_new</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">detection_callback</span><span class="p">)</span>
+        <span class="c1"># rospy.Subscriber(&quot;/odometry/filtered&quot;, Odometry, self.odometry_callback)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s2">&quot;/cable/odom&quot;</span><span class="p">,</span> <span class="n">Odometry</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">odom_callback</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s2">&quot;/odom&quot;</span><span class="p">,</span> <span class="n">Odometry</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_callback</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ImageSaver.detection_callback">
+<a class="viewcode-back" href="../../scripts/report_generate_doc.html#report_generate_doc.report_generate.ImageSaver.detection_callback">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">detection_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        作用：</span>
+<span class="sd">            接收来自 /_detection_info 的检测消息，记录缺陷并触发保存函数。</span>
+
+<span class="sd">        参数：</span>
+<span class="sd">            data (detection_new): 来自检测模块的消息，包含 class_name、point_stamped、image_data、size 等字段。</span>
+
+<span class="sd">        返回：</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;recv detection data: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+        <span class="c1"># if not self.is_defect_unuseful(data):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">detected_defects</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">data</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">current_odom_x</span><span class="p">,</span>  <span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>  <span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_defect_info</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+
+
+    <span class="c1"># def odometry_callback(self, data):</span>
+        <span class="c1"># 更新当前odom x值</span>
+        <span class="c1"># self.current_odom_x = data.pose.pose.position.x</span>
+        <span class="c1"># if abs(data.twist.twist.linear.x)&lt;0.01:</span>
+        <span class="c1">#     self.is_stop = True</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     self.is_stop = False</span>
+<div class="viewcode-block" id="ImageSaver.odom_callback">
+<a class="viewcode-back" href="../../scripts/report_generate_doc.html#report_generate_doc.report_generate.ImageSaver.odom_callback">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">odom_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        作用：</span>
+<span class="sd">            接收里程计数据并更新内部的当前全局 x 位置（用于将检测点转换为全局坐标）。</span>
+
+<span class="sd">        参数：</span>
+<span class="sd">            data (Odometry): 里程计消息，包含位姿信息。</span>
+
+<span class="sd">        返回：</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 更新当前odom x值</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_odom_x</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span></div>
+
+        
+<div class="viewcode-block" id="ImageSaver.state_callback">
+<a class="viewcode-back" href="../../scripts/report_generate_doc.html#report_generate_doc.report_generate.ImageSaver.state_callback">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">state_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        作用：</span>
+<span class="sd">            根据里程计的线速度判断机器人是否处于静止状态，并更新内部标志 is_stop。</span>
+
+<span class="sd">        参数：</span>
+<span class="sd">            data (Odometry): 里程计消息，包含速度信息。</span>
+
+<span class="sd">        返回：</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.01</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_stop</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_stop</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="ImageSaver.is_defect_unuseful">
+<a class="viewcode-back" href="../../scripts/report_generate_doc.html#report_generate_doc.report_generate.ImageSaver.is_defect_unuseful">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_defect_unuseful</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        作用：</span>
+<span class="sd">            判断当前检测到的缺陷是否应被忽略（例如异常点、机器人未静止、距离过远或与已记录缺陷重复）。</span>
+
+<span class="sd">        参数：</span>
+<span class="sd">            data (detection_new): 检测消息，含坐标与类别等信息。</span>
+<span class="sd">            threshold (float): 判定与已记录缺陷重复的距离阈值，默认 0.5。</span>
+
+<span class="sd">        返回：</span>
+<span class="sd">            bool: 若返回 True 表示该缺陷不需要记录，False 表示应记录。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    
+    <span class="c1"># if self.is_stop!=0:</span>
+    <span class="c1">#     return True</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="o">-</span><span class="mi">0</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.01</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;当前目标点异常，缺陷类型: </span><span class="si">{}</span><span class="s2">,X: </span><span class="si">{}</span><span class="s2">, Y: </span><span class="si">{}</span><span class="s2">, Z: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span><span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stop</span><span class="o">!=</span><span class="kc">True</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;机器人未静止&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="o">&gt;</span><span class="mf">1.4</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;检测到缺陷类型: </span><span class="si">{}</span><span class="s2">距离过远为:</span><span class="si">{}</span><span class="s2">，暂不记录&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span><span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">defect</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">detected_defects</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">class_name</span> <span class="o">==</span> <span class="n">defect</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="c1"># 将odom的x值考虑在内</span>
+                <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">dz</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_odom_x</span><span class="p">)</span> <span class="o">-</span> <span class="n">defect</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">defect</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="n">defect</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">dx</span> <span class="o">&lt;</span> <span class="n">threshold</span> <span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="ImageSaver.set_table_font_size">
+<a class="viewcode-back" href="../../scripts/report_generate_doc.html#report_generate_doc.report_generate.ImageSaver.set_table_font_size">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_table_font_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">table</span><span class="p">,</span> <span class="n">font_size_pt</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        作用：</span>
+<span class="sd">            将指定表格内所有单元格文本的字体大小设置为指定磅数。</span>
+
+<span class="sd">        参数：</span>
+<span class="sd">            table: docx 的 table 对象。</span>
+<span class="sd">            font_size_pt (int/float): 字体大小（磅）。</span>
+
+<span class="sd">        返回：</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">cells</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">cell</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">paragraph</span><span class="o">.</span><span class="n">runs</span><span class="p">:</span>
+                        <span class="n">run</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">Pt</span><span class="p">(</span><span class="n">font_size_pt</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ImageSaver.save_defect_info">
+<a class="viewcode-back" href="../../scripts/report_generate_doc.html#report_generate_doc.report_generate.ImageSaver.save_defect_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_defect_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        作用：</span>
+<span class="sd">            将单条缺陷信息写入 Word 文档：包含将 ROS 图像转换成文件、在文档中创建表格并插入图片和缺陷信息，最后保存文档。</span>
+
+<span class="sd">        参数：</span>
+<span class="sd">            data (detection_new): 来自检测模块的消息，包含图像、类别、位置信息与尺寸等字段。</span>
+
+<span class="sd">        返回：</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">cv_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="o">.</span><span class="n">imgmsg_to_cv2</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">image_data</span><span class="p">,</span> <span class="s2">&quot;bgr8&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">CvBridgeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="s2">&quot;CvBridge Error: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="k">return</span>
+
+        <span class="n">temp_image_path</span> <span class="o">=</span> <span class="s1">&#39;/home/ralab/pipeline-inspection-robot-topnx/src/pipeline_robot/report/image.jpg&#39;</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">temp_image_path</span><span class="p">,</span> <span class="n">cv_image</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_paragraph</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_table</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="c1"># 尝试将表格对齐到文档的最左端</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">alignment</span> <span class="o">=</span> <span class="n">WD_TABLE_ALIGNMENT</span><span class="o">.</span><span class="n">LEFT</span>
+
+        <span class="c1"># 设置表格的左缩进为0，尝试使表格对齐到最左端</span>
+        <span class="n">table_left_indent</span> <span class="o">=</span> <span class="n">OxmlElement</span><span class="p">(</span><span class="s1">&#39;w:tblInd&#39;</span><span class="p">)</span>
+        <span class="n">table_left_indent</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">qn</span><span class="p">(</span><span class="s1">&#39;w:w&#39;</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>  <span class="c1"># 缩进值，单位为dxa（twentieths of a point）</span>
+        <span class="n">table_left_indent</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">qn</span><span class="p">(</span><span class="s1">&#39;w:type&#39;</span><span class="p">),</span> <span class="s1">&#39;dxa&#39;</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">_tblPr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">table_left_indent</span><span class="p">)</span>
+ 
+
+
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+                <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span>
+        <span class="c1"># column_widths = [Inches(0.5), Inches(0.5), Inches(0.5), Inches(0.5),Inches(1)]</span>
+        <span class="c1"># for i, column in enumerate(table.columns):</span>
+        <span class="c1">#     if i &lt; len(column_widths):  # 仅调整前5列</span>
+        <span class="c1">#         self.set_column_width(column, column_widths[i])</span>
+        <span class="c1"># length = 2</span>
+        <span class="c1"># for col in range(0, 5):</span>
+        <span class="c1">#     for row in range(0, 11):</span>
+        <span class="c1">#         table.cell(row, col).width = Cm(length)</span>
+        <span class="c1"># table.cell(0,0).width=Cm(2)</span>
+        <span class="c1"># table.cell(1,0).width=Cm(2)</span>
+        <span class="c1"># table.cell(2,0).width=Cm(2)</span>
+        <span class="c1"># table.cell(3,0).width=Cm(2)</span>
+        <span class="c1"># table.cell(4,0).width=Cm(2)</span>
+        <span class="c1"># table.cell(5,0).width=Cm(2)</span>
+        <span class="c1"># table.cell(6,0).width=Cm(2)</span>
+        <span class="c1"># table.cell(7,0).width=Cm(2)</span>
+        <span class="c1"># table.cell(8,0).width=Cm(2)</span>
+        <span class="c1"># table.cell(9,0).width=Cm(2)</span>
+        <span class="c1"># table.cell(10,0).width=Cm(2)</span>
+        <span class="n">col1</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">col1</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">Inches</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">col2</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">col2</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">Inches</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">col3</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">col3</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">Inches</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">col4</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">col4</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">Inches</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">col5</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+        <span class="n">col5</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">Inches</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
+            <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+        
+        <span class="c1">#existed</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;管段编号 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;水流方向 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;管道材质 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;管道直径 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;视频文件 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;缺陷名称 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;检测日期 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;缺陷登记 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;时钟表示 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;管端埋深 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;缺陷描述 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;管端长度 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;缺陷长度 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;缺陷距离 &#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">size</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">class_name</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="si">{:.3f}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">point_stamped</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">current_odom_x</span><span class="p">)</span>
+
+        <span class="n">paragraph</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">run</span> <span class="o">=</span> <span class="n">paragraph</span><span class="o">.</span><span class="n">add_run</span><span class="p">()</span>
+        <span class="n">run</span><span class="o">.</span><span class="n">add_picture</span><span class="p">(</span><span class="n">temp_image_path</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">Inches</span><span class="p">(</span><span class="mf">4.0</span><span class="p">))</span>
+
+        <span class="c1"># self.document.add_picture(temp_image_path, width=Inches(4.0))</span>
+        <span class="c1"># self.document.add_paragraph(&#39;缺陷类型: {}&#39;.format(data.class_name))</span>
+        
+        
+        <span class="c1"># 在位置信息中加入odom x值</span>
+        <span class="c1"># self.document.add_paragraph(&#39;当前机器人在管道全局位置信息:  X: {}&#39;.format(self.current_odom_x))</span>
+        <span class="c1"># self.document.add_paragraph(&#39;当前缺陷距离机器人的位置信息:   X: {}, Y: {}, Z: {}&#39;.format(data.point_stamped.point.x, data.point_stamped.point.y, data.point_stamped.point.z))</span>
+        <span class="c1"># self.document.add_paragraph(&#39;该缺陷在管道全局位置信息:  X: {}, Y: {}, Z: {}&#39;.format(data.point_stamped.point.x+self.current_odom_x, data.point_stamped.point.y, data.point_stamped.point.z))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_table_font_size</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">doc_path</span><span class="p">)</span></div>
+</div>
+
+        <span class="c1"># os.remove(temp_image_path)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;report_generate&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">image_saver</span> <span class="o">=</span> <span class="n">ImageSaver</span><span class="p">()</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
