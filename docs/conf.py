@@ -18,6 +18,7 @@ extensions = [
     "sphinx.ext.autosummary",   # 新加
     "sphinx.ext.viewcode",  # 显示源代码链接
     'breathe',
+    "sphinx.ext.napoleon",
 ]
 
 # 自动生成 autosummary 文档
